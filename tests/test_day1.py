@@ -1,0 +1,23 @@
+# coding=utf-8
+
+"""
+Day 1 Puzzle Part 1 tests
+"""
+
+import unittest
+
+from src.day1a import solve
+
+
+class TestSolve(unittest.TestCase):
+
+    def test_solve(self):
+        self.assertEqual(solve('(())'), 0)
+        self.assertEqual(solve('()()'), 0)
+        self.assertEqual(solve('((('), 3)
+        self.assertEqual(solve('(()(()('), 3)
+        self.assertEqual(solve('))((((('), 3)
+        self.assertEqual(solve('())'), -1)
+        self.assertEqual(solve('))('), -1)
+        self.assertEqual(solve(')))'), -3)
+        self.assertEqual(solve(')())())'), -3)
