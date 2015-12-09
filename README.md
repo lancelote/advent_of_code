@@ -1,4 +1,5 @@
 [![Requirements Status](https://requires.io/github/lancelote/advent_of_code/requirements.svg?branch=master)](https://requires.io/github/lancelote/advent_of_code/requirements/?branch=master)
+[![Build Status](https://travis-ci.org/lancelote/advent_of_code.svg)](https://travis-ci.org/lancelote/advent_of_code)
 
 # advent_of_code
 
