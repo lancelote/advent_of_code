@@ -35,5 +35,6 @@ To update requirements please use `pip-tools` package:
 - [ ] test coverage
 - [ ] main testing
 - [ ] real data tests
+- [ ] requirements badge
 
 # Merry Christmas and Happy New Year!
