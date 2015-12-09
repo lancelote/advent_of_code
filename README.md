@@ -30,4 +30,19 @@ To update requirements please use `pip-tools` package:
 - Compile `requirements.txt` with `pip-compile`
 - Install/upgrade with `pip-sync`
 
+## Tests
+
+All tests are stored in the `tests` folder, `unittest` syntax are used. Feel
+free to use any test runner you like. I prefer `pytest`:
+```bash
+pytest tests/
+```
+
+## Syntax Validation
+
+Make sure pylint is installed and run:
+```bash
+pylint main.py src tests
+```
+
 # Merry Christmas and Happy New Year!
