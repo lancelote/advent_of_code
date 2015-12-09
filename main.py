@@ -4,7 +4,7 @@
 Puzzle Solver Runner
 """
 
-from src import day1a, day1b
+import importlib
 
 
 def main():  # pragma: no cover
@@ -20,7 +20,8 @@ def main():  # pragma: no cover
     except FileNotFoundError:
         print('Input file not found')
         return
-    solution = eval(puzzle).solve(task)
+    solver = importlib.import_module('src.%s' % puzzle)
+    solution = solver.solve(task)
     print('Answer:', solution)
 
 if __name__ == '__main__':  # pragma: no cover
