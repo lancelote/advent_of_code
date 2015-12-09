@@ -29,14 +29,4 @@ To update requirements please use `pip-tools` package:
 - Compile `requirements.txt` with `pip-compile`
 - Install/upgrade with `pip-sync`
 
-## ToDo
-
-- [ ] CI
-- [ ] paver
-- [ ] syntax validation
-- [ ] test coverage
-- [ ] main testing
-- [ ] real data tests
-- [x] requirements badge
-
 # Merry Christmas and Happy New Year!
