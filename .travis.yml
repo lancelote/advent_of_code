@@ -11,3 +11,4 @@ install:
 
 script:
   - py.test tests/  # Unit tests
+  - pylint main.py src tests  # Syntax validation

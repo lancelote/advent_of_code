@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=missing-docstring
 
 """
 Day 2 Puzzle Part 1 tests

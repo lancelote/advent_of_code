@@ -1,0 +1,7 @@
+[MESSAGES CONTROL]
+# Ignore warnings about locally disables errors
+disable=I0011
+
+[REPORTS]
+# Simplify pylint reports
+reports=no
