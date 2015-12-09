@@ -1,3 +1,5 @@
+[![Requirements Status](https://requires.io/github/lancelote/advent_of_code/requirements.svg?branch=master)](https://requires.io/github/lancelote/advent_of_code/requirements/?branch=master)
+
 # advent_of_code
 
 [Advent of code](http://adventofcode.com/) - Programming Christmas Puzzles
@@ -35,6 +37,6 @@ To update requirements please use `pip-tools` package:
 - [ ] test coverage
 - [ ] main testing
 - [ ] real data tests
-- [ ] requirements badge
+- [x] requirements badge
 
 # Merry Christmas and Happy New Year!
