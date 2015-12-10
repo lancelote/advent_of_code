@@ -38,6 +38,27 @@ SHIFT = {
 }
 
 
+def visit_houses(task):
+    """
+    Deliver presents
+
+    Args:
+        task (str): '>^<v...'
+
+    Returns:
+        dct: {position: number_of_presents, ...}
+    """
+    current_position = Coordinates(0, 0)
+    visited_houses = defaultdict(int)
+    visited_houses[current_position] = 1
+
+    for direction in task:
+        current_position = Coordinates(current_position.x - SHIFT[direction].x,
+                                       current_position.y - SHIFT[direction].y)
+        visited_houses[current_position] += 1
+    return visited_houses
+
+
 def solve(task):
     """
     Solve the puzzle
@@ -48,12 +69,5 @@ def solve(task):
     Returns:
         int: Number of houses with at least one present
     """
-    current_position = Coordinates(0, 0)
-    visited_houses = defaultdict(int)
-    visited_houses[current_position] = 1
-
-    for direction in task:
-        current_position = Coordinates(current_position.x - SHIFT[direction].x,
-                                       current_position.y - SHIFT[direction].y)
-        visited_houses[current_position] += 1
+    visited_houses = visit_houses(task)
     return len(visited_houses)
