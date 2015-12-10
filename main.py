@@ -14,16 +14,19 @@ def main():  # pragma: no cover
     part = input('Pick a puzzle part (A or B): ').lower()
     puzzle = day + part
 
-    for file_name in ['input.txt', 'input']:
-        try:
-            with open('inputs/%s/%s' % (day, file_name)) as input_file:
-                task = input_file.read()
-        except FileNotFoundError:
-            pass
+    if puzzle in ['day4a', 'day4b']:
+        task = input('Puzzle input: ')
+    else:
+        for file_name in ['input.txt', 'input']:
+            try:
+                with open('inputs/%s/%s' % (day, file_name)) as input_file:
+                    task = input_file.read()
+            except FileNotFoundError:
+                pass
 
-    if task is None:
-        print('Input file not found')
-        return
+        if task is None:
+            print('Input file not found')
+            return
 
     solver = importlib.import_module('src.%s' % puzzle)
     solution = solver.solve(task)

@@ -7,10 +7,10 @@
 
 ## How to use
 
-Puzzle inputs can be too long for console input, so save and move them to
-`inputs/day{n}{part:a|b}/`, ex. `inputs/day1a/` for Day 1 Puzzle Part 1
-
-Puzzle solver will catch them on the fly!
+Puzzle inputs can be too long for console input, if the file is provided - save 
+and move it to `inputs/day{n}{part:a|b}/`, ex. `inputs/day1a/` for Day 1
+Puzzle Part 1. If the input file is not provided by the Advent of Code - you
+will be asked by solver to type in the input (ex. for Day 4 Puzzle Part 1).
 
 To launch Puzzle Solver:
 ```bash
