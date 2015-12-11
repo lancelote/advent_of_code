@@ -19,6 +19,6 @@ class TestProcessData(unittest.TestCase):
 
 class TestSolve(unittest.TestCase):
 
-    def test_returns_result(self):
+    def test_returns_correct_result(self):
         self.assertEqual(solve('2x3x4'), 58)
         self.assertEqual(solve('1x1x10'), 43)
