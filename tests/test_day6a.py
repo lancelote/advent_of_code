@@ -7,7 +7,7 @@ Day 6 Puzzle Part 1 tests
 
 import unittest
 
-from src.day6a import execute, process_data, solve
+from src.day6a import update_light, process_data, solve
 
 
 class TestProcessData(unittest.TestCase):
@@ -22,15 +22,15 @@ class TestProcessData(unittest.TestCase):
         self.assertEqual(toggle, [('toggle', (120, 314), (745, 489))])
 
 
-class TestExecute(unittest.TestCase):
+class TestUpdateLight(unittest.TestCase):
 
     def test_returns_correct_result(self):
-        self.assertFalse(execute('toggle', True))
-        self.assertTrue(execute('toggle', False))
-        self.assertTrue(execute('turn on', True))
-        self.assertTrue(execute('turn on', False))
-        self.assertFalse(execute('turn off', False))
-        self.assertFalse(execute('turn off', True))
+        self.assertFalse(update_light('toggle', True))
+        self.assertTrue(update_light('toggle', False))
+        self.assertTrue(update_light('turn on', True))
+        self.assertTrue(update_light('turn on', False))
+        self.assertFalse(update_light('turn off', False))
+        self.assertFalse(update_light('turn off', True))
 
 
 class TestSolve(unittest.TestCase):

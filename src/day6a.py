@@ -63,9 +63,9 @@ def process_data(data):
     return processed_data
 
 
-def execute(command, light):
+def update_light(command, light):
     """
-    Compute new light value
+    Compute new light status
 
     Args:
         command (str): 'toggle', 'turn on' or 'turn off'
@@ -82,10 +82,12 @@ def execute(command, light):
     return logic[command]
 
 
-def solve(task):
+def compute_result(task, execute):
     """Calculate number of powered lights after all instructions
 
     Args:
+        execute (function): Returns new light status after given command and
+            previous light status
         task (str): turn on 489,959 through 759,964\n...
 
     Returns:
@@ -100,3 +102,15 @@ def solve(task):
                 lights[i][j] = execute(instruction.command, lights[i][j])
 
     return sum(light for row in lights for light in row)
+
+
+def solve(task):
+    """Calculate number of powered lights after all instructions
+
+    Args:
+        task (str): turn on 489,959 through 759,964\n...
+
+    Returns:
+        int: Number of powered lights
+    """
+    return compute_result(task, update_light)
