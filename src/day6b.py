@@ -28,29 +28,34 @@ For example:
     toggle 0,0 through 999,999 would increase the total brightness by 2000000.
 """
 
-from src.day6a import process_data
+from src.day6a import compute_result
+
+
+def update_light(command, light):
+    """Compute new light value
+
+    Args:
+        command (str): 'toggle', 'turn on' or 'turn off'
+        light (int): Light status before command execution
+
+    Returns:
+        int: New light status
+    """
+    logic = {
+        'toggle': light + 2,
+        'turn on': light + 1,
+        'turn off': light - 1 if light != 0 else 0
+    }
+    return logic[command]
 
 
 def solve(task):
-    """Calculate total brightness of powered lights after all instructions
+    """Total brightness of all lights combined after all instructions
 
     Args:
         task (str): turn on 489,959 through 759,964\n...
 
     Returns:
-        int: Total brightness of powered lights
+        int: Total brightness of all lights
     """
-    instructions = process_data(task)
-    lights = [[False]*1000 for _ in range(1000)]
-
-    for instruction in instructions:
-        for i in range(instruction.start.x, instruction.end.x + 1):
-            for j in range(instruction.start.y, instruction.end.y + 1):
-                if instruction.command == 'toggle':
-                    lights[i][j] += 2
-                elif instruction.command == 'turn on':
-                    lights[i][j] += 1
-                elif instruction.command == 'turn off':
-                    lights[i][j] -= 1 if lights[i][j] != 0 else 0
-
-    return sum(light for row in lights for light in row)
+    return compute_result(task, update_light)

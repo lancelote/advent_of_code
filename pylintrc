@@ -1,6 +1,5 @@
 [MESSAGES CONTROL]
-# Ignore warnings about locally disables errors
-disable=locally-disabled,duplicate-code
+disable=locally-disabled
 
 [REPORTS]
 # Simplify pylint reports

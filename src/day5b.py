@@ -36,7 +36,7 @@ How many strings are nice under these new rules?
 
 import re
 
-from src import day5a
+from src.day5a import process_data
 
 
 def is_nice(word):
@@ -53,5 +53,16 @@ def is_nice(word):
     guarded_letter = len(re.findall(r'(.).\1', word))
     return pairs >= 1 and guarded_letter >= 1
 
-day5a.is_nice = is_nice
-solve = day5a.solve  # pylint: disable=invalid-name
+
+def solve(task):
+    """
+    Calculate number of nice strings
+
+    Args:
+        task (str): agagasdgsdg \n aasdfasgsdg \n ... (without spaces)
+
+    Returns:
+        int: Number of nice strings
+    """
+    data = process_data(task)
+    return sum(is_nice(line) for line in data)
