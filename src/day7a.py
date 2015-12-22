@@ -62,14 +62,25 @@ what signal is ultimately provided to wire a?
 
 """
 
+import re
+from collections import namedtuple
+
+PATTERN = re.compile(r'^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$')
+
+
+def process_data(data):
+    processed_data = []
+    command = namedtuple('Command', ['input_a', 'gate', 'input_b', 'output'])
+
+    for line in data.strip().split('\n'):
+        input_a, gate, input_b, output = re.match(PATTERN, line).groups()
+        processed_data.append(command(input_a, gate, input_b, output))
+
+    return processed_data
+
 
 def solve(task):
-    """
-
-    Args:
-        task (str):
-
-    Returns:
-
-    """
+    commands = process_data(task)
+    for command in commands:
+        pass
     return task
