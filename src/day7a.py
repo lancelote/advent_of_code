@@ -74,7 +74,6 @@ def process_data(data):
 
     for line in data.strip().split('\n'):
         a, gate, b, output = re.match(PATTERN, line).groups()
-        b = int(b) if gate in (None, 'LSHIFT', 'RSHIFT') else b
         processed_data.append(command(a, gate, b, output))
 
     return processed_data
@@ -92,18 +91,25 @@ class Signal(object):
         __value = None
 
         if self.gate is None:
-            __value = self.b
+            __value = self.__get_value(self.b, signals)
         elif self.gate == 'AND':
-            __value = signals[self.a].get_value(signals) & signals[self.b].get_value(signals)
+            __value = self.__get_value(self.a, signals) & self.__get_value(self.b, signals)
         elif self.gate == 'OR':
-            __value = signals[self.a].get_value(signals) | signals[self.b].get_value(signals)
+            __value = self.__get_value(self.a, signals) | self.__get_value(self.b, signals)
         elif self.gate == 'LSHIFT':
-            __value = signals[self.a].get_value(signals) << self.b
+            __value = self.__get_value(self.a, signals) << int(self.b)
         elif self.gate == 'RSHIFT':
-            __value = signals[self.a].get_value(signals) >> self.b
+            __value = self.__get_value(self.a, signals) >> int(self.b)
         elif self.gate == 'NOT':
-            __value = 65535 - signals[self.b].get_value(signals)
+            __value = 65535 - self.__get_value(self.b, signals)
         return __value
+
+    @staticmethod
+    def __get_value(item, signals):
+        try:
+            return int(item)
+        except ValueError:
+            return signals[item].get_value(signals)
 
 
 def solve(task):
