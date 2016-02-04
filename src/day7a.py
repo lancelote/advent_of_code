@@ -98,9 +98,6 @@ class HDict(dict):
 def get_value(wire, wires):
     """Recursive wire signal search
 
-    Function modifies wires dictionary in process to achieve better performance
-    of follow recursive calls
-
     Args:
         wire (int or namedtuple): Wire signal or wire representation
         wires (dict): Collection of wires stored by wire label
