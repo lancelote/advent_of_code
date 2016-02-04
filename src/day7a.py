@@ -59,16 +59,24 @@ After it is run, these are the signals on the wires:
 
 In little Bobby's kit's instructions booklet (provided as your puzzle input),
 what signal is ultimately provided to wire a?
-
 """
 
 import re
 from collections import namedtuple
+from functools import lru_cache
 
 PATTERN = re.compile(r'^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$')
 
 
 def process_data(data):
+    """Convert text data into list
+
+    Args:
+        data: "NOT dq -> dr\nkg OR kf -> kh..."
+
+    Returns:
+        list: List of command namedtuples
+    """
     processed_data = []
     command = namedtuple('Command', ['input_a', 'gate', 'input_b', 'output'])
 
@@ -79,8 +87,72 @@ def process_data(data):
     return processed_data
 
 
-def solve(task):
-    commands = process_data(task)
-    for command in commands:
+class HDict(dict):
+    """Hashable dictionary for lru_cache compatibility"""
+
+    def __hash__(self):
+        return hash(frozenset(self.items()))
+
+
+@lru_cache(maxsize=500)
+def get_value(wire, wires):
+    """Recursive wire signal search
+
+    Function modifies wires dictionary in process to achieve better performance
+    of follow recursive calls
+
+    Args:
+        wire (int or namedtuple): Wire signal or wire representation
+        wires (dict): Collection of wires stored by wire label
+
+    Returns:
+        int: Wire signal
+    """
+    value = None
+
+    try:
+        return int(wire)
+    except TypeError:
         pass
-    return task
+
+    if wire.gate is None:
+        try:
+            value = int(wire.input_b)
+        except ValueError:
+            value = get_value(wires[wire.input_b], wires)
+    elif wire.gate == 'NOT':
+        value = 65535 - get_value(wires[wire.input_b], wires)
+    elif wire.gate == 'RSHIFT':
+        value = get_value(wires[wire.input_a], wires) >> int(wire.input_b)
+    elif wire.gate == 'LSHIFT':
+        value = get_value(wires[wire.input_a], wires) << int(wire.input_b)
+    elif wire.gate == 'AND':
+        try:
+            value_a = int(wire.input_a)
+        except ValueError:
+            value_a = get_value(wires[wire.input_a], wires)
+        value = value_a & get_value(wires[wire.input_b], wires)
+    elif wire.gate == 'OR':
+        value = get_value(wires[wire.input_a], wires) | \
+                get_value(wires[wire.input_b], wires)
+
+    # wires[wire.output] = value
+    return value
+
+
+def solve(task):
+    """Recursively process task data to compute wire 'a' value
+
+    Args:
+        task: "NOT dq -> dr\nkg OR kf -> kh..."
+
+    Returns:
+        int: wire 'a' signal value
+    """
+    commands = process_data(task)
+    wires = HDict()
+
+    for command in commands:
+        wires[command.output] = command
+
+    return get_value(wires['a'], wires)

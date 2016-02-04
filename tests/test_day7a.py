@@ -7,7 +7,7 @@ Day 7 Puzzle Part 1 tests
 
 import unittest
 
-from src.day7a import process_data, solve
+from src.day7a import process_data
 
 
 class TestProcessData(unittest.TestCase):
@@ -34,4 +34,4 @@ class TestProcessData(unittest.TestCase):
 class TestSolve(unittest.TestCase):
 
     def test_returns_correct_result(self):
-        self.assertTrue(True)
+        pass
