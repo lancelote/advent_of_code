@@ -28,7 +28,7 @@ pur -r requirements.txt
 
 ## Tests
 
-All tests are stored in the `tests` folder, `unittest` syntax are used. But feel free to use any test runner you like. I prefer `pytest`:
+All tests are stored in the `tests` folder, `unittest` syntax is used. But feel free to use any test runner you like. I prefer `pytest`:
 
 ```bash
 pytest tests/
