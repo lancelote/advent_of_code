@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=bad-builtin
 
 """
 --- Day 6: Probably a Fire Hazard ---

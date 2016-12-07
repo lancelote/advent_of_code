@@ -7,10 +7,7 @@
 
 ## How to use
 
-Puzzle inputs can be too long for console input, if the file is provided - save 
-and move it to `inputs/day{n}{part:a|b}/`, ex. `inputs/day1a/` for Day 1
-Puzzle Part 1. If the input file is not provided by the Advent of Code - you
-will be asked by solver to type in the input (ex. for Day 4 Puzzle Part 1).
+Puzzle inputs can be too long for console input, if the file is provided - save and move it to `inputs/day{n}{part:a|b}/`, ex. `inputs/day1a/` for Day 1 Puzzle Part 1. If the input file is not provided by the Advent of Code - you will be asked by solver to type in the input (ex. for Day 4 Puzzle Part 1).
 
 To launch Puzzle Solver:
 ```bash
@@ -21,19 +18,18 @@ python main.py
 
 Python 3 is required.
 
-For development and testing you should install necessary dependence packages
-from `requirements.txt`. Virtual environment is recommended.
+For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is recommended.
 
-To update requirements please use `pip-tools` package:
+To update requirements list please use `pur` package:
 
-- Update `requirements.in`
-- Compile `requirements.txt` with `pip-compile`
-- Install/upgrade with `pip-sync`
+```bash
+pur -r requirements.txt
+```
 
 ## Tests
 
-All tests are stored in the `tests` folder, `unittest` syntax are used. Feel
-free to use any test runner you like. I prefer `pytest`:
+All tests are stored in the `tests` folder, `unittest` syntax are used. But feel free to use any test runner you like. I prefer `pytest`:
+
 ```bash
 pytest tests/
 ```
