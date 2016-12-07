@@ -28,7 +28,7 @@ For example:
     toggle 0,0 through 999,999 would increase the total brightness by 2000000.
 """
 
-from src.day6a import compute_result
+from src.year2015.day6a import compute_result
 
 
 def update_light(command, light):

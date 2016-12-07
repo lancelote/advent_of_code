@@ -24,7 +24,7 @@ For example:
     direction and Robo-Santa going the other.
 """
 
-from src.day3a import visit_houses
+from src.year2015.day3a import visit_houses
 
 
 def solve(task):

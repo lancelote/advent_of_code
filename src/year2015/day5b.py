@@ -36,7 +36,7 @@ How many strings are nice under these new rules?
 
 import re
 
-from src.day5a import process_data
+from src.year2015.day5a import process_data
 
 
 def is_nice(word):

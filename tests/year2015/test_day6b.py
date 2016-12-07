@@ -7,7 +7,7 @@ Day 6 Puzzle Part 2 tests
 
 import unittest
 
-from src.day6b import solve, update_light
+from src.year2015.day6b import solve, update_light
 
 
 class TestSolve(unittest.TestCase):

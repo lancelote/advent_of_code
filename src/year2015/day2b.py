@@ -29,7 +29,7 @@ How many total feet of ribbon should they order?
 from functools import reduce
 from operator import mul
 
-from src.day2a import process_data
+from src.year2015.day2a import process_data
 
 
 def solve(task):

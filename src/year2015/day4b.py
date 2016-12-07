@@ -23,7 +23,7 @@ For example:
     of pqrstuv1048970 looks like 000006136ef....
 """
 
-from src.day4a import solve as part_a_solve
+from src.year2015.day4a import solve as part_a_solve
 
 
 def solve(task):

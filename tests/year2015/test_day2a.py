@@ -7,7 +7,7 @@ Day 2 Puzzle Part 1 tests
 
 import unittest
 
-from src.day2a import process_data, solve
+from src.year2015.day2a import process_data, solve
 
 
 class TestProcessData(unittest.TestCase):

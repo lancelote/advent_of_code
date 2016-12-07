@@ -7,7 +7,7 @@ Day 5 Puzzle Part 2 tests
 
 import unittest
 
-from src.day5b import is_nice
+from src.year2015.day5b import is_nice
 
 
 class TestIsNice(unittest.TestCase):

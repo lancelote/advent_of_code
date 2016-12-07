@@ -7,7 +7,7 @@ Day 3 Puzzle Part 2 tests
 
 import unittest
 
-from src.day3b import solve
+from src.year2015.day3b import solve
 
 
 class TestSolve(unittest.TestCase):

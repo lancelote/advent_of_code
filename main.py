@@ -4,8 +4,8 @@
 Puzzle Solver Runner
 """
 
-import importlib
 import os
+import importlib
 
 
 def main():  # pragma: no cover
@@ -38,7 +38,7 @@ def main():  # pragma: no cover
             print('Input file not found')
             return
 
-    solver = importlib.import_module('src.%s' % puzzle)
+    solver = importlib.import_module('src.year%s.%s' % (year, puzzle))
     solution = solver.solve(task)
     print('Answer:', solution)
 
