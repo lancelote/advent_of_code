@@ -3,6 +3,7 @@
 
 # Python
 __pycache__/
+.cache/
 
 # Input Puzzle files
 inputs/
