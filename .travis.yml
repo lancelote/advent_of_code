@@ -6,9 +6,8 @@ python:
   - '3.5'
 
 install:
-  - pip install --upgrade pip
-  - pip install -r requirements.txt
+  - make update
 
 script:
-  - py.test tests/            # Unit tests
-  - pylint main.py src tests  # Syntax validation
+  - make test
+  - make lint

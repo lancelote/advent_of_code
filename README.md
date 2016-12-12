@@ -12,7 +12,11 @@ Puzzle inputs can be too long for console input, if the file is provided - save 
 To launch Puzzle Solver:
 ```bash
 python main.py
+# or
+make run
 ```
+
+For all automation tasks I use `Makefile`. You can skip it entirely and just manually run commands from it. If you on Windows you can get `make` with `mingw` or `cygwin` (I use `mingw` while develop on windows machine).
 
 ## Requirements
 
@@ -20,10 +24,14 @@ Python 3 is required.
 
 For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is recommended.
 
-To update requirements list please use `pur` package:
+```bash
+make update
+```
+
+To update requirements list:
 
 ```bash
-pur -r requirements.txt
+make requirements
 ```
 
 ## Tests
@@ -31,14 +39,15 @@ pur -r requirements.txt
 All tests are stored in the `tests` folder, `unittest` syntax is used. But feel free to use any test runner you like. I prefer `pytest`:
 
 ```bash
-pytest tests/
+make test
 ```
 
 ## Syntax Validation
 
-Make sure pylint is installed and run:
+Make sure `pylint` is installed and run:
+
 ```bash
-pylint main.py src tests
+make lint
 ```
 
 # Merry Christmas and Happy New Year!
