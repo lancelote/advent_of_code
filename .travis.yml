@@ -2,6 +2,10 @@
 
 language: python
 
+branches:
+  except:
+    - develop
+
 python:
   - '3.5'
 
