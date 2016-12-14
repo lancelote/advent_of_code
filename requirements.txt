@@ -3,7 +3,7 @@ click==6.6
 colorama==0.3.7
 isort==4.2.5
 lazy-object-proxy==1.2.2
-mccabe==0.5.2
+mccabe==0.5.3
 pur==4.0.0
 py==1.4.31
 pylint==1.6.4
