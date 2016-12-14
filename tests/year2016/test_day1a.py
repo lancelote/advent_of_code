@@ -6,7 +6,8 @@
 
 import unittest
 
-from src.year2016.day1a import solve, processed_data, update_direction
+from src.year2016.day1a import solve, processed_data, update_direction, \
+    calculate_distance, update_coordinates
 
 
 class UpdateDirectionTest(unittest.TestCase):
@@ -43,6 +44,42 @@ class ProcessedDataTest(unittest.TestCase):
             processed_data('R12, L345'),
             [('R', 12), ('L', 345)]
         )
+
+
+class CalculateDistanceTest(unittest.TestCase):
+
+    def test_positive_positive(self):
+        self.assertEqual(calculate_distance((1, 1)), 2)
+
+    def test_positive_negative(self):
+        self.assertEqual(calculate_distance((1, -1)), 2)
+
+    def test_negative_positive(self):
+        self.assertEqual(calculate_distance((-1, 1)), 2)
+
+    def test_negative_negative(self):
+        self.assertEqual(calculate_distance((-1, -1)), 2)
+
+    def test_zero_zero(self):
+        self.assertEqual(calculate_distance((0, 0)), 0)
+
+
+class UpdateCoordinates(unittest.TestCase):
+
+    def test_north(self):
+        self.assertEqual(update_coordinates((0, 0), 0, 1), (0, 1))
+
+    def test_east(self):
+        self.assertEqual(update_coordinates((0, 0), 1, 1), (1, 0))
+
+    def test_south(self):
+        self.assertEqual(update_coordinates((0, 0), 2, 1), (0, -1))
+
+    def test_west(self):
+        self.assertEqual(update_coordinates((0, 0), 3, 1), (-1, 0))
+
+    def test_long_distance(self):
+        self.assertEqual(update_coordinates((0, 0), 0, 100), (0, 100))
 
 
 class SolveTest(unittest.TestCase):

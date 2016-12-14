@@ -34,7 +34,7 @@ For example:
 """
 
 from collections import namedtuple
-from typing import List
+from typing import List, Tuple
 
 
 def processed_data(data: str) -> List[namedtuple]:
@@ -51,21 +51,36 @@ def update_direction(direction, turn):
         return (direction - 1) % 4
 
 
+def calculate_distance(point: Tuple[int, int]) -> int:
+    """Calculate the quarter distance between given point and (0, 0)"""
+    return abs(point[0]) + abs(point[1])
+
+
+def update_coordinates(
+        point: Tuple[int, int],
+        direction: int,
+        distance: int) -> Tuple[int, int]:
+    """Update point coordinates base on the direction and distance"""
+    x, y = point
+    if direction == 0:    # North
+        y += distance
+    elif direction == 1:  # East
+        x += distance
+    elif direction == 2:  # South
+        y -= distance
+    elif direction == 3:  # West
+        x -= distance
+    return x, y
+
+
 def solve(task: str) -> int:
     """How many blocks away is Easter Bunny HQ?"""
     direction = 0  # North
-    bunny_hq = [0, 0]
+    bunny_hq = (0, 0)
     instructions = processed_data(task)
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
+        bunny_hq = update_coordinates(bunny_hq, direction, instruction.distance)
 
-        if direction == 0:    # North
-            bunny_hq[1] += instruction.distance
-        elif direction == 1:  # East
-            bunny_hq[0] += instruction.distance
-        elif direction == 2:  # South
-            bunny_hq[1] -= instruction.distance
-        elif direction == 3:  # West
-            bunny_hq[0] -= instruction.distance
-    return abs(bunny_hq[0]) + abs(bunny_hq[1])
+    return calculate_distance(bunny_hq)
