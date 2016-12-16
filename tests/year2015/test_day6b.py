@@ -1,9 +1,7 @@
 # coding=utf-8
 # pylint: disable=missing-docstring,invalid-name
 
-"""
-Day 6 Puzzle Part 2 tests
-"""
+"""Day 6 Puzzle Part 2 tests."""
 
 import unittest
 

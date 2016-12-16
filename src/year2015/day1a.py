@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 1: Not Quite Lisp ---
+"""Day 1: Not Quite Lisp.
 
 Santa is trying to deliver presents in a large apartment building, but he can't
 find the right floor - the directions he got are a little confusing. He starts
@@ -27,8 +24,7 @@ To what floor do the instructions take Santa?
 
 
 def solve(task):
-    """
-    Solve puzzle
+    """Solve puzzle.
 
     Args:
         task (str): Puzzle input

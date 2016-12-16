@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Part Two ---
+"""Part Two.
 
 The elves are also running low on ribbon. Ribbon is all the same width, so they
 only have to worry about the length they need to order, which they would again
@@ -33,8 +30,7 @@ from src.year2015.day2a import process_data
 
 
 def solve(task):
-    """
-    Solve the puzzle
+    r"""Solve the puzzle.
 
     Args:
         task (str): length x width x height \n ... (without spaces)

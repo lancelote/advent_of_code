@@ -3,6 +3,7 @@ test:
 
 lint:
 	pylint main.py src tests
+	pydocstyle
 
 run:
 	@python main.py

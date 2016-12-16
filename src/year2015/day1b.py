@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 1 Part Two ---
+"""Day 1 Part Two.
 
 Now, given the same instructions, find the position of the first character that
 causes him to enter the basement (floor -1). The first character in the
@@ -18,8 +15,7 @@ basement?
 
 
 def solve(task):
-    """
-    Solve puzzle
+    """Solve puzzle.
 
     Args:
         task (str): Puzzle input

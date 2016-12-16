@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Part Two ---
+"""Part Two.
 
 You just finish implementing your winning light pattern when you realize you
 mistranslated Santa's message from Ancient Nordic Elvish.
@@ -32,7 +29,7 @@ from src.year2015.day6a import compute_result
 
 
 def update_light(command, light):
-    """Compute new light value
+    """Compute new light value.
 
     Args:
         command (str): 'toggle', 'turn on' or 'turn off'
@@ -50,7 +47,7 @@ def update_light(command, light):
 
 
 def solve(task):
-    """Total brightness of all lights combined after all instructions
+    r"""Total brightness of all lights combined after all instructions.
 
     Args:
         task (str): turn on 489,959 through 759,964\n...

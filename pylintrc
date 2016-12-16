@@ -4,3 +4,8 @@ disable=locally-disabled
 [REPORTS]
 # Simplify pylint reports
 reports=no
+
+[SIMILARITIES]
+# ToDo: Temporary fix before architecture will not be moved to OOP style
+min-similarity-lines=10
+ignore-docstrings=yes

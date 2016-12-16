@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Part Two ---
+"""Part Two.
 
 The next year, to speed up the process, Santa creates a robot version of
 himself, Robo-Santa, to deliver presents with him.
@@ -28,8 +25,7 @@ from src.year2015.day3a import visit_houses
 
 
 def solve(task):
-    """
-    Solve the puzzle
+    """Solve the puzzle.
 
     Args:
         task (str): '>^<v...'

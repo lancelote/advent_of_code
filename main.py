@@ -1,15 +1,11 @@
-# coding=utf-8
-
-"""
-Puzzle Solver Runner
-"""
+"""Puzzle Solver Runner."""
 
 import os
 import importlib
 
 
 def main():  # pragma: no cover
-    """Prints the result to a console"""
+    """Print the result to a console."""
     task = None
     year = input('Pick a year (2015/2016): ')
     day = input('Pick a puzzle (ex. Day 1): ').lower().replace(' ', '')

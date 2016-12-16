@@ -1,5 +1,4 @@
-"""
---- Day 1: No Time for a Taxicab ---
+"""Day 1: No Time for a Taxicab.
 
 Santa's sleigh uses a very high-precision clock to guide its movements, and
 the clock's oscillator is regulated by stars. Unfortunately, the stars have
@@ -38,13 +37,13 @@ from typing import List
 
 
 def processed_data(data: str) -> List[namedtuple]:
-    """Converts raw sequence of instructions into the list of namedtuples"""
+    """Convert raw sequence of instructions into the list of namedtuples."""
     instruction = namedtuple('Instruction', 'direction distance')
     return [instruction(x[0], int(x[1:])) for x in data.split(', ')]
 
 
 def update_direction(direction, turn):
-    """Returns the directions ID after the given turn"""
+    """Return the directions ID after the given turn."""
     if turn == 'R':
         return (direction + 1) % 4
     elif turn == 'L':
@@ -52,7 +51,7 @@ def update_direction(direction, turn):
 
 
 def solve(task: str) -> int:
-    """How many blocks away is Easter Bunny HQ?"""
+    """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
     bunny_hq = [0, 0]
     instructions = processed_data(task)

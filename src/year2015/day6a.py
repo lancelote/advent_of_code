@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 6: Probably a Fire Hazard ---
+"""Day 6: Probably a Fire Hazard.
 
 Because your neighbors keep defeating you in the holiday house decorating
 contest year after year, you've decided to deploy one million lights in a
@@ -40,7 +37,7 @@ PATTERN = re.compile(r'([a-z ]*) ([\d,]*) through ([\d,]*)')
 
 
 def process_data(data):
-    """Process row data into list of namedtuples
+    r"""Process row data into list of namedtuples.
 
     Args:
         data (str): turn on 489,959 through 759,964\n...
@@ -63,8 +60,7 @@ def process_data(data):
 
 
 def update_light(command, light):
-    """
-    Compute new light status
+    """Compute new light status.
 
     Args:
         command (str): 'toggle', 'turn on' or 'turn off'
@@ -82,7 +78,7 @@ def update_light(command, light):
 
 
 def compute_result(task, execute):
-    """Calculate number of powered lights after all instructions
+    r"""Calculate number of powered lights after all instructions.
 
     Args:
         execute (function): Returns new light status after given command and
@@ -104,7 +100,7 @@ def compute_result(task, execute):
 
 
 def solve(task):
-    """Calculate number of powered lights after all instructions
+    r"""Calculate number of powered lights after all instructions.
 
     Args:
         task (str): turn on 489,959 through 759,964\n...
