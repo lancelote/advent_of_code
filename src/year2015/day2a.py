@@ -56,9 +56,9 @@ def solve(task):
     data = process_data(task)
     for size in data:
         sides = (
-            size.length*size.height,
-            size.length*size.width,
-            size.height*size.width
+            size.length * size.height,
+            size.length * size.width,
+            size.height * size.width
         )
-        result += 2*sum(sides) + min(sides)
+        result += 2 * sum(sides) + min(sides)
     return result

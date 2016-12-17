@@ -35,7 +35,7 @@ def solve(task, zeros=5):
     """
     i = 0
     message_hash = ''
-    while not message_hash.startswith('0'*zeros):
+    while not message_hash.startswith('0' * zeros):
         message = task + str(i)
         message_hash = md5(message.encode()).hexdigest()
         i += 1

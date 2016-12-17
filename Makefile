@@ -4,6 +4,7 @@ test:
 lint:
 	pylint main.py src tests
 	pydocstyle
+	pycodestyle --select E,W .
 
 run:
 	@python main.py

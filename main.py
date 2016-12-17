@@ -38,5 +38,6 @@ def main():  # pragma: no cover
     solution = solver.solve(task)
     print('Answer:', solution)
 
+
 if __name__ == '__main__':  # pragma: no cover
     main()

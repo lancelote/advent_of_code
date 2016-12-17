@@ -129,7 +129,7 @@ def get_value(wire, wires):
         value = value_a & get_value(wires[wire.input_b], wires)
     elif wire.gate == 'OR':
         value = get_value(wires[wire.input_a], wires) | \
-                get_value(wires[wire.input_b], wires)
+            get_value(wires[wire.input_b], wires)
 
     # wires[wire.output] = value
     return value

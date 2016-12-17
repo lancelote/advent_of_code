@@ -89,7 +89,7 @@ def compute_result(task, execute):
         int: Number of powered lights
     """
     instructions = process_data(task)
-    lights = [[False]*1000 for _ in range(1000)]
+    lights = [[False] * 1000 for _ in range(1000)]
 
     for instruction in instructions:
         for i in range(instruction.start.x, instruction.end.x + 1):
