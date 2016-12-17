@@ -44,7 +44,7 @@ make test
 
 ## Syntax Validation
 
-Make sure `pylint` is installed and run:
+Make sure `pylint`, `pydocstyle` and `pycodestyle` are installed (yes I love linters) and run:
 
 ```bash
 make lint
