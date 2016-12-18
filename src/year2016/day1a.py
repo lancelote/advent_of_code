@@ -35,11 +35,12 @@ For example:
 from collections import namedtuple
 from typing import List
 
+Instruction = namedtuple('Instruction', 'direction distance')
 
-def processed_data(data: str) -> List[namedtuple]:
+
+def processed_data(data: str) -> List[Instruction]:
     """Convert raw sequence of instructions into the list of namedtuples."""
-    instruction = namedtuple('Instruction', 'direction distance')
-    return [instruction(x[0], int(x[1:])) for x in data.split(', ')]
+    return [Instruction(x[0], int(x[1:])) for x in data.split(', ')]
 
 
 def update_direction(direction, turn):
@@ -54,7 +55,7 @@ def solve(task: str) -> int:
     """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
     bunny_hq = [0, 0]
-    instructions = processed_data(task)
+    instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)

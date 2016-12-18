@@ -20,7 +20,7 @@ For all automation tasks I use `Makefile`. You can skip it entirely and just man
 
 ## Requirements
 
-Python 3 is required.
+Python 3.5 is required.
 
 For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is recommended.
 
@@ -44,7 +44,7 @@ make test
 
 ## Syntax Validation
 
-Make sure `pylint`, `pydocstyle` and `pycodestyle` are installed (yes I love linters) and run:
+Make sure `pylint`, `pydocstyle`, `pycodestyle` and `mypy` are installed (yes I love linters) and run:
 
 ```bash
 make lint
