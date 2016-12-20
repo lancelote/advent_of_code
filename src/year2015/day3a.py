@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 3: Perfectly Spherical Houses in a Vacuum ---
+"""Day 3: Perfectly Spherical Houses in a Vacuum.
 
 Santa is delivering presents to an infinite two-dimensional grid of houses.
 
@@ -39,8 +36,7 @@ SHIFT = {
 
 
 def visit_houses(task):
-    """
-    Deliver presents
+    """Deliver presents.
 
     Args:
         task (str): '>^<v...'
@@ -60,8 +56,7 @@ def visit_houses(task):
 
 
 def solve(task):
-    """
-    Solve the puzzle
+    """Solve the puzzle.
 
     Args:
         task (str): '>^<v...'

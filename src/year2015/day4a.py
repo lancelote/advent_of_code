@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 4: The Ideal Stocking Stuffer ---
+""""Day 4: The Ideal Stocking Stuffer.
 
 Santa needs help mining some AdventCoins (very similar to bitcoins) to use as
 gifts for all the economically forward-thinking little girls and boys.
@@ -27,8 +24,7 @@ from hashlib import md5
 
 
 def solve(task, zeros=5):
-    """
-    Solve the puzzle
+    """Solve the puzzle.
 
     Args:
         zeros (int): number of zeros to find
@@ -39,7 +35,7 @@ def solve(task, zeros=5):
     """
     i = 0
     message_hash = ''
-    while not message_hash.startswith('0'*zeros):
+    while not message_hash.startswith('0' * zeros):
         message = task + str(i)
         message_hash = md5(message.encode()).hexdigest()
         i += 1

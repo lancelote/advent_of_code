@@ -1,7 +1,6 @@
 # coding=utf-8
 
-"""
---- Day 5: Doesn't He Have Intern-Elves For This? ---
+"""Day 5: Doesn't He Have Intern-Elves For This.
 
 Santa needs help figuring out which strings in his text file are naughty or
 nice.
@@ -39,8 +38,7 @@ import re
 
 
 def process_data(task):
-    """
-    Process data into list
+    r"""Process data into list.
 
     Args:
         task (str): agagasdgsdg \n aasdfasgsdg \n ... (without spaces)
@@ -53,8 +51,7 @@ def process_data(task):
 
 
 def is_nice(word):
-    """
-    Check if string is nice
+    """Check if string is nice.
 
     Args:
         word: String to check
@@ -69,8 +66,7 @@ def is_nice(word):
 
 
 def solve(task):
-    """
-    Calculate number of nice strings
+    r"""Calculate number of nice strings.
 
     Args:
         task (str): agagasdgsdg \n aasdfasgsdg \n ... (without spaces)

@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Part Two ---
+"""Part Two.
 
 Realizing the error of his ways, Santa has switched to a better model of
 determining whether a string is naughty or nice. None of the old rules apply,
@@ -40,8 +37,7 @@ from src.year2015.day5a import process_data
 
 
 def is_nice(word):
-    """
-    Check if string is nice
+    """Check if string is nice.
 
     Args:
         word: String to check
@@ -55,8 +51,7 @@ def is_nice(word):
 
 
 def solve(task):
-    """
-    Calculate number of nice strings
+    r"""Calculate number of nice strings.
 
     Args:
         task (str): agagasdgsdg \n aasdfasgsdg \n ... (without spaces)

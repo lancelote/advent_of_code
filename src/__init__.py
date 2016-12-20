@@ -1,5 +1,1 @@
-# coding=utf-8
-
-"""
-Module docstring
-"""
+"""Source code for solutions."""

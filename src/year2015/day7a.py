@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 7: Some Assembly Required ---
+"""Day 7: Some Assembly Required.
 
 This year, Santa brought little Bobby Tables a set of wires and bitwise logic
 gates! Unfortunately, little Bobby is a little under the recommended age range,
@@ -69,7 +66,7 @@ PATTERN = re.compile(r'^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$')
 
 
 def process_data(data):
-    """Convert text data into list
+    r"""Convert text data into list.
 
     Args:
         data: "NOT dq -> dr\nkg OR kf -> kh..."
@@ -88,15 +85,16 @@ def process_data(data):
 
 
 class HDict(dict):
-    """Hashable dictionary for lru_cache compatibility"""
+    """Hashable dictionary for lru_cache compatibility."""
 
     def __hash__(self):
+        """Calculate hash of items."""
         return hash(frozenset(self.items()))
 
 
 @lru_cache(maxsize=500)
 def get_value(wire, wires):
-    """Recursive wire signal search
+    """Recursive wire signal search.
 
     Args:
         wire (int or namedtuple): Wire signal or wire representation
@@ -131,14 +129,14 @@ def get_value(wire, wires):
         value = value_a & get_value(wires[wire.input_b], wires)
     elif wire.gate == 'OR':
         value = get_value(wires[wire.input_a], wires) | \
-                get_value(wires[wire.input_b], wires)
+            get_value(wires[wire.input_b], wires)
 
     # wires[wire.output] = value
     return value
 
 
 def solve(task):
-    """Recursively process task data to compute wire 'a' value
+    r"""Recursively process task data to compute wire 'a' value.
 
     Args:
         task: "NOT dq -> dr\nkg OR kf -> kh..."

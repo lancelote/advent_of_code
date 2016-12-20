@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Part Two ---
+"""Part Two.
 
 Now, take the signal you got on wire a, override wire b to that signal, and
 reset the other wires (including wire a). What new signal is ultimately
@@ -13,8 +10,10 @@ from src.year2015.day7a import process_data, get_value, HDict
 
 
 def solve(task):
-    """Recursively process task data to compute wire 'a' value
-    after wire 'b' signal overriding
+    r"""Process task data to compute 'a' value after 'b' overriding.
+
+    Function recursively processes task data to compute wire 'a' value
+    after wire 'b' signal overriding.
 
     Args:
         task: "NOT dq -> dr\nkg OR kf -> kh..."

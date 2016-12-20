@@ -1,5 +1,6 @@
-"""
---- Day 1: No Time for a Taxicab ---
+# pylint: disable=invalid-name
+
+"""Day 1: No Time for a Taxicab.
 
 Santa's sleigh uses a very high-precision clock to guide its movements, and
 the clock's oscillator is regulated by stars. Unfortunately, the stars have
@@ -34,53 +35,64 @@ For example:
 """
 
 from collections import namedtuple
-from typing import List, Tuple
+from typing import List
+
+Instruction = namedtuple('Instruction', 'direction distance')
 
 
-def processed_data(data: str) -> List[namedtuple]:
-    """Converts raw sequence of instructions into the list of namedtuples"""
-    instruction = namedtuple('Instruction', 'direction distance')
-    return [instruction(x[0], int(x[1:])) for x in data.split(', ')]
+class Point:
+    """Point coordinates representation."""
+
+    def __init__(self, x=0, y=0):
+        """2D point representation.
+
+        Args:
+            x (int): x coordinates
+            y (int): y coordinates
+        """
+        self.x = x
+        self.y = y
+
+    def move(self, direction: int, distance: int):
+        """Move the point to given direction by given distance."""
+        if direction == 0:    # North
+            self.y += distance
+        elif direction == 1:  # East
+            self.x += distance
+        elif direction == 2:  # South
+            self.y -= distance
+        elif direction == 3:  # West
+            self.x -= distance
+
+    def distance_from_zero(self) -> int:
+        """Compute squared city distance from (0, 0) to the point."""
+        return abs(self.x) + abs(self.y)
+
+    def __str__(self):
+        """Point(1, 2) -> (1, 2)."""
+        return '(%s, %s)' % (self.x, self.y)
+
+
+def processed_data(data: str) -> List[Instruction]:
+    """Convert raw sequence of instructions into the list of named tuples."""
+    return [Instruction(x[0], int(x[1:])) for x in data.split(', ')]
 
 
 def update_direction(direction, turn):
-    """Returns the directions ID after the given turn"""
+    """Return the directions ID after the given turn."""
     if turn == 'R':
         return (direction + 1) % 4
     elif turn == 'L':
         return (direction - 1) % 4
 
 
-def calculate_distance(point: Tuple[int, int]) -> int:
-    """Calculate the quarter distance between given point and (0, 0)"""
-    return abs(point[0]) + abs(point[1])
-
-
-def update_coordinates(
-        point: Tuple[int, int],
-        direction: int,
-        distance: int) -> Tuple[int, int]:
-    """Update point coordinates base on the direction and distance"""
-    x, y = point
-    if direction == 0:    # North
-        y += distance
-    elif direction == 1:  # East
-        x += distance
-    elif direction == 2:  # South
-        y -= distance
-    elif direction == 3:  # West
-        x -= distance
-    return x, y
-
-
 def solve(task: str) -> int:
-    """How many blocks away is Easter Bunny HQ?"""
+    """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
-    bunny_hq = (0, 0)
-    instructions = processed_data(task)
+    bunny_hq = Point()
+    instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
-        bunny_hq = update_coordinates(bunny_hq, direction, instruction.distance)
-
-    return calculate_distance(bunny_hq)
+        bunny_hq.move(direction, instruction.distance)
+    return bunny_hq.distance_from_zero()

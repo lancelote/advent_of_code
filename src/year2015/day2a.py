@@ -1,7 +1,4 @@
-# coding=utf-8
-
-"""
---- Day 2: I Was Told There Would Be No Math ---
+"""Day 2: I Was Told There Would Be No Math.
 
 The elves are running low on wrapping paper, and so they need to submit an
 order for more. They have a list of the dimensions (length l, width w, and
@@ -30,8 +27,7 @@ from collections import namedtuple
 
 
 def process_data(data):
-    """
-    Process string data to convenient list of tuples
+    r"""Process string data to convenient list of tuples.
 
     Args:
         data (str): length x width x height \n ... (without spaces)
@@ -48,8 +44,7 @@ def process_data(data):
 
 
 def solve(task):
-    """
-    Solve the puzzle
+    r"""Solve the puzzle.
 
     Args:
         task (str): length x width x height \n ... (without spaces)
@@ -61,9 +56,9 @@ def solve(task):
     data = process_data(task)
     for size in data:
         sides = (
-            size.length*size.height,
-            size.length*size.width,
-            size.height*size.width
+            size.length * size.height,
+            size.length * size.width,
+            size.height * size.width
         )
-        result += 2*sum(sides) + min(sides)
+        result += 2 * sum(sides) + min(sides)
     return result
