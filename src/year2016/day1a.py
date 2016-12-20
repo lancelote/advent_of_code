@@ -68,9 +68,13 @@ class Point:
         """Compute squared city distance from (0, 0) to the point."""
         return abs(self.x) + abs(self.y)
 
-    def __str__(self):
+    def __repr__(self):
         """Point(1, 2) -> (1, 2)."""
         return '(%s, %s)' % (self.x, self.y)
+
+    def __eq__(self, other):
+        # type: (Point) -> bool
+        return self.x == other.x & self.y == other.y
 
 
 def processed_data(data: str) -> List[Instruction]:
@@ -89,10 +93,10 @@ def update_direction(direction, turn):
 def solve(task: str) -> int:
     """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
-    bunny_hq = Point()
+    current = Point()
     instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
-        bunny_hq.move(direction, instruction.distance)
-    return bunny_hq.distance_from_zero()
+        current.move(direction, instruction.distance)
+    return current.distance_from_zero()

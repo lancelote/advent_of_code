@@ -1,5 +1,4 @@
-"""
---- Part Two ---
+"""Part Two.
 
 Then, you notice the instructions continue on the back of the Recruiting
 Document. Easter Bunny HQ is actually at the first location you visit twice.
@@ -9,26 +8,48 @@ visit twice is 4 blocks away, due East.
 
 How many blocks away is the first location you visit twice?
 """
-from src.year2016.day1a import processed_data, update_direction, \
-    update_coordinates, calculate_distance
+
+from typing import List, Generator
+
+from src.year2016.day1a import Point, processed_data, update_direction,\
+    Instruction
+
+
+def in_between(start: Point, end: Point):
+    # type: (Point, Point) -> Generator[Point]
+    if start.x != end.x and start.y != end.y:
+        raise ValueError('Points not belong to same horizontal or vertical')
+
+    if start.x < end.x:    # East
+        difference = end.x - start.x
+        for i in range(1, difference + 1):
+            yield Point(start.x + i, start.y)
+    elif start.x > end.x:  # West
+        difference = start.x - end.x
+        for i in range(1, difference + 1):
+            yield Point(start.x - i, start.y)
+    elif start.y < end.y:  # North
+        difference = end.y - start.y
+        for i in range(1, difference + 1):
+            yield Point(start.x, start.y + i)
+    elif start.y > end.y:  # South
+        difference = start.y - end.y
+        for i in range(1, difference + 1):
+            yield Point(start.x, start.y - i)
+    else:
+        raise ValueError('Start point equals to end point')
 
 
 def solve(task: str) -> int:
-    """How many blocks away is Easter Bunny HQ?"""
+    """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
-    bunny_hq = (0, 0)
-    visited = [bunny_hq]
-
-    instructions = processed_data(task)
+    current = Point()
+    visited = [current]
+    instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
-        bunny_hq = update_coordinates(bunny_hq, direction, instruction.distance)
+        previous = current
+        current.move(direction, instruction.distance)
 
-        # ToDo: Rewrite the logic for visited check
-        if bunny_hq in visited:
-            break
-        else:
-            visited.append(bunny_hq)
-
-    return calculate_distance(bunny_hq)
+    return current.distance_from_zero()
