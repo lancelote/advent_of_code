@@ -1,3 +1,5 @@
+# pylint: disable=invalid-name
+
 """Day 1: No Time for a Taxicab.
 
 Santa's sleigh uses a very high-precision clock to guide its movements, and
@@ -38,8 +40,41 @@ from typing import List
 Instruction = namedtuple('Instruction', 'direction distance')
 
 
+class Point:
+    """Point coordinates representation."""
+
+    def __init__(self, x=0, y=0):
+        """2D point representation.
+
+        Args:
+            x (int): x coordinates
+            y (int): y coordinates
+        """
+        self.x = x
+        self.y = y
+
+    def move(self, direction: int, distance: int):
+        """Move the point to given direction by given distance."""
+        if direction == 0:    # North
+            self.y += distance
+        elif direction == 1:  # East
+            self.x += distance
+        elif direction == 2:  # South
+            self.y -= distance
+        elif direction == 3:  # West
+            self.x -= distance
+
+    def distance_from_zero(self) -> int:
+        """Compute squared city distance from (0, 0) to the point."""
+        return abs(self.x) + abs(self.y)
+
+    def __str__(self):
+        """Point(1, 2) -> (1, 2)."""
+        return '(%s, %s)' % (self.x, self.y)
+
+
 def processed_data(data: str) -> List[Instruction]:
-    """Convert raw sequence of instructions into the list of namedtuples."""
+    """Convert raw sequence of instructions into the list of named tuples."""
     return [Instruction(x[0], int(x[1:])) for x in data.split(', ')]
 
 
@@ -54,18 +89,10 @@ def update_direction(direction, turn):
 def solve(task: str) -> int:
     """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
-    bunny_hq = [0, 0]
+    bunny_hq = Point()
     instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
-
-        if direction == 0:    # North
-            bunny_hq[1] += instruction.distance
-        elif direction == 1:  # East
-            bunny_hq[0] += instruction.distance
-        elif direction == 2:  # South
-            bunny_hq[1] -= instruction.distance
-        elif direction == 3:  # West
-            bunny_hq[0] -= instruction.distance
-    return abs(bunny_hq[0]) + abs(bunny_hq[1])
+        bunny_hq.move(direction, instruction.distance)
+    return bunny_hq.distance_from_zero()
