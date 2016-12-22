@@ -1,3 +1,5 @@
+# pylint: disable=unused-import
+
 """Part Two.
 
 Then, you notice the instructions continue on the back of the Recruiting
@@ -9,14 +11,16 @@ visit twice is 4 blocks away, due East.
 How many blocks away is the first location you visit twice?
 """
 
+from copy import copy
+
 from typing import List, Generator
 
 from src.year2016.day1a import Point, processed_data, update_direction,\
     Instruction
 
 
-def in_between(start: Point, end: Point):
-    # type: (Point, Point) -> Generator[Point]
+def in_between(start: Point, end: Point) -> Generator[Point, None, None]:
+    """Generate points between start and end including end."""
     if start.x != end.x and start.y != end.y:
         raise ValueError('Points not belong to same horizontal or vertical')
 
@@ -44,12 +48,16 @@ def solve(task: str) -> int:
     """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
     current = Point()
-    visited = [current]
+    visited = [copy(current)]
     instructions = processed_data(task)  # type: List[Instruction]
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)
-        previous = current
+        previous = copy(current)
         current.move(direction, instruction.distance)
-
-    return current.distance_from_zero()
+        for point in in_between(previous, current):
+            if point in visited:
+                return point.distance_from_zero()
+            else:
+                visited.append(point)
+    raise ValueError("No points are visited twice")

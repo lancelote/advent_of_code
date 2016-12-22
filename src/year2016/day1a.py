@@ -40,7 +40,7 @@ from typing import List
 Instruction = namedtuple('Instruction', 'direction distance')
 
 
-class Point:
+class Point(object):
     """Point coordinates representation."""
 
     def __init__(self, x=0, y=0):
@@ -73,8 +73,8 @@ class Point:
         return '(%s, %s)' % (self.x, self.y)
 
     def __eq__(self, other):
-        # type: (Point) -> bool
-        return self.x == other.x & self.y == other.y
+        """Check if the two Point equal (have the same coordinates)."""
+        return self.x == other.x and self.y == other.y
 
 
 def processed_data(data: str) -> List[Instruction]:

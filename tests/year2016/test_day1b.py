@@ -11,21 +11,24 @@ from src.year2016.day1b import solve, in_between, Point
 class InBetweenTest(unittest.TestCase):
 
     def test_east(self):
-        pass
+        points = list(in_between(Point(), Point(2, 0)))
+        self.assertEqual(points, [Point(1, 0), Point(2, 0)])
 
     def test_west(self):
-        pass
+        points = list(in_between(Point(), Point(-2, 0)))
+        self.assertEqual(points, [Point(-1, 0), Point(-2, 0)])
 
     def test_north(self):
-        pass
+        points = list(in_between(Point(), Point(0, 2)))
+        self.assertEqual(points, [Point(0, 1), Point(0, 2)])
 
     def test_south(self):
-        pass
+        points = list(in_between(Point(), Point(0, -2)))
+        self.assertEqual(points, [Point(0, -1), Point(0, -2)])
 
     def test_long_run(self):
-        result = list(in_between(Point(), Point(0, 3)))
-        # ToDo: Comparison of object list is failed without a good reason
-        self.assertListEqual(result, [Point(0, 1), Point(0, 2), Point(0, 3)])
+        points = list(in_between(Point(), Point(0, 3)))
+        self.assertListEqual(points, [Point(0, 1), Point(0, 2), Point(0, 3)])
 
     def test_same_points(self):
         with self.assertRaises(ValueError):
@@ -36,7 +39,11 @@ class InBetweenTest(unittest.TestCase):
             list(in_between(Point(0, 0), Point(1, 1)))
 
 
-# class SolveTest(unittest.TestCase):
-#
-#     def test_sample_path(self):
-#         self.assertEqual(solve('R8, R4, R4, R8'), 4)
+class SolveTest(unittest.TestCase):
+
+    def test_sample_path(self):
+        self.assertEqual(solve('R8, R4, R4, R8'), 4)
+
+    def test_no_points_are_visited(self):
+        with self.assertRaises(ValueError):
+            solve('R4 R4 R4')

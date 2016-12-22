@@ -78,11 +78,30 @@ class PointTest(unittest.TestCase):
         self.assertEqual(self.point.x, 0)
         self.assertEqual(self.point.y, 100)
 
-    def test_str_representation(self):
-        self.assertEqual(str(self.point), '(0, 0)')
+    def test_distance_from_zero_pos_pos(self):
+        self.assertEqual(Point(1, 2).distance_from_zero(), 3)
+
+    def test_distance_from_zero_pos_neg(self):
+        self.assertEqual(Point(2, -3).distance_from_zero(), 5)
+
+    def test_distance_from_zero_neg_neg(self):
+        self.assertEqual(Point(-3, -1).distance_from_zero(), 4)
+
+    def test_distance_from_zero_neg_pos(self):
+        self.assertEqual(Point(-4, 1).distance_from_zero(), 5)
+
+    def test_distance_from_zero_if_zero(self):
+        self.assertEqual(Point().distance_from_zero(), 0)
+
+    def test_repr_representation(self):
+        self.assertEqual(repr(self.point), '(0, 0)')
         self.point.move(0, 2)
         self.point.move(1, 1)
-        self.assertEqual(str(self.point), '(1, 2)')
+        self.assertEqual(repr(self.point), '(1, 2)')
+
+    def test_eq(self):
+        self.assertEqual(Point(), Point())
+        self.assertEqual(Point(1, 2), Point(1, 2))
 
 
 class SolveTest(unittest.TestCase):
