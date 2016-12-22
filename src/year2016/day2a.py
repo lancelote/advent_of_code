@@ -55,8 +55,24 @@ class Keypad:
         self.digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.position = position
 
-    def move(self, instruction: str) -> None:
-        pass
+    def move(self, instruction: str, times=1) -> None:
+        """Move Up(U), Right(R), Down(D) or Left(L).
+
+        1 2 3
+        4 5 6
+        7 8 9
+        """
+        for _ in range(times):
+            if instruction == 'U':
+                pass
+            elif instruction == 'R':
+                pass
+            elif instruction == 'D':
+                pass
+            elif instruction == 'L':
+                pass
+            else:
+                raise ValueError('Unknown instruction')
 
     def current_digit(self) -> str:
         return str(self.digits[self.position])
