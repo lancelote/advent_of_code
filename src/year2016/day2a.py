@@ -50,39 +50,59 @@ from typing import List
 
 
 class Keypad:
+    """Digital representation of the keypad."""
 
-    def __init__(self, position: int = 4) -> None:
+    def __init__(self, position: int=4) -> None:
+        """First digit is 5 (position 4)."""
         self.digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.position = position
 
     def move(self, instruction: str, times=1) -> None:
         """Move Up(U), Right(R), Down(D) or Left(L).
 
+        Keypad:
         1 2 3
         4 5 6
         7 8 9
+
+        Positions:
+        0 1 2
+        3 4 5
+        6 7 8
         """
         for _ in range(times):
+            # Do not mix positions and real button digits
             if instruction == 'U':
-                pass
+                if self.position > 2:
+                    self.position -= 3
             elif instruction == 'R':
-                pass
+                if self.position % 3 != 2:
+                    self.position += 1
             elif instruction == 'D':
-                pass
+                if self.position < 6:
+                    self.position += 3
             elif instruction == 'L':
-                pass
+                if self.position % 3 != 0:
+                    self.position -= 1
             else:
                 raise ValueError('Unknown instruction')
 
     def current_digit(self) -> str:
+        """Return the digit on the current position."""
         return str(self.digits[self.position])
 
 
 def processed_data(data: str) -> List[List[str]]:
-    return [list(instruction) for instruction in data.split('\n')]
+    r"""Convert raw data in the list.
+
+    From: 'UR\nDL'
+    To:   [['U', 'R'], ['D', 'L']
+    """
+    return [list(instruction) for instruction in data.strip().split('\n')]
 
 
-def solve(task: str) -> str:
+def solve(task: str) -> int:
+    """Find the code for keypad according to instructions given."""
     code = ''
     keypad = Keypad()
     digits = processed_data(task)
@@ -92,4 +112,4 @@ def solve(task: str) -> str:
             keypad.move(instruction)
         code += keypad.current_digit()
 
-    return code
+    return int(code)

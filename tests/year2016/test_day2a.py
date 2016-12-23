@@ -18,6 +18,9 @@ class ProcessedDataTest(unittest.TestCase):
     def test_multiple_lines(self):
         self.assertEqual(processed_data('UL\nRD'), [['U', 'L'], ['R', 'D']])
 
+    def test_new_trailing_line(self):
+        self.assertEqual(processed_data('U\nR\n'), [['U'], ['R']])
+
 
 class KeypadTest(unittest.TestCase):
 
@@ -66,6 +69,5 @@ class KeypadTest(unittest.TestCase):
 
 class SolveTest(unittest.TestCase):
 
-    @unittest.skip
     def test_solve(self):
         self.assertEqual(solve('ULL\nRRDDD\nLURDL\nUUUUD'), 1985)
