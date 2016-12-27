@@ -61,37 +61,30 @@ class Keypad:
     def move(self, instruction: str, times=1) -> None:
         """Move Up(U), Right(R), Down(D) or Left(L)."""
         for _ in range(times):
-            if instruction == 'U':
-                if self.row != 0 and self.prev_row_long_or_eq():
-                    self.row -= 1
-            elif instruction == 'R':
-                if self.not_last_col():
-                    self.col += 1
-            elif instruction == 'D':
-                if self.not_last_row() and self.next_row_long_or_eq():
-                    self.row += 1
-            elif instruction == 'L':
-                if self.col != 0:
-                    self.col -= 1
+            if instruction == 'U' and self.can_move_up():
+                self.row -= 1
+            elif instruction == 'R' and self.can_move_right():
+                self.col += 1
+            elif instruction == 'D' and self.can_move_down():
+                self.row += 1
+            elif instruction == 'L' and self.can_move_left():
+                self.col -= 1
             else:
                 raise ValueError('Unknown instruction')
 
-    def not_last_col(self):
-        """Check if the current column is the last one."""
-        return self.col != len(self.layout[self.row]) - 1
+    def can_move_up(self):
+        raise NotImplementedError
 
-    def not_last_row(self):
-        """Check if the current row is the last one."""
-        return self.row != len(self.layout) - 1
+    def can_move_right(self):
+        raise NotImplementedError
 
-    def next_row_long_or_eq(self):
-        """Check if the next row is longer or equal to the current one."""
-        return len(self.layout[self.row + 1]) >= len(self.layout[self.row])
+    def can_move_down(self):
+        raise NotImplementedError
 
-    def prev_row_long_or_eq(self):
-        """Check if the previous row is longer or equal to the current one."""
-        return len(self.layout[self.row - 1]) >= len(self.layout[self.row])
+    def can_move_left(self):
+        raise NotImplementedError
 
+    @property
     def current_digit(self) -> str:
         """Return the digit on the current position."""
         return str(self.layout[self.row][self.col])
@@ -119,6 +112,6 @@ def solve(task: str) -> int:
     for digit in digits:
         for instruction in digit:
             keypad.move(instruction)
-        code += keypad.current_digit()
+        code += keypad.current_digit
 
     return code

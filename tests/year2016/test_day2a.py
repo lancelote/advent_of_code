@@ -28,59 +28,92 @@ class KeypadTest(unittest.TestCase):
         self.keypad = Keypad([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
     def test_start_with_5(self):
-        self.assertEqual(self.keypad.current_digit(), '5')
+        self.assertEqual(self.keypad.current_digit, '5')
 
     def test_move_up(self):
         self.keypad.move('U')
-        self.assertEqual(self.keypad.current_digit(), '2')
+        self.assertEqual(self.keypad.current_digit, '2')
 
     def test_move_right(self):
         self.keypad.move('R')
-        self.assertEqual(self.keypad.current_digit(), '6')
+        self.assertEqual(self.keypad.current_digit, '6')
 
     def test_move_down(self):
         self.keypad.move('D')
-        self.assertEqual(self.keypad.current_digit(), '8')
+        self.assertEqual(self.keypad.current_digit, '8')
 
     def test_move_left(self):
         self.keypad.move('L')
-        self.assertEqual(self.keypad.current_digit(), '4')
+        self.assertEqual(self.keypad.current_digit, '4')
 
     def test_block_up(self):
         self.keypad.move('U', 2)
-        self.assertEqual(self.keypad.current_digit(), '2')
+        self.assertEqual(self.keypad.current_digit, '2')
 
     def test_block_right(self):
         self.keypad.move('R', 2)
-        self.assertEqual(self.keypad.current_digit(), '6')
+        self.assertEqual(self.keypad.current_digit, '6')
 
     def test_block_down(self):
         self.keypad.move('D', 2)
-        self.assertEqual(self.keypad.current_digit(), '8')
+        self.assertEqual(self.keypad.current_digit, '8')
 
     def test_block_left(self):
         self.keypad.move('L', 2)
-        self.assertEqual(self.keypad.current_digit(), '4')
+        self.assertEqual(self.keypad.current_digit, '4')
 
     def test_unknown_instruction(self):
         with self.assertRaises(ValueError):
             self.keypad.move('A')
 
-    def test_not_last_col(self):
-        self.assertTrue(self.keypad.not_last_col())
+    def test_can_move_up(self):
+        self.assertTrue(self.keypad.can_move_up())
+        self.keypad.move('U')
+        self.assertFalse(self.keypad.can_move_up())
+
+    def test_can_move_right(self):
+        self.assertTrue(self.keypad.can_move_right())
         self.keypad.move('R')
-        self.assertFalse(self.keypad.not_last_col())
+        self.assertFalse(self.keypad.can_move_right())
 
-    def test_not_last_row(self):
-        self.assertTrue(self.keypad.not_last_row())
+    def test_can_move_down(self):
+        self.assertTrue(self.keypad.can_move_down())
         self.keypad.move('D')
-        self.assertFalse(self.keypad.not_last_row())
+        self.assertFalse(self.keypad.can_move_down())
 
-    def test_next_row_long_or_equal(self):
-        keypad = Keypad([[1], [2, 3, 4], [5]])
-        self.assertFalse(keypad.prev_row_long_or_eq())
-        keypad.move('U')
-        self.assertTrue(keypad.prev_row_long_or_eq())
+    def test_can_move_left(self):
+        self.assertTrue(self.keypad.can_move_left())
+        self.keypad.move('L')
+        self.assertFalse(self.keypad.can_move_left())
+
+
+class NotStandardKeypad(unittest.TestCase):
+
+    def setUp(self):
+        self.keypad = Keypad([[1], [2, 3, 4], [5]], row=1, col=0)
+
+    def test_start_with_2(self):
+        self.assertEqual(self.keypad.current_digit, '2')
+
+    def test_can_move_up(self):
+        self.assertFalse(self.keypad.can_move_up())
+        self.keypad.move('R')
+        self.assertTrue(self.keypad.can_move_up())
+
+    def test_can_move_right(self):
+        self.assertTrue(self.keypad.can_move_right())
+        self.keypad.move('R', 2)
+        self.assertFalse(self.keypad.can_move_right())
+
+    def test_can_move_down(self):
+        self.assertFalse(self.keypad.can_move_down())
+        self.keypad.move('R')
+        self.assertTrue(self.keypad.can_move_down())
+
+    def test_can_move_left(self):
+        self.assertFalse(self.keypad.can_move_left())
+        self.keypad.move('R')
+        self.assertTrue(self.keypad.can_move_left())
 
 
 class SolveTest(unittest.TestCase):
