@@ -62,10 +62,6 @@ class KeypadTest(unittest.TestCase):
         self.keypad.move('L', 2)
         self.assertEqual(self.keypad.current_digit, '4')
 
-    def test_unknown_instruction(self):
-        with self.assertRaises(ValueError):
-            self.keypad.move('A')
-
     def test_can_move_up(self):
         self.assertTrue(self.keypad.can_move_up())
         self.keypad.move('U')
@@ -114,6 +110,12 @@ class NotStandardKeypad(unittest.TestCase):
         self.assertFalse(self.keypad.can_move_left())
         self.keypad.move('R')
         self.assertTrue(self.keypad.can_move_left())
+
+    def test_complete_layout(self):
+        self.assertEqual(
+            self.keypad.layout,
+            [[None, 1, None], [2, 3, 4], [None, 5, None]]
+        )
 
 
 class SolveTest(unittest.TestCase):

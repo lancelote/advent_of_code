@@ -47,6 +47,6 @@ def solve(task: str) -> int:
     for digit in digits:
         for instruction in digit:
             keypad.move(instruction)
-        code += keypad.current_digit()
+        code += keypad.current_digit
 
     return code
