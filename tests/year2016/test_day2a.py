@@ -25,7 +25,7 @@ class ProcessedDataTest(unittest.TestCase):
 class KeypadTest(unittest.TestCase):
 
     def setUp(self):
-        self.keypad = Keypad()
+        self.keypad = Keypad([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
     def test_start_with_5(self):
         self.assertEqual(self.keypad.current_digit(), '5')
@@ -65,6 +65,22 @@ class KeypadTest(unittest.TestCase):
     def test_unknown_instruction(self):
         with self.assertRaises(ValueError):
             self.keypad.move('A')
+
+    def test_not_last_col(self):
+        self.assertTrue(self.keypad.not_last_col())
+        self.keypad.move('R')
+        self.assertFalse(self.keypad.not_last_col())
+
+    def test_not_last_row(self):
+        self.assertTrue(self.keypad.not_last_row())
+        self.keypad.move('D')
+        self.assertFalse(self.keypad.not_last_row())
+
+    def test_next_row_long_or_equal(self):
+        keypad = Keypad([[1], [2, 3, 4], [5]])
+        self.assertFalse(keypad.prev_row_long_or_eq())
+        keypad.move('U')
+        self.assertTrue(keypad.prev_row_long_or_eq())
 
 
 class SolveTest(unittest.TestCase):
