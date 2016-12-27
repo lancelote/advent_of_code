@@ -112,4 +112,4 @@ def solve(task: str) -> int:
             keypad.move(instruction)
         code += keypad.current_digit()
 
-    return int(code)
+    return code

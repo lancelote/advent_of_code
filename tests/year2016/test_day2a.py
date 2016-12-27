@@ -70,4 +70,4 @@ class KeypadTest(unittest.TestCase):
 class SolveTest(unittest.TestCase):
 
     def test_solve(self):
-        self.assertEqual(solve('ULL\nRRDDD\nLURDL\nUUUUD'), 1985)
+        self.assertEqual(solve('ULL\nRRDDD\nLURDL\nUUUUD'), '1985')
