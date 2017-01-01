@@ -123,8 +123,8 @@ class Keypad:
         """Complete keypad layout to the square one with Nones."""
         longest_row = len(max(self.layout, key=len))
         for i, row in enumerate(self.layout):
-            fix = (longest_row - len(row))//2
-            self.layout[i] = [None]*fix + row + [None]*fix
+            fix = (longest_row - len(row)) // 2
+            self.layout[i] = [None] * fix + row + [None] * fix
 
     @property
     def current_digit(self) -> str:
@@ -141,14 +141,13 @@ def processed_data(data: str) -> List[List[str]]:
     return [list(instruction) for instruction in data.strip().split('\n')]
 
 
-def solve(task: str) -> int:
+def solve(task: str) -> str:
     """Find the code for keypad according to instructions given."""
     code = ''
     keypad = Keypad([
         [1, 2, 3],
         [4, 5, 6],
-        [7, 8, 9]]
-    )
+        [7, 8, 9]])
     digits = processed_data(task)
 
     for digit in digits:

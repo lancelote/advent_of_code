@@ -1,11 +1,11 @@
 test:
-	py.test tests
+	python -m pytest tests
 
 lint:
-	pylint main.py src tests
-	pydocstyle
-	pycodestyle --select E,W .
-	mypy .
+	python -m pylint main.py src tests
+	python -m pydocstyle
+	python -m pycodestyle --select E,W .
+	python -m mypy .
 
 run:
 	@python main.py
