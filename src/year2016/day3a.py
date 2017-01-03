@@ -17,6 +17,7 @@ not larger than 25.
 
 In your puzzle input, how many of the listed triangles are possible?
 """
+
 from typing import Tuple, List
 
 
@@ -43,11 +44,16 @@ def is_bad(triangle: Tuple[int, int, int]) -> bool:
     return sum(triangle) - longest <= longest
 
 
-def solve(task: str) -> int:
+def count_possible(triangles: List[Tuple[int, int, int]]) -> int:
     """Calculate the number of possible triangles."""
     possible = 0
-    triangles = process_data(task)
     for triangle in triangles:
         if not is_bad(triangle):
             possible += 1
     return possible
+
+
+def solve(task: str) -> int:
+    """Solve the puzzle."""
+    triangles = process_data(task)
+    return count_possible(triangles)

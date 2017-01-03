@@ -1,4 +1,4 @@
-"""2016 - Day 2 Puzzle Part 1 tests."""
+"""2016 - Day 2 Puzzle Part 2 tests."""
 
 import unittest
 
