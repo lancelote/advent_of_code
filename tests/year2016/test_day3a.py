@@ -1,4 +1,4 @@
-"""2016 - Day 1 Puzzle Part 1 tests."""
+"""2016 - Day 3 Puzzle Part 1 tests."""
 
 import unittest
 from itertools import permutations
