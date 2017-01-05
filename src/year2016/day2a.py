@@ -1,4 +1,4 @@
-"""Day 2: Bathroom Security.
+"""2016 - Day 2 Part 1: Bathroom Security.
 
 You arrive at Easter Bunny Headquarters under cover of darkness. However, you
 left in such a rush that you forgot to use the bathroom! Fancy office buildings

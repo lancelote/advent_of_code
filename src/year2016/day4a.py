@@ -1,4 +1,4 @@
-"""Day 4: Security Through Obscurity.
+"""2016 - Day 4 Part 1: Security Through Obscurity.
 
 Finally, you come across an information kiosk with a list of rooms. Of course,
 the list is encrypted and full of decoy data, but the instructions to decode
@@ -39,7 +39,7 @@ def process_data(data: str) -> List[Room]:
     lines = data.strip().split()
     for line in lines:
         match = re.search(ROOM_PATTERN, line)
-        name = match.group('name').replace('-', '')
+        name = match.group('name')
         sector_id = int(match.group('sector_id'))
         checksum = match.group('checksum')
         room = Room(name, sector_id, checksum)
@@ -49,7 +49,7 @@ def process_data(data: str) -> List[Room]:
 
 def is_real(room: Room) -> bool:
     """Check if the room is real."""
-    common_5 = Counter(room.name).most_common()
+    common_5 = Counter(room.name.replace('-', '')).most_common()
     common_5.sort(key=operator.itemgetter(0))  # Sort alphabetically
     common_5.sort(key=operator.itemgetter(1), reverse=True)  # Sort by number
     return ''.join(char for char, _ in common_5[:5]) == room.checksum

@@ -1,4 +1,4 @@
-"""Part Two.
+"""2016 - Day 3 Part 2: Squares With Three Sides.
 
 Now that you've helpfully marked up their design documents, it occurs to you
 that triangles are specified in groups of three vertically. Each set of three
