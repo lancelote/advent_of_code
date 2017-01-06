@@ -17,7 +17,8 @@ def main():  # pragma: no cover
         return
 
     # Special case for puzzles without input files
-    if year == '2015' and puzzle in ['day4a', 'day4b']:
+    if (year == '2015' and puzzle in ['day4a', 'day4b']) or \
+            (year == '2016' and puzzle in ['day5a']):
         task = input('Puzzle input: ')
 
     # Everything else should have a separate input file

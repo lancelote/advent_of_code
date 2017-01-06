@@ -39,6 +39,5 @@ def solve(task: str) -> int:
     for room in rooms:
         name = decipher(room.name, room.sector_id)
         if 'north' in name:
-            print(room.name, room.checksum)
             return room.sector_id
     raise ValueError('North Pole storage was not found')
