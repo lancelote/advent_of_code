@@ -1,5 +1,5 @@
 astroid==1.4.9
-click==6.6
+click==6.7
 colorama==0.3.7
 isort==4.2.5
 lazy-object-proxy==1.2.2
