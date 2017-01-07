@@ -1,5 +1,6 @@
 [MESSAGES CONTROL]
-disable=locally-disabled,missing-docstring,invalid-name
+# ToDo: unused-import - remove when pylint starts support comment annotations
+disable=locally-disabled,missing-docstring,invalid-name,unused-import
 
 [REPORTS]
 # Simplify pylint reports

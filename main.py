@@ -7,7 +7,7 @@ import importlib
 def main():  # pragma: no cover
     """Print the result to a console."""
     task = None
-    year = input('Pick a year (2015/2016): ')
+    year = input('Pick a year (2015/2016): ').strip()
     day = input('Pick a puzzle (ex. Day 1): ').lower().replace(' ', '')
     part = input('Pick a puzzle part (A or B): ').lower()
     puzzle = day + part
@@ -18,7 +18,7 @@ def main():  # pragma: no cover
 
     # Special case for puzzles without input files
     if (year == '2015' and puzzle in ['day4a', 'day4b']) or \
-            (year == '2016' and puzzle in ['day5a']):
+            (year == '2016' and puzzle in ['day5a', 'day5b']):
         task = input('Puzzle input: ')
 
     # Everything else should have a separate input file
