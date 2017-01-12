@@ -4,6 +4,23 @@ import unittest
 
 from src.year2016.day6a import process_data, solve
 
+EXAMPLE_TASK = 'eedadn\n' \
+               'drvtee\n' \
+               'eandsr\n' \
+               'raavrd\n' \
+               'atevrs\n' \
+               'tsrnev\n' \
+               'sdttsa\n' \
+               'rasrtv\n' \
+               'nssdts\n' \
+               'ntnada\n' \
+               'svetve\n' \
+               'tesnvt\n' \
+               'vntsnd\n' \
+               'vrdear\n' \
+               'dvrsen\n' \
+               'enarar\n'
+
 
 class ProcessDataTest(unittest.TestCase):
 
@@ -23,20 +40,4 @@ class ProcessDataTest(unittest.TestCase):
 class SolveTest(unittest.TestCase):
 
     def test_solve(self):
-        task = 'eedadn\n' \
-               'drvtee\n' \
-               'eandsr\n' \
-               'raavrd\n' \
-               'atevrs\n' \
-               'tsrnev\n' \
-               'sdttsa\n' \
-               'rasrtv\n' \
-               'nssdts\n' \
-               'ntnada\n' \
-               'svetve\n' \
-               'tesnvt\n' \
-               'vntsnd\n' \
-               'vrdear\n' \
-               'dvrsen\n' \
-               'enarar\n'
-        self.assertEqual(solve(task), 'easter')
+        self.assertEqual(solve(EXAMPLE_TASK), 'easter')
