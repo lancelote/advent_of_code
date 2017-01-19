@@ -29,7 +29,8 @@ from typing import List, Tuple
 IP = namedtuple('IP', 'main_parts hypernet_parts')
 
 
-def process_line(line: str) -> Tuple[List[str], List[str]]:
+def process_line(line: str) -> IP:
+    """Find all main and hypernet parts inside one line (ip)"""
     # ToDo: Bad input checks
     part = ''
     main_parts = []
@@ -47,17 +48,27 @@ def process_line(line: str) -> Tuple[List[str], List[str]]:
 
     if part:
         main_parts.append(part)
-    return main_parts, hypernet_parts
+    return IP(main_parts, hypernet_parts)
 
 
 def process_date(data: str) -> List[IP]:
+    """Convert raw data in the list of ips with main and hypernet parts"""
     ips = []
     for line in data.strip().split('\n'):
-        main_parts, hypernet_parts = process_line(line)
-        ips.append(IP(main_parts, hypernet_parts))
+        ips.append(process_line(line))
     return ips
+
+
+def support_tls(ip: IP) -> bool:
+    """Check if the ip supports TLS"""
+    raise NotImplementedError
 
 
 def solve(task: str) -> int:
     """Compute gow many IPs support TLS"""
-    raise NotImplementedError
+    count = 0
+    ips = process_date(task)
+    for ip in ips:
+        if support_tls(ip):
+            count += 1
+    return count
