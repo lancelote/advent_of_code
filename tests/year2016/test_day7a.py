@@ -3,7 +3,7 @@
 import unittest
 
 from src.year2016.day7a import solve, process_date, process_line,\
-    support_tls, IP
+    support_tls, has_abba, IP
 
 
 class ProcessLineTest(unittest.TestCase):
@@ -72,6 +72,27 @@ class SupportTLSTest(unittest.TestCase):
             ['asdfgh']
         )
         self.assertTrue(support_tls(test_ip))
+
+
+class HasABBATest(unittest.TestCase):
+
+    def test_4_length_has(self):
+        self.assertTrue(has_abba('abba'))
+
+    def test_4_length_all_equal(self):
+        self.assertFalse(has_abba('aaaa'))
+
+    def test_4_length_has_not(self):
+        self.assertFalse(has_abba('abcd'))
+
+    def test_long_start_has(self):
+        self.assertTrue(has_abba('abbaqwerty'))
+
+    def test_long_middle_has(self):
+        self.assertTrue(has_abba('qweabbarty'))
+
+    def test_long_has_not(self):
+        self.assertFalse(has_abba('qwerty'))
 
 
 class SolveTest(unittest.TestCase):

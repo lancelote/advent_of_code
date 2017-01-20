@@ -59,9 +59,19 @@ def process_date(data: str) -> List[IP]:
     return ips
 
 
+def has_abba(part: str) -> bool:
+    """Check if the string has ABBA"""
+    raise NotImplementedError
+
+
 def support_tls(ip: IP) -> bool:
     """Check if the ip supports TLS"""
-    raise NotImplementedError
+    for part in ip.hypernet_parts:
+        if has_abba(part):
+            return False
+    for part in ip.main_parts:
+        if has_abba(part):
+            return True
 
 
 def solve(task: str) -> int:
