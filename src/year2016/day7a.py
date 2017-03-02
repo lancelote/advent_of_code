@@ -1,3 +1,5 @@
+# pylint: disable=too-few-public-methods
+
 """Day 7: Internet Protocol Version 7.
 
 While snooping around the local network of EBHQ, you compile a list of IP
@@ -23,15 +25,54 @@ For example:
 How many IPs in your puzzle input support TLS?
 """
 
-from collections import namedtuple
-from typing import List, Tuple
+from typing import List
 
-IP = namedtuple('IP', 'main_parts hypernet_parts')
+
+class IP(object):
+    """IPv7 representation."""
+
+    def __init__(self,
+                 main_parts: List[str],
+                 hypernet_parts: List[str]) -> None:
+        """Create an IPv7 instance.
+
+        Args:
+            main_parts: parts outside of square brackets
+            hypernet_parts: parts inside square brackets
+        """
+        self.main_parts = main_parts
+        self.hypernet_parts = hypernet_parts
+
+    @staticmethod
+    def _has_abba(part: str) -> bool:
+        """Check if the string has ABBA."""
+        for i in range(max(len(part) - 3, 0)):
+            if part[i] == part[i + 3] \
+                    and part[i + 1] == part[i + 2] \
+                    and part[i] != part[i + 1]:
+                return True
+        return False
+
+    @property
+    def support_tls(self) -> bool:
+        """Check if the ip supports TLS."""
+        for part in self.hypernet_parts:
+            if self._has_abba(part):
+                return False
+        for part in self.main_parts:
+            if self._has_abba(part):
+                return True
+
+    def __eq__(self, other: object) -> bool:
+        """Check for IP equality by comparing main and hypernet parts."""
+        if not isinstance(other, IP):
+            return False
+        return self.main_parts == other.main_parts and \
+            self.hypernet_parts == other.hypernet_parts
 
 
 def process_line(line: str) -> IP:
-    """Find all main and hypernet parts inside one line (ip)"""
-    # ToDo: Bad input checks
+    """Find all main and hypernet parts inside one line (ip)."""
     part = ''
     main_parts = []
     hypernet_parts = []
@@ -52,33 +93,18 @@ def process_line(line: str) -> IP:
 
 
 def process_date(data: str) -> List[IP]:
-    """Convert raw data in the list of ips with main and hypernet parts"""
+    """Convert raw data in the list of ips with main and hypernet parts."""
     ips = []
     for line in data.strip().split('\n'):
         ips.append(process_line(line))
     return ips
 
 
-def has_abba(part: str) -> bool:
-    """Check if the string has ABBA"""
-    raise NotImplementedError
-
-
-def support_tls(ip: IP) -> bool:
-    """Check if the ip supports TLS"""
-    for part in ip.hypernet_parts:
-        if has_abba(part):
-            return False
-    for part in ip.main_parts:
-        if has_abba(part):
-            return True
-
-
 def solve(task: str) -> int:
-    """Compute gow many IPs support TLS"""
+    """Compute gow many IPs support TLS."""
     count = 0
     ips = process_date(task)
     for ip in ips:
-        if support_tls(ip):
+        if ip.support_tls:
             count += 1
     return count
