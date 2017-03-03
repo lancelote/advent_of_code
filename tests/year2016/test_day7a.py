@@ -38,7 +38,7 @@ class IPTest(unittest.TestCase):
     def test_eq_equal(self):
         self.assertTrue(IP(['a'], ['b']) == IP(['a'], ['b']))
 
-    def test_eq_main_part_differs(self):
+    def test_eq_supernet_part_differs(self):
         self.assertFalse(IP(['c'], ['b']) == IP(['a'], ['b']))
 
     def test_eq_hypernet_part_differs(self):

@@ -1,6 +1,6 @@
 # pylint: disable=too-few-public-methods
 
-"""Day 7: Internet Protocol Version 7.
+"""2016 - Day 7 Part 1: Internet Protocol Version 7.
 
 While snooping around the local network of EBHQ, you compile a list of IP
 addresses (they're IPv7, of course; IPv6 is much too limited). You'd like
@@ -32,15 +32,15 @@ class IP(object):
     """IPv7 representation."""
 
     def __init__(self,
-                 main_parts: List[str],
+                 supernet_parts: List[str],
                  hypernet_parts: List[str]) -> None:
         """Create an IPv7 instance.
 
         Args:
-            main_parts: parts outside of square brackets
+            supernet_parts: parts outside of square brackets
             hypernet_parts: parts inside square brackets
         """
-        self.main_parts = main_parts
+        self.supernet_parts = supernet_parts
         self.hypernet_parts = hypernet_parts
 
     @staticmethod
@@ -59,27 +59,31 @@ class IP(object):
         for part in self.hypernet_parts:
             if self._has_abba(part):
                 return False
-        for part in self.main_parts:
+        for part in self.supernet_parts:
             if self._has_abba(part):
                 return True
 
+    @property
+    def support_ssl(self):
+        raise NotImplementedError
+
     def __eq__(self, other: object) -> bool:
-        """Check for IP equality by comparing main and hypernet parts."""
+        """Check for IP equality by comparing supernet and hypernet parts."""
         if not isinstance(other, IP):
             return False
-        return self.main_parts == other.main_parts and \
+        return self.supernet_parts == other.supernet_parts and \
             self.hypernet_parts == other.hypernet_parts
 
 
 def process_line(line: str) -> IP:
-    """Find all main and hypernet parts inside one line (ip)."""
+    """Find all supernet and hypernet parts inside one line (ip)."""
     part = ''
-    main_parts = []
+    supernet_parts = []
     hypernet_parts = []
 
     for char in line:
         if char == '[':
-            main_parts.append(part)
+            supernet_parts.append(part)
             part = ''
         elif char == ']':
             hypernet_parts.append(part)
@@ -88,12 +92,12 @@ def process_line(line: str) -> IP:
             part += char
 
     if part:
-        main_parts.append(part)
-    return IP(main_parts, hypernet_parts)
+        supernet_parts.append(part)
+    return IP(supernet_parts, hypernet_parts)
 
 
 def process_date(data: str) -> List[IP]:
-    """Convert raw data in the list of ips with main and hypernet parts."""
+    """Convert raw data in the list of ips with supernet and hypernet parts."""
     ips = []
     for line in data.strip().split('\n'):
         ips.append(process_line(line))
