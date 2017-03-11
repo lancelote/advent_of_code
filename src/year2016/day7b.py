@@ -28,7 +28,7 @@ from src.year2016.day7a import process_date
 
 
 def solve(task: str) -> int:
-    """Compute gow many IPs support TLS."""
+    """Compute how many IPs support TLS."""
     count = 0
     ips = process_date(task)
     for ip in ips:

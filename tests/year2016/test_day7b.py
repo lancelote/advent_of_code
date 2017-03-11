@@ -5,6 +5,17 @@ import unittest
 from src.year2016.day7a import IP
 
 
+class AbbasTest(unittest.TestCase):
+
+    def test_no_aba(self):
+        test_ip = IP(['abc'], ['def'])
+        self.assertListEqual(list(test_ip.abas), [])
+
+    def test_multiple_abas(self):
+        test_ip = IP(['aba', 'bcb'], ['ded'])
+        self.assertListEqual(list(test_ip.abas), ['aba', 'bcb'])
+
+
 class SupportSSLTest(unittest.TestCase):
 
     def test_aba_in_first_supernet(self):

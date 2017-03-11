@@ -1,6 +1,12 @@
 [MESSAGES CONTROL]
 # ToDo: unused-import - remove when pylint starts support comment annotations
-disable=locally-disabled,missing-docstring,invalid-name,unused-import
+disable=locally-disabled,
+ # False positive for type annotations with typing module
+ invalid-sequence-index,
+ # False positive for OK test methods names and few other places
+ invalid-name,
+ # False positive for test file classes and methods
+ missing-docstring
 
 [REPORTS]
 # Simplify pylint reports

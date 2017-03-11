@@ -1,5 +1,3 @@
-# pylint: disable=too-few-public-methods
-
 """2016 - Day 7 Part 1: Internet Protocol Version 7.
 
 While snooping around the local network of EBHQ, you compile a list of IP
@@ -25,7 +23,7 @@ For example:
 How many IPs in your puzzle input support TLS?
 """
 
-from typing import List
+from typing import List, Generator
 
 
 class IP(object):
@@ -55,7 +53,7 @@ class IP(object):
 
     @property
     def support_tls(self) -> bool:
-        """Check if the ip supports TLS."""
+        """Check if the IP supports TLS."""
         for part in self.hypernet_parts:
             if self._has_abba(part):
                 return False
@@ -64,8 +62,22 @@ class IP(object):
                 return True
 
     @property
-    def support_ssl(self):
-        raise NotImplementedError
+    def abas(self) -> Generator[str, None, None]:
+        """Generate abas from supernet parts."""
+        for super_part in self.supernet_parts:
+            for i in range(max(len(super_part) - 2, 0)):
+                if super_part[i] == super_part[i + 2]:
+                    yield super_part[i:i + 3]
+
+    @property
+    def support_ssl(self) -> bool:
+        """Check if the IP supports SSL."""
+        for aba in self.abas:
+            for hyper_part in self.hypernet_parts:
+                bab = aba[1] + aba[0] + aba[1]
+                if bab in hyper_part:
+                    return True
+        return False
 
     def __eq__(self, other: object) -> bool:
         """Check for IP equality by comparing supernet and hypernet parts."""
