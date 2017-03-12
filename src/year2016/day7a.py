@@ -66,7 +66,7 @@ class IP(object):
         """Generate abas from supernet parts."""
         for super_part in self.supernet_parts:
             for i in range(max(len(super_part) - 2, 0)):
-                if super_part[i] == super_part[i + 2]:
+                if super_part[i] == super_part[i + 2] != super_part[i + 1]:
                     yield super_part[i:i + 3]
 
     @property

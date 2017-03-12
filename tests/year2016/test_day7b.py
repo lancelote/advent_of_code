@@ -11,6 +11,10 @@ class AbbasTest(unittest.TestCase):
         test_ip = IP(['abc'], ['def'])
         self.assertListEqual(list(test_ip.abas), [])
 
+    def test_all_char_the_same(self):
+        test_ip = IP(['aaa'], [])
+        self.assertListEqual(list(test_ip.abas), [])
+
     def test_multiple_abas(self):
         test_ip = IP(['aba', 'bcb'], ['ded'])
         self.assertListEqual(list(test_ip.abas), ['aba', 'bcb'])
@@ -32,4 +36,8 @@ class SupportSSLTest(unittest.TestCase):
 
     def test_odd_aba_without_bab(self):
         test_ip = IP(['zazbz', 'cdb'], ['bzb'])
+        self.assertTrue(test_ip.support_ssl)
+
+    def test_first_aba_has_not_bab(self):
+        test_ip = IP(['aba', 'cdc'], ['dcd'])
         self.assertTrue(test_ip.support_ssl)
