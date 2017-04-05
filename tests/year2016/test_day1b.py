@@ -4,7 +4,6 @@
 
 import unittest
 
-
 from src.year2016.day1b import solve, in_between, Point
 
 

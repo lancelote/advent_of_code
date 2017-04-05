@@ -12,10 +12,9 @@ How many blocks away is the first location you visit twice?
 """
 
 from copy import copy
-
 from typing import List, Generator
 
-from src.year2016.day1a import Point, processed_data, update_direction,\
+from src.year2016.day1a import Point, processed_data, update_direction, \
     Instruction
 
 

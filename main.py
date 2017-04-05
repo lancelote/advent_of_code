@@ -1,7 +1,7 @@
 """Puzzle Solver Runner."""
 
-import os
 import importlib
+import os
 
 
 def main():  # pragma: no cover

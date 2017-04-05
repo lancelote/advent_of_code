@@ -23,9 +23,9 @@ Of the real rooms from the list above, the sum of their sector IDs is 1514.
 What is the sum of the sector IDs of the real rooms?
 """
 
-from collections import namedtuple, Counter
 import operator
 import re
+from collections import namedtuple, Counter
 from typing import List
 
 Room = namedtuple('Room', 'name sector_id checksum')
