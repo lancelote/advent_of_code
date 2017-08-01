@@ -31,5 +31,6 @@ def solve(task):
 
     Returns:
         int: Puzzle solution
+
     """
     return task.count('(') - task.count(')')

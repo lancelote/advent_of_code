@@ -45,6 +45,7 @@ def process_data(task):
 
     Returns:
         list: ['agagasdgsdg', 'aasdfasgsdg', ...]
+
     """
     data = task.strip().split('\n')
     return data
@@ -58,6 +59,7 @@ def is_nice(word):
 
     Returns:
         bool: True if nice, False if naughty
+
     """
     vowels = len(re.findall(r'[aeiou]', word))
     pairs = len(re.findall(r'(.)\1', word))
@@ -73,6 +75,7 @@ def solve(task):
 
     Returns:
         int: Number of nice strings
+
     """
     data = process_data(task)
     return sum(is_nice(line) for line in data)

@@ -20,6 +20,7 @@ def solve(task):
 
     Returns:
         int: wire 'a' signal value
+
     """
     commands = process_data(task)
     wires = HDict()

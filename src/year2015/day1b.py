@@ -22,6 +22,7 @@ def solve(task):
 
     Returns:
         int: Puzzle solution
+
     """
     level = 0
     i = 0

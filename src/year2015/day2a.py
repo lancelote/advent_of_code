@@ -34,6 +34,7 @@ def process_data(data):
 
     Returns:
         list: list of tuples [(length, width, height), (...), ...]
+
     """
     box = namedtuple('Box', ['length', 'height', 'width'])
     dimensions = [
@@ -51,6 +52,7 @@ def solve(task):
 
     Returns:
         int: Total square feet of wrapping paper
+
     """
     result = 0
     data = process_data(task)

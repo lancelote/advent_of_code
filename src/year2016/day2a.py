@@ -64,6 +64,7 @@ class Keypad:
             Row and column indexes represent not the nested list indexes but
             real life position where some button may not exist but they still
             occupy place
+
         """
         self.layout = layout
         self.row = row

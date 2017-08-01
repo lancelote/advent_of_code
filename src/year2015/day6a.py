@@ -45,6 +45,7 @@ def process_data(data):
     Returns:
         lst: [namedtuple(command, start, end), ...] where start and end are
             coordinates namedtuple(x, y)
+
     """
     processed_data = []
     coordinates = namedtuple('Coordinates', ['x', 'y'])
@@ -68,6 +69,7 @@ def update_light(command, light):
 
     Returns:
         bool: New light status
+
     """
     logic = {
         'toggle': not light,
@@ -87,6 +89,7 @@ def compute_result(task, execute):
 
     Returns:
         int: Number of powered lights
+
     """
     instructions = process_data(task)
     lights = [[False] * 1000 for _ in range(1000)]
@@ -107,5 +110,6 @@ def solve(task):
 
     Returns:
         int: Number of powered lights
+
     """
     return compute_result(task, update_light)

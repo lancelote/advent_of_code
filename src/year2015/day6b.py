@@ -37,6 +37,7 @@ def update_light(command, light):
 
     Returns:
         int: New light status
+
     """
     logic = {
         'toggle': light + 2,
@@ -54,5 +55,6 @@ def solve(task):
 
     Returns:
         int: Total brightness of all lights
+
     """
     return compute_result(task, update_light)

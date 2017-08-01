@@ -43,6 +43,7 @@ def visit_houses(task):
 
     Returns:
         dct: {position: number_of_presents, ...}
+
     """
     current_position = Coordinates(0, 0)
     visited_houses = defaultdict(int)
@@ -63,6 +64,7 @@ def solve(task):
 
     Returns:
         int: Number of houses with at least one present
+
     """
     visited_houses = visit_houses(task)
     return len(visited_houses)

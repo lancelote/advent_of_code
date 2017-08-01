@@ -1,7 +1,7 @@
 """2016 - Day 5 Part 2: How About a Nice Game of Chess tests."""
 
 import unittest
-from unittest import mock
+from unittest import mock  # type: ignore
 
 from src.year2016.day5b import solve
 

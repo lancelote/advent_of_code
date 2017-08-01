@@ -44,6 +44,7 @@ def is_nice(word):
 
     Returns:
         bool: True if nice, False if naughty
+
     """
     pairs = len(re.findall(r'(..).*\1', word))
     guarded_letter = len(re.findall(r'(.).\1', word))
@@ -58,6 +59,7 @@ def solve(task):
 
     Returns:
         int: Number of nice strings
+
     """
     data = process_data(task)
     return sum(is_nice(line) for line in data)

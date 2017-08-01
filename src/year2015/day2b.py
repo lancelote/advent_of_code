@@ -37,6 +37,7 @@ def solve(task):
 
     Returns:
         int: Total feet of ribbon
+
     """
     data = process_data(task)
     return sum(2 * (sum(size) - max(size)) + reduce(mul, size, 1)

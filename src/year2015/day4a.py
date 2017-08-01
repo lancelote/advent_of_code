@@ -1,4 +1,4 @@
-""""Day 4: The Ideal Stocking Stuffer.
+"""Day 4: The Ideal Stocking Stuffer.
 
 Santa needs help mining some AdventCoins (very similar to bitcoins) to use as
 gifts for all the economically forward-thinking little girls and boys.
@@ -32,6 +32,7 @@ def solve(task, zeros=5):
 
     Returns:
         int: Biggest number
+
     """
     i = 0
     message_hash = ''

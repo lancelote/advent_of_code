@@ -73,6 +73,7 @@ def process_data(data):
 
     Returns:
         list: List of command namedtuples
+
     """
     processed_data = []
     command = namedtuple('Command', ['input_a', 'gate', 'input_b', 'output'])
@@ -102,6 +103,7 @@ def get_value(wire, wires):
 
     Returns:
         int: Wire signal
+
     """
     value = None
 
@@ -143,6 +145,7 @@ def solve(task):
 
     Returns:
         int: wire 'a' signal value
+
     """
     commands = process_data(task)
     wires = HDict()

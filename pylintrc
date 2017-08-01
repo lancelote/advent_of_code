@@ -6,7 +6,9 @@ disable=locally-disabled,
  # False positive for OK test methods names and few other places
  invalid-name,
  # False positive for test file classes and methods
- missing-docstring
+ missing-docstring,
+ # False positive unnecessary else
+ no-else-return
 
 [REPORTS]
 # Simplify pylint reports

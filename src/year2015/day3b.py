@@ -32,6 +32,7 @@ def solve(task):
 
     Returns:
         int: Number of houses with at least one present
+
     """
     santa_task = task[0::2]
     robo_santa_task = task[1::2]

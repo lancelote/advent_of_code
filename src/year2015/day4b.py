@@ -31,5 +31,6 @@ def solve(task):
 
     Returns:
         int: Biggest number
+
     """
     return part_a_solve(task, zeros=6)
