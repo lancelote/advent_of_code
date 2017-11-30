@@ -83,8 +83,8 @@ def compute_result(task, execute):
     r"""Calculate number of powered lights after all instructions.
 
     Args:
-        execute (function): Returns new light status after given command and
-            previous light status
+        execute: Function which returns new light status after given command
+            and previous light status
         task (str): turn on 489,959 through 759,964\n...
 
     Returns:
