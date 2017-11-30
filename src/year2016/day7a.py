@@ -60,6 +60,7 @@ class IP(object):
         for part in self.supernet_parts:
             if self._has_abba(part):
                 return True
+        return False
 
     @property
     def abas(self) -> Generator[str, None, None]:

@@ -63,6 +63,10 @@ class SupportTLSTest(unittest.TestCase):
         test_ip = IP(['ioxxoj', 'zxcvbn'], ['asdfgh'])
         self.assertTrue(test_ip.support_tls)
 
+    def test_no_hypernet(self):
+        test_ip = IP([], ['abcd'])
+        self.assertFalse(test_ip.support_tls)
+
 
 class HasABBATest(unittest.TestCase):
 
