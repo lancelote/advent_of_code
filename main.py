@@ -3,25 +3,33 @@
 import importlib
 import os
 
+SUPPORTED_YEARS = [
+    '2015',
+    '2016',
+    '2017'
+]
+MANUAL_INPUT = [
+    ('2015', 'day4a'),
+    ('2015', 'day4b'),
+    ('2016', 'day5a'),
+    ('2016', 'day5b'),
+]
+
 
 def main():  # pragma: no cover
     """Print the result to a console."""
     task = None
-    year = input('Pick a year (2015/2016): ').strip()
+    year = input('Pick a year (%s): ' % '/'.join(SUPPORTED_YEARS)).strip()
+    if year not in SUPPORTED_YEARS:
+        print('Unknown year, supported: %s' % ', '.join(SUPPORTED_YEARS))
+        return
+
     day = input('Pick a puzzle (ex. Day 1): ').lower().replace(' ', '')
     part = input('Pick a puzzle part (A or B): ').lower()
     puzzle = day + part
 
-    if year not in ['2015', '2016']:
-        print('Unknown year, please specify 2015 or 2016')
-        return
-
-    # Special case for puzzles without input files
-    if (year == '2015' and puzzle in ['day4a', 'day4b']) or \
-            (year == '2016' and puzzle in ['day5a', 'day5b']):
+    if (year, puzzle) in MANUAL_INPUT:
         task = input('Puzzle input: ')
-
-    # Everything else should have a separate input file
     else:
         for file_name in ['input.txt', 'input']:
             try:
