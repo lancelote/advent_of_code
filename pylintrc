@@ -13,6 +13,7 @@ disable=locally-disabled,
 [REPORTS]
 # Simplify pylint reports
 reports=no
+score=no
 
 [SIMILARITIES]
 # ToDo: Temporary fix before architecture will not be moved to OOP style
