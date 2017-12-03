@@ -6,13 +6,14 @@ import os
 SUPPORTED_YEARS = [
     '2015',
     '2016',
-    '2017'
+    '2017',
 ]
 MANUAL_INPUT = [
     ('2015', 'day4a'),
     ('2015', 'day4b'),
     ('2016', 'day5a'),
     ('2016', 'day5b'),
+    ('2017', 'day3a'),
 ]
 
 
