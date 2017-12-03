@@ -1,6 +1,6 @@
 # pylint: disable=no-self-use
 
-"""2017 - Day 2 Part 1: Corruption Checksum."""
+"""2017 - Day 3 Part 1: Spiral Memory."""
 
 import pytest
 
