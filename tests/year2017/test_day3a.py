@@ -32,7 +32,7 @@ class TestSolve:
         (50, 4),
     ]
 )
-def test_solve(number, expected):
+def test_circle_number(number, expected):
     assert get_circle_number(number) == expected
 
 
