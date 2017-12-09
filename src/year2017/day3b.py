@@ -39,51 +39,79 @@ What is the first value written that is larger than your puzzle input?
 
 import itertools
 
+from collections import Iterable
 
-class Memory:
+
+class Memory(Iterable):
+    """Circle memory representation."""
+
     def __init__(self):
-        self.x, self.y = 0, 0
-        self.dx, self.dy = 1, 0
+        """Initialize memory with two first cells pre-filled.
+
+        x, y - coordinates of the current cell
+        dx, dy - coordinate difference between current and next cell
+        circle - current circle number
+        data - cell values based on coordinates
+        """
+        self.x, self.y = 1, 0
+        self.dx, self.dy = 0, 0
         self.circle = 1
-        self.data = {(0, 0): 1}
+        self.data = {(0, 0): 1, (1, 0): 1}
 
-    @staticmethod
-    def neighbors(x, y):
-        return [(x + dx, y + dy) for dx in [-1, 0, 1] for dy in [-1, 0, 1] if dx or dy]
+    def side_length(self, side: int) -> int:
+        """Return number of items to pass on the given side."""
+        length = 2 * self.circle + 1
+        if side == 0:
+            length -= 1  # We need less steps on the right side
+        elif side == 3:
+            length += 1  # We need one more item to step out of the last side
+        return length
 
-    @property
-    def side_length(self):
-        """Return given circle length."""
-        return 2 * self.circle + 1
-
-    def shift(self, side):
+    def adjust_direction(self, side: int) -> None:
+        """Adjust coordinates difference according to a given side number."""
         shifts = {
-            0: (0, 1),  # Left
+            0: (0, 1),  # Right
             1: (-1, 0),  # Top
-            2: (0, -1),  # Right
-            3: (1, 0),  # Left
+            2: (0, -1),  # Left
+            3: (1, 0),  # Bottom
         }
         self.dx, self.dy = shifts[side]
 
+    @property
+    def neighbors(self):
+        """Yield coordinates of the current cell neighbors."""
+        for dx in [-1, 0, 1]:
+            for dy in [-1, 0, 1]:
+                if dx or dy:
+                    yield (self.x + dx, self.y + dy)
+
+    @property
     def sum_neighbors(self):
-        return sum(self.data.get(neighbor, 0) for neighbor in self.neighbors(self.x, self.y))
+        """Get sum of the current cell neighbors values."""
+        return sum(self.data.get(neighbor, 0) for neighbor in self.neighbors)
 
     def __iter__(self):
-        yield 1
-        for _ in itertools.count(start=1):
+        """Yield next cell value."""
+        yield 1  # First cell
+        yield 1  # Second cell
+
+        for _ in itertools.count(start=1):  # Circles
             for side in [0, 1, 2, 3]:
-                for _ in range(self.side_length - 1):
+                self.adjust_direction(side)
+                for _ in range(self.side_length(side) - 1):  # Items
                     self.x += self.dx
                     self.y += self.dy
-                    value = self.sum_neighbors()
+                    value = self.sum_neighbors
                     self.data[(self.x, self.y)] = value
                     yield value
-                self.shift(side)
             self.circle += 1
 
 
 def solve(task: str) -> int:
+    """Found first cell value that is larger than input."""
+    item = 0
     limit = int(task)
     for item in Memory():
-        if item < limit:
-            return item
+        if item > limit:
+            break
+    return item
