@@ -16,17 +16,24 @@ The system's full passphrase list is available as your puzzle input. How many
 passphrases are valid?
 """
 
+from typing import Callable
 
-def valid(passphrase: str) -> bool:
+
+def duplicates(passphrase: str) -> bool:
     """Check if passphrase is valid."""
     words = passphrase.split()
     return len(words) == len(set(words))
 
 
-def solve(task: str) -> int:
-    """Count valid passphrase in task."""
+def count_valid(passphrases: str, valid: Callable) -> int:
+    """Count valid passphrases."""
     result = 0
-    for passphrase in task.strip().split('\n'):
+    for passphrase in passphrases.strip().split('\n'):
         if valid(passphrase):
             result += 1
     return result
+
+
+def solve(task: str) -> int:
+    """Count number of passphrases without duplicates."""
+    return count_valid(task, valid=duplicates)

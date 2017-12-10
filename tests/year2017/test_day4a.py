@@ -4,7 +4,7 @@
 
 import pytest
 
-from src.year2017.day4a import solve, valid
+from src.year2017.day4a import count_valid, duplicates
 
 
 @pytest.mark.parametrize(
@@ -15,8 +15,8 @@ from src.year2017.day4a import solve, valid
         ('a\nc b a\na aa', 3),
     ]
 )
-def test_solve(task, expected):
-    assert solve(task) == expected
+def test_count_valid(task, expected):
+    assert count_valid(task, valid=duplicates) == expected
 
 
 @pytest.mark.parametrize(
@@ -28,5 +28,5 @@ def test_solve(task, expected):
         ('a b c d a', False),
     ]
 )
-def test_valid(passphrase, expected):
-    assert valid(passphrase) == expected
+def test_are_duplicates(passphrase, expected):
+    assert duplicates(passphrase) == expected
