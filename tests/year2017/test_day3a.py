@@ -1,6 +1,6 @@
 # pylint: disable=no-self-use
 
-"""2017 - Day 3 Part 1: Spiral Memory."""
+"""2017 - Day 3 Part 1: Spiral Memory tests."""
 
 import pytest
 
