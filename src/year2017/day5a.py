@@ -43,4 +43,17 @@ How many steps does it take to reach the exit?
 
 
 def solve(task: str) -> int:
-    raise NotImplementedError
+    """Find number of steps required to jump out of maze."""
+    current_index = 0
+    steps = 0
+    data = [int(item) for item in task.strip().split('\n')]
+
+    while current_index >= 0:
+        try:
+            next_index = current_index + data[current_index]
+            data[current_index] += 1
+            current_index = next_index
+            steps += 1
+        except IndexError:
+            break
+    return steps
