@@ -8,7 +8,10 @@ disable=locally-disabled,
  # False positive for test file classes and methods
  missing-docstring,
  # False positive unnecessary else
- no-else-return
+ no-else-return,
+ # Can't disable per file due to https://github.com/PyCQA/pylint/issues/214
+ # ToDo: remove when the bug above is fixed in pylint
+ duplicate-code
 
 [REPORTS]
 # Simplify pylint reports
