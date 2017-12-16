@@ -24,6 +24,7 @@ def solve(task):
         int: Puzzle solution
 
     """
+    answer = None
     level = 0
     i = 0
     for char in task:
@@ -33,4 +34,6 @@ def solve(task):
         elif char == ')':
             level -= 1
         if level == -1:
-            return i
+            answer = i
+            break
+    return answer

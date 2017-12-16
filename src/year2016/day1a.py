@@ -34,8 +34,9 @@ For example:
     - R5, L5, R5, R3 leaves you 12 blocks away.
 """
 
-from collections import namedtuple
 from typing import List
+
+from collections import namedtuple
 
 Instruction = namedtuple('Instruction', 'direction distance')
 
@@ -84,10 +85,12 @@ def processed_data(data: str) -> List[Instruction]:
 
 def update_direction(direction, turn):
     """Return the directions ID after the given turn."""
+    answer = None
     if turn == 'R':
-        return (direction + 1) % 4
+        answer = (direction + 1) % 4
     elif turn == 'L':
-        return (direction - 1) % 4
+        answer = (direction - 1) % 4
+    return answer
 
 
 def solve(task: str) -> int:
