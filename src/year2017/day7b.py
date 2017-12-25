@@ -36,30 +36,35 @@ from src.year2017.day7a import process_data
 from src.year2017.day7a import solve as find_root
 
 
-def weight_difference(children: List[int]) -> Tuple[int, int]:
+def find_common_and_unique(children: List[int]) -> Tuple[int, int]:
     first, second = set(children)
     if children.count(first) == 1:
-        base, unique = second, first
+        common, unique = second, first
     else:
-        base, unique = first, second
-    return base, unique
+        common, unique = first, second
+    return common, unique
 
 
 def unbalanced(command: str,
                tree: Dict[str, List[str]],
                weights: Dict[str, int]) -> Tuple[bool, int]:
-    children = []
-    for child in tree[command]:
+    children_weights = []
+    children = tree[command]
+
+    for child in children:
         balance, weight = unbalanced(child, tree, weights)
         if balance:
-            children.append(weight)
+            children_weights.append(weight)
         else:
             return False, weight
-    if len(set(children)) == 2:
-        base, unique = weight_difference(children)
-        unique_command = tree[command][children.index(unique)]
-        return False, weights[unique_command] + base - unique
-    return True, sum(children) + weights[command]
+
+    if len(set(children_weights)) == 2:
+        common, unique = find_common_and_unique(children_weights)
+        unbalanced_command_index = children_weights.index(unique)
+        unbalanced_command = children[unbalanced_command_index]
+        return False, weights[unbalanced_command] + common - unique
+
+    return True, sum(children_weights) + weights[command]
 
 
 def solve(task: str) -> int:
