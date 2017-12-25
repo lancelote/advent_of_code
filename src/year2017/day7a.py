@@ -66,7 +66,7 @@ Before you're ready to help them, you need to make sure your information is
 correct. What is the name of the bottom program?
 """
 
-from typing import Tuple, List, Dict
+from typing import Tuple, List, Dict, Optional
 
 import re
 
@@ -98,9 +98,18 @@ def process_data(data: str) -> List[Tuple[str, int, List[str]]]:
     return [process_line(line.strip()) for line in lines]
 
 
+def find_root(tree: Dict[str, Optional[str]]) -> Optional[str]:
+    """Find tree root."""
+    root = None
+    for child, parent in tree.items():
+        if parent is None:
+            root = child
+            break
+    return root
+
+
 def solve(task: str) -> str:
     """Find base command."""
-    root = None
     tree: Dict[str, str] = {}
     data = process_data(task)
     for parent, _, children in data:
@@ -108,8 +117,4 @@ def solve(task: str) -> str:
             tree[parent] = None
         for child in children:
             tree[child] = parent
-    for child, parent in tree.items():
-        if parent is None:
-            root = child
-            break
-    return root
+    return find_root(tree)

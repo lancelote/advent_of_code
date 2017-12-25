@@ -4,7 +4,7 @@
 
 import pytest
 
-from src.year2017.day7a import solve, process_line, process_data
+from src.year2017.day7a import solve, process_line, process_data, find_root
 
 
 @pytest.mark.parametrize(
@@ -29,6 +29,18 @@ def test_process_data():
         ('ugml', 68, ['gyxo', 'ebii', 'jptl']),
     ]
     assert process_data(data) == expected
+
+
+@pytest.mark.parametrize(
+    ('tree', 'expected'),
+    [
+        ({'b': 'a', 'c': 'a', 'a': None}, 'a'),
+        ({'b': 'a', 'a': 'b'}, None),
+        ({'d': 'b', 'b': 'a', 'a': None, 'c': 'a'}, 'a')
+    ]
+)
+def test_find_root(tree, expected):
+    assert find_root(tree) == expected
 
 
 def test_solve():
