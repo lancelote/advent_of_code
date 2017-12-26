@@ -23,7 +23,7 @@ must all be the same:
 
 As you can see, tknk's disc is unbalanced: ugml's stack is heavier than the
 other two. Even though the nodes above ugml are balanced, ugml itself is too
-heavy: it needs to be 8 units lighter for its stack to weigh 243 and keep the 
+heavy: it needs to be 8 units lighter for its stack to weigh 243 and keep the
 towers balanced. If this change were made, its weight would be 60.
 
 Given that exactly one program is the wrong weight, what would its weight
@@ -36,18 +36,20 @@ from src.year2017.day7a import process_data
 from src.year2017.day7a import solve as find_root
 
 
-def find_common_and_unique(children: List[int]) -> Tuple[int, int]:
+def find_unique(children: List[int]) -> Tuple[int, int]:
+    """Find unique item and return difference from other items and index."""
     first, second = set(children)
     if children.count(first) == 1:
         common, unique = second, first
     else:
         common, unique = first, second
-    return common, unique
+    return common - unique, children.index(unique)
 
 
 def unbalanced(command: str,
                tree: Dict[str, List[str]],
                weights: Dict[str, int]) -> Tuple[bool, int]:
+    """Recursively search for unbalanced node."""
     children_weights = []
     children = tree[command]
 
@@ -59,10 +61,9 @@ def unbalanced(command: str,
             return False, weight
 
     if len(set(children_weights)) == 2:
-        common, unique = find_common_and_unique(children_weights)
-        unbalanced_command_index = children_weights.index(unique)
-        unbalanced_command = children[unbalanced_command_index]
-        return False, weights[unbalanced_command] + common - unique
+        difference, unique_index = find_unique(children_weights)
+        unbalanced_command = children[unique_index]
+        return False, weights[unbalanced_command] + difference
 
     return True, sum(children_weights) + weights[command]
 
@@ -78,5 +79,5 @@ def solve(task: str) -> int:
         weights[parent] = weight
         tree[parent] = children
 
-    _, weight = unbalanced(root, tree, weights)
-    return weight
+    _, new_weight = unbalanced(root, tree, weights)
+    return new_weight
