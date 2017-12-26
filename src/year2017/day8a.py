@@ -34,6 +34,26 @@ What is the largest value in any register after completing the instructions in
 your puzzle input?
 """
 
+from typing import List
+
+from collections import namedtuple
+
+Instruction = namedtuple('Instruction', [
+    'register', 'change', 'value', 'base', 'check', 'limit'])
+
+
+def process_line(line: str) -> Instruction:
+    register, change, value, _, base, check, limit = line.split()
+    return Instruction(register, change, int(value), base, check, int(limit))
+
+
+def process_data(data: str) -> List[Instruction]:
+    instructions = []
+    for line in data.strip().split('\n'):
+        instruction = process_line(line)
+        instructions.append(instruction)
+    return instructions
+
 
 def solve(task: str) -> int:
     pass
