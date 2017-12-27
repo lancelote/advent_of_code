@@ -36,15 +36,27 @@ your puzzle input?
 
 from typing import List
 
-from collections import namedtuple
+import operator
+from collections import namedtuple, defaultdict
 
 Instruction = namedtuple('Instruction', [
-    'register', 'change', 'value', 'base', 'check', 'limit'])
+    'register', 'op', 'value', 'base', 'check', 'limit'])
+
+OPERATORS = {
+    '>': operator.gt,
+    '<': operator.lt,
+    '>=': operator.ge,
+    '<=': operator.le,
+    '==': operator.eq,
+    '!=': operator.ne,
+    'inc': operator.iadd,
+    'dec': operator.isub,
+}
 
 
 def process_line(line: str) -> Instruction:
-    register, change, value, _, base, check, limit = line.split()
-    return Instruction(register, change, int(value), base, check, int(limit))
+    register, op, value, _, base, check, limit = line.split()
+    return Instruction(register, op, int(value), base, check, int(limit))
 
 
 def process_data(data: str) -> List[Instruction]:
@@ -56,4 +68,14 @@ def process_data(data: str) -> List[Instruction]:
 
 
 def solve(task: str) -> int:
-    pass
+    registers = defaultdict(int)
+    instructions = process_data(task)
+    for instruction in instructions:
+        update = OPERATORS[instruction.op]
+        check = OPERATORS[instruction.check]
+        register = instruction.register
+        old_value = registers[register]
+        base = registers[instruction.base]
+        if check(base, instruction.limit):
+            registers[register] = update(old_value, instruction.value)
+    return max(registers.values())

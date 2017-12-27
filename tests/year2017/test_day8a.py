@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.year2017.day8a import process_line, process_data, Instruction
+from src.year2017.day8a import process_line, process_data, Instruction, solve
 
 
 @pytest.mark.parametrize(
@@ -23,3 +23,11 @@ def test_process_data():
     expected = [Instruction('b', 'inc', 5, 'a', '>', 1),
                 Instruction('a', 'inc', 1, 'b', '<', 5)]
     assert process_data(data) == expected
+
+
+def test_solve():
+    data = 'b inc 5 if a > 1\n' \
+           'a inc 1 if b < 5\n' \
+           'c dec -10 if a >= 1\n' \
+           'c inc -20 if c == 10\n'
+    assert solve(data) == 1
