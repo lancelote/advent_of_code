@@ -34,7 +34,7 @@ What is the largest value in any register after completing the instructions in
 your puzzle input?
 """
 
-from typing import List
+from typing import List, DefaultDict
 
 import operator
 from collections import namedtuple, defaultdict
@@ -55,11 +55,13 @@ OPERATORS = {
 
 
 def process_line(line: str) -> Instruction:
+    """Convert single line in Instruction instance."""
     register, op, value, _, base, check, limit = line.split()
     return Instruction(register, op, int(value), base, check, int(limit))
 
 
 def process_data(data: str) -> List[Instruction]:
+    """Convert raw data in the easy to use list of Instruction instances."""
     instructions = []
     for line in data.strip().split('\n'):
         instruction = process_line(line)
@@ -68,7 +70,8 @@ def process_data(data: str) -> List[Instruction]:
 
 
 def solve(task: str) -> int:
-    registers = defaultdict(int)
+    """Find the biggest register."""
+    registers: DefaultDict[str, int] = defaultdict(int)
     instructions = process_data(task)
     for instruction in instructions:
         update = OPERATORS[instruction.op]
