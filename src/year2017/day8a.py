@@ -69,10 +69,11 @@ def process_data(data: str) -> List[Instruction]:
     return instructions
 
 
-def solve(task: str) -> int:
-    """Find the biggest register."""
+def perform_instructions(instructions: List[Instruction]):
+    """Apply all instructions and return registers + biggest value seen."""
     registers: DefaultDict[str, int] = defaultdict(int)
-    instructions = process_data(task)
+    biggest = 0
+
     for instruction in instructions:
         update = OPERATORS[instruction.op]
         check = OPERATORS[instruction.check]
@@ -81,4 +82,13 @@ def solve(task: str) -> int:
         base = registers[instruction.base]
         if check(base, instruction.limit):
             registers[register] = update(old_value, instruction.value)
+            if registers[register] > biggest:
+                biggest = registers[register]
+    return registers, biggest
+
+
+def solve(task: str) -> int:
+    """Find the biggest register."""
+    instructions = process_data(task)
+    registers, _ = perform_instructions(instructions)
     return max(registers.values())
