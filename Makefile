@@ -11,6 +11,8 @@ run:
 	@python main.py
 
 update:
-	pur -r requirements.txt
 	python -m pip install -U pip setuptools
 	python -m pip install -r requirements.txt
+
+requirements:
+	pur -r requirements.txt
