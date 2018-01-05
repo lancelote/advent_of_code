@@ -1,4 +1,4 @@
-"""2017 - Day 11: Hex Edh test."""
+"""2017 - Day 11 Part 1: Hex Edh test."""
 
 import pytest
 
