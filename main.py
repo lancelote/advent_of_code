@@ -27,6 +27,7 @@ def main():  # pragma: no cover
         return
 
     day = input('Pick a puzzle (ex. Day 1): ').lower().replace(' ', '')
+    day = day if 'day' in day else 'day' + day
     part = input('Pick a puzzle part (A or B): ').lower()
     puzzle = day + part
 
