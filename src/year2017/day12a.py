@@ -60,13 +60,19 @@ def process_data(data: str) -> List[List[str]]:
     return [re.findall(r'\d+', line) for line in data.strip().split('\n')]
 
 
-def solve(task: str) -> int:
-    """Find the biggest connected component in graph."""
+def process_nodes(connections: List[List[str]]) -> DefaultDict[str, Set[str]]:
+    """Assign a corresponding component to each node."""
     nodes: DefaultDict[str, Set[str]] = defaultdict(set)
-    connections = process_data(task)
     for parent, *children in connections:
         for child in children:
             component = nodes[parent] | nodes[child] | {parent, child}
             for node in component:
                 nodes[node] = component
+    return nodes
+
+
+def solve(task: str) -> int:
+    """Find the biggest connected component in graph."""
+    connections = process_data(task)
+    nodes = process_nodes(connections)
     return len(nodes['0'])
