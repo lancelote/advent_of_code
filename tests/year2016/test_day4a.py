@@ -15,6 +15,10 @@ class ProcessDataTest(unittest.TestCase):
         ]
         self.assertEqual(process_data(task), rooms)
 
+    def test_process_data_wrong_room_line_format(self):
+        with self.assertRaises(ValueError):
+            process_data('hello world')
+
 
 class IsRealTest(unittest.TestCase):
 

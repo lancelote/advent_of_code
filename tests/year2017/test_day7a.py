@@ -17,6 +17,16 @@ def test_process_line(line, expected):
     assert process_line(line) == expected
 
 
+def test_process_line_wrong_command_format():
+    with pytest.raises(ValueError, match='Wrong command format'):
+        process_line('hello world')
+
+
+def test_process_line_wrong_weight_format():
+    with pytest.raises(ValueError, match='Wrong command format'):
+        process_line('pbga (hello)')
+
+
 def test_process_data():
     data = """
     jptl (61)

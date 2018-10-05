@@ -39,7 +39,7 @@ What is the first value written that is larger than your puzzle input?
 
 import itertools
 
-from collections import Iterable
+from collections.abc import Iterable
 
 
 class Memory(Iterable):

@@ -26,7 +26,7 @@ How many IPs in your puzzle input support TLS?
 from typing import List, Generator
 
 
-class IP(object):
+class IP:
     """IPv7 representation."""
 
     def __init__(self,

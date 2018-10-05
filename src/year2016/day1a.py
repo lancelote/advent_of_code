@@ -41,7 +41,7 @@ from collections import namedtuple
 Instruction = namedtuple('Instruction', 'direction distance')
 
 
-class Point(object):
+class Point:
     """Point coordinates representation."""
 
     def __init__(self, x=0, y=0):

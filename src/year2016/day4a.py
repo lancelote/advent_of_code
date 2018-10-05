@@ -39,6 +39,8 @@ def process_data(data: str) -> List[Room]:
     lines = data.strip().split()
     for line in lines:
         match = re.search(ROOM_PATTERN, line)
+        if not match:
+            raise ValueError('Wrong room line format')
         name = match.group('name')
         sector_id = int(match.group('sector_id'))
         checksum = match.group('checksum')

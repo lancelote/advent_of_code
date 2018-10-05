@@ -82,6 +82,8 @@ def process_line(line: str) -> Tuple[str, int, List[str]]:
         - list of depending commands name
     """
     match = re.match(PATTERN, line)
+    if not match:
+        raise ValueError('Wrong command format')
     parent = match.group('parent')
     weight = int(match.group('weight'))
     children = match.group('children')
@@ -110,11 +112,14 @@ def find_root(tree: Dict[str, Optional[str]]) -> Optional[str]:
 
 def solve(task: str) -> str:
     """Find base command."""
-    tree: Dict[str, str] = {}
+    tree: Dict[str, Optional[str]] = {}
     data = process_data(task)
     for parent, _, children in data:
         if parent not in tree:
             tree[parent] = None
         for child in children:
             tree[child] = parent
-    return find_root(tree)
+    root = find_root(tree)
+    if not root:
+        raise ValueError('Impossible to find a base command.')
+    return root

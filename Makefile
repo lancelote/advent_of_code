@@ -8,7 +8,7 @@ lint:
 	python -m mypy . --ignore-missing-imports
 
 run:
-	@python main.py
+	python main.py
 
 update:
 	python -m pip install -U pip setuptools
