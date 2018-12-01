@@ -5,6 +5,11 @@
 
 [Advent of code](http://adventofcode.com/) - Programming Christmas Puzzles
 
+- 2015 - ★★★★★★★
+- 2016 - ★★★★★★★
+- 2017 - ★★★★★★★★★★★★☆
+- 2018 - 
+
 ## How to use
 
 Puzzle inputs can be too long for console input, if the file is provided - save and move it to `inputs/{year}/day{n}/`, ex. `inputs/2015/day1/` for Day 1 Puzzle Part 1. If the input file is not provided by the Advent of Code - you will be asked by solver to type in the input (ex. for Day 4 Puzzle Part 1).
