@@ -187,4 +187,3 @@ what is the severity of your whole trip?
 
 def solve() -> int:
     """Solve the puzzle."""
-    pass
