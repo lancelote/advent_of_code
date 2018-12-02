@@ -33,7 +33,6 @@ proud of your solution if it uses a cinematic "decrypting" animation.
 """
 
 import hashlib
-from typing import List
 
 
 def print_password(password):

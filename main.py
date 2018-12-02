@@ -7,6 +7,7 @@ SUPPORTED_YEARS = [
     '2015',
     '2016',
     '2017',
+    '2018',
 ]
 MANUAL_INPUT = [
     ('2015', 'day4a'),
