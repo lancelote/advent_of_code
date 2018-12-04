@@ -1,4 +1,5 @@
-"""2018 - Day 3 Part 1: No Matter How You Slice It."""
+"""2018 - Day 3 Part 1: No Matter How You Slice It tests."""
+
 from textwrap import dedent
 
 import pytest
