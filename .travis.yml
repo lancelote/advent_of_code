@@ -8,8 +8,6 @@ before_install:
   - source .venv/bin/activate
 
 install:
-  - which python
-  - pip list
   - make update
 
 script:
