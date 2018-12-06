@@ -9,8 +9,7 @@ pur==5.2.1
 py==1.7.0
 pycodestyle==2.4.0
 pydocstyle==3.0.0
-# pylint==2.2.2
-git+git://github.com/PyCQA/pylint@master#egg=pylint
+pylint==2.2.2
 pytest==4.0.1
 six==1.11.0
 wrapt==1.10.11
