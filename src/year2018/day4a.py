@@ -138,6 +138,26 @@ class Record:
         records = [cls.parse(line) for line in data.strip().split('\n')]
         return sorted(records, key=lambda x: x.time)
 
+    @classmethod
+    def parse_task(cls, task: str) -> DefaultDict[int, List[int]]:
+        """Parse the task into a dict of guard_id: list of minutes."""
+        guard, start, end = 0, 0, 0
+
+        minutes: DefaultDict[int, List[int]] = defaultdict(lambda: [0] * 60)
+        records = cls.parse_all(task)
+
+        for record in records:
+            if record.event == Event.NEW:
+                assert record.guard  # Should not be None
+                guard = record.guard
+            elif record.event == Event.ASLEEP:
+                start = record.time.minute
+            elif record.event == Event.AWAKE:
+                end = record.time.minute
+                for minute in range(start, end):
+                    minutes[guard][minute] += 1
+        return minutes
+
 
 def total_minutes(guard_minutes: Tuple[int, List[int]]) -> int:
     """Sum all sleepy minutes of the given guard."""
@@ -146,23 +166,8 @@ def total_minutes(guard_minutes: Tuple[int, List[int]]) -> int:
 
 
 def solve(task: str) -> int:
-    """Find most sleepy guard and most hist most sleepy minute."""
-    guard, start, end = 0, 0, 0
-
-    minutes: DefaultDict[int, List[int]] = defaultdict(lambda: [0] * 60)
-    records = Record.parse_all(task)
-
-    for record in records:
-        if record.event == Event.NEW:
-            assert record.guard  # Should not be None
-            guard = record.guard
-        elif record.event == Event.ASLEEP:
-            start = record.time.minute
-        elif record.event == Event.AWAKE:
-            end = record.time.minute
-            for minute in range(start, end):
-                minutes[guard][minute] += 1
-
+    """Find most sleepy guard and his most sleepy minute value."""
+    minutes = Record.parse_task(task)
     guard, _ = max(minutes.items(), key=total_minutes)
     minute, _ = max(enumerate(minutes[guard]), key=itemgetter(1))
     return guard * minute

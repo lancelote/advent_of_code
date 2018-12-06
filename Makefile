@@ -9,3 +9,9 @@ lint:
 
 run:
 	python main.py
+
+update:
+	python -m pip install -r requirements.txt
+
+deps:
+	pur -r requirements.txt
