@@ -2,9 +2,9 @@ test:
 	python -m pytest tests
 
 lint:
-    python --version
-    pylint --version
-    pip list
+	python --version
+	pylint --version
+	pip list
 
 	python -m pylint main.py src tests
 	python -m pydocstyle
