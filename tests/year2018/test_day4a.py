@@ -12,20 +12,20 @@ from src.year2018.day4a import Event, Record, solve, total_minutes
     ('line', 'expected'),
     [
         (
-                '[1518-05-16 00:00] Guard #1319 begins shift',
-                Record(dt.datetime(1518, 5, 16, 0, 0), Event.NEW, 1319)
+            '[1518-05-16 00:00] Guard #1319 begins shift',
+            Record(dt.datetime(1518, 5, 16, 0, 0), Event.NEW, 1319)
         ),
         (
-                '[1518-03-24 00:50] wakes up',
-                Record(dt.datetime(1518, 3, 24, 0, 50), Event.AWAKE)
+            '[1518-03-24 00:50] wakes up',
+            Record(dt.datetime(1518, 3, 24, 0, 50), Event.AWAKE)
         ),
         (
-                '[1518-08-18 00:42] falls asleep',
-                Record(dt.datetime(1518, 8, 18, 0, 42), Event.ASLEEP)
+            '[1518-08-18 00:42] falls asleep',
+            Record(dt.datetime(1518, 8, 18, 0, 42), Event.ASLEEP)
         ),
         (
-                '[1518-05-11 00:03] Guard #163 begins shift',
-                Record(dt.datetime(1518, 5, 11, 0, 3), Event.NEW, 163)
+            '[1518-05-11 00:03] Guard #163 begins shift',
+            Record(dt.datetime(1518, 5, 11, 0, 3), Event.NEW, 163)
         )
     ]
 )
