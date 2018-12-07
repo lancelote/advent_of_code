@@ -12,36 +12,36 @@
 
 ## How to use
 
-Puzzle inputs can be too long for console input, if the file is provided - save and move it to `inputs/{year}/day{n}/`, ex. `inputs/2015/day1/` for Day 1 Puzzle Part 1. If the input file is not provided by the Advent of Code - you will be asked by solver to type in the input (ex. for Day 4 Puzzle Part 1).
+Puzzle inputs can be too long for console input, if an input file is provided - save and move it to `inputs/{year}/day{n}/`, ex. `inputs/2015/day1/` for Day 1 Puzzle Part 1. If an input file is not expected - you will be asked by the solver for manual input (ex. for Day 4 Puzzle Part 1).
 
-To launch Puzzle Solver:
+To launch the Puzzle Solver:
 ```bash
 python main.py
 # or
 make run
 ```
 
-For all automation tasks I use `Makefile`. You can skip it entirely and just manually run commands from it. If you on Windows you can get `make` with `mingw` or `cygwin` (I use `mingw` while develop on windows machine).
+For all automation tasks I use `Makefile`. You can skip it entirely and just manually run commands from it. If you are on Windows you can get `make` with `mingw` or `cygwin` (I use `mingw` while develop on windows machine).
 
 ## Requirements
 
-Python 3.5 is required.
+Python 3.7 is required (at least it was tested with it).
 
-For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is recommended.
+For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is highly recommended.
 
 ```bash
 make update
 ```
 
-To update requirements list:
+To update `requirements.txt`:
 
 ```bash
-make requirements
+make deps
 ```
 
 ## Tests
 
-All tests are stored in the `tests` folder, `unittest` syntax is used. But feel free to use any test runner you like. I prefer `pytest`:
+All tests are stored in the `tests` folder, `pytest` is used:
 
 ```bash
 make test
