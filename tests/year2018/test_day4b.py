@@ -1,4 +1,4 @@
-"""2018 - Day 4 Part 1: Repose Record tests."""
+"""2018 - Day 4 Part 2: Repose Record tests."""
 
 from textwrap import dedent
 
