@@ -3,7 +3,7 @@ test:
 
 lint:
 	python -m pylint main.py src tests
-	python -m pydocstyle
+	python -m pydocstyle --add-ignore=D105
 	python -m pycodestyle --select E,W .
 	python -m mypy . --ignore-missing-imports
 
