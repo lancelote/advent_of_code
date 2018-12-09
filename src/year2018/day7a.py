@@ -63,29 +63,48 @@ In what order should the steps in your instructions be completed?
 
 from collections import defaultdict
 from string import ascii_uppercase
-from typing import DefaultDict, Set
+from typing import DefaultDict, Generator, Optional, Set
+
+Step = str
+Parents = DefaultDict[Step, Set[Step]]
+StepGenerator = Generator[Step, None, None]
+
+
+def process_date(data: str) -> Parents:
+    """Generate a dict of step: parents from raw data."""
+    parents: Parents = defaultdict(set)
+
+    for line in data.strip().split('\n'):
+        parent, child = line[5], line[36]
+        parents[child].add(parent)
+
+    return parents
+
+
+def next_step(parents: Parents, done: Set[Step], todo: Set[Step]
+              ) -> Optional[Step]:
+    """Get next available step to do."""
+    ready = set()
+    for step in todo:
+        if parents[step].issubset(done):
+            ready.add(step)
+    return min(ready) if ready else None
+
+
+def ordered_steps(parents: Parents, steps: str) -> StepGenerator:
+    """Yield next available step in the correct order."""
+    done: Set[Step] = set()
+    todo: Set[Step] = set(steps)
+
+    while todo:
+        new_step = next_step(parents, done, todo)
+        if new_step:
+            yield new_step
+            done.add(new_step)
+            todo.remove(new_step)
 
 
 def solve(task: str, steps=ascii_uppercase) -> str:
     """Find the sequence of steps."""
-    parents: DefaultDict['str', Set[str]] = defaultdict(set)
-
-    for line in task.strip().split('\n'):
-        parent, child = line[5], line[36]
-        parents[child].add(parent)
-
-    result = ''
-    done: Set[str] = set()
-    remaining = set(steps)
-
-    while remaining:
-        ready = set()
-        for step in remaining:
-            if parents[step].issubset(done):
-                ready.add(step)
-        next_step = min(ready)
-        result += next_step
-        done.add(next_step)
-        remaining.remove(next_step)
-
-    return result
+    parents = process_date(task)
+    return ''.join(ordered_steps(parents, steps))
