@@ -224,16 +224,19 @@ class Sky:
         max_y = max(point.y for point in self.points)
         return min_x, max_x, min_y, max_y
 
-    def move_till_min_area(self):
+    def move_till_min_area(self) -> int:
         """Move in time till rescue points have a minimum area in the sky."""
+        seconds = 0
         current_area = self.area
         self.move()
 
         while self.area < current_area:
             current_area = self.area
             self.move()
+            seconds += 1
 
         self.back()
+        return seconds
 
     @property
     def area(self):
