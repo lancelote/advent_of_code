@@ -76,6 +76,7 @@ largest total power?
 """
 
 from collections import defaultdict
+from functools import lru_cache
 from itertools import product
 from typing import DefaultDict, Tuple
 
@@ -94,6 +95,15 @@ class Grid:
         for x, y in product(range(side), range(side)):
             self.cells[(x, y)] = self.get_power_level(x, y, serial)
 
+    def show(self):
+        """Plot a human readable grid image."""
+        grid = [['.' for _ in range(self.side)] for _ in range(self.side)]
+        for cell, value in self.cells.items():
+            x, y = cell
+            grid[y][x] = f'{value}'.rjust(2)
+        print('\n')
+        print('\n'.join(' '.join(line) for line in grid))
+
     @staticmethod
     def get_power_level(x: int, y: int, serial: int) -> Power:
         """Get cell power level."""
@@ -108,6 +118,7 @@ class Grid:
         power_level -= 5
         return power_level
 
+    @lru_cache(0)  # Compatibility with a derived class
     def get_square_power(self, x: int, y: int, size: int) -> Power:
         """Calculate a cell square sum power."""
         square_power = 0
@@ -116,7 +127,7 @@ class Grid:
                 square_power += self.cells[(dx, dy)]
         return square_power
 
-    def get_biggest_square_top_left_corner(self, size) -> Cell:
+    def get_biggest_square(self, size) -> Tuple[Cell, Power]:
         """Get left cell coordinates of a most powerful grid square."""
         biggest_power = -99
         top_left_corner = (0, 0)
@@ -127,10 +138,11 @@ class Grid:
             if square_power > biggest_power:
                 biggest_power = square_power
                 top_left_corner = (x, y)
-        return top_left_corner
+        return top_left_corner, biggest_power
 
 
 def solve(task: str) -> Cell:
-    """Find the biggest are top lest corner by a given grid serial."""
+    """Find the biggest area top left corner by a given grid serial."""
     grid = Grid(serial=int(task), side=300)
-    return grid.get_biggest_square_top_left_corner(size=3)
+    cell, _ = grid.get_biggest_square(size=3)
+    return cell
