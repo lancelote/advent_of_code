@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use
-
 """2017 - Day 2 Part 2: Corruption Checksum tests."""
 
 from src.year2017.day2b import find_division, solve

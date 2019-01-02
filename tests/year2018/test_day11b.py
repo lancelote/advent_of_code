@@ -1,5 +1,3 @@
-# pylint: disable=redefined-outer-name
-
 """Day 11 Part 2: Chronal Charge."""
 
 import pytest

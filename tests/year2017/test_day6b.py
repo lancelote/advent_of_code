@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use
-
 """2017 - Day 6 Part 2: Memory Reallocation tests."""
 
 from src.year2017.day6b import solve

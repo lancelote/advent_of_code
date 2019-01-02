@@ -1,5 +1,3 @@
-# pylint: disable=missing-docstring, invalid-name
-
 """2016 - Day 2 Puzzle Part 1 tests."""
 
 import unittest

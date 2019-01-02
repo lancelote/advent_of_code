@@ -1,6 +1,3 @@
-# coding=utf-8
-# pylint: disable=missing-docstring
-
 """Day 4 Puzzle Part 1 tests."""
 
 import unittest

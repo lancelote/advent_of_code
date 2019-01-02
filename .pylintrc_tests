@@ -1,24 +1,21 @@
 [MESSAGES CONTROL]
 # ToDo: unused-import - remove when pylint starts support comment annotations
 disable=locally-disabled,
- # False positive for type annotations with typing module
- invalid-sequence-index,
  # False positive for OK test methods names and few other places
  invalid-name,
  # False positive for test file classes and methods
  missing-docstring,
- # False positive unnecessary else
- no-else-return,
  # Can't disable per file due to https://github.com/PyCQA/pylint/issues/214
  # ToDo: remove when the bug above is fixed in pylint
- duplicate-code
+ duplicate-code,
+ # False positive on pytest fixtures
+ redefined-outer-name,
+ # False positive on pytest test methods
+ no-self-use,
+ # It's ok to test protected members
+ protected-access
 
 [REPORTS]
 # Simplify pylint reports
 reports=no
 score=no
-
-[SIMILARITIES]
-# ToDo: Temporary fix before architecture will not be moved to OOP style
-min-similarity-lines=10
-ignore-docstrings=yes

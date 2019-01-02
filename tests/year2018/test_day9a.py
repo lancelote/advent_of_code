@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use
-
 """2018 - Day 9 Part 1: Marble Mania tests."""
 
 import pytest

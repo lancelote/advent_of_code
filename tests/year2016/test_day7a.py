@@ -1,5 +1,3 @@
-# pylint: disable=protected-access
-
 """Day 7: Internet Protocol Version 7 tests."""
 
 import unittest

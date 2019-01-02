@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use
-
 """2017 - Day 7 Part 2: Recursive Circus tests."""
 
 import pytest

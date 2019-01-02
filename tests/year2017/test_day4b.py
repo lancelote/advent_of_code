@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use
-
 """2017 - Day 4 Part 2: High-Entropy Passphrases tests."""
 
 import pytest

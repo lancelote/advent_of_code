@@ -1,5 +1,3 @@
-# pylint: disable=no-self-use,redefined-outer-name
-
 """2018 - Day 6 Part 1: Chronal Coordinates tests."""
 
 from textwrap import dedent
