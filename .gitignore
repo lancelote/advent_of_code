@@ -10,3 +10,13 @@ inputs/
 
 # mypy cache
 .mypy_cache
+
+# Vagrant
+Vagrantfile
+.vagrant/
+
+# pytest
+# Server for remote tests run
+socketserver.py
+# Remote test run cache
+pyexecnetcache/
