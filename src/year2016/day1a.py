@@ -50,6 +50,7 @@ class Point:
         Args:
             x (int): x coordinates
             y (int): y coordinates
+
         """
         self.x = x
         self.y = y

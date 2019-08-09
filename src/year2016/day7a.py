@@ -37,6 +37,7 @@ class IP:
         Args:
             supernet_parts: parts outside of square brackets
             hypernet_parts: parts inside square brackets
+
         """
         self.supernet_parts = supernet_parts
         self.hypernet_parts = hypernet_parts
