@@ -11,7 +11,7 @@ lint:
 run:
 	python main.py
 
-update:
+install:
 	python -m pip install -r requirements.txt
 
 deps:
