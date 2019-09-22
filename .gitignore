@@ -1,5 +1,12 @@
-# IDE
-.idea/
+# PyCharm
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/encodings.xml
+.idea/advent_of_code.iml
+.idea/codeStyles/
+.idea/codeStyleSettings.xml
 
 # Python
 __pycache__/
