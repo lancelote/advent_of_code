@@ -3,4 +3,4 @@ pylint==2.4.2
 pycodestyle==2.5.0
 pydocstyle==4.0.1
 pur==5.2.2
-mypy==0.720
+mypy==0.730
