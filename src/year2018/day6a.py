@@ -192,7 +192,7 @@ class Grid:
         for dot in self.dots:
             if dot.closest is None:
                 continue
-            elif dot.x in banned_x or dot.y in banned_y:
+            if dot.x in banned_x or dot.y in banned_y:
                 infinite.add(dot.closest)
             elif dot.closest not in infinite:
                 areas[dot.closest] += 1

@@ -165,6 +165,7 @@ be much longer and will take many more seconds to appear.
 What message will eventually appear in the sky?
 """
 
+from __future__ import annotations
 import re
 from typing import List
 from dataclasses import dataclass
@@ -180,12 +181,12 @@ class Point:
     dy: int
 
     @classmethod
-    def from_line(cls, line: str) -> 'Point':
+    def from_line(cls, line: str) -> Point:
         """Get Point from the line."""
         return cls(*map(int, re.findall(r'[\d-]+', line)))
 
     @classmethod
-    def parse_task(cls, task: str) -> List['Point']:
+    def parse_task(cls, task: str) -> List[Point]:
         """Parse the given task returning a list of rescue points."""
         return [cls.from_line(line) for line in task.strip().split('\n')]
 
