@@ -3,7 +3,7 @@
 import unittest
 
 from src.year2016.day6b import solve
-from tests.year2016.test_day6a import EXAMPLE_TASK
+from tests.src.year2016.test_day6a import EXAMPLE_TASK
 
 
 class SolveTest(unittest.TestCase):
