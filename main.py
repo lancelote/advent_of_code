@@ -2,6 +2,7 @@
 
 import importlib
 import os
+import sys
 
 import click
 
@@ -25,17 +26,15 @@ MANUAL_INPUT = [
 
 class Solver:
     @staticmethod
-    def main():
+    def main(year: str, day: str, part: str) -> None:
         """Print the result to a console."""
+
         task = None
-        year = input('Pick a year (%s): ' % '/'.join(SUPPORTED_YEARS)).strip()
         if year not in SUPPORTED_YEARS:
             print('Unknown year, supported: %s' % ', '.join(SUPPORTED_YEARS))
-            return
+            sys.exit(1)
 
-        day = input('Pick a puzzle (ex. Day 1): ').lower().replace(' ', '')
-        day = day if 'day' in day else 'day' + day
-        part = input('Pick a puzzle part (A or B): ').lower()
+        day = 'day' + day
         puzzle = day + part
 
         if (year, puzzle) in MANUAL_INPUT:
@@ -64,10 +63,17 @@ def cli(ctx):
     ctx.obj = Solver()
 
 
-@cli.command(help='Solve the given puzzle.')
+# ToDo: setup defaults
+# ToDo: extract type validation
+@cli.command()
+@click.argument('year')
+@click.argument('day')
+@click.argument('part')
 @click.pass_obj
-def solve(solver):
-    solver.main()
+def solve(solver, year, day, part):
+    """Solve the given YEAR DAY PART puzzle."""
+
+    solver.main(year, day, part)
 
 
 if __name__ == '__main__':

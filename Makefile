@@ -9,7 +9,7 @@ lint:
 	python -m mypy . --ignore-missing-imports
 
 run:
-	python main.py
+	python main.py solve
 
 install:
 	python -m pip install -r requirements.txt
