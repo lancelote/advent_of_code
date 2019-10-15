@@ -2,16 +2,11 @@
 
 import importlib
 import os
-import sys
 
 import click
 
-SUPPORTED_YEARS = [
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-]
+from src.utils.cli import YEAR, PART, DAY
+
 MANUAL_INPUT = [
     ('2015', 'day4a'),
     ('2015', 'day4b'),
@@ -30,10 +25,6 @@ class Solver:
         """Print the result to a console."""
 
         task = None
-        if year not in SUPPORTED_YEARS:
-            print('Unknown year, supported: %s' % ', '.join(SUPPORTED_YEARS))
-            sys.exit(1)
-
         day = 'day' + day
         puzzle = day + part
 
@@ -60,15 +51,15 @@ class Solver:
 @click.group()
 @click.pass_context
 def cli(ctx):
+    """Solve Advent of Code puzzles."""
+
     ctx.obj = Solver()
 
 
-# ToDo: setup defaults
-# ToDo: extract type validation
 @cli.command()
-@click.argument('year')
-@click.argument('day')
-@click.argument('part')
+@click.argument('year', type=YEAR)
+@click.argument('day', type=DAY)
+@click.argument('part', type=PART)
 @click.pass_obj
 def solve(solver, year, day, part):
     """Solve the given YEAR DAY PART puzzle."""
