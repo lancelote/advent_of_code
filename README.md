@@ -24,7 +24,7 @@ For all automation tasks I use `Makefile`. You can skip it entirely and just man
 
 ## Requirements
 
-Python 3.7 is required (at least it was tested with it).
+Python 3.8 is required (at least it was tested with it).
 
 For development and testing you should install necessary dependence packages from `requirements.txt`. Virtual environment is highly recommended.
 
