@@ -4,3 +4,4 @@ pycodestyle==2.5.0
 pydocstyle==4.0.1
 pur==5.2.2
 mypy==0.730
+click==7.0
