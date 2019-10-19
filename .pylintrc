@@ -9,7 +9,9 @@ disable=locally-disabled,
  no-else-return,
  # Can't disable per file due to https://github.com/PyCQA/pylint/issues/214
  # ToDo: remove when the bug above is fixed in pylint
- duplicate-code
+ duplicate-code,
+ # ToDo: remove once Solver class has more methods
+ too-few-public-methods
 
 [REPORTS]
 # Simplify pylint reports

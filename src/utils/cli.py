@@ -1,3 +1,7 @@
+# pylint: disable=inconsistent-return-statements
+
+"""CLI arguments validation helpers."""
+
 import click
 
 
@@ -10,6 +14,11 @@ SUPPORTED_YEARS = [
 
 
 class YearType(click.ParamType):
+    """Year validation.
+
+    Should be anything from SUPPORTED_YEARS (2018, etc.).
+    """
+
     def convert(self, value, param, ctx):
         if value in SUPPORTED_YEARS:
             return value
@@ -19,6 +28,11 @@ class YearType(click.ParamType):
 
 
 class DayType(click.ParamType):
+    """Day validation.
+
+    Should be from 1 - 31 range inclusive.
+    """
+
     def convert(self, value, param, ctx):
         try:
             assert int(value) in range(1, 32)
@@ -29,6 +43,11 @@ class DayType(click.ParamType):
 
 
 class PartType(click.ParamType):
+    """Exercise part validation.
+
+    Should be either literal "a" or "b".
+    """
+
     def convert(self, value, param, ctx):
         formatted_value = value.lower()
         if formatted_value in ['a', 'b']:

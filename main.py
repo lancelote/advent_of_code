@@ -1,3 +1,5 @@
+# pylint: disable=no-value-for-parameter
+
 """Puzzle Solver Runner."""
 
 import importlib
@@ -20,10 +22,11 @@ MANUAL_INPUT = [
 
 
 class Solver:
+    """Main app class."""
+
     @staticmethod
     def main(year: str, day: str, part: str) -> None:
         """Print the result to a console."""
-
         task = None
         day = 'day' + day
         puzzle = day + part
@@ -44,7 +47,7 @@ class Solver:
                 return
 
         solver = importlib.import_module('src.year%s.%s' % (year, puzzle))
-        solution = solver.solve(task)
+        solution = solver.solve(task)  # type: ignore
         print('Answer:', solution)
 
 
@@ -52,7 +55,6 @@ class Solver:
 @click.pass_context
 def cli(ctx):
     """Solve Advent of Code puzzles."""
-
     ctx.obj = Solver()
 
 
@@ -63,7 +65,6 @@ def cli(ctx):
 @click.pass_obj
 def solve(solver, year, day, part):
     """Solve the given YEAR DAY PART puzzle."""
-
     solver.main(year, day, part)
 
 

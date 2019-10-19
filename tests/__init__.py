@@ -1,1 +1,1 @@
-"""Tests for solutions."""
+"""Tests for solutions and cli."""
