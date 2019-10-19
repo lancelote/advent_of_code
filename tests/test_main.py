@@ -1,6 +1,8 @@
-import pytest
+import os
 
+import pytest
 from click.testing import CliRunner
+
 from main import cli
 
 
@@ -9,11 +11,16 @@ def runner():
     return CliRunner()
 
 
-# ToDo: make sure test inputs are present (e.g. CI)
 def test_solve(runner):
-    result = runner.invoke(cli, ['solve', '2017', '5', 'a'])
-    assert result.exit_code == 0
-    assert result.output == 'Answer: 396086\n'
+    with runner.isolated_filesystem():
+        data_file_dir = 'inputs/2018/day9/'
+        os.makedirs(data_file_dir)
+        with open(os.path.join(data_file_dir, 'input'), 'w') as data:
+            data.write('411 players; last marble is worth 71058 points')
+
+        result = runner.invoke(cli, ['solve', '2018', '9', 'a'])
+        assert result.exit_code == 0
+        assert result.output == 'Answer: 424639\n'
 
 
 def test_wrong_year(runner):
