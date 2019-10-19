@@ -14,5 +14,5 @@ run:
 install:
 	python -m pip install -r requirements.txt
 
-deps:
+pur:
 	pur -r requirements.txt
