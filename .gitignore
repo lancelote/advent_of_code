@@ -5,9 +5,6 @@
 __pycache__/
 .cache/
 
-# Input Puzzle files
-inputs/
-
 # mypy cache
 .mypy_cache
 

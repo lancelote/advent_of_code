@@ -3,8 +3,8 @@
 """Puzzle Solver Runner."""
 
 import importlib
-import os
 
+from aocd import get_data
 import click
 
 from src.utils.cli import YEAR, PART, DAY
@@ -25,28 +25,11 @@ class Solver:
     """Main app class."""
 
     @staticmethod
-    def main(year: str, day: str, part: str) -> None:
+    def main(year: int, day: int, part: str) -> None:
         """Print the result to a console."""
-        task = None
-        day = 'day' + day
-        puzzle = day + part
+        task = get_data(day=day, year=year)
 
-        if (year, puzzle) in MANUAL_INPUT:
-            task = input('Puzzle input: ')
-        else:
-            for file_name in ['input.txt', 'input']:
-                try:
-                    file_path = os.path.join('inputs', year, day, file_name)
-                    with open(file_path) as input_file:
-                        task = input_file.read()
-                except FileNotFoundError:
-                    pass  # Try another file name
-
-            if task is None:
-                print('Input file not found')
-                return
-
-        solver = importlib.import_module('src.year%s.%s' % (year, puzzle))
+        solver = importlib.import_module(f'src.year{year}.day{day}{part}')
         solution = solver.solve(task)  # type: ignore
         print('Answer:', solution)
 

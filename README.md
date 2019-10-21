@@ -11,36 +11,28 @@
 
 ## How to use
 
-Puzzle inputs can be too long for console input, if an input file is provided -
-save and move it to `inputs/{year}/day{n}/`, ex. `inputs/2015/day1/` for Day 1
-Puzzle Part 1. If an input file is not expected - you will be asked by the
-solver for manual input (ex. for Day 4 Puzzle Part 1).
-
 To launch the Puzzle Solver on 2017 year day 5 part "A" puzzle:
 
 ```bash
 python main.py solve 2017 5 a
 ```
 
-For all automation tasks I use `Makefile`. You can skip it entirely and just
-manually run commands from it. If you are on Windows you can get `make` with
-`mingw` or `cygwin` (I use `mingw` while develop on windows machine).
-
 ## Requirements
 
-Python 3.8 is required (at least it was tested with it).
+[advent-of-code-data][1] package is used to fetch tasks from the server. You
+need to set up a token for it to work. See the [instruction][2].
 
-For development and testing you should install necessary dependence packages
-from `requirements.txt`. Virtual environment is highly recommended.
+Python 3.8 is required (at least I am using it). Virtual environment is highly
+recommended.
 
 ```bash
-make update
+make install
 ```
 
 To update `requirements.txt`:
 
 ```bash
-make deps
+make pur
 ```
 
 ## Tests
@@ -61,3 +53,6 @@ make lint
 ```
 
 # Merry Christmas and Happy New Year!
+
+[1]: https://github.com/wimglenn/advent-of-code-data
+[2]: https://github.com/wimglenn/advent-of-code-wim/issues/1
