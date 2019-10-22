@@ -2,7 +2,7 @@
 
 # advent_of_code
 
-[Advent of code](http://adventofcode.com/) - Programming Christmas Puzzles
+[Advent of code](http://adventofcode.com/) — Programming Christmas Puzzles
 
 - 2015 - ★★★★★★★
 - 2016 - ★★★★★★★
@@ -11,7 +11,7 @@
 
 ## How to use
 
-To launch the Puzzle Solver on 2017 year day 5 part "A" puzzle:
+To launch the Puzzle Solver on 2017 year day 5 part “A” puzzle:
 
 ```bash
 python main.py solve 2017 5 a
@@ -19,11 +19,11 @@ python main.py solve 2017 5 a
 
 ## Requirements
 
-[advent-of-code-data][1] package is used to fetch tasks from the server. You
+Solver uses [advent-of-code-data][1] to fetch tasks from the server. You
 need to set up a token for it to work. See the [instruction][2].
 
-Python 3.8 is required (at least I am using it). Virtual environment is highly
-recommended.
+I use Python 3.8 for development. The code should work fine on Python 3.7 as
+well.
 
 ```bash
 make install
@@ -37,7 +37,7 @@ make pur
 
 ## Tests
 
-All tests are stored in the `tests` folder, `pytest` is used:
+I store all the tests in `tests` folder and use `pytest` as a test runner:
 
 ```bash
 make test
@@ -45,8 +45,8 @@ make test
 
 ## Syntax Validation
 
-Make sure `pylint`, `pydocstyle`, `pycodestyle` and `mypy` are installed (yes
-I love linters) and run:
+Make sure to have `pylint`, `pydocstyle`, `pycodestyle` and `mypy` installed
+(yes I love linters) and run:
 
 ```bash
 make lint

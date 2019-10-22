@@ -16,7 +16,7 @@ SUPPORTED_YEARS = [
 class YearType(click.ParamType):
     """Year validation.
 
-    Should be anything from SUPPORTED_YEARS (2018, etc.).
+    SUPPORTED_YEARS variable stores all available years (2018, etc.).
     """
 
     def convert(self, value, param, ctx):
@@ -31,7 +31,7 @@ class YearType(click.ParamType):
 class DayType(click.ParamType):
     """Day validation.
 
-    Should be from 1 - 31 range inclusive.
+    From 1 to 31 range inclusive.
     """
 
     def convert(self, value, param, ctx):
@@ -44,9 +44,9 @@ class DayType(click.ParamType):
 
 
 class PartType(click.ParamType):
-    """Exercise part validation.
+    """Task part validation.
 
-    Should be either literal "a" or "b".
+    Either literal “a” or “b”.
     """
 
     def convert(self, value, param, ctx):

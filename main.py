@@ -47,7 +47,7 @@ def cli(ctx):
 @click.argument('part', type=PART)
 @click.pass_obj
 def solve(solver, year, day, part):
-    """Solve the given YEAR DAY PART puzzle."""
+    """Solve the given puzzle."""
     solver.main(year, day, part)
 
 
