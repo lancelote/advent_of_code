@@ -103,64 +103,77 @@ After 20 generations, what is the sum of the numbers of all pots which contain
 a plant?
 """
 
-from collections import defaultdict
+from enum import Enum
+from typing import Dict, Tuple
 
-from typing import DefaultDict, Tuple
-from itertools import chain
 
-STATE = DefaultDict[int, str]
+class Pot(Enum):
+    """Represent a pot with (#) or without (.) a plant."""
+
+    EMPTY = '.'
+    PLANT = '#'
+
+
+POT_ID = int
+PLANTS = Dict[POT_ID, Pot]
 PATTERN = str
-PATTERNS = DefaultDict[PATTERN, str]
+PATTERNS = Dict[PATTERN, Pot]
 
 
-def get_empty_state(length: int) -> STATE:
-    """Create an empty state with extra boundaries."""
-    extra = {i: '.' for i in chain(range(-5, 0), range(length, length + 30))}
-    return defaultdict(lambda: '.', extra)
+def process_data(task: str) -> Tuple[PLANTS, PATTERNS]:
+    """Convert raw data into initial plants and the list of patterns."""
+    data_lines = task.strip().split('\n')
+    raw_initial_state = data_lines[0].split()[2]
+
+    initial_plants: PLANTS = dict()
+    for i, pot in enumerate(raw_initial_state):
+        if pot == '#':
+            initial_plants[i] = Pot.PLANT
+
+    patterns: PATTERNS = dict()
+    for line in data_lines[2:]:
+        pattern, _, pot = line.split()
+        if pot == '#':
+            patterns[pattern] = Pot.PLANT
+        elif pot == '.':
+            patterns[pattern] = Pot.EMPTY
+        else:
+            raise ValueError(f'Unknown plot state: {pot}')
+
+    return initial_plants, patterns
 
 
-def process_data(task: str) -> Tuple[STATE, PATTERNS, int]:
-    """Convert raw data into initial state, list of patterns and length."""
-    lines = task.strip().split('\n')
-    raw_state = lines[0].split()[2]
-    initial_state = get_empty_state(len(raw_state))
-    for i, pot in enumerate(raw_state):
-        initial_state[i] = pot
-    patterns: PATTERNS = defaultdict(lambda: '.')
-    for line in lines[2:]:
-        pattern, _, status = line.split()
-        patterns[pattern] = status
-    return initial_state, patterns, len(raw_state)
-
-
-def get_pattern(state: STATE, i: int) -> PATTERN:
+def get_pattern(plants: PLANTS, i: int) -> PATTERN:
     """Get around pattern for a given pot."""
-    return state[i - 2] + state[i - 1] + state[i] + state[i + 1] + state[i + 2]
+    indexes = [i - 2, i - 1, i, i + 1, i + 2]
+    return ''.join(plants.get(index, Pot.EMPTY).value for index in indexes)
 
 
-def print_state(state: STATE, generation: int):
-    """Print the given pots state."""
-    items = state.items()
-    lst = ['.'] * len(items)
-    for key, value in items:
-        lst[key + 5] = value
-    print(str(generation).rjust(2), ''.join(lst))
+def print_plants(plants: PLANTS, generation: int = 0):
+    """Print current plants layout."""
+    start = min(plants.keys())
+    end = max(plants.keys())
+    representation = ''
+
+    for i in range(start, end + 1):
+        representation += plants.get(i, Pot.EMPTY).value
+
+    print(str(generation).rjust(3), representation)
 
 
 def solve(task: str) -> int:
     """Find the sum of all pots id with plants after 20 generations."""
-    state, patterns, length = process_data(task)
-    # print_state(state, -1)
+    plants, patterns = process_data(task)
     for _ in range(20):  # generations
-        new_state = get_empty_state(length)
-        for i in dict(state).keys():
-            pattern = get_pattern(state, i)
-            new_state[i] = patterns[pattern]
-        state = new_state
-        # print_state(state, _)
+        new_plants: PLANTS = dict()
+        plant_ids = plants.keys()
+        min_plant_id = min(plant_ids)
+        max_plant_id = max(plant_ids)
 
-    result = 0
-    for num, plot in state.items():
-        if plot == '#':
-            result += num
-    return result
+        for i in range(min_plant_id - 2, max_plant_id + 2):
+            pattern = get_pattern(plants, i)
+            if patterns.get(pattern, Pot.EMPTY) is Pot.PLANT:
+                new_plants[i] = Pot.PLANT
+        plants = new_plants
+
+    return sum(plants.keys())

@@ -1,9 +1,8 @@
 """"Day 12 Part 1: Subterranean Sustainability tests."""
 
-from collections import defaultdict
 from textwrap import dedent
 
-from src.year2018.day12a import process_data, get_pattern
+from src.year2018.day12a import get_pattern, process_data, solve, Pot
 
 
 def test_process_data():
@@ -14,37 +13,43 @@ def test_process_data():
         ##... => #
         #.... => .
     """)
-    expected_state = {
-        -5: '.',
-        -4: '.',
-        -3: '.',
-        -2: '.',
-        -1: '.',
-        0: '.',
-        1: '#',
-        2: '#',
-        3: '.',
-        4: '.',
+    expected_plants = {
+        1: Pot.PLANT,
+        2: Pot.PLANT,
     }
-    expected_state.update({i: '.' for i in range(5, 35)})
     expected_patterns = {
-        '##.#.': '#',
-        '##...': '#',
-        '#....': '.'
+        '##.#.': Pot.PLANT,
+        '##...': Pot.PLANT,
+        '#....': Pot.EMPTY,
     }
 
-    actual_state, actual_patterns, length = process_data(test_data)
-    assert dict(actual_state) == expected_state
-    assert dict(actual_patterns) == expected_patterns
-    assert length == 5
+    actual_state, actual_patterns = process_data(test_data)
+    assert actual_state == expected_plants
+    assert actual_patterns == expected_patterns
 
 
 def test_get_pattern():
-    test_state = defaultdict(lambda: '.', {
-        0: '.',
-        1: '#',
-        2: '.',
-        3: '#',
-        4: '.'
-    })
-    assert get_pattern(test_state, 2) == '.#.#.'
+    test_plants = {1: Pot.PLANT, 3: Pot.PLANT}
+    assert get_pattern(test_plants, 2) == '.#.#.'
+
+
+def test_solve():
+    test_task = dedent("""
+    initial state: #..#.#..##......###...###
+
+    ...## => #
+    ..#.. => #
+    .#... => #
+    .#.#. => #
+    .#.## => #
+    .##.. => #
+    .#### => #
+    #.#.# => #
+    #.### => #
+    ##.#. => #
+    ##.## => #
+    ###.. => #
+    ###.# => #
+    ####. => #
+    """)
+    assert solve(test_task) == 325
