@@ -1,9 +1,9 @@
-pytest==5.2.1
-pylint==2.4.3
+pytest==5.3.0
+pylint==2.4.4
 pycodestyle==2.5.0
 pydocstyle==4.0.1
 pur==5.2.2
 mypy==0.740
 click==7.0
-advent-of-code-data==0.8.1
-pytest-mock==1.11.1
+advent-of-code-data==0.8.3
+pytest-mock==1.12.1
