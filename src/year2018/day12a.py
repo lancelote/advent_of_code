@@ -115,20 +115,20 @@ class Pot(Enum):
 
 
 POT_ID = int
-PLANTS = Dict[POT_ID, Pot]
+GEN = Dict[POT_ID, Pot]
 PATTERN = str
 PATTERNS = Dict[PATTERN, Pot]
 
 
-def process_data(task: str) -> Tuple[PLANTS, PATTERNS]:
-    """Convert raw data into initial plants and the list of patterns."""
+def process_data(task: str) -> Tuple[GEN, PATTERNS]:
+    """Convert raw data into initial generation and the list of patterns."""
     data_lines = task.strip().split('\n')
     raw_initial_state = data_lines[0].split()[2]
 
-    initial_plants: PLANTS = dict()
+    start_generation: GEN = dict()
     for i, pot in enumerate(raw_initial_state):
         if pot == '#':
-            initial_plants[i] = Pot.PLANT
+            start_generation[i] = Pot.PLANT
 
     patterns: PATTERNS = dict()
     for line in data_lines[2:]:
@@ -140,40 +140,47 @@ def process_data(task: str) -> Tuple[PLANTS, PATTERNS]:
         else:
             raise ValueError(f'Unknown plot state: {pot}')
 
-    return initial_plants, patterns
+    return start_generation, patterns
 
 
-def get_pattern(plants: PLANTS, i: int) -> PATTERN:
+def get_pattern(generation: GEN, i: int) -> PATTERN:
     """Get around pattern for a given pot."""
     indexes = [i - 2, i - 1, i, i + 1, i + 2]
-    return ''.join(plants.get(index, Pot.EMPTY).value for index in indexes)
+    return ''.join(generation.get(index, Pot.EMPTY).value for index in indexes)
 
 
-def print_plants(plants: PLANTS, generation: int = 0):
+def print_plants(generation: GEN, generation_id: int = 0):
     """Print current plants layout."""
-    start = min(plants.keys())
-    end = max(plants.keys())
+    start = min(generation.keys())
+    end = max(generation.keys())
     representation = ''
 
     for i in range(start, end + 1):
-        representation += plants.get(i, Pot.EMPTY).value
+        representation += generation.get(i, Pot.EMPTY).value
 
-    print(str(generation).rjust(3), representation)
+    print(str(generation_id).rjust(3), representation)
+
+
+def get_new_generation(generation: GEN, patterns: PATTERNS) -> GEN:
+    """Mutate current generation and get the next one."""
+    new_generation: GEN = dict()
+    plant_ids = generation.keys()
+    min_plant_id = min(plant_ids)
+    max_plant_id = max(plant_ids)
+
+    for i in range(min_plant_id - 2, max_plant_id + 2):
+        pattern = get_pattern(generation, i)
+        if patterns.get(pattern, Pot.EMPTY) is Pot.PLANT:
+            new_generation[i] = Pot.PLANT
+
+    return new_generation
 
 
 def solve(task: str) -> int:
     """Find the sum of all pots id with plants after 20 generations."""
-    plants, patterns = process_data(task)
+    generation, patterns = process_data(task)
     for _ in range(20):  # generations
-        new_plants: PLANTS = dict()
-        plant_ids = plants.keys()
-        min_plant_id = min(plant_ids)
-        max_plant_id = max(plant_ids)
+        new_generation = get_new_generation(generation, patterns)
+        generation = new_generation
 
-        for i in range(min_plant_id - 2, max_plant_id + 2):
-            pattern = get_pattern(plants, i)
-            if patterns.get(pattern, Pot.EMPTY) is Pot.PLANT:
-                new_plants[i] = Pot.PLANT
-        plants = new_plants
-
-    return sum(plants.keys())
+    return sum(generation.keys())
