@@ -83,7 +83,7 @@ class Memory(Iterable):
         for dx in [-1, 0, 1]:
             for dy in [-1, 0, 1]:
                 if dx or dy:
-                    yield (self.x + dx, self.y + dy)
+                    yield self.x + dx, self.y + dy
 
     @property
     def sum_neighbors(self):

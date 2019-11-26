@@ -23,6 +23,7 @@ class IsBadTest(unittest.TestCase):
 
     def test_bad(self):
         for bad_triangle in permutations((5, 10, 25)):
+            # noinspection PyTypeChecker
             self.assertTrue(is_bad(bad_triangle))
 
     def test_two_side_equal(self):
