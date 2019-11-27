@@ -189,6 +189,20 @@ is `X=0` and the furthest top row is `Y=0`:
 In this example, the location of the first crash is `7,3`.
 """
 
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import List
+
+
+@dataclass
+class Track:
+    grid: List[List[str]]
+
+    @classmethod
+    def from_raw_data(cls, data: str) -> Track:
+        return Track([[char for char in line] for line in data.split('\n')])
+
 
 def solve(task: str) -> int:
-    pass
+    track = Track.from_raw_data(task)
