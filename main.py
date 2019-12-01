@@ -9,17 +9,6 @@ import click
 
 from src.utils.cli import YEAR, PART, DAY
 
-MANUAL_INPUT = [
-    ('2015', 'day4a'),
-    ('2015', 'day4b'),
-    ('2016', 'day5a'),
-    ('2016', 'day5b'),
-    ('2017', 'day3a'),
-    ('2017', 'day3b'),
-    ('2018', 'day11a'),
-    ('2018', 'day11b'),
-]
-
 
 class Solver:
     """Main app class."""
