@@ -92,13 +92,78 @@ from typing import List
 
 
 @dataclass
-class Intcode:
+class Program:
+    """Intcode program representation.
+
+    Stores opcodes as a list and current opcode under execution index.
+    """
+
     opcodes: List[int]
+    i: int = 0
 
     @staticmethod
-    def from_string(string: str) -> Intcode:
-        return Intcode([int(opcode) for opcode in string.split(',')])
+    def from_string(string: str) -> Program:
+        """Convert raw opcodes to Program instance."""
+        return Program([int(opcode) for opcode in string.split(',')])
+
+    def next(self):
+        """Get the next opcode and increment the index counter."""
+        opcode = self.opcodes[self.i]
+        self.i += 1
+        return opcode
+
+    def sum(self):
+        """Sum next opcodes.
+
+        1. Get two next opcodes.
+        2. Treat them as indexes.
+        3. Get new two opcodes by the given indexes from the previous step.
+        4. Sum opcodes from the previous step.
+        5. Get new next opcode.
+        6. Treat it as index.
+        7. Store the sum by the given index from the previous step.
+        """
+        x = self.opcodes[self.i]
+        y = self.opcodes[self.i + 1]
+        z = self.opcodes[self.i + 2]
+        self.opcodes[z] = self.opcodes[x] + self.opcodes[y]
+        self.i += 3
+
+    def multiply(self):
+        """Multiply next opcodes.
+
+        1. Get two next opcodes.
+        2. Treat them as indexes.
+        3. Get new two opcodes by the given indexes from the previous step.
+        4. Multiply opcodes from the previous step.
+        5. Get new next opcode.
+        6. Treat it as index.
+        7. Store the multiplication result by the given index.
+        """
+        x = self.opcodes[self.i]
+        y = self.opcodes[self.i + 1]
+        z = self.opcodes[self.i + 2]
+        self.opcodes[z] = self.opcodes[x] * self.opcodes[y]
+        self.i += 3
+
+    def execute(self):
+        """Iterate over opcodes executing commands unless 99 stop."""
+        while True:
+            opcode = self.next()
+            if opcode == 1:
+                self.sum()
+            elif opcode == 2:
+                self.multiply()
+            elif opcode == 99:
+                break
+            else:
+                raise ValueError('')
 
 
 def solve(task: str) -> int:
-    pass
+    """Execute a program and return 0 index opcode."""
+    program = Program.from_string(task)
+    program.opcodes[1] = 12
+    program.opcodes[2] = 2
+    program.execute()
+    return program.opcodes[0]
