@@ -87,29 +87,29 @@ value 2. What value is left at position 0 after the program halts?
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 
 @dataclass
-class Program:
-    """Intcode program representation.
+class Computer:
+    """Intcode computer.
 
-    Stores opcodes as a list and current opcode under execution index.
+    Stores program in memory as a list of integer and the current opcode under
+    execution index.
     """
 
-    opcodes: List[int]
-    i: int = 0
+    memory: List[int] = field(default_factory=list)
+    instruction_pointer: int = 0
 
-    @staticmethod
-    def from_string(string: str) -> Program:
-        """Convert raw opcodes to Program instance."""
-        return Program([int(opcode) for opcode in string.split(',')])
+    def load_program(self, string: str):
+        """Load program to memory."""
+        self.memory = [int(opcode) for opcode in string.split(',')]
 
     def next(self):
-        """Get the next opcode and increment the index counter."""
-        opcode = self.opcodes[self.i]
-        self.i += 1
+        """Get the next instruction and increment the pointer."""
+        opcode = self.memory[self.instruction_pointer]
+        self.instruction_pointer += 1
         return opcode
 
     def sum(self):
@@ -123,11 +123,16 @@ class Program:
         6. Treat it as index.
         7. Store the sum by the given index from the previous step.
         """
-        x = self.opcodes[self.i]
-        y = self.opcodes[self.i + 1]
-        z = self.opcodes[self.i + 2]
-        self.opcodes[z] = self.opcodes[x] + self.opcodes[y]
-        self.i += 3
+        address1 = self.instruction_pointer
+        address2 = self.instruction_pointer + 1
+        address3 = self.instruction_pointer + 2
+
+        param1 = self.memory[address1]
+        param2 = self.memory[address2]
+        param3 = self.memory[address3]
+
+        self.memory[param3] = self.memory[param1] + self.memory[param2]
+        self.instruction_pointer += 3
 
     def multiply(self):
         """Multiply next opcodes.
@@ -140,14 +145,21 @@ class Program:
         6. Treat it as index.
         7. Store the multiplication result by the given index.
         """
-        x = self.opcodes[self.i]
-        y = self.opcodes[self.i + 1]
-        z = self.opcodes[self.i + 2]
-        self.opcodes[z] = self.opcodes[x] * self.opcodes[y]
-        self.i += 3
+        address1 = self.instruction_pointer
+        address2 = self.instruction_pointer + 1
+        address3 = self.instruction_pointer + 2
+
+        param1 = self.memory[address1]
+        param2 = self.memory[address2]
+        param3 = self.memory[address3]
+
+        self.memory[param3] = self.memory[param1] * self.memory[param2]
+        self.instruction_pointer += 3
 
     def execute(self):
-        """Iterate over opcodes executing commands unless 99 stop."""
+        """Iterate over opcodes in memory executing commands unless 99 stop."""
+        assert self.memory, "no program loaded."
+
         while True:
             opcode = self.next()
             if opcode == 1:
@@ -162,8 +174,11 @@ class Program:
 
 def solve(task: str) -> int:
     """Execute a program and return 0 index opcode."""
-    program = Program.from_string(task)
-    program.opcodes[1] = 12
-    program.opcodes[2] = 2
-    program.execute()
-    return program.opcodes[0]
+    computer = Computer()
+    computer.load_program(task)
+    computer.memory[1] = 12
+    computer.memory[2] = 2
+
+    computer.execute()
+
+    return computer.memory[0]
