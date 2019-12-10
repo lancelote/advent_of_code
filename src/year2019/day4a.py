@@ -22,19 +22,19 @@ How many different passwords within the range given in your puzzle input meet
 these criteria?
 """
 
-from typing import Generator
+from typing import Iterator
+
+Password = Iterator[str]
 
 
-def two_next(num: int) -> bool:
+def two_adjacent(num: str) -> bool:
     """Check for at least two equal adjacent digits."""
-    pas = str(num)
-    return any(pas[i] == pas[i - 1] for i in range(1, len(pas)))
+    return any(num[i] == num[i - 1] for i in range(1, len(num)))
 
 
-def not_decrease(num: int) -> bool:
+def never_decrease(num: str) -> bool:
     """Check if digits are never decrease."""
-    pas = str(num)
-    return all(int(pas[i]) >= int(pas[i - 1]) for i in range(1, len(pas)))
+    return all(int(num[i]) >= int(num[i - 1]) for i in range(1, len(num)))
 
 
 def process_data(data: str):
@@ -42,11 +42,15 @@ def process_data(data: str):
     return map(int, data.strip().split('-'))
 
 
-def get_passwords(start: int, stop: int) -> Generator[int, None, None]:
+def get_passwords(start: int, stop: int) -> Password:
     """Get all possible passwords."""
-    return (p for p in range(start, stop) if two_next(p) and not_decrease(p))
+    return map(str, range(start, stop))
 
 
 def solve(task: str) -> int:
     """Count the number of possible passwords."""
-    return len(list(get_passwords(*process_data(task))))
+    start, stop = process_data(task)
+    return len([
+        password for password in get_passwords(start, stop)
+        if two_adjacent(password) and never_decrease(password)
+    ])

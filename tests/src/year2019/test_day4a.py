@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.year2019.day4a import process_data, not_decrease, two_next
+from src.year2019.day4a import process_data, never_decrease, two_adjacent
 
 
 def test_process_data():
@@ -11,20 +11,20 @@ def test_process_data():
 
 
 @pytest.mark.parametrize('num,expected', [
-    (223450, False),
-    (111111, True),
-    (123789, True),
-    (102345, False),
+    ('223450', False),
+    ('111111', True),
+    ('123789', True),
+    ('102345', False),
 ])
 def test_not_decrease(num, expected):
-    assert not_decrease(num) is expected
+    assert never_decrease(num) is expected
 
 
 @pytest.mark.parametrize('num,expected', [
-    (111111, True),
-    (223450, True),
-    (123789, False),
-    (122345, True),
+    ('111111', True),
+    ('223450', True),
+    ('123789', False),
+    ('122345', True),
 ])
 def test_two_next(num, expected):
-    assert two_next(num) is expected
+    assert two_adjacent(num) is expected
