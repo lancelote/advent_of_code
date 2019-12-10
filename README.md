@@ -3,6 +3,7 @@
 [Advent of code](http://adventofcode.com/) — Programming Christmas Puzzles
 
 ★ - both the first and the second parts are solved
+
 ☆ - only the first part is solved
 
 - 2015 - ★★★★★★★
