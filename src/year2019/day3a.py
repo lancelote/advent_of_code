@@ -74,6 +74,13 @@ Node = Tuple[int, int]
 Nodes = DefaultDict[Node, int]
 
 
+def parse_command(command: str) -> Tuple[str, int]:
+    """Parse command into direction char and number of steps."""
+    direction = command[0]
+    steps = int(command[1:])
+    return direction, steps
+
+
 @dataclass
 class Grid:
     """Grid with wires on top."""
@@ -86,15 +93,21 @@ class Grid:
         nodes = set()
 
         for command in wire.strip().split(','):
-            direction = command[0]
-            steps = int(command[1:])
+            direction, steps = parse_command(command)
             for _ in range(steps):
                 self.shift(direction)
                 nodes.add(self.current)
 
+        self.merge(nodes)
+        self.reset()
+
+    def merge(self, nodes):
+        """Merge wire nodes into the actual grid."""
         for node in nodes:
             self.nodes[node] += 1
 
+    def reset(self):
+        """Reset the grid after the wire plotting."""
         self.current = (0, 0)
 
     def shift(self, direction: str):
