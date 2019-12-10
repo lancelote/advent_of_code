@@ -1,5 +1,3 @@
-[![Requirements Status](https://requires.io/github/lancelote/advent_of_code/requirements.svg?branch=master)](https://requires.io/github/lancelote/advent_of_code/requirements/?branch=master)
-
 # advent_of_code
 
 [Advent of code](http://adventofcode.com/) — Programming Christmas Puzzles
