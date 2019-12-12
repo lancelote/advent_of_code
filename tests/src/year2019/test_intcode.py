@@ -1,6 +1,18 @@
-from src.year2019.intcode import Computer
+import sys
+from io import StringIO
+from contextlib import contextmanager
 
 import pytest
+
+from src.year2019.intcode import Computer
+
+
+@contextmanager
+def mock_stdin(new_text: str):
+    original = sys.stdin
+    sys.stdin = StringIO(new_text)
+    yield
+    sys.stdin = original
 
 
 @pytest.fixture
@@ -57,3 +69,23 @@ def test_multiple_executions(computer):
     assert computer.instruction_pointer == 5
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
+
+
+@pytest.mark.parametrize('program,user_text,expected_dram', [
+    ('3,0,99', '7', [7, 0, 99]),
+    ('3,1,99', '6', [3, 6, 99]),
+])
+def test_input(computer, program, user_text, expected_dram):
+    computer.load_program(program)
+
+    with mock_stdin(user_text):
+        computer.execute()
+
+    assert computer.dram == expected_dram
+
+
+def test_output(computer, capsys):
+    computer.load_program('4,0,99')
+    computer.execute()
+    assert computer.dram == [4, 0, 99]
+    assert capsys.readouterr().out == '4\n'

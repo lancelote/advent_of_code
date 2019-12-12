@@ -63,6 +63,18 @@ class Computer:
         self.dram[param3] = self.dram[param1] * self.dram[param2]
         self.instruction_pointer += 3
 
+    def input(self):
+        address = self.instruction_pointer
+        param = self.dram[address]
+        self.dram[param] = int(input())
+        self.instruction_pointer += 1
+
+    def print(self):
+        address = self.instruction_pointer
+        param = self.dram[address]
+        print(self.dram[param])
+        self.instruction_pointer += 1
+
     def execute(self):
         """Iterate over opcodes in memory executing commands unless 99 stop."""
         assert self.sram, "no program loaded."
@@ -76,6 +88,10 @@ class Computer:
                 self.sum()
             elif opcode == 2:
                 self.multiply()
+            elif opcode == 3:
+                self.input()
+            elif opcode == 4:
+                self.print()
             elif opcode == 99:
                 break
             else:
