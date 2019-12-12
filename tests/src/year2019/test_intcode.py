@@ -1,8 +1,6 @@
-"""2019 - Day 2 Part 1: 1202 Program Alarm."""
+from src.year2019.intcode import Computer
 
 import pytest
-
-from src.year2019.day2a import Computer
 
 
 @pytest.fixture

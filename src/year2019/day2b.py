@@ -47,7 +47,7 @@ Find the input noun and verb that cause the program to produce the output
 the answer would be 1202.)
 """
 
-from src.year2019.day2a import Computer, InvalidPointerException
+from src.year2019.intcode import Computer, InvalidPointerException
 
 
 def solve(task: str) -> int:
