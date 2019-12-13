@@ -32,9 +32,9 @@ def test_program_from_string(computer, raw_opcodes, expected_opcodes):
 def test_program_next(computer):
     computer.load_program('1,2,3')
     computer.load_sram_to_dram()
-    assert computer.next() == 1
-    assert computer.next() == 2
-    assert computer.next() == 3
+    assert computer.next() == (1, '')
+    assert computer.next() == (2, '')
+    assert computer.next() == (3, '')
 
 
 @pytest.mark.parametrize('raw_opcodes,expected_opcodes', [
@@ -99,3 +99,15 @@ def test_print_output(computer, capsys):
 
     assert computer.dram == [42, 0, 4, 0, 99]
     assert capsys.readouterr().out == '42\n'
+
+
+@pytest.mark.parametrize('program,opcode,mode', [
+    ('1002', 2, '10'),
+    ('02', 2, ''),
+    ('002', 2, ''),
+    ('099', 99, ''),
+])
+def test_next_opcode_with_mode(program, opcode, mode, computer):
+    computer.load_program(program)
+    computer.load_sram_to_dram()
+    assert computer.next() == (opcode, mode)

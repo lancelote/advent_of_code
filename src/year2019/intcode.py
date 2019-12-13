@@ -30,10 +30,11 @@ class Computer:
     def next(self):
         """Get the next instruction and increment the pointer."""
         try:
-            opcode_value = self.dram[self.instruction_pointer]
-            opcode = opcode_value % 100
+            value = str(self.dram[self.instruction_pointer])
+            opcode = int(value[-2:])
+            mode = value[:-2]
             self.instruction_pointer += 1
-            return opcode
+            return opcode, mode
         except IndexError:
             raise InvalidPointerException(f'i: {self.instruction_pointer}')
 
@@ -83,7 +84,7 @@ class Computer:
         self.load_sram_to_dram()
 
         while True:
-            opcode = self.next()
+            opcode, mode = self.next()
             if opcode == 1:
                 self.sum()
             elif opcode == 2:
