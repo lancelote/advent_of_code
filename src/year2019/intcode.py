@@ -38,6 +38,28 @@ class Computer:
         except IndexError:
             raise InvalidPointerException(f'i: {self.instruction_pointer}')
 
+    def execute(self):
+        """Iterate over opcodes in memory executing commands unless 99 stop."""
+        assert self.sram, "no program loaded."
+
+        self.reset()
+        self.load_sram_to_dram()
+
+        while True:
+            opcode, mode = self.next()
+            if opcode == 1:
+                self.sum()
+            elif opcode == 2:
+                self.multiply()
+            elif opcode == 3:
+                self.input()
+            elif opcode == 4:
+                self.print()
+            elif opcode == 99:
+                break
+            else:
+                raise OpcodeException(f'unknown opcode: {opcode}')
+
     def sum(self):
         """Sum next 2 opcodes and store the result in 3."""
         address1 = self.instruction_pointer
@@ -75,28 +97,6 @@ class Computer:
         param = self.dram[address]
         print(self.dram[param])
         self.instruction_pointer += 1
-
-    def execute(self):
-        """Iterate over opcodes in memory executing commands unless 99 stop."""
-        assert self.sram, "no program loaded."
-
-        self.reset()
-        self.load_sram_to_dram()
-
-        while True:
-            opcode, mode = self.next()
-            if opcode == 1:
-                self.sum()
-            elif opcode == 2:
-                self.multiply()
-            elif opcode == 3:
-                self.input()
-            elif opcode == 4:
-                self.print()
-            elif opcode == 99:
-                break
-            else:
-                raise OpcodeException(f'unknown opcode: {opcode}')
 
     def set_noun_and_verb(self, noun, verb):
         """Set up the given noun and verb values."""
