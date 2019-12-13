@@ -75,7 +75,7 @@ def test_multiple_executions(computer):
     ('3,0,99', '7', [7, 0, 99]),
     ('3,1,99', '6', [3, 6, 99]),
 ])
-def test_input(computer, program, user_text, expected_dram):
+def test_print(computer, program, user_text, expected_dram):
     computer.load_program(program)
 
     with mock_stdin(user_text):
@@ -89,3 +89,13 @@ def test_output(computer, capsys):
     computer.execute()
     assert computer.dram == [4, 0, 99]
     assert capsys.readouterr().out == '4\n'
+
+
+def test_print_output(computer, capsys):
+    computer.load_program('3,0,4,0,99')
+
+    with mock_stdin('42'):
+        computer.execute()
+
+    assert computer.dram == [42, 0, 4, 0, 99]
+    assert capsys.readouterr().out == '42\n'
