@@ -96,4 +96,4 @@ def solve(task: str) -> int:
 
     computer.execute()
 
-    return computer.dram[0]
+    return computer.output
