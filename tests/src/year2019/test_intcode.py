@@ -32,9 +32,20 @@ def test_program_from_string(computer, raw_opcodes, expected_opcodes):
 def test_program_next(computer):
     computer.load_program('1,2,3')
     computer.load_sram_to_dram()
-    assert computer.next() == (1, '')
-    assert computer.next() == (2, '')
-    assert computer.next() == (3, '')
+
+    assert computer.instruction_pointer == 0
+    assert computer.opcode == 1
+    assert computer.mode == ''
+
+    computer.next()
+    assert computer.instruction_pointer == 1
+    assert computer.opcode == 2
+    assert computer.mode == ''
+
+    computer.next()
+    assert computer.instruction_pointer == 2
+    assert computer.opcode == 3
+    assert computer.mode == ''
 
 
 @pytest.mark.parametrize('raw_opcodes,expected_opcodes', [
@@ -60,13 +71,13 @@ def test_multiple_executions(computer):
     computer.load_program('1,0,0,0,99')
     computer.execute()
 
-    assert computer.instruction_pointer == 5
+    assert computer.instruction_pointer == 4
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 
     computer.execute()
 
-    assert computer.instruction_pointer == 5
+    assert computer.instruction_pointer == 4
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 
@@ -101,13 +112,15 @@ def test_print_output(computer, capsys):
     assert capsys.readouterr().out == '42\n'
 
 
-@pytest.mark.parametrize('program,opcode,mode', [
-    ('1002', 2, '10'),
-    ('02', 2, ''),
-    ('002', 2, ''),
-    ('099', 99, ''),
+@pytest.mark.parametrize('program,mode,opcode', [
+    ('1002', '10', 2),
+    ('02', '', 2),
+    ('002', '', 2),
+    ('099', '', 99),
 ])
-def test_next_opcode_with_mode(program, opcode, mode, computer):
+def test_next_opcode_with_mode(program, mode, opcode, computer):
     computer.load_program(program)
     computer.load_sram_to_dram()
-    assert computer.next() == (opcode, mode)
+
+    assert computer.opcode == opcode
+    assert computer.mode == mode

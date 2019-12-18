@@ -29,14 +29,7 @@ class Computer:
 
     def next(self):
         """Get the next instruction and increment the pointer."""
-        try:
-            value = str(self.dram[self.instruction_pointer])
-            opcode = int(value[-2:])
-            mode = value[:-2]
-            self.instruction_pointer += 1
-            return opcode, mode
-        except IndexError:
-            raise InvalidPointerException(f'i: {self.instruction_pointer}')
+        self.instruction_pointer += 1
 
     def execute(self):
         """Iterate over opcodes in memory executing commands unless 99 stop."""
@@ -46,25 +39,25 @@ class Computer:
         self.load_sram_to_dram()
 
         while True:
-            opcode, mode = self.next()
-            if opcode == 1:
+            if self.opcode == 1:
                 self.sum()
-            elif opcode == 2:
+            elif self.opcode == 2:
                 self.multiply()
-            elif opcode == 3:
+            elif self.opcode == 3:
                 self.input()
-            elif opcode == 4:
+            elif self.opcode == 4:
                 self.print()
-            elif opcode == 99:
+            elif self.opcode == 99:
                 break
             else:
-                raise OpcodeException(f'unknown opcode: {opcode}')
+                raise OpcodeException(f'unknown opcode: {self.opcode}')
+            self.next()
 
     def sum(self):
         """Sum next 2 opcodes and store the result in 3."""
-        address1 = self.instruction_pointer
-        address2 = self.instruction_pointer + 1
-        address3 = self.instruction_pointer + 2
+        address1 = self.instruction_pointer + 1
+        address2 = self.instruction_pointer + 2
+        address3 = self.instruction_pointer + 3
 
         param1 = self.dram[address1]
         param2 = self.dram[address2]
@@ -75,9 +68,9 @@ class Computer:
 
     def multiply(self):
         """Multiply next 2 opcodes and store the result in 3."""
-        address1 = self.instruction_pointer
-        address2 = self.instruction_pointer + 1
-        address3 = self.instruction_pointer + 2
+        address1 = self.instruction_pointer + 1
+        address2 = self.instruction_pointer + 2
+        address3 = self.instruction_pointer + 3
 
         param1 = self.dram[address1]
         param2 = self.dram[address2]
@@ -87,14 +80,18 @@ class Computer:
         self.instruction_pointer += 3
 
     def input(self):
-        address = self.instruction_pointer
+        address = self.instruction_pointer + 1
+
         param = self.dram[address]
+
         self.dram[param] = int(input())
         self.instruction_pointer += 1
 
     def print(self):
-        address = self.instruction_pointer
+        address = self.instruction_pointer + 1
+
         param = self.dram[address]
+
         print(self.dram[param])
         self.instruction_pointer += 1
 
@@ -111,6 +108,22 @@ class Computer:
     def load_sram_to_dram(self):
         """Load static memory to dynamic."""
         self.dram = copy(self.sram)
+
+    @property
+    def opcode(self) -> int:
+        try:
+            value = str(self.dram[self.instruction_pointer])
+            return int(value[-2:])
+        except IndexError:
+            raise InvalidPointerException(f'i: {self.instruction_pointer}')
+
+    @property
+    def mode(self) -> str:
+        try:
+            value = str(self.dram[self.instruction_pointer])
+            return value[:-2]
+        except IndexError:
+            raise InvalidPointerException(f'i: {self.instruction_pointer}')
 
     @property
     def output(self):
