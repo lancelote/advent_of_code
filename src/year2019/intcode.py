@@ -1,3 +1,5 @@
+"""Intcode computer implementation."""
+
 from copy import copy
 from dataclasses import dataclass, field
 from typing import List
@@ -80,6 +82,7 @@ class Computer:
         self.instruction_pointer += 3
 
     def input(self):
+        """Save user input to a given address."""
         address = self.instruction_pointer + 1
 
         param = self.dram[address]
@@ -88,6 +91,7 @@ class Computer:
         self.instruction_pointer += 1
 
     def print(self):
+        """Print the given address value."""
         address = self.instruction_pointer + 1
 
         param = self.dram[address]
@@ -111,6 +115,7 @@ class Computer:
 
     @property
     def opcode(self) -> int:
+        """Return current opcode under execution from DRAM."""
         try:
             value = str(self.dram[self.instruction_pointer])
             return int(value[-2:])
@@ -119,6 +124,7 @@ class Computer:
 
     @property
     def mode(self) -> str:
+        """Return current mode under execution from DRAM."""
         try:
             value = str(self.dram[self.instruction_pointer])
             return value[:-2]
@@ -126,19 +132,19 @@ class Computer:
             raise InvalidPointerException(f'i: {self.instruction_pointer}')
 
     @property
-    def output(self):
+    def output(self) -> int:
         """Output is the 0 address value."""
         assert self.dram, "no output - empty dram"
         return self.dram[0]
 
     @property
-    def noun(self):
+    def noun(self) -> int:
         """Noun is the 1 address value."""
         assert self.dram, "no noun - empty dram"
         return self.dram[1]
 
     @property
-    def verb(self):
+    def verb(self) -> int:
         """Verb is the 2 address value."""
         assert self.dram, "no verb - empty dram"
         return self.dram[2]
