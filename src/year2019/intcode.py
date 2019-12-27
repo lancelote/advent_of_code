@@ -17,22 +17,29 @@ class InstructionException(Exception):
 
 
 class Instruction(ABC):
+    """Abstraction over general computer instruction."""
+
     @property
     @abstractmethod
     def parameters(self):
+        """Return number of parameters instruction has."""
         ...
 
     @staticmethod
     @abstractmethod
     def execute(computer: Computer):
+        """Execute self on a given computer."""
         ...
 
 
 class Sum(Instruction):
+    """Save two parameters and store the result in third."""
+
     parameters = 3
 
     @staticmethod
     def execute(computer: Computer):
+        """Execute sum instruction."""
         address1 = computer.instruction_pointer + 1
         address2 = computer.instruction_pointer + 2
         address3 = computer.instruction_pointer + 3
@@ -46,10 +53,13 @@ class Sum(Instruction):
 
 
 class Multiply(Instruction):
+    """Multiply two parameters and store the result in third."""
+
     parameters = 3
 
     @staticmethod
     def execute(computer: Computer):
+        """Execute multiply instruction."""
         address1 = computer.instruction_pointer + 1
         address2 = computer.instruction_pointer + 2
         address3 = computer.instruction_pointer + 3
@@ -63,10 +73,13 @@ class Multiply(Instruction):
 
 
 class Input(Instruction):
+    """Get user input and store result in a parameter."""
+
     parameters = 1
 
     @staticmethod
     def execute(computer: Computer):
+        """Execute input instruction."""
         address = computer.instruction_pointer + 1
 
         param = computer.dram[address]
@@ -76,10 +89,13 @@ class Input(Instruction):
 
 
 class Print(Instruction):
+    """Print the parameter."""
+
     parameters = 1
 
     @staticmethod
     def execute(computer: Computer):
+        """Execute print instruction."""
         address = computer.instruction_pointer + 1
 
         param = computer.dram[address]
@@ -89,10 +105,13 @@ class Print(Instruction):
 
 
 class Exit(Instruction):
+    """Flag execution to stop."""
+
     parameters = 0
 
     @staticmethod
     def execute(computer: Computer):
+        """Execute exit instruction."""
         computer.halt = True
 
 
@@ -154,6 +173,7 @@ class Computer:
 
     @property
     def instruction(self):
+        """Get current instruction class."""
         try:
             return INSTRUCTIONS[self.opcode]
         except KeyError:
