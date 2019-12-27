@@ -71,13 +71,13 @@ def test_multiple_executions(computer):
     computer.load_program('1,0,0,0,99')
     computer.execute()
 
-    assert computer.instruction_pointer == 4
+    assert computer.instruction_pointer == 5
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 
     computer.execute()
 
-    assert computer.instruction_pointer == 4
+    assert computer.instruction_pointer == 5
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 

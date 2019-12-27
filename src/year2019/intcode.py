@@ -1,5 +1,8 @@
 """Intcode computer implementation."""
 
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
 from copy import copy
 from dataclasses import dataclass, field
 from typing import List
@@ -9,8 +12,97 @@ class InvalidPointerException(Exception):
     """Pointer out of the available memory."""
 
 
-class OpcodeException(Exception):
-    """Unknown opcode value."""
+class InstructionException(Exception):
+    """Unknown opcode-instruction value."""
+
+
+class Instruction(ABC):
+    @property
+    @abstractmethod
+    def parameters(self):
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def execute(computer: Computer):
+        ...
+
+
+class Sum(Instruction):
+    parameters = 3
+
+    @staticmethod
+    def execute(computer: Computer):
+        address1 = computer.instruction_pointer + 1
+        address2 = computer.instruction_pointer + 2
+        address3 = computer.instruction_pointer + 3
+
+        param1 = computer.dram[address1]
+        param2 = computer.dram[address2]
+        param3 = computer.dram[address3]
+
+        computer.dram[param3] = computer.dram[param1] + computer.dram[param2]
+        computer.instruction_pointer += 3
+
+
+class Multiply(Instruction):
+    parameters = 3
+
+    @staticmethod
+    def execute(computer: Computer):
+        address1 = computer.instruction_pointer + 1
+        address2 = computer.instruction_pointer + 2
+        address3 = computer.instruction_pointer + 3
+
+        param1 = computer.dram[address1]
+        param2 = computer.dram[address2]
+        param3 = computer.dram[address3]
+
+        computer.dram[param3] = computer.dram[param1] * computer.dram[param2]
+        computer.instruction_pointer += 3
+
+
+class Input(Instruction):
+    parameters = 1
+
+    @staticmethod
+    def execute(computer: Computer):
+        address = computer.instruction_pointer + 1
+
+        param = computer.dram[address]
+
+        computer.dram[param] = int(input())
+        computer.instruction_pointer += 1
+
+
+class Print(Instruction):
+    parameters = 1
+
+    @staticmethod
+    def execute(computer: Computer):
+        address = computer.instruction_pointer + 1
+
+        param = computer.dram[address]
+
+        print(computer.dram[param])
+        computer.instruction_pointer += 1
+
+
+class Exit(Instruction):
+    parameters = 0
+
+    @staticmethod
+    def execute(computer: Computer):
+        computer.halt = True
+
+
+INSTRUCTIONS = {
+    1: Sum,
+    2: Multiply,
+    3: Input,
+    4: Print,
+    99: Exit
+}
 
 
 @dataclass
@@ -21,6 +113,7 @@ class Computer:
     execution index.
     """
 
+    halt: bool = False
     sram: List[int] = field(default_factory=list)  # Static memory
     dram: List[int] = field(default_factory=list)  # Dynamic memory
     instruction_pointer: int = 0
@@ -40,64 +133,9 @@ class Computer:
         self.reset()
         self.load_sram_to_dram()
 
-        while True:
-            if self.opcode == 1:
-                self.sum()
-            elif self.opcode == 2:
-                self.multiply()
-            elif self.opcode == 3:
-                self.input()
-            elif self.opcode == 4:
-                self.print()
-            elif self.opcode == 99:
-                break
-            else:
-                raise OpcodeException(f'unknown opcode: {self.opcode}')
+        while not self.halt:
+            self.instruction.execute(self)
             self.next()
-
-    def sum(self):
-        """Sum next 2 opcodes and store the result in 3."""
-        address1 = self.instruction_pointer + 1
-        address2 = self.instruction_pointer + 2
-        address3 = self.instruction_pointer + 3
-
-        param1 = self.dram[address1]
-        param2 = self.dram[address2]
-        param3 = self.dram[address3]
-
-        self.dram[param3] = self.dram[param1] + self.dram[param2]
-        self.instruction_pointer += 3
-
-    def multiply(self):
-        """Multiply next 2 opcodes and store the result in 3."""
-        address1 = self.instruction_pointer + 1
-        address2 = self.instruction_pointer + 2
-        address3 = self.instruction_pointer + 3
-
-        param1 = self.dram[address1]
-        param2 = self.dram[address2]
-        param3 = self.dram[address3]
-
-        self.dram[param3] = self.dram[param1] * self.dram[param2]
-        self.instruction_pointer += 3
-
-    def input(self):
-        """Save user input to a given address."""
-        address = self.instruction_pointer + 1
-
-        param = self.dram[address]
-
-        self.dram[param] = int(input())
-        self.instruction_pointer += 1
-
-    def print(self):
-        """Print the given address value."""
-        address = self.instruction_pointer + 1
-
-        param = self.dram[address]
-
-        print(self.dram[param])
-        self.instruction_pointer += 1
 
     def set_noun_and_verb(self, noun, verb):
         """Set up the given noun and verb values."""
@@ -108,10 +146,18 @@ class Computer:
         """Reset the computer."""
         self.instruction_pointer = 0
         self.dram = []
+        self.halt = False
 
     def load_sram_to_dram(self):
         """Load static memory to dynamic."""
         self.dram = copy(self.sram)
+
+    @property
+    def instruction(self):
+        try:
+            return INSTRUCTIONS[self.opcode]
+        except KeyError:
+            raise InstructionException(f'unknown opcode {self.opcode}')
 
     @property
     def opcode(self) -> int:
