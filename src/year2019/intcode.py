@@ -84,8 +84,6 @@ class Input(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute input instruction."""
-        assert computer.mode == '', f'invalid mode for input {computer.mode}'
-
         param = cls.get_parameter(1, computer)
 
         computer.dram[param] = int(input())
@@ -100,8 +98,6 @@ class Print(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute print instruction."""
-        assert computer.mode == '', f'invalid mode for print {computer.mode}'
-
         param = cls.get_parameter(1, computer)
 
         print(computer.dram[param])
