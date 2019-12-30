@@ -53,6 +53,8 @@ def test_program_next(computer):
     ('2,3,0,3,99', [2, 3, 0, 6, 99]),
     ('2,4,4,5,99,0', [2, 4, 4, 5, 99, 9801]),
     ('1,1,1,4,99,5,6,0,99', [30, 1, 1, 4, 2, 5, 6, 0, 99]),
+    ('1002,4,3,4,33', [1002, 4, 3, 4, 99]),
+    ('1101,100,-1,4,0', [1101, 100, -1, 4, 99]),
 ])
 def test_execute(computer, raw_opcodes, expected_opcodes):
     computer.load_program(raw_opcodes)

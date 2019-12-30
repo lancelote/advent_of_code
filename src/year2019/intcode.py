@@ -16,14 +16,14 @@ class InstructionException(Exception):
     """Unknown opcode-instruction value."""
 
 
+class UnknownModeException(Exception):
+    """Unknown mode value."""
+
+
 class Instruction(ABC):
     """Abstraction over general computer instruction."""
 
-    @property
-    @abstractmethod
-    def parameters(self):
-        """Return number of parameters instruction has."""
-        ...
+    parameters: int
 
     @staticmethod
     @abstractmethod
@@ -31,22 +31,30 @@ class Instruction(ABC):
         """Execute self on a given computer."""
         ...
 
+    @classmethod
+    def get_parameter(cls, n: int, computer: Computer):
+        mode = computer.mode.rjust(cls.parameters, '0')[-n]
+        address = computer.instruction_pointer + n
+        param = computer.dram[address]
+        if mode == '0':  # position mode
+            return param
+        elif mode == '1':  # immediate mode
+            return address
+        else:
+            raise UnknownModeException(f'unknown mode {mode}')
+
 
 class Sum(Instruction):
     """Save two parameters and store the result in third."""
 
     parameters = 3
 
-    @staticmethod
-    def execute(computer: Computer):
+    @classmethod
+    def execute(cls, computer: Computer):
         """Execute sum instruction."""
-        address1 = computer.instruction_pointer + 1
-        address2 = computer.instruction_pointer + 2
-        address3 = computer.instruction_pointer + 3
-
-        param1 = computer.dram[address1]
-        param2 = computer.dram[address2]
-        param3 = computer.dram[address3]
+        param1 = cls.get_parameter(1, computer)
+        param2 = cls.get_parameter(2, computer)
+        param3 = cls.get_parameter(3, computer)
 
         computer.dram[param3] = computer.dram[param1] + computer.dram[param2]
         computer.instruction_pointer += 3
@@ -57,16 +65,12 @@ class Multiply(Instruction):
 
     parameters = 3
 
-    @staticmethod
-    def execute(computer: Computer):
+    @classmethod
+    def execute(cls, computer: Computer):
         """Execute multiply instruction."""
-        address1 = computer.instruction_pointer + 1
-        address2 = computer.instruction_pointer + 2
-        address3 = computer.instruction_pointer + 3
-
-        param1 = computer.dram[address1]
-        param2 = computer.dram[address2]
-        param3 = computer.dram[address3]
+        param1 = cls.get_parameter(1, computer)
+        param2 = cls.get_parameter(2, computer)
+        param3 = cls.get_parameter(3, computer)
 
         computer.dram[param3] = computer.dram[param1] * computer.dram[param2]
         computer.instruction_pointer += 3
@@ -77,12 +81,12 @@ class Input(Instruction):
 
     parameters = 1
 
-    @staticmethod
-    def execute(computer: Computer):
+    @classmethod
+    def execute(cls, computer: Computer):
         """Execute input instruction."""
-        address = computer.instruction_pointer + 1
+        assert computer.mode == '', f'invalid mode for input {computer.mode}'
 
-        param = computer.dram[address]
+        param = cls.get_parameter(1, computer)
 
         computer.dram[param] = int(input())
         computer.instruction_pointer += 1
@@ -93,12 +97,12 @@ class Print(Instruction):
 
     parameters = 1
 
-    @staticmethod
-    def execute(computer: Computer):
+    @classmethod
+    def execute(cls, computer: Computer):
         """Execute print instruction."""
-        address = computer.instruction_pointer + 1
+        assert computer.mode == '', f'invalid mode for print {computer.mode}'
 
-        param = computer.dram[address]
+        param = cls.get_parameter(1, computer)
 
         print(computer.dram[param])
         computer.instruction_pointer += 1
@@ -109,8 +113,8 @@ class Exit(Instruction):
 
     parameters = 0
 
-    @staticmethod
-    def execute(computer: Computer):
+    @classmethod
+    def execute(cls, computer: Computer):
         """Execute exit instruction."""
         computer.halt = True
 
