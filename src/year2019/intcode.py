@@ -86,7 +86,7 @@ class Input(Instruction):
         """Execute input instruction."""
         param = cls.get_parameter(1, computer)
 
-        computer.dram[param] = int(input())
+        computer.dram[param] = int(input('input: '))
         computer.instruction_pointer += 1
 
 
