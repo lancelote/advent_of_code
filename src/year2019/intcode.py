@@ -33,6 +33,7 @@ class Instruction(ABC):
 
     @classmethod
     def get_parameter(cls, n: int, computer: Computer):
+        """Get given parameter for instruction."""
         mode = computer.mode.rjust(cls.parameters, '0')[-n]
         address = computer.instruction_pointer + n
         param = computer.dram[address]

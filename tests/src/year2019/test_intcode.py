@@ -1,18 +1,7 @@
-import sys
-from io import StringIO
-from contextlib import contextmanager
-
 import pytest
 
+from src.utils.cli import capture
 from src.year2019.intcode import Computer
-
-
-@contextmanager
-def mock_stdin(new_text: str):
-    original = sys.stdin
-    sys.stdin = StringIO(new_text)
-    yield
-    sys.stdin = original
 
 
 @pytest.fixture
@@ -88,30 +77,32 @@ def test_multiple_executions(computer):
     ('3,0,99', '7', [7, 0, 99]),
     ('3,1,99', '6', [3, 6, 99]),
 ])
-def test_print(computer, program, user_text, expected_dram):
+def test_input(computer, program, user_text, expected_dram):
     computer.load_program(program)
 
-    with mock_stdin(user_text):
+    with capture(user_text):
         computer.execute()
 
     assert computer.dram == expected_dram
 
 
-def test_output(computer, capsys):
+def test_output(computer):
     computer.load_program('4,0,99')
-    computer.execute()
+
+    with capture() as out:
+        computer.execute()
     assert computer.dram == [4, 0, 99]
-    assert capsys.readouterr().out == '4\n'
+    assert out.getvalue() == '4\n'
 
 
-def test_print_output(computer, capsys):
+def test_print_output(computer):
     computer.load_program('3,0,4,0,99')
 
-    with mock_stdin('42'):
+    with capture('42') as out:
         computer.execute()
 
     assert computer.dram == [42, 0, 4, 0, 99]
-    assert capsys.readouterr().out == '42\n'
+    assert out.getvalue() == 'input: 42\n'
 
 
 @pytest.mark.parametrize('program,mode,opcode', [
