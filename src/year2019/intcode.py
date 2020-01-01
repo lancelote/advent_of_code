@@ -25,22 +25,23 @@ class Instruction(ABC):
 
     parameters: int
 
-    @staticmethod
+    @classmethod
     @abstractmethod
-    def execute(computer: Computer):
+    def execute(cls, computer: Computer):
         """Execute self on a given computer."""
         ...
 
+    # ToDo: move to computer?
     @classmethod
-    def get_parameter(cls, n: int, computer: Computer):
+    def get_param_addrs(cls, n: int, computer: Computer):
         """Get given parameter for instruction."""
         mode = computer.mode.rjust(cls.parameters, '0')[-n]
-        address = computer.instruction_pointer + n
-        param = computer.dram[address]
+        addr1 = computer.instruction_pointer + n
+        addr0 = computer.dram[addr1]
         if mode == '0':  # position mode
-            return param
+            return addr0
         elif mode == '1':  # immediate mode
-            return address
+            return addr1
         else:
             raise UnknownModeException(f'unknown mode {mode}')
 
@@ -53,12 +54,15 @@ class Sum(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute sum instruction."""
-        param1 = cls.get_parameter(1, computer)
-        param2 = cls.get_parameter(2, computer)
-        param3 = cls.get_parameter(3, computer)
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+        addr3 = cls.get_param_addrs(3, computer)
 
-        computer.dram[param3] = computer.dram[param1] + computer.dram[param2]
-        computer.instruction_pointer += 3
+        # ToDo: make methods to access dram
+        computer.dram[addr3] = computer.dram[addr1] + computer.dram[addr2]
+
+        # ToDo: extract to a method
+        computer.instruction_pointer += cls.parameters + 1
 
 
 class Multiply(Instruction):
@@ -69,12 +73,12 @@ class Multiply(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute multiply instruction."""
-        param1 = cls.get_parameter(1, computer)
-        param2 = cls.get_parameter(2, computer)
-        param3 = cls.get_parameter(3, computer)
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+        addr3 = cls.get_param_addrs(3, computer)
 
-        computer.dram[param3] = computer.dram[param1] * computer.dram[param2]
-        computer.instruction_pointer += 3
+        computer.dram[addr3] = computer.dram[addr1] * computer.dram[addr2]
+        computer.instruction_pointer += cls.parameters + 1
 
 
 class Input(Instruction):
@@ -85,10 +89,10 @@ class Input(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute input instruction."""
-        param = cls.get_parameter(1, computer)
+        addr = cls.get_param_addrs(1, computer)
 
-        computer.dram[param] = int(input('input: '))
-        computer.instruction_pointer += 1
+        computer.dram[addr] = int(input('input: '))
+        computer.instruction_pointer += cls.parameters + 1
 
 
 class Print(Instruction):
@@ -99,10 +103,84 @@ class Print(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute print instruction."""
-        param = cls.get_parameter(1, computer)
+        addr = cls.get_param_addrs(1, computer)
 
-        print(computer.dram[param])
-        computer.instruction_pointer += 1
+        print(computer.dram[addr])
+        computer.instruction_pointer += cls.parameters + 1
+
+
+class JumpIfTrue(Instruction):
+    """Jump to a given address if parameter is not 0."""
+
+    parameters = 2
+
+    @classmethod
+    def execute(cls, computer: Computer):
+        """Execute jump instruction."""
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+
+        if computer.dram[addr1] != 0:
+            computer.instruction_pointer = computer.dram[addr2]
+        else:
+            computer.instruction_pointer += cls.parameters + 1
+
+
+class JumpIfFalse(Instruction):
+    """Jump to a given address if parameter is 0."""
+
+    parameters = 2
+
+    @classmethod
+    def execute(cls, computer: Computer):
+        """Execute jump instruction."""
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+
+        if computer.dram[addr1] == 0:
+            computer.instruction_pointer = computer.dram[addr2]
+        else:
+            computer.instruction_pointer += cls.parameters + 1
+
+
+class LessThan(Instruction):
+    """Check if the first parameter is less than the second."""
+
+    parameters = 3
+
+    @classmethod
+    def execute(cls, computer: Computer):
+        """Execute less than instruction."""
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+        addr3 = cls.get_param_addrs(3, computer)
+
+        if computer.dram[addr1] < computer.dram[addr2]:
+            computer.dram[addr3] = 1
+        else:
+            computer.dram[addr3] = 0
+
+        computer.instruction_pointer += cls.parameters + 1
+
+
+class Equals(Instruction):
+    """Check if next two params are equal."""
+
+    parameters = 3
+
+    @classmethod
+    def execute(cls, computer: Computer):
+        """Execute equals instruction."""
+        addr1 = cls.get_param_addrs(1, computer)
+        addr2 = cls.get_param_addrs(2, computer)
+        addr3 = cls.get_param_addrs(3, computer)
+
+        if computer.dram[addr1] == computer.dram[addr2]:
+            computer.dram[addr3] = 1
+        else:
+            computer.dram[addr3] = 0
+
+        computer.instruction_pointer += cls.parameters + 1
 
 
 class Exit(Instruction):
@@ -121,10 +199,15 @@ INSTRUCTIONS = {
     2: Multiply,
     3: Input,
     4: Print,
-    99: Exit
+    5: JumpIfTrue,
+    6: JumpIfFalse,
+    7: LessThan,
+    8: Equals,
+    99: Exit,
 }
 
 
+# ToDo: private out things
 @dataclass
 class Computer:
     """Intcode computer.
@@ -155,7 +238,6 @@ class Computer:
 
         while not self.halt:
             self.instruction.execute(self)
-            self.next()
 
     def set_noun_and_verb(self, noun, verb):
         """Set up the given noun and verb values."""

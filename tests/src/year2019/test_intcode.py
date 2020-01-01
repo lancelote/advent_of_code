@@ -4,6 +4,22 @@ from src.utils.cli import capture
 from src.year2019.intcode import Computer
 
 
+class Commands:
+    """Long commands for testing."""
+
+    JUMP_COMPARE_WITH_8 = (
+        '3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,'
+        '0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,'
+        '20,1105,1,46,98,99'
+    )
+    IMMEDIATE_JUMP_EQUAL_0 = '3,3,1105,-1,9,1101,0,0,12,4,12,99,1'
+    POSITION_JUMP_EQUAL_0 = '3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9'
+    IMMEDIATE_LESS_THAN_8 = '3,3,1107,-1,8,3,4,3,99'
+    IMMEDIATE_EQUAL_8 = '3,3,1108,-1,8,3,4,3,99'
+    POSITION_LESS_THAN_8 = '3,9,7,9,10,9,4,9,99,-1,8'
+    POSITION_EQUAL_8 = '3,9,8,9,10,9,4,9,99,-1,8'
+
+
 @pytest.fixture
 def computer():
     return Computer()
@@ -62,13 +78,13 @@ def test_multiple_executions(computer):
     computer.load_program('1,0,0,0,99')
     computer.execute()
 
-    assert computer.instruction_pointer == 5
+    assert computer.instruction_pointer == 4
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 
     computer.execute()
 
-    assert computer.instruction_pointer == 5
+    assert computer.instruction_pointer == 4
     assert computer.sram[0] == 1
     assert computer.dram[0] == 2
 
@@ -117,3 +133,33 @@ def test_next_opcode_with_mode(program, mode, opcode, computer):
 
     assert computer.opcode == opcode
     assert computer.mode == mode
+
+
+@pytest.mark.parametrize('stdin,expect_stdout,command', [
+    ('7', '0', Commands.POSITION_EQUAL_8),
+    ('8', '1', Commands.POSITION_EQUAL_8),
+    ('9', '0', Commands.POSITION_EQUAL_8),
+    ('7', '1', Commands.POSITION_LESS_THAN_8),
+    ('8', '0', Commands.POSITION_LESS_THAN_8),
+    ('9', '0', Commands.POSITION_LESS_THAN_8),
+    ('7', '0', Commands.IMMEDIATE_EQUAL_8),
+    ('8', '1', Commands.IMMEDIATE_EQUAL_8),
+    ('9', '0', Commands.IMMEDIATE_EQUAL_8),
+    ('7', '1', Commands.IMMEDIATE_LESS_THAN_8),
+    ('8', '0', Commands.IMMEDIATE_LESS_THAN_8),
+    ('9', '0', Commands.IMMEDIATE_LESS_THAN_8),
+    ('0', '0', Commands.POSITION_JUMP_EQUAL_0),
+    ('2', '1', Commands.POSITION_JUMP_EQUAL_0),
+    ('0', '0', Commands.IMMEDIATE_JUMP_EQUAL_0),
+    ('3', '1', Commands.IMMEDIATE_JUMP_EQUAL_0),
+    ('7', '999', Commands.JUMP_COMPARE_WITH_8),
+    ('8', '1000', Commands.JUMP_COMPARE_WITH_8),
+    ('9', '1001', Commands.JUMP_COMPARE_WITH_8),
+])
+def test_input_compare_print(stdin, expect_stdout, command, computer):
+    computer.load_program(command)
+
+    with capture(stdin) as out:
+        computer.execute()
+
+    assert expect_stdout in out.getvalue()
