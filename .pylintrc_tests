@@ -13,7 +13,9 @@ disable=locally-disabled,
  # False positive on pytest test methods
  no-self-use,
  # It's ok to test protected members
- protected-access
+ protected-access,
+ # No need to check test classes
+ too-few-public-methods
 
 [REPORTS]
 # Simplify pylint reports

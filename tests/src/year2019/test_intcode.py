@@ -31,24 +31,24 @@ def computer():
 ])
 def test_program_from_string(computer, raw_opcodes, expected_opcodes):
     computer.load_program(raw_opcodes)
-    assert computer.sram == expected_opcodes
+    assert computer._sram == expected_opcodes
 
 
 def test_program_next(computer):
     computer.load_program('1,2,3')
     computer.load_sram_to_dram()
 
-    assert computer.instruction_pointer == 0
+    assert computer._instruction_pointer == 0
     assert computer.opcode == 1
     assert computer.mode == ''
 
     computer.next()
-    assert computer.instruction_pointer == 1
+    assert computer._instruction_pointer == 1
     assert computer.opcode == 2
     assert computer.mode == ''
 
     computer.next()
-    assert computer.instruction_pointer == 2
+    assert computer._instruction_pointer == 2
     assert computer.opcode == 3
     assert computer.mode == ''
 
@@ -64,29 +64,29 @@ def test_program_next(computer):
 def test_execute(computer, raw_opcodes, expected_opcodes):
     computer.load_program(raw_opcodes)
     computer.execute()
-    assert computer.dram == expected_opcodes
+    assert computer._dram == expected_opcodes
 
 
 def test_set_noun_and_verb(computer):
     computer.load_program('1,0,0')
     computer.set_noun_and_verb(2, 3)
-    assert computer.sram[1] == 2
-    assert computer.sram[2] == 3
+    assert computer._sram[1] == 2
+    assert computer._sram[2] == 3
 
 
 def test_multiple_executions(computer):
     computer.load_program('1,0,0,0,99')
     computer.execute()
 
-    assert computer.instruction_pointer == 4
-    assert computer.sram[0] == 1
-    assert computer.dram[0] == 2
+    assert computer._instruction_pointer == 4
+    assert computer._sram[0] == 1
+    assert computer._dram[0] == 2
 
     computer.execute()
 
-    assert computer.instruction_pointer == 4
-    assert computer.sram[0] == 1
-    assert computer.dram[0] == 2
+    assert computer._instruction_pointer == 4
+    assert computer._sram[0] == 1
+    assert computer._dram[0] == 2
 
 
 @pytest.mark.parametrize('program,user_text,expected_dram', [
@@ -99,7 +99,7 @@ def test_input(computer, program, user_text, expected_dram):
     with capture(user_text):
         computer.execute()
 
-    assert computer.dram == expected_dram
+    assert computer._dram == expected_dram
 
 
 def test_output(computer):
@@ -107,7 +107,7 @@ def test_output(computer):
 
     with capture() as out:
         computer.execute()
-    assert computer.dram == [4, 0, 99]
+    assert computer._dram == [4, 0, 99]
     assert out.getvalue() == '4\n'
 
 
@@ -117,7 +117,7 @@ def test_print_output(computer):
     with capture('42') as out:
         computer.execute()
 
-    assert computer.dram == [42, 0, 4, 0, 99]
+    assert computer._dram == [42, 0, 4, 0, 99]
     assert out.getvalue() == 'input: 42\n'
 
 

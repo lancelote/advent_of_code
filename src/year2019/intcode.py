@@ -31,19 +31,23 @@ class Instruction(ABC):
         """Execute self on a given computer."""
         ...
 
-    # ToDo: move to computer?
     @classmethod
     def get_param_addrs(cls, n: int, computer: Computer):
         """Get given parameter for instruction."""
         mode = computer.mode.rjust(cls.parameters, '0')[-n]
-        addr1 = computer.instruction_pointer + n
-        addr0 = computer.dram[addr1]
+        addr1 = computer.current_position + n
+        addr0 = computer.get(addr1)
         if mode == '0':  # position mode
             return addr0
         elif mode == '1':  # immediate mode
             return addr1
         else:
             raise UnknownModeException(f'unknown mode {mode}')
+
+    @classmethod
+    def next_instruction(cls, computer: Computer):
+        """Move the instruction pointer to next instruction."""
+        computer.next(cls.parameters + 1)
 
 
 class Sum(Instruction):
@@ -58,11 +62,8 @@ class Sum(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        # ToDo: make methods to access dram
-        computer.dram[addr3] = computer.dram[addr1] + computer.dram[addr2]
-
-        # ToDo: extract to a method
-        computer.instruction_pointer += cls.parameters + 1
+        computer.set(addr3, computer.get(addr1) + computer.get(addr2))
+        cls.next_instruction(computer)
 
 
 class Multiply(Instruction):
@@ -77,8 +78,8 @@ class Multiply(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        computer.dram[addr3] = computer.dram[addr1] * computer.dram[addr2]
-        computer.instruction_pointer += cls.parameters + 1
+        computer.set(addr3, computer.get(addr1) * computer.get(addr2))
+        cls.next_instruction(computer)
 
 
 class Input(Instruction):
@@ -91,8 +92,8 @@ class Input(Instruction):
         """Execute input instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.dram[addr] = int(input('input: '))
-        computer.instruction_pointer += cls.parameters + 1
+        computer.set(addr, int(input('input: ')))
+        cls.next_instruction(computer)
 
 
 class Print(Instruction):
@@ -105,8 +106,8 @@ class Print(Instruction):
         """Execute print instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        print(computer.dram[addr])
-        computer.instruction_pointer += cls.parameters + 1
+        print(computer.get(addr))
+        cls.next_instruction(computer)
 
 
 class JumpIfTrue(Instruction):
@@ -120,10 +121,10 @@ class JumpIfTrue(Instruction):
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
 
-        if computer.dram[addr1] != 0:
-            computer.instruction_pointer = computer.dram[addr2]
+        if computer.get(addr1) != 0:
+            computer.jump(computer.get(addr2))
         else:
-            computer.instruction_pointer += cls.parameters + 1
+            cls.next_instruction(computer)
 
 
 class JumpIfFalse(Instruction):
@@ -137,10 +138,10 @@ class JumpIfFalse(Instruction):
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
 
-        if computer.dram[addr1] == 0:
-            computer.instruction_pointer = computer.dram[addr2]
+        if computer.get(addr1) == 0:
+            computer.jump(computer.get(addr2))
         else:
-            computer.instruction_pointer += cls.parameters + 1
+            cls.next_instruction(computer)
 
 
 class LessThan(Instruction):
@@ -155,12 +156,12 @@ class LessThan(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        if computer.dram[addr1] < computer.dram[addr2]:
-            computer.dram[addr3] = 1
+        if computer.get(addr1) < computer.get(addr2):
+            computer.set(addr3, 1)
         else:
-            computer.dram[addr3] = 0
+            computer.set(addr3, 0)
 
-        computer.instruction_pointer += cls.parameters + 1
+        cls.next_instruction(computer)
 
 
 class Equals(Instruction):
@@ -175,12 +176,12 @@ class Equals(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        if computer.dram[addr1] == computer.dram[addr2]:
-            computer.dram[addr3] = 1
+        if computer.get(addr1) == computer.get(addr2):
+            computer.set(addr3, 1)
         else:
-            computer.dram[addr3] = 0
+            computer.set(addr3, 0)
 
-        computer.instruction_pointer += cls.parameters + 1
+        cls.next_instruction(computer)
 
 
 class Exit(Instruction):
@@ -191,7 +192,7 @@ class Exit(Instruction):
     @classmethod
     def execute(cls, computer: Computer):
         """Execute exit instruction."""
-        computer.halt = True
+        computer.stop()
 
 
 INSTRUCTIONS = {
@@ -207,7 +208,6 @@ INSTRUCTIONS = {
 }
 
 
-# ToDo: private out things
 @dataclass
 class Computer:
     """Intcode computer.
@@ -216,43 +216,59 @@ class Computer:
     execution index.
     """
 
-    halt: bool = False
-    sram: List[int] = field(default_factory=list)  # Static memory
-    dram: List[int] = field(default_factory=list)  # Dynamic memory
-    instruction_pointer: int = 0
+    _is_halt: bool = False
+    _sram: List[int] = field(default_factory=list)  # Static memory
+    _dram: List[int] = field(default_factory=list)  # Dynamic memory
+    _instruction_pointer: int = 0
 
     def load_program(self, string: str):
         """Load program to memory."""
-        self.sram = [int(opcode) for opcode in string.split(',')]
+        self._sram = [int(opcode) for opcode in string.split(',')]
 
-    def next(self):
+    def next(self, n: int = 1):
         """Get the next instruction and increment the pointer."""
-        self.instruction_pointer += 1
+        self._instruction_pointer += n
 
     def execute(self):
         """Iterate over opcodes in memory executing commands unless 99 stop."""
-        assert self.sram, "no program loaded."
+        assert self._sram, "no program loaded."
 
         self.reset()
         self.load_sram_to_dram()
 
-        while not self.halt:
+        while not self._is_halt:
             self.instruction.execute(self)
 
     def set_noun_and_verb(self, noun, verb):
         """Set up the given noun and verb values."""
-        self.sram[1] = noun
-        self.sram[2] = verb
+        self._sram[1] = noun
+        self._sram[2] = verb
 
     def reset(self):
         """Reset the computer."""
-        self.instruction_pointer = 0
-        self.dram = []
-        self.halt = False
+        self._instruction_pointer = 0
+        self._dram = []
+        self._is_halt = False
 
     def load_sram_to_dram(self):
         """Load static memory to dynamic."""
-        self.dram = copy(self.sram)
+        self._dram = copy(self._sram)
+
+    def get(self, addr: int) -> int:
+        """Get given address value."""
+        return self._dram[addr]
+
+    def set(self, addr: int, value: int):
+        """Set given address value."""
+        self._dram[addr] = value
+
+    def jump(self, addr: int):
+        """Move instruction pointer to a given address."""
+        self._instruction_pointer = addr
+
+    def stop(self):
+        """Mark execution to stop."""
+        self._is_halt = True
 
     @property
     def instruction(self):
@@ -266,34 +282,39 @@ class Computer:
     def opcode(self) -> int:
         """Return current opcode under execution from DRAM."""
         try:
-            value = str(self.dram[self.instruction_pointer])
+            value = str(self._dram[self._instruction_pointer])
             return int(value[-2:])
         except IndexError:
-            raise InvalidPointerException(f'i: {self.instruction_pointer}')
+            raise InvalidPointerException(f'i: {self._instruction_pointer}')
 
     @property
     def mode(self) -> str:
         """Return current mode under execution from DRAM."""
         try:
-            value = str(self.dram[self.instruction_pointer])
+            value = str(self._dram[self._instruction_pointer])
             return value[:-2]
         except IndexError:
-            raise InvalidPointerException(f'i: {self.instruction_pointer}')
+            raise InvalidPointerException(f'i: {self._instruction_pointer}')
 
     @property
     def output(self) -> int:
         """Output is the 0 address value."""
-        assert self.dram, "no output - empty dram"
-        return self.dram[0]
+        assert self._dram, "no output - empty dram"
+        return self._dram[0]
 
     @property
     def noun(self) -> int:
         """Noun is the 1 address value."""
-        assert self.dram, "no noun - empty dram"
-        return self.dram[1]
+        assert self._dram, "no noun - empty dram"
+        return self._dram[1]
 
     @property
     def verb(self) -> int:
         """Verb is the 2 address value."""
-        assert self.dram, "no verb - empty dram"
-        return self.dram[2]
+        assert self._dram, "no verb - empty dram"
+        return self._dram[2]
+
+    @property
+    def current_position(self) -> int:
+        """Return current instruction pointer address."""
+        return self._instruction_pointer

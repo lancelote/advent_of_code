@@ -5,7 +5,7 @@
 import sys
 from io import StringIO
 from contextlib import contextmanager
-from typing import ContextManager
+from typing import Generator
 
 import click
 
@@ -68,9 +68,8 @@ DAY = DayType()
 PART = PartType()
 
 
-# ToDo: check type annotation - generator doesn't work with PyCharm
 @contextmanager
-def capture(new_text: str = '') -> ContextManager[StringIO]:
+def capture(new_text: str = '') -> Generator[StringIO, None, None]:
     """Capture stdin and return stdout for assertion."""
     old_in = sys.stdin
     old_out = sys.stdout
