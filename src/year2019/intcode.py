@@ -92,7 +92,7 @@ class Input(Instruction):
         """Execute input instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.set(addr, int(input('input: ')))
+        computer.set(addr, int(input()))
         cls.next_instruction(computer)
 
 

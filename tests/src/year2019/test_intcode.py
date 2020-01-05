@@ -118,7 +118,7 @@ def test_print_output(computer):
         computer.execute()
 
     assert computer._dram == [42, 0, 4, 0, 99]
-    assert out.getvalue() == 'input: 42\n'
+    assert out.getvalue() == '42\n'
 
 
 @pytest.mark.parametrize('program,mode,opcode', [
