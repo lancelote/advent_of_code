@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from copy import copy
+from collections import deque
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Deque
 
 
 class InvalidPointerException(Exception):
@@ -92,7 +93,7 @@ class Input(Instruction):
         """Execute input instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.set(addr, int(input()))
+        computer.set(addr, computer.stdin.popleft())
         cls.next_instruction(computer)
 
 
@@ -106,7 +107,7 @@ class Print(Instruction):
         """Execute print instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        print(computer.get(addr))
+        computer.stdout.append(computer.get(addr))
         cls.next_instruction(computer)
 
 
@@ -215,6 +216,9 @@ class Computer:
     Stores program in memory as a list of integer and the current opcode under
     execution index.
     """
+
+    stdin: Deque[int] = field(default_factory=deque)
+    stdout: Deque[int] = field(default_factory=deque)
 
     _is_halt: bool = False
     _sram: List[int] = field(default_factory=list)  # Static memory
