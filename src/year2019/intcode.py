@@ -93,8 +93,12 @@ class Input(Instruction):
         """Execute input instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.set(addr, computer.stdin.popleft())
-        cls.next_instruction(computer)
+        try:
+            computer.set(addr, computer.stdin.popleft())
+            cls.next_instruction(computer)
+        except IndexError:
+            # No input available
+            computer.pause()
 
 
 class Print(Instruction):
@@ -220,7 +224,9 @@ class Computer:
     stdin: Deque[int] = field(default_factory=deque)
     stdout: Deque[int] = field(default_factory=deque)
 
-    _is_halt: bool = False
+    is_paused: bool = False
+    is_halt: bool = False
+
     _sram: List[int] = field(default_factory=list)  # Static memory
     _dram: List[int] = field(default_factory=list)  # Dynamic memory
     _instruction_pointer: int = 0
@@ -237,10 +243,11 @@ class Computer:
         """Iterate over opcodes in memory executing commands unless 99 stop."""
         assert self._sram, "no program loaded."
 
-        self.reset()
-        self.load_sram_to_dram()
+        self.is_paused = False
+        if not self._dram:
+            self.load_sram_to_dram()
 
-        while not self._is_halt:
+        while not self.is_halt and not self.is_paused:
             self.instruction.execute(self)
 
     def set_noun_and_verb(self, noun, verb):
@@ -251,8 +258,8 @@ class Computer:
     def reset(self):
         """Reset the computer."""
         self._instruction_pointer = 0
-        self._dram = []
-        self._is_halt = False
+        self.is_halt = False
+        self.is_paused = False
 
     def load_sram_to_dram(self):
         """Load static memory to dynamic."""
@@ -272,7 +279,11 @@ class Computer:
 
     def stop(self):
         """Mark execution to stop."""
-        self._is_halt = True
+        self.is_halt = True
+
+    def pause(self):
+        """Pause execution, e.g. to wait for stdin."""
+        self.is_paused = True
 
     @property
     def instruction(self):

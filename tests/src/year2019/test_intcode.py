@@ -163,3 +163,19 @@ def test_input_compare_print(stdin, expect_stdout, command, computer):
     computer.execute()
 
     assert computer.stdout.popleft() == expect_stdout
+
+
+def test_input_pause(computer):
+    assert not computer.is_paused
+
+    computer.load_program('3,1,99')
+    computer.execute()
+
+    assert computer.is_paused
+
+    computer.stdin.append(42)
+    computer.execute()
+
+    assert not computer.is_paused
+    assert computer.is_halt
+    assert computer._dram == [3, 42, 99]
