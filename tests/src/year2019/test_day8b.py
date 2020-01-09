@@ -8,4 +8,4 @@ def test_decode_image():
     task = '0222112222120000'
     layers = parse_layers(task, size)
 
-    assert decode_image(layers) == [0, 1, 1, 0]
+    assert decode_image(layers) == [' ', '#', '#', ' ']
