@@ -47,23 +47,18 @@ Find the input noun and verb that cause the program to produce the output
 the answer would be 1202.)
 """
 
-from src.year2019.intcode import Computer, InvalidPointerException
+from src.year2019.intcode import Computer
 
 
 def solve(task: str) -> int:
     """Find out which noun and verb results in 19690720 output."""
-    computer = Computer()
-    computer.load_program(task)
-
     for i in range(100):
         for j in range(100):
+            computer = Computer()
+            computer.load_program(task)
             computer.set_noun_and_verb(i, j)
-            try:
-                computer.execute()
-            except InvalidPointerException:
-                continue
-            else:
-                if computer.output == 19690720:
-                    return 100 * computer.noun + computer.verb
+            computer.execute()
+            if computer.output == 19690720:
+                return 100 * computer.noun + computer.verb
 
     return -1

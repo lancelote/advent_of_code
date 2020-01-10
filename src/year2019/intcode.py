@@ -6,13 +6,12 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from copy import copy
-from collections import deque
+from collections import deque, defaultdict
 from dataclasses import dataclass, field
-from typing import List, Deque
+from typing import Deque, DefaultDict
 
 
-class InvalidPointerException(Exception):
-    """Pointer out of the available memory."""
+Memory = DefaultDict[int, int]
 
 
 class InstructionException(Exception):
@@ -246,14 +245,15 @@ class Computer:
     is_paused: bool = False
     is_halt: bool = False
 
-    _sram: List[int] = field(default_factory=list)  # Static memory
-    _dram: List[int] = field(default_factory=list)  # Dynamic memory
+    _sram: Memory = field(default_factory=lambda: defaultdict(int))  # static
+    _dram: Memory = field(default_factory=lambda: defaultdict(int))  # dynamic
     _instruction_pointer: int = 0
     _relative_base: int = 0
 
     def load_program(self, string: str):
         """Load program to memory."""
-        self._sram = [int(opcode) for opcode in string.split(',')]
+        for i, opcode in enumerate(map(int, string.split(','))):
+            self._sram[i] = opcode
 
     def next(self, n: int = 1):
         """Get the next instruction and increment the pointer."""
@@ -287,6 +287,7 @@ class Computer:
 
     def get(self, addr: int) -> int:
         """Get given address value."""
+        assert addr >= 0
         return self._dram[addr]
 
     def set(self, addr: int, value: int):
@@ -320,20 +321,14 @@ class Computer:
     @property
     def opcode(self) -> int:
         """Return current opcode under execution from DRAM."""
-        try:
-            value = str(self._dram[self._instruction_pointer])
-            return int(value[-2:])
-        except IndexError:
-            raise InvalidPointerException(f'i: {self._instruction_pointer}')
+        value = str(self._dram[self._instruction_pointer])
+        return int(value[-2:])
 
     @property
     def mode(self) -> str:
         """Return current mode under execution from DRAM."""
-        try:
-            value = str(self._dram[self._instruction_pointer])
-            return value[:-2]
-        except IndexError:
-            raise InvalidPointerException(f'i: {self._instruction_pointer}')
+        value = str(self._dram[self._instruction_pointer])
+        return value[:-2]
 
     @property
     def output(self) -> int:

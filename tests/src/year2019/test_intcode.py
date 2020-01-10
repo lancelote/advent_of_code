@@ -25,8 +25,8 @@ def computer():
 
 
 @pytest.mark.parametrize('raw_opcodes,expected_opcodes', [
-    ('1,0,0,0,99', [1, 0, 0, 0, 99]),
-    ('2,3,0,3,99', [2, 3, 0, 3, 99]),
+    ('1,0,0,0,99', {0: 1, 1: 0, 2: 0, 3: 0, 4: 99}),
+    ('2,3,0,3,99', {0: 2, 1: 3, 2: 0, 3: 3, 4: 99}),
 ])
 def test_program_from_string(computer, raw_opcodes, expected_opcodes):
     computer.load_program(raw_opcodes)
@@ -53,12 +53,30 @@ def test_program_next(computer):
 
 
 @pytest.mark.parametrize('raw_opcodes,expected_opcodes', [
-    ('1,0,0,0,99', [2, 0, 0, 0, 99]),
-    ('2,3,0,3,99', [2, 3, 0, 6, 99]),
-    ('2,4,4,5,99,0', [2, 4, 4, 5, 99, 9801]),
-    ('1,1,1,4,99,5,6,0,99', [30, 1, 1, 4, 2, 5, 6, 0, 99]),
-    ('1002,4,3,4,33', [1002, 4, 3, 4, 99]),
-    ('1101,100,-1,4,0', [1101, 100, -1, 4, 99]),
+    (
+        '1,0,0,0,99',
+        {0: 2, 1: 0, 2: 0, 3: 0, 4: 99}
+    ),
+    (
+        '2,3,0,3,99',
+        {0: 2, 1: 3, 2: 0, 3: 6, 4: 99}
+    ),
+    (
+        '2,4,4,5,99,0',
+        {0: 2, 1: 4, 2: 4, 3: 5, 4: 99, 5: 9801}
+    ),
+    (
+        '1,1,1,4,99,5,6,0,99',
+        {0: 30, 1: 1, 2: 1, 3: 4, 4: 2, 5: 5, 6: 6, 7: 0, 8: 99}
+    ),
+    (
+        '1002,4,3,4,33',
+        {0: 1002, 1: 4, 2: 3, 3: 4, 4: 99}
+    ),
+    (
+        '1101,100,-1,4,0',
+        {0: 1101, 1: 100, 2: -1, 3: 4, 4: 99}
+    ),
 ])
 def test_execute(computer, raw_opcodes, expected_opcodes):
     computer.load_program(raw_opcodes)
@@ -89,8 +107,8 @@ def test_multiple_executions(computer):
 
 
 @pytest.mark.parametrize('program,user_text,expected_dram', [
-    ('3,0,99', 7, [7, 0, 99]),
-    ('3,1,99', 6, [3, 6, 99]),
+    ('3,0,99', 7, {0: 7, 1: 0, 2: 99}),
+    ('3,1,99', 6, {0: 3, 1: 6, 2: 99}),
 ])
 def test_input(computer, program, user_text, expected_dram):
     computer.load_program(program)
@@ -106,7 +124,7 @@ def test_output(computer):
 
     computer.execute()
 
-    assert computer._dram == [4, 0, 99]
+    assert computer._dram == {0: 4, 1: 0, 2: 99}
     assert len(computer.stdout) == 1
     assert computer.stdout.popleft() == 4
 
@@ -117,7 +135,7 @@ def test_print_output(computer):
 
     computer.execute()
 
-    assert computer._dram == [42, 0, 4, 0, 99]
+    assert computer._dram == {0: 42, 1: 0, 2: 4, 3: 0, 4: 99}
     assert computer.stdout.popleft() == 42
 
 
@@ -178,7 +196,7 @@ def test_input_pause(computer):
 
     assert not computer.is_paused
     assert computer.is_halt
-    assert computer._dram == [3, 42, 99]
+    assert computer._dram == {0: 3, 1: 42, 2: 99}
 
 
 def test_relative_base(computer):
@@ -190,3 +208,25 @@ def test_relative_base(computer):
     computer.execute()
 
     assert computer.relative_base == 2019
+
+
+def test_output_large_number(computer):
+    computer.load_program('104,1125899906842624,99')
+    computer.execute()
+
+    assert computer.stdout.pop() == 1125899906842624
+
+
+def test_output_16_digit_number(computer):
+    computer.load_program('1102,34915192,34915192,7,4,7,99,0')
+    computer.execute()
+
+    assert computer.stdout.pop() == 1219070632396864
+
+
+# def test_produce_copy_of_itself(computer):
+#     program = '109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99'
+#     computer.load_program(program)
+#     computer.execute()
+#
+#     assert computer.stdout == []
