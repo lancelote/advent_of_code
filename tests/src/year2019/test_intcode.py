@@ -224,9 +224,9 @@ def test_output_16_digit_number(computer):
     assert computer.stdout.pop() == 1219070632396864
 
 
-# def test_produce_copy_of_itself(computer):
-#     program = '109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99'
-#     computer.load_program(program)
-#     computer.execute()
-#
-#     assert computer.stdout == []
+def test_produce_copy_of_itself(computer):
+    program = '109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99'
+    computer.load_program(program)
+    computer.execute()
+
+    assert list(computer.stdout) == list(map(int, program.split(',')))
