@@ -179,3 +179,14 @@ def test_input_pause(computer):
     assert not computer.is_paused
     assert computer.is_halt
     assert computer._dram == [3, 42, 99]
+
+
+def test_relative_base(computer):
+    computer.offset_relative_base(2000)
+
+    assert computer.relative_base == 2000
+
+    computer.load_program('109,19,99')
+    computer.execute()
+
+    assert computer.relative_base == 2019

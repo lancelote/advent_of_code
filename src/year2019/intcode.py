@@ -1,3 +1,5 @@
+# pylint: disable=too-many-instance-attributes
+
 """Intcode computer implementation."""
 
 from __future__ import annotations
@@ -42,6 +44,8 @@ class Instruction(ABC):
             return addr0
         elif mode == '1':  # immediate mode
             return addr1
+        elif mode == '2':  # relative mode
+            return addr0 + computer.relative_base
         else:
             raise UnknownModeException(f'unknown mode {mode}')
 
@@ -189,6 +193,20 @@ class Equals(Instruction):
         cls.next_instruction(computer)
 
 
+class RelativeBaseOffset(Instruction):
+    """Change the relative base value."""
+
+    parameters = 1
+
+    @classmethod
+    def execute(cls, computer: Computer):
+        """Execute relative base offset instruction."""
+        addr = cls.get_param_addrs(1, computer)
+
+        computer.offset_relative_base(computer.get(addr))
+        cls.next_instruction(computer)
+
+
 class Exit(Instruction):
     """Flag execution to stop."""
 
@@ -209,6 +227,7 @@ INSTRUCTIONS = {
     6: JumpIfFalse,
     7: LessThan,
     8: Equals,
+    9: RelativeBaseOffset,
     99: Exit,
 }
 
@@ -230,6 +249,7 @@ class Computer:
     _sram: List[int] = field(default_factory=list)  # Static memory
     _dram: List[int] = field(default_factory=list)  # Dynamic memory
     _instruction_pointer: int = 0
+    _relative_base: int = 0
 
     def load_program(self, string: str):
         """Load program to memory."""
@@ -285,6 +305,10 @@ class Computer:
         """Pause execution, e.g. to wait for stdin."""
         self.is_paused = True
 
+    def offset_relative_base(self, value: int):
+        """Add the given value to relative base."""
+        self._relative_base += value
+
     @property
     def instruction(self):
         """Get current instruction class."""
@@ -333,3 +357,8 @@ class Computer:
     def current_position(self) -> int:
         """Return current instruction pointer address."""
         return self._instruction_pointer
+
+    @property
+    def relative_base(self) -> int:
+        """Return computer relative base."""
+        return self._relative_base
