@@ -261,7 +261,7 @@ class Computer:
 
     def execute(self):
         """Iterate over opcodes in memory executing commands unless 99 stop."""
-        assert self._sram, "no program loaded."
+        assert self._sram, "no program loaded"
 
         self.is_paused = False
         if not self._dram:
