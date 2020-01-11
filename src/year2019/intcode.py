@@ -38,7 +38,7 @@ class Instruction(ABC):
         """Get given parameter for instruction."""
         mode = computer.mode.rjust(cls.parameters, '0')[-n]
         addr1 = computer.current_position + n
-        addr0 = computer.get(addr1)
+        addr0 = computer[addr1]
         if mode == '0':  # position mode
             return addr0
         elif mode == '1':  # immediate mode
@@ -66,7 +66,7 @@ class Sum(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        computer.set(addr3, computer.get(addr1) + computer.get(addr2))
+        computer.set(addr3, computer[addr1] + computer[addr2])
         cls.next_instruction(computer)
 
 
@@ -82,7 +82,7 @@ class Multiply(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        computer.set(addr3, computer.get(addr1) * computer.get(addr2))
+        computer.set(addr3, computer[addr1] * computer[addr2])
         cls.next_instruction(computer)
 
 
@@ -114,7 +114,7 @@ class Print(Instruction):
         """Execute print instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.stdout.append(computer.get(addr))
+        computer.stdout.append(computer[addr])
         cls.next_instruction(computer)
 
 
@@ -129,8 +129,8 @@ class JumpIfTrue(Instruction):
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
 
-        if computer.get(addr1) != 0:
-            computer.jump(computer.get(addr2))
+        if computer[addr1] != 0:
+            computer.jump(computer[addr2])
         else:
             cls.next_instruction(computer)
 
@@ -146,8 +146,8 @@ class JumpIfFalse(Instruction):
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
 
-        if computer.get(addr1) == 0:
-            computer.jump(computer.get(addr2))
+        if computer[addr1] == 0:
+            computer.jump(computer[addr2])
         else:
             cls.next_instruction(computer)
 
@@ -164,7 +164,7 @@ class LessThan(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        if computer.get(addr1) < computer.get(addr2):
+        if computer[addr1] < computer[addr2]:
             computer.set(addr3, 1)
         else:
             computer.set(addr3, 0)
@@ -184,7 +184,7 @@ class Equals(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        if computer.get(addr1) == computer.get(addr2):
+        if computer[addr1] == computer[addr2]:
             computer.set(addr3, 1)
         else:
             computer.set(addr3, 0)
@@ -202,7 +202,7 @@ class RelativeBaseOffset(Instruction):
         """Execute relative base offset instruction."""
         addr = cls.get_param_addrs(1, computer)
 
-        computer.offset_relative_base(computer.get(addr))
+        computer.offset_relative_base(computer[addr])
         cls.next_instruction(computer)
 
 
@@ -285,8 +285,7 @@ class Computer:
         """Load static memory to dynamic."""
         self._dram = copy(self._sram)
 
-    def get(self, addr: int) -> int:
-        """Get given address value."""
+    def __getitem__(self, addr: int) -> int:
         assert addr >= 0
         return self._dram[addr]
 
