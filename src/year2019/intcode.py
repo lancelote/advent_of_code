@@ -66,7 +66,7 @@ class Sum(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        computer.set(addr3, computer[addr1] + computer[addr2])
+        computer[addr3] = computer[addr1] + computer[addr2]
         cls.next_instruction(computer)
 
 
@@ -82,7 +82,7 @@ class Multiply(Instruction):
         addr2 = cls.get_param_addrs(2, computer)
         addr3 = cls.get_param_addrs(3, computer)
 
-        computer.set(addr3, computer[addr1] * computer[addr2])
+        computer[addr3] = computer[addr1] * computer[addr2]
         cls.next_instruction(computer)
 
 
@@ -97,7 +97,7 @@ class Input(Instruction):
         addr = cls.get_param_addrs(1, computer)
 
         try:
-            computer.set(addr, computer.stdin.popleft())
+            computer[addr] = computer.stdin.popleft()
             cls.next_instruction(computer)
         except IndexError:
             # No input available
@@ -165,9 +165,9 @@ class LessThan(Instruction):
         addr3 = cls.get_param_addrs(3, computer)
 
         if computer[addr1] < computer[addr2]:
-            computer.set(addr3, 1)
+            computer[addr3] = 1
         else:
-            computer.set(addr3, 0)
+            computer[addr3] = 0
 
         cls.next_instruction(computer)
 
@@ -185,9 +185,9 @@ class Equals(Instruction):
         addr3 = cls.get_param_addrs(3, computer)
 
         if computer[addr1] == computer[addr2]:
-            computer.set(addr3, 1)
+            computer[addr3] = 1
         else:
-            computer.set(addr3, 0)
+            computer[addr3] = 0
 
         cls.next_instruction(computer)
 
@@ -250,6 +250,13 @@ class Computer:
     _instruction_pointer: int = 0
     _relative_base: int = 0
 
+    def __getitem__(self, addr: int) -> int:
+        assert addr >= 0
+        return self._dram[addr]
+
+    def __setitem__(self, addr: int, value: int):
+        self._dram[addr] = value
+
     def load_program(self, string: str):
         """Load program to memory."""
         for i, opcode in enumerate(map(int, string.split(','))):
@@ -284,14 +291,6 @@ class Computer:
     def load_sram_to_dram(self):
         """Load static memory to dynamic."""
         self._dram = copy(self._sram)
-
-    def __getitem__(self, addr: int) -> int:
-        assert addr >= 0
-        return self._dram[addr]
-
-    def set(self, addr: int, value: int):
-        """Set given address value."""
-        self._dram[addr] = value
 
     def jump(self, addr: int):
         """Move instruction pointer to a given address."""
