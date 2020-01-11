@@ -22,7 +22,7 @@ class Chart:
             for line in string.strip().split('\n')
         ])
 
-    def unique_inclinations_from(self, base_x: int, base_y: int) -> int:
+    def visible_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""
         inclinations = set()
 
@@ -40,7 +40,7 @@ class Chart:
     def most_observant(self) -> int:
         """Return most observable asteroid."""
         return max(
-            self.unique_inclinations_from(x, y)
+            self.visible_from(x, y)
             for x in range(len(self.locations[0]))
             for y in range(len(self.locations))
             if self.locations[y][x]

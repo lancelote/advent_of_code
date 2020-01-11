@@ -47,8 +47,8 @@ def test_from_string(simple_task):
     (3, 4, 8),
     (4, 4, 7),
 ])
-def test_unique_inclinations_from(x, y, expected, simple_chart):
-    assert simple_chart.unique_inclinations_from(x, y) == expected
+def test_visible_from(x, y, expected, simple_chart):
+    assert simple_chart.visible_from(x, y) == expected
 
 
 def test_most_observant(simple_chart):
