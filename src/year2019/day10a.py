@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from typing import List
+from typing import List, Tuple
 
 
 @dataclass
@@ -13,6 +13,8 @@ class Chart:
     """A map of asteroids."""
 
     locations: List[List[bool]]
+    base_x: int = 0
+    base_y: int = 0
 
     @classmethod
     def from_string(cls, string: str) -> Chart:
@@ -22,26 +24,35 @@ class Chart:
             for line in string.strip().split('\n')
         ])
 
-    def visible_from(self, base_x: int, base_y: int) -> int:
-        """Find the number of visible asteroids from this one."""
-        azimuth = set()
+    def not_base(self, x: int, y: int) -> bool:
+        """Check if a given point is a base."""
+        return not (x == self.base_x and y == self.base_y)
 
+    def set_base(self, x: int, y: int):
+        """Update base."""
+        self.base_x = x
+        self.base_y = y
+
+    def get_asteroids(self) -> Tuple[int, int]:
+        """Iterate over all iterate excluding base."""
         for y in range(len(self.locations)):
             for x in range(len(self.locations[0])):
-                if self.locations[y][x] and not (x == base_x and y == base_y):
-                    azimuth.add(math.atan2(y - base_y, x - base_x))
+                if self.locations[y][x] and self.not_base(x, y):
+                    yield x, y
 
-        return len(azimuth)
+    def atan2(self, x: int, y: int) -> float:
+        """Compute arctangent to a given point."""
+        return math.atan2(y - self.base_y, x - self.base_x)
+
+    def visible_from(self, base_x: int, base_y: int) -> int:
+        """Find the number of visible asteroids from this one."""
+        self.set_base(base_x, base_y)
+        return len({self.atan2(x, y) for x, y in self.get_asteroids()})
 
     @property
     def most_observant(self) -> int:
         """Return most observable asteroid."""
-        return max(
-            self.visible_from(x, y)
-            for x in range(len(self.locations[0]))
-            for y in range(len(self.locations))
-            if self.locations[y][x]
-        )
+        return max(self.visible_from(x, y) for x, y in self.get_asteroids())
 
 
 def solve(task: str) -> int:
