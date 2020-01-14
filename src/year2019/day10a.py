@@ -42,7 +42,14 @@ class Chart:
 
     def atan2(self, x: int, y: int) -> float:
         """Compute arctangent to a given point."""
-        return math.atan2(y - self.base_y, x - self.base_x)
+        norm_x = x - self.base_x
+        norm_y = y - self.base_y
+
+        # ToDo: inclination should be in a different direction
+        incl_x = -norm_y
+        incl_y = norm_x
+
+        return math.atan2(incl_y, incl_x)
 
     def visible_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""
