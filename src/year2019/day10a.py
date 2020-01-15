@@ -43,9 +43,8 @@ class Chart:
     def atan2(self, x: int, y: int) -> float:
         """Compute arctangent to a given point."""
         norm_x = x - self.base_x
-        norm_y = y - self.base_y
+        norm_y = self.base_y - y
 
-        # ToDo: inclination should be in a different direction
         incl_x = -norm_y
         incl_y = norm_x
 
