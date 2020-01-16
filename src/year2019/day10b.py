@@ -9,7 +9,7 @@ class Chart(BaseChart):
     def distance_to(self, x: int, y: int) -> float:
         return math.sqrt((x - self.base_x)**2 + (y - self.base_y)**2)
 
-    def remove_till(self, n: int):
+    def remove_till(self, n: int) -> Tuple[int, int]:
         azimuths = defaultdict(list)
 
         for x, y in self.get_asteroids():
