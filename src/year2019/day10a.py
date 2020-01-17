@@ -95,6 +95,8 @@ class Chart:
                 if n == 0:
                     return x, y
 
+        raise ValueError(f'cannot reach {n} asteroid')
+
     @property
     def optimal_station_position(self) -> Tuple[int, int, int]:
         """Return optimal coordinates and the number of visible asteroids."""
