@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from typing import List, Tuple
+from typing import List, Tuple, Generator, Dict
 
 
 @dataclass
@@ -33,7 +33,7 @@ class Chart:
         self.base_x = x
         self.base_y = y
 
-    def asteroids(self) -> Tuple[int, int]:
+    def asteroids(self) -> Generator[Tuple[int, int], None, None]:
         """Iterate over all iterate excluding base."""
         for y in range(len(self.locations)):
             for x in range(len(self.locations[0])):
@@ -50,13 +50,54 @@ class Chart:
 
         return math.atan2(incl_y, incl_x)
 
+    def distance_to(self, x: int, y: int) -> float:
+        """Return distance to a given coordinates."""
+        norm_x = x - self.base_x
+        norm_y = self.base_y - y
+
+        incl_x = -norm_y
+        incl_y = norm_x
+
+        return math.sqrt(incl_x**2 + incl_y**2)
+
     def seen_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""
         self.set_base(base_x, base_y)
         return len({self.atan2(x, y) for x, y in self.asteroids()})
 
+    def remove_till(self, n: int) -> Tuple[int, int]:
+        """Remove n asteroids and return coordinates of the next one."""
+        azimuths: Dict[float, List[Tuple[float, int, int]]] = dict()
+
+        for x, y in self.asteroids():
+            angle = self.atan2(x, y)
+            distance = self.distance_to(x, y)
+            if angle in azimuths:
+                azimuths[angle].append((distance, x, y))
+            else:
+                azimuths[angle] = [(distance, x, y)]
+
+        for distances in azimuths.values():
+            distances.sort(reverse=True)
+
+        sorted_angles = sorted(azimuths.keys(), reverse=True)
+        empty_angles: List[float] = []
+
+        while len(empty_angles) != len(sorted_angles):
+            for angle in sorted_angles:
+                if angle in empty_angles:
+                    continue
+                if not azimuths[angle]:
+                    empty_angles.append(angle)
+                    continue
+                n -= 1
+                _, x, y = azimuths[angle].pop()
+                if n == 0:
+                    return x, y
+
     @property
     def optimal_station_position(self) -> Tuple[int, int, int]:
+        """Return optimal coordinates and the number of visible asteroids."""
         return max((self.seen_from(x, y), x, y) for x, y in self.asteroids())
 
     @property
