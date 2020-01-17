@@ -12,7 +12,7 @@ class Chart(BaseChart):
     def remove_till(self, n: int) -> Tuple[int, int]:
         azimuths = defaultdict(list)
 
-        for x, y in self.get_asteroids():
+        for x, y in self.asteroids():
             angle = self.atan2(x, y)
             distance = self.distance_to(x, y)
             azimuths[angle].append((distance, x, y))
@@ -26,25 +26,10 @@ class Chart(BaseChart):
             if n == 0:
                 return x, y
 
-    @property
-    def station_location(self) -> Tuple[int, int]:
-        station_x = 0
-        station_y = 0
-        visible_asteroids = 0
-
-        for x, y in self.get_asteroids():
-            visible = self.visible_from(x, y)
-            if visible > visible_asteroids:
-                visible_asteroids = visible
-                station_x = x
-                station_y = y
-
-        return station_x, station_y
-
 
 def solve(task: str) -> int:
     chart = Chart.from_string(task)
-    station_x, station_y = chart.station_location
+    _, station_x, station_y = chart.optimal_station_position
     chart.set_base(station_y, station_y)
     x, y = chart.remove_till(200)
     return x * 100 + y

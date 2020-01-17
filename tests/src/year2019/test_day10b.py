@@ -66,7 +66,7 @@ def test_big_example(n, x, y):
         ###.##.####.##.#..##
     """)
     chart = Chart.from_string(task)
-    station_x, station_y = chart.station_location
+    _, station_x, station_y = chart.optimal_station_position
 
     assert station_x == 11
     assert station_y == 13

@@ -33,7 +33,7 @@ class Chart:
         self.base_x = x
         self.base_y = y
 
-    def get_asteroids(self) -> Tuple[int, int]:
+    def asteroids(self) -> Tuple[int, int]:
         """Iterate over all iterate excluding base."""
         for y in range(len(self.locations)):
             for x in range(len(self.locations[0])):
@@ -50,15 +50,19 @@ class Chart:
 
         return math.atan2(incl_y, incl_x)
 
-    def visible_from(self, base_x: int, base_y: int) -> int:
+    def seen_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""
         self.set_base(base_x, base_y)
-        return len({self.atan2(x, y) for x, y in self.get_asteroids()})
+        return len({self.atan2(x, y) for x, y in self.asteroids()})
+
+    @property
+    def optimal_station_position(self) -> Tuple[int, int, int]:
+        return max((self.seen_from(x, y), x, y) for x, y in self.asteroids())
 
     @property
     def most_observant(self) -> int:
         """Return most observable asteroid."""
-        return max(self.visible_from(x, y) for x, y in self.get_asteroids())
+        return self.optimal_station_position[0]
 
 
 def solve(task: str) -> int:
