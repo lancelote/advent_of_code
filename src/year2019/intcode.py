@@ -268,7 +268,7 @@ class Computer:
 
     def execute(self):
         """Iterate over opcodes in memory executing commands unless 99 stop."""
-        assert self._sram, "no program loaded"
+        assert self.program_is_loaded, "no program loaded"
 
         self.is_paused = False
         if not self._dram:
@@ -307,6 +307,10 @@ class Computer:
     def offset_relative_base(self, value: int):
         """Add the given value to relative base."""
         self._relative_base += value
+
+    @property
+    def program_is_loaded(self):
+        return self._sram
 
     @property
     def instruction(self):
