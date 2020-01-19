@@ -2,7 +2,7 @@ from collections import deque
 from dataclasses import dataclass, field
 from typing import Deque
 
-from src.year2019.day11a import Robot, Direction, Coordinates, Hull, Color
+from src.year2019.day11a import Robot, Direction, Coordinates, Hull, Color, Panel
 
 
 @dataclass

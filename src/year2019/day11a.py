@@ -63,15 +63,15 @@ class Panel:
 
 class Hull:
     def __init__(self):
-        self.panels: DefaultDict[Coordinates, Panel] = defaultdict(Panel)
+        self._panels: DefaultDict[Coordinates, Panel] = defaultdict(Panel)
 
     def __getitem__(self, coordinates: Coordinates) -> Panel:
-        panel = self.panels[coordinates]
+        panel = self._panels[coordinates]
         panel.visited = True
         return panel
 
     def values(self):
-        return self.panels.values()
+        return self._panels.values()
 
 
 class Robot:
@@ -95,7 +95,7 @@ class Robot:
         self.cpu.execute()
 
         angle = self.cpu.stdout.pop()
-        new_color = Color.BLACK if self.cpu.stdout.pop() else Color.WHITE
+        new_color = Color.WHITE if self.cpu.stdout.pop() == 1 else Color.BLACK
 
         panel.paint(new_color)
         self.rotate(angle)
