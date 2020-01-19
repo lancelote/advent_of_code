@@ -310,6 +310,7 @@ class Computer:
 
     @property
     def program_is_loaded(self):
+        """Check if the program is loaded into the static memory."""
         return self._sram
 
     @property
