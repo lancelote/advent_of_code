@@ -6,7 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum
 
-from typing import DefaultDict, NamedTuple, ValuesView
+from typing import NamedTuple
 
 from src.year2019.intcode import Computer
 
@@ -72,21 +72,30 @@ class Panel:
         self.color = color
 
 
-class Hull:
+class Hull(defaultdict):
     """Ship hull."""
 
-    def __init__(self):
-        """Hull is a mapping between coordinates and panels."""
-        self._panels: DefaultDict[Coordinates, Panel] = defaultdict(Panel)
+    def print(self):
+        """Print the whole."""
+        min_x = min(self.keys(), key=lambda point: point.x).x
+        max_x = max(self.keys(), key=lambda point: point.x).x
+        min_y = min(self.keys(), key=lambda point: point.y).y
+        max_y = max(self.keys(), key=lambda point: point.y).y
 
-    def __getitem__(self, coordinates: Coordinates) -> Panel:
-        panel = self._panels[coordinates]
-        panel.visited = True
-        return panel
+        canvas = [
+            ['?' for _ in range(max_x - min_x + 1)]
+            for _ in range(max_y - min_y + 1)
+        ]
 
-    def values(self) -> ValuesView[Panel]:
-        """Return all hull panels."""
-        return self._panels.values()
+        for coordinates, panel in self.items():
+            x = coordinates.x - min_x
+            y = coordinates.y - min_y
+            canvas[y][x] = panel.color.value
+
+        for row in canvas:
+            for item in row:
+                print(item, end='')
+            print()
 
 
 class Robot:
@@ -143,8 +152,8 @@ class Robot:
 
 def solve(task: str) -> int:
     """Find the number of the pained panels."""
-    hull = Hull()
+    hull = Hull(Panel)
     robot = Robot()
     robot.load_program(task)
     robot.paint(hull)
-    return len([panel for panel in hull.values() if panel.visited])
+    return len(hull.keys())

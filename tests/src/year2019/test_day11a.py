@@ -4,7 +4,9 @@ from collections import deque
 from dataclasses import dataclass, field
 from typing import Deque
 
-from src.year2019.day11a import Robot, Direction, Coordinates, Hull, Color
+from src.year2019.day11a import (
+    Robot, Direction, Coordinates, Hull, Color, Panel
+)
 
 
 @dataclass
@@ -17,7 +19,7 @@ class MockComputer:
 
 
 def test_robot_example_walk_through():
-    hull = Hull()
+    hull = Hull(Panel)
     cpu = MockComputer()
     robot = Robot(cpu)
 
@@ -30,5 +32,4 @@ def test_robot_example_walk_through():
     robot.step(hull)
     assert robot.direction is Direction.LEFT
     assert robot.coordinates == Coordinates(-1, 0)
-    assert hull[Coordinates(0, 0)].visited
     assert hull[Coordinates(0, 0)].color is Color.WHITE
