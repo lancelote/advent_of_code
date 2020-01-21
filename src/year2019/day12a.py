@@ -19,10 +19,9 @@ class Moon:
 
 
 def process_data(data: str) -> Tuple[Moon, Moon, Moon, Moon]:
-    moons = data.strip().split('\n')
-    # ToDo: finish function
-
-    raise NotImplementedError
+    moons = [Moon.from_string(line) for line in data.strip().split('\n')]
+    io, europa, ganymede, callisto = moons
+    return io, europa, ganymede, callisto
 
 
 def solve(task: str) -> int:
