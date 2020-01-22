@@ -33,3 +33,11 @@ def test_process_data(sample_data):
         Moon(-1, -15, 2),
         Moon(12, -4, -4),
     )
+
+
+def test_apply_velocity():
+    moon = Moon(x=1, y=2, z=3, dx=-2, dy=0, dz=3)
+    moon.apply_velocity()
+    assert moon.x == -1
+    assert moon.y == 2
+    assert moon.z == 6

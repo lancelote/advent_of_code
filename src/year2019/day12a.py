@@ -12,6 +12,15 @@ class Moon:
     y: int
     z: int
 
+    dx: int = 0
+    dy: int = 0
+    dz: int = 0
+
+    def apply_velocity(self):
+        self.x += self.dx
+        self.y += self.dy
+        self.z += self.dz
+
     @staticmethod
     def from_string(string: str) -> Moon:
         x, y, z = [int(part[2:]) for part in string[1:-1].split(', ')]
