@@ -3,7 +3,7 @@
 from textwrap import dedent
 
 import pytest
-from src.year2019.day12a import Moon, process_data
+from src.year2019.day12a import Moon, System
 
 
 @pytest.fixture
@@ -27,12 +27,12 @@ def test_moon_from_string(string, expected_moon):
 
 
 def test_process_data(sample_data):
-    assert process_data(sample_data) == (
+    assert System.from_raw_data(sample_data).moons == [
         Moon(1, 3, -11),
         Moon(17, -10, -8),
         Moon(-1, -15, 2),
         Moon(12, -4, -4),
-    )
+    ]
 
 
 def test_apply_velocity():

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import List
 
 
 @dataclass
@@ -21,16 +21,20 @@ class Moon:
         self.y += self.dy
         self.z += self.dz
 
-    @staticmethod
-    def from_string(string: str) -> Moon:
+    @classmethod
+    def from_string(cls, string: str) -> Moon:
         x, y, z = [int(part[2:]) for part in string[1:-1].split(', ')]
-        return Moon(x, y, z)
+        return cls(x, y, z)
 
 
-def process_data(data: str) -> Tuple[Moon, Moon, Moon, Moon]:
-    moons = [Moon.from_string(line) for line in data.strip().split('\n')]
-    io, europa, ganymede, callisto = moons
-    return io, europa, ganymede, callisto
+@dataclass
+class System:
+    moons: List[Moon]
+
+    @classmethod
+    def from_raw_data(cls, data: str) -> System:
+        moons = [Moon.from_string(line) for line in data.strip().split('\n')]
+        return cls(moons)
 
 
 def solve(task: str) -> int:
