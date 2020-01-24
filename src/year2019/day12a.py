@@ -91,4 +91,7 @@ class System:
 
 
 def solve(task: str) -> int:
-    raise NotImplementedError
+    system = System.from_raw_data(task)
+    for _ in range(1000):
+        system.step()
+    return system.energy
