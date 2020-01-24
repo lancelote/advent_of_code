@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from itertools import permutations
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 
 
 @dataclass
@@ -26,10 +27,38 @@ class Moon:
         x, y, z = [int(part[2:]) for part in string[1:-1].split(', ')]
         return cls(x, y, z)
 
+    @property
+    def coordinates(self) -> Tuple[int, int, int]:
+        return self.x, self.y, self.z
+
+    @property
+    def velocity(self) -> Tuple[int, int, int]:
+        return self.dx, self.dy, self.dz
+
 
 @dataclass
 class System:
     moons: List[Moon]
+
+    def apply_gravity(self):
+        for moon1, moon2 in permutations(self.moons, 2):
+            if moon1.x > moon2.x:
+                moon1.dx -= 1
+                moon2.dx += 1
+            if moon1.y > moon2.y:
+                moon1.dy -= 1
+                moon2.dy += 1
+            if moon1.z > moon2.z:
+                moon1.dz -= 1
+                moon2.dz += 1
+
+    def apply_velocity(self):
+        for moon in self.moons:
+            moon.apply_velocity()
+
+    def step(self):
+        self.apply_gravity()
+        self.apply_velocity()
 
     @classmethod
     def from_raw_data(cls, data: str) -> System:

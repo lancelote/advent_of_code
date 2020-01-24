@@ -35,9 +35,62 @@ def test_process_data(sample_data):
     ]
 
 
-def test_apply_velocity():
+def test_apply_moon_velocity():
     moon = Moon(x=1, y=2, z=3, dx=-2, dy=0, dz=3)
+
     moon.apply_velocity()
+
     assert moon.x == -1
     assert moon.y == 2
     assert moon.z == 6
+
+
+def test_apply_gravity():
+    moon1 = Moon(-1, 0, 9)
+    moon2 = Moon(1, 0, 3)
+    system = System([moon1, moon2])
+
+    system.apply_gravity()
+
+    assert moon1.dx == +1
+    assert moon1.dy == 0
+    assert moon1.dz == -1
+    assert moon2.dx == -1
+    assert moon2.dy == 0
+    assert moon2.dz == +1
+
+
+def test_system_two_steps():
+    moon1 = Moon(-1, 0, 2)
+    moon2 = Moon(2, -10, -7)
+    moon3 = Moon(4, -8, 8)
+    moon4 = Moon(3, 5, -1)
+    system = System([moon1, moon2, moon3, moon4])
+
+    system.step()
+
+    assert moon1.coordinates == (2, -1, 1)
+    assert moon1.velocity == (3, -1, -1)
+
+    assert moon2.coordinates == (3, -7, -4)
+    assert moon2.velocity == (1, 3, 3)
+
+    assert moon3.coordinates == (1, -7, 5)
+    assert moon3.velocity == (-3, 1, -3)
+
+    assert moon4.coordinates == (2, 2, 0)
+    assert moon4.velocity == (-1, -3, 1)
+
+    system.step()
+
+    assert moon1.coordinates == (5, -3, -1)
+    assert moon1.velocity == (3, -2, -2)
+
+    assert moon2.coordinates == (1, -2, 2)
+    assert moon2.velocity == (-2, 5, 6)
+
+    assert moon3.coordinates == (1, -4, -1)
+    assert moon3.velocity == (0, 3, -6)
+
+    assert moon4.coordinates == (1, -4, 2)
+    assert moon4.velocity == (-1, -6, 2)
