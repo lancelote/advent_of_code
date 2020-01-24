@@ -94,3 +94,24 @@ def test_system_two_steps():
 
     assert moon4.coordinates == (1, -4, 2)
     assert moon4.velocity == (-1, -6, 2)
+
+
+def test_moon_energy():
+    moon = Moon(x=2, y=1, z=-3, dx=-3, dy=-2, dz=1)
+
+    assert moon.potential_energy == 6
+    assert moon.kinetic_energy == 6
+    assert moon.energy == 36
+
+
+def test_system_energy():
+    system = System([
+        Moon(2, 1, -3, -3, -2, 1),
+        Moon(1, -8, 0, -1, 1, 3),
+        Moon(3, -6, 1, 3, 2, -3),
+        Moon(2, 0, 4, 1, -1, -1),
+    ])
+
+    assert system.potential_energy == 31
+    assert system.kinetic_energy == 22
+    assert system.energy == 179

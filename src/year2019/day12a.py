@@ -35,6 +35,18 @@ class Moon:
     def velocity(self) -> Tuple[int, int, int]:
         return self.dx, self.dy, self.dz
 
+    @property
+    def potential_energy(self):
+        return abs(self.x) + abs(self.y) + abs(self.z)
+    
+    @property
+    def kinetic_energy(self):
+        return abs(self.dx) + abs(self.dy) + abs(self.dz)
+
+    @property
+    def energy(self):
+        return self.potential_energy * self.kinetic_energy
+
 
 @dataclass
 class System:
@@ -64,6 +76,18 @@ class System:
     def from_raw_data(cls, data: str) -> System:
         moons = [Moon.from_string(line) for line in data.strip().split('\n')]
         return cls(moons)
+
+    @property
+    def potential_energy(self):
+        return sum(moon.potential_energy for moon in self.moons)
+    
+    @property
+    def kinetic_energy(self):
+        return sum(moon.kinetic_energy for moon in self.moons)
+
+    @property
+    def energy(self):
+        return sum(moon.energy for moon in self.moons)
 
 
 def solve(task: str) -> int:
