@@ -103,6 +103,10 @@ class System:
         return cls(moons)
 
     @property
+    def snapshot_x(self):
+        return [(moon.x, moon.dx) for moon in self.moons]
+
+    @property
     def potential_energy(self):
         """Calculate system potential energy."""
         return sum(moon.potential_energy for moon in self.moons)
