@@ -62,6 +62,7 @@ class System:
     """System of a number of moons."""
 
     moons: List[Moon]
+    steps: int = 0
 
     def apply_gravity(self):
         """Apply gravity to each moon in system."""
@@ -83,6 +84,7 @@ class System:
 
     def step(self):
         """Make a step in system simulation."""
+        self.steps += 1
         self.apply_gravity()
         self.apply_velocity()
 
