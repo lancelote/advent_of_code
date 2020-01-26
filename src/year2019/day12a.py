@@ -104,7 +104,18 @@ class System:
 
     @property
     def snapshot_x(self):
+        """Get the snapshot of x coordinates."""
         return [(moon.x, moon.dx) for moon in self.moons]
+
+    @property
+    def snapshot_y(self):
+        """Get the snapshot of y coordinates."""
+        return [(moon.y, moon.dy) for moon in self.moons]
+
+    @property
+    def snapshot_z(self):
+        """Get the snapshot of z coordinates."""
+        return [(moon.z, moon.dz) for moon in self.moons]
 
     @property
     def potential_energy(self):
