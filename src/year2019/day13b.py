@@ -103,6 +103,7 @@ class Arcade:
             print()
 
     def make_free(self):
+        self.cpu.load_sram_to_dram()
         self.cpu[0] = 2
 
     @property
