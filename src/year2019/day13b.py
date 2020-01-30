@@ -67,6 +67,7 @@ class Arcade:
         self.ball = Ball()
         self.paddle = Paddle()
         self.map: Dict[(int, int): Tile] = dict()
+        self.score = 0
 
     def play(self):
         self.make_free()
@@ -83,11 +84,15 @@ class Arcade:
             x = self.cpu.stdout.popleft()
             y = self.cpu.stdout.popleft()
             pk = self.cpu.stdout.popleft()
-            self.map[(x, y)] = Tile(pk)
+
+            if x == -1 and y == 0:
+                self.score = pk
+            else:
+                self.map[(x, y)] = Tile(pk)
 
     def print(self):
-        max_x = max(self.map.keys(), key=lambda x: x[0])[0]
-        max_y = max(self.map.keys(), key=lambda x: x[1])[1]
+        max_x = max(self.map.keys(), key=lambda point: point[0])[0]
+        max_y = max(self.map.keys(), key=lambda point: point[1])[1]
 
         canvas: List[List[Tile]] = [
             [Tile.EMPTY for _ in range(max_x + 1)]
@@ -114,5 +119,4 @@ class Arcade:
 def solve(task: str) -> int:
     arcade = Arcade(task)
     arcade.play()
-
-    return -1
+    return arcade.score
