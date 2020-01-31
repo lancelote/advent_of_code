@@ -53,7 +53,10 @@ class Tile(Enum):
 class Ball:
     x: int = 0
     y: int = 0
-    dx: int = 0
+
+    def update(self, x: int, y: int):
+        self.x = x
+        self.y = y
 
 
 @dataclass
@@ -96,6 +99,8 @@ class Arcade:
             if x == -1 and y == 0:
                 self.score = pk
             else:
+                if pk == 4:
+                    self.ball.update(x, y)
                 self.map[(x, y)] = Tile(pk)
 
     def print(self):
