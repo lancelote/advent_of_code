@@ -75,11 +75,17 @@ class Arcade:
 
         while not self.is_finished:
             self.cpu.execute()
-            self.cpu.stdin.append(0)
             self.update_map()
             self.print()
-            input()
+            self.move_paddle()
             os.system('clear')
+
+    def move_paddle(self):
+        try:
+            move = int(input())
+        except ValueError:
+            move = 0
+        self.cpu.stdin.append(move)
 
     def update_map(self):
         while self.cpu.stdout:
