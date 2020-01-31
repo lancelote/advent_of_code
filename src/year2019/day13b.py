@@ -21,6 +21,7 @@ Beat the game by breaking all the blocks. What is your score after the last
 block is broken?
 """
 
+import os
 from dataclasses import dataclass
 from enum import Enum
 from typing import Dict, List
@@ -78,6 +79,7 @@ class Arcade:
             self.update_map()
             self.print()
             input()
+            os.system('clear')
 
     def update_map(self):
         while self.cpu.stdout:
