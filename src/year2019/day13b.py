@@ -1,35 +1,17 @@
-"""
-The game didn't run because you didn't put in any quarters. Unfortunately, you
-did not bring any quarters. Memory address 0 represents the number of quarters
-that have been inserted; set it to 2 to play for free.
+# pylint: disable=comparison-with-callable
 
-The arcade cabinet has a joystick that can move left and right. The software
-reads the position of the joystick with input instructions:
-
-    If the joystick is in the neutral position, provide 0.
-    If the joystick is tilted to the left, provide -1.
-    If the joystick is tilted to the right, provide 1.
-
-The arcade cabinet also has a segment display capable of showing a single
-number that represents the player's current score. When three output
-instructions specify X=-1, Y=0, the third output instruction is not a tile;
-the value instead specifies the new score to show in the segment display.
-For example, a sequence of output values like -1,0,12345 would show 12345 as
-the player's current score.
-
-Beat the game by breaking all the blocks. What is your score after the last
-block is broken?
-"""
+"""2019 - Day 13 Part 2: Care Package."""
 
 import os
-from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from src.year2019.intcode import Computer
 
 
 class Tile(Enum):
+    """Arcade screen tile."""
+
     EMPTY = 0
     WALL = 1
     BLOCK = 2
@@ -47,33 +29,24 @@ class Tile(Enum):
             return '-'
         elif self.value == 4:
             return 'o'
-
-
-@dataclass
-class Ball:
-    x: int = 0
-    y: int = 0
-
-    def update(self, x: int, y: int):
-        self.x = x
-        self.y = y
-
-
-@dataclass
-class Paddle:
-    x: int = 0
+        else:
+            raise ValueError(f'unknown enum value: {self.value}')
 
 
 class Arcade:
+    """Arcade game."""
+
     def __init__(self, program: str, cpu: Computer = None):
+        """Program is a puzzle input and cpu - IntCode computer."""
         self.cpu = cpu or Computer()
         self.cpu.load_program(program)
-        self.ball = Ball()
-        self.paddle = Paddle()
-        self.map: Dict[(int, int): Tile] = dict()
+        self.ball_x = 0
+        self.paddle_x = 0
+        self.map: Dict[Tuple[int, int], Tile] = dict()
         self.score = 0
 
     def play(self):
+        """Play game until win or lose."""
         self.make_free()
 
         while not self.is_finished:
@@ -84,13 +57,17 @@ class Arcade:
             os.system('clear')
 
     def move_paddle(self):
-        try:
-            move = int(input())
-        except ValueError:
+        """Move paddle automatically depending on ball position."""
+        if self.ball_x > self.paddle_x:
+            move = 1
+        elif self.ball_x < self.paddle_x:
+            move = -1
+        else:
             move = 0
         self.cpu.stdin.append(move)
 
     def update_map(self):
+        """Update tile - coordinates map after a game step."""
         while self.cpu.stdout:
             x = self.cpu.stdout.popleft()
             y = self.cpu.stdout.popleft()
@@ -99,11 +76,14 @@ class Arcade:
             if x == -1 and y == 0:
                 self.score = pk
             else:
+                if pk == 3:
+                    self.paddle_x = x
                 if pk == 4:
-                    self.ball.update(x, y)
+                    self.ball_x = x
                 self.map[(x, y)] = Tile(pk)
 
     def print(self):
+        """Print the game screen."""
         max_x = max(self.map.keys(), key=lambda point: point[0])[0]
         max_y = max(self.map.keys(), key=lambda point: point[1])[1]
 
@@ -121,15 +101,18 @@ class Arcade:
             print()
 
     def make_free(self):
+        """Allow playing free."""
         self.cpu.load_sram_to_dram()
         self.cpu[0] = 2
 
     @property
     def is_finished(self) -> bool:
+        """Check if the game is finished."""
         return self.cpu.is_halt
 
 
 def solve(task: str) -> int:
+    """Win the game and get the final score."""
     arcade = Arcade(task)
     arcade.play()
     return arcade.score
