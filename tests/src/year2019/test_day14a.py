@@ -2,7 +2,10 @@
 
 from textwrap import dedent
 
-from src.year2019.day14a import process_data, Chemical, Reaction
+import pytest
+
+from src.year2019.day14a import process_data, Chemical, Reaction, \
+    get_multiplier
 
 
 def test_process_data():
@@ -15,11 +18,21 @@ def test_process_data():
         7 A, 1 E => 1 FUEL
     """)
     expected = {
-        'A': Reaction(10, [Chemical(10, 'ORE'),]),
-        'B': Reaction(1, [Chemical(1, 'ORE'),]),
-        'C': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'B'),]),
-        'D': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'C'),]),
-        'E': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'D'),]),
-        'FUEL': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'E'),]),
+        'A': Reaction(10, [Chemical(10, 'ORE'), ]),
+        'B': Reaction(1, [Chemical(1, 'ORE'), ]),
+        'C': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'B'), ]),
+        'D': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'C'), ]),
+        'E': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'D'), ]),
+        'FUEL': Reaction(1, [Chemical(7, 'A'), Chemical(1, 'E'), ]),
     }
     assert process_data(data) == expected
+
+
+@pytest.mark.parametrize('target,reaction,expected', [
+    (1, 2, 1),
+    (2, 1, 2),
+    (3, 2, 2),
+    (9, 2, 5),
+])
+def test_get_multiplier(target, reaction, expected):
+    assert get_multiplier(target, reaction) == expected

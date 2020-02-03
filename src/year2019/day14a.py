@@ -40,5 +40,28 @@ def process_data(data: str) -> REACTIONS:
     return reactions
 
 
+def get_multiplier(target: int, reaction: int) -> int:
+    if target / reaction < 0:
+        return 1
+    elif target % reaction != 0:
+        return target // reaction + 1
+    else:
+        return target // reaction
+
+
+def count_required_ore(fuel: int, reactions: REACTIONS) -> int:
+    required_ore = 0
+    to_produce = [Chemical(fuel, 'FUEL')]
+
+    while to_produce:
+        target = to_produce.pop()
+        reaction = reactions[target.name]
+        multiplier = get_multiplier(target.quantity, reaction.quantity)
+        # ToDo: update "to_produce"
+
+    return required_ore
+
+
 def solve(task: str) -> int:
-    return -1
+    reactions = process_data(task)
+    return count_required_ore(1, reactions)
