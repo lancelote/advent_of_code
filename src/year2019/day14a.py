@@ -1,13 +1,19 @@
 """2019 - Day 14 Part 1: Space Stoichiometry."""
 
+from __future__ import annotations
+
+from collections import defaultdict
 from dataclasses import dataclass
-from typing import Dict, List
+from typing import Dict, List, DefaultDict
+
+
+ChemicalName = str
 
 
 @dataclass
-class Chemical:
+class ChemicalRecipe:
     quantity: int
-    name: str
+    name: ChemicalName
 
     @classmethod
     def from_str(cls, string: str):
@@ -18,50 +24,46 @@ class Chemical:
 @dataclass
 class Reaction:
     quantity: int
-    ins: List[Chemical]
+    ins: List[ChemicalRecipe]
 
 
-REACTIONS = Dict[str, Reaction]
+REACTIONS = Dict[ChemicalName, Reaction]
 
 
-def process_data(data: str) -> REACTIONS:
-    reactions = dict()
+class Factory:
+    def __init__(self, reactions: REACTIONS):
+        self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
+        self.reactions = reactions
 
-    for line in data.strip().split('\n'):
-        ins, out = line.split(' => ')
-        out = Chemical.from_str(out)
-        ins = [Chemical.from_str(item) for item in ins.split(', ')]
-        reaction = Reaction(out.quantity, ins)
+    @classmethod
+    def from_raw_data(cls, data: str) -> Factory:
+        reactions = dict()
 
-        assert out.name not in reactions, f'known output {out.name}'
+        for line in data.strip().split('\n'):
+            ins, out = line.split(' => ')
+            out = ChemicalRecipe.from_str(out)
+            ins = [ChemicalRecipe.from_str(item) for item in ins.split(', ')]
+            reaction = Reaction(out.quantity, ins)
 
-        reactions[out.name] = reaction
+            assert out.name not in reactions, f'known output {out.name}'
 
-    return reactions
+            reactions[out.name] = reaction
 
+        return cls(reactions)
 
-def get_multiplier(target: int, reaction: int) -> int:
-    if target / reaction < 0:
-        return 1
-    elif target % reaction != 0:
-        return target // reaction + 1
-    else:
-        return target // reaction
+    def add_to_production(self, chemical: ChemicalName, quantity: int):
+        raise NotImplementedError
 
+    def produce(self):
+        raise NotImplementedError
 
-def count_required_ore(fuel: int, reactions: REACTIONS) -> int:
-    required_ore = 0
-    to_produce = [Chemical(fuel, 'FUEL')]
-
-    while to_produce:
-        target = to_produce.pop()
-        reaction = reactions[target.name]
-        multiplier = get_multiplier(target.quantity, reaction.quantity)
-        # ToDo: update "to_produce"
-
-    return required_ore
+    @property
+    def ore(self) -> int:
+        return self._to_produce['ORE']
 
 
 def solve(task: str) -> int:
-    reactions = process_data(task)
-    return count_required_ore(1, reactions)
+    factory = Factory.from_raw_data(task)
+    factory.add_to_production('FUEL', 1)
+    factory.produce()
+    return factory.ore
