@@ -30,6 +30,15 @@ class Reaction:
 REACTIONS = Dict[ChemicalName, Reaction]
 
 
+def get_multiplier(target: int, reaction: int) -> int:
+    if target / reaction < 0:  # Reaction made more than required
+        return 1
+    elif target % reaction != 0:
+        return target // reaction + 1
+    else:
+        return target // reaction
+
+
 class Factory:
     def __init__(self, reactions: Optional[REACTIONS] = None):
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
@@ -53,10 +62,22 @@ class Factory:
         return cls(reactions)
 
     def add_to_production(self, chemical: ChemicalName, quantity: int):
-        self._to_produce[chemical] += quantity
+        if chemical == 'ORE':
+            self.ore += quantity
+        else:
+            self._to_produce[chemical] += quantity
 
     def produce(self):
-        raise NotImplementedError
+        while self._to_produce:
+            chemical_name, desired_quantity = self._to_produce.popitem()
+            reaction = self._reactions[chemical_name]
+            multiplier = get_multiplier(desired_quantity, reaction.quantity)
+
+            for chemical_recipe in reaction.ins:
+                self.add_to_production(
+                    chemical_recipe.name,
+                    chemical_recipe.quantity * multiplier
+                )
 
 
 def solve(task: str) -> int:
