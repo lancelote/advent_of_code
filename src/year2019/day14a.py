@@ -34,6 +34,7 @@ class Factory:
     def __init__(self, reactions: Optional[REACTIONS] = None):
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
         self._reactions = reactions if reactions else dict()
+        self.ore: int = 0
 
     @classmethod
     def from_raw_data(cls, data: str) -> Factory:
@@ -56,10 +57,6 @@ class Factory:
 
     def produce(self):
         raise NotImplementedError
-
-    @property
-    def ore(self) -> int:
-        return self._to_produce['ORE']
 
 
 def solve(task: str) -> int:
