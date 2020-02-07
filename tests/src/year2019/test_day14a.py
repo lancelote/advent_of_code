@@ -25,4 +25,14 @@ def test_read_task_data():
 
     factory = Factory.from_raw_data(test_data)
 
-    assert factory.reactions == expected_reactions
+    assert factory._reactions == expected_reactions
+
+
+def test_add_to_production():
+    factory = Factory()
+
+    factory.add_to_production('FOO', 1)
+    factory.add_to_production('BAR', 3)
+    factory.add_to_production('FOO', 1)
+
+    assert factory._to_produce == {'FOO': 2, 'BAR': 3}

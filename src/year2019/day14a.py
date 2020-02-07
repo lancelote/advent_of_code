@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Dict, List, DefaultDict
+from typing import Dict, List, DefaultDict, Optional
 
 
 ChemicalName = str
@@ -31,9 +31,9 @@ REACTIONS = Dict[ChemicalName, Reaction]
 
 
 class Factory:
-    def __init__(self, reactions: REACTIONS):
+    def __init__(self, reactions: Optional[REACTIONS] = None):
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
-        self.reactions = reactions
+        self._reactions = reactions if reactions else dict()
 
     @classmethod
     def from_raw_data(cls, data: str) -> Factory:
@@ -52,7 +52,7 @@ class Factory:
         return cls(reactions)
 
     def add_to_production(self, chemical: ChemicalName, quantity: int):
-        raise NotImplementedError
+        self._to_produce[chemical] += quantity
 
     def produce(self):
         raise NotImplementedError
