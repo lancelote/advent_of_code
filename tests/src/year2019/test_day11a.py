@@ -5,12 +5,12 @@ from dataclasses import dataclass, field
 from typing import Deque
 
 from src.year2019.day11a import (
-    Robot, Direction, Coordinates, Hull, Color, Panel
+    Robot, Direction, Coordinates, Hull, Color, Panel, Computer
 )
 
 
 @dataclass
-class MockComputer:
+class MockComputer(Computer):
     stdin: Deque[int] = field(default_factory=deque)
     stdout: Deque[int] = field(default_factory=deque)
 
