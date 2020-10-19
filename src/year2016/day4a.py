@@ -30,7 +30,7 @@ from typing import List
 
 Room = namedtuple('Room', 'name sector_id checksum')
 ROOM_PATTERN = re.compile(
-    r'^(?P<name>[a-z-]+)-(?P<sector_id>\d+)\[(?P<checksum>[a-z]+)\]$')
+    r'^(?P<name>[a-z-]+)-(?P<sector_id>\d+)\[(?P<checksum>[a-z]+)]$')
 
 
 def process_data(data: str) -> List[Room]:
