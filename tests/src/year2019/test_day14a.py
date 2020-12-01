@@ -40,7 +40,7 @@ def test_add_to_production():
     assert factory._to_produce == {'FOO': 2, 'BAR': 3}
 
 
-@pytest.mark.integation
+@pytest.mark.xfail
 @pytest.mark.parametrize('data,expected', [
     (
         dedent("""
