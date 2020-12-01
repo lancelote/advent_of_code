@@ -36,17 +36,17 @@ class Instruction(ABC):
     @classmethod
     def get_param_addrs(cls, n: int, computer: Computer):
         """Get given parameter for instruction."""
-        mode = computer.mode.rjust(cls.parameters, '0')[-n]
+        mode = computer.mode.rjust(cls.parameters, "0")[-n]
         addr1 = computer.current_position + n
         addr0 = computer[addr1]
-        if mode == '0':  # position mode
+        if mode == "0":  # position mode
             return addr0
-        elif mode == '1':  # immediate mode
+        elif mode == "1":  # immediate mode
             return addr1
-        elif mode == '2':  # relative mode
+        elif mode == "2":  # relative mode
             return addr0 + computer.relative_base
         else:
-            raise UnknownModeException(f'unknown mode {mode}')
+            raise UnknownModeException(f"unknown mode {mode}")
 
     @classmethod
     def next_instruction(cls, computer: Computer):
@@ -259,7 +259,7 @@ class Computer:
 
     def load_program(self, string: str):
         """Load program to memory."""
-        for i, opcode in enumerate(map(int, string.split(','))):
+        for i, opcode in enumerate(map(int, string.split(","))):
             self._sram[i] = opcode
 
     def next(self, n: int = 1):
@@ -318,8 +318,10 @@ class Computer:
         """Get current instruction class."""
         try:
             return INSTRUCTIONS[self.opcode]
-        except KeyError:
-            raise InstructionException(f'unknown opcode {self.opcode}')
+        except KeyError as exc:
+            raise InstructionException(
+                f"unknown opcode {self.opcode}"
+            ) from exc
 
     @property
     def opcode(self) -> int:

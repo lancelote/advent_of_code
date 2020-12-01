@@ -7,12 +7,13 @@ from src.year2018.day2a import process_data, solve
 
 
 def test_process_data():
-    expected = [Counter({'a': 2, 'b': 1}), Counter({'c': 2})]
-    assert list(process_data('aab\ncc')) == expected
+    expected = [Counter({"a": 2, "b": 1}), Counter({"c": 2})]
+    assert list(process_data("aab\ncc")) == expected
 
 
 def test_solve():
-    task = dedent("""
+    task = dedent(
+        """
         abcdef
         bababc
         abbcde
@@ -20,5 +21,6 @@ def test_solve():
         aabcdd
         abcdee
         ababab
-    """)
+    """
+    )
     assert solve(task) == 12

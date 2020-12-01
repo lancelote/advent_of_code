@@ -4,7 +4,6 @@ from src.year2017.day2b import find_division, solve
 
 
 class TestFindDivision:
-
     def test_small_first(self):
         assert find_division([5, 9, 2, 8]) == 4
         assert find_division([3, 8, 6, 5]) == 2

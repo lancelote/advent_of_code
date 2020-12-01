@@ -1,5 +1,3 @@
-
-
 """Day 11 Part 2: Chronal Charge.
 
 You discover a dial on the side of the device; it seems to let you select a
@@ -42,7 +40,7 @@ class CachedGrid(Grid):
             power += self.cells[(dx, y + size - 1)]
         return power
 
-    @lru_cache(10**7)
+    @lru_cache(10 ** 7)
     def get_square_power(self, x: int, y: int, size: int) -> Power:
         """Calculate a cell square sum power by caching previous calls."""
         if size == 1:
@@ -59,7 +57,7 @@ def solve(task: str) -> Tuple[Cell, Size]:
     biggest_power = 0
     biggest_cell = (0, 0)
     for size in range(1, 50):  # Limit the search
-        print('size:', size)
+        print("size:", size)
         cell, power = grid.get_biggest_square(size)
         if power > biggest_power:
             biggest_cell = cell

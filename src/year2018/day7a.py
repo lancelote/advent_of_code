@@ -74,15 +74,16 @@ def process_date(data: str) -> Parents:
     """Generate a dict of step: parents from raw data."""
     parents: Parents = defaultdict(set)
 
-    for line in data.strip().split('\n'):
+    for line in data.strip().split("\n"):
         parent, child = line[5], line[36]
         parents[child].add(parent)
 
     return parents
 
 
-def next_step(parents: Parents, done: Set[Step], todo: Set[Step]
-              ) -> Optional[Step]:
+def next_step(
+    parents: Parents, done: Set[Step], todo: Set[Step]
+) -> Optional[Step]:
     """Get next available step to do."""
     ready = set()
     for step in todo:
@@ -107,4 +108,4 @@ def ordered_steps(parents: Parents, steps: str) -> StepGenerator:
 def solve(task: str, steps=ascii_uppercase) -> str:
     """Find the sequence of steps."""
     parents = process_date(task)
-    return ''.join(ordered_steps(parents, steps))
+    return "".join(ordered_steps(parents, steps))

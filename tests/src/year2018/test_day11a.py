@@ -6,11 +6,11 @@ from src.year2018.day11a import solve
 
 
 @pytest.mark.parametrize(
-    ('serial', 'expected'),
+    ("serial", "expected"),
     [
-        ('18', (33, 45)),
-        ('42', (21, 61)),
-    ]
+        ("18", (33, 45)),
+        ("42", (21, 61)),
+    ],
 )
 def test_solve(serial, expected):
     assert solve(serial) == expected

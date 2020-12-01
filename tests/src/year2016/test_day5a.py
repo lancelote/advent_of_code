@@ -6,6 +6,5 @@ from src.year2016.day5a import solve
 
 
 class ComputeHexHash(unittest.TestCase):
-
     def test_compute_hex_hash(self):
-        self.assertEqual(solve('abc'), '18f47a30')
+        self.assertEqual(solve("abc"), "18f47a30")

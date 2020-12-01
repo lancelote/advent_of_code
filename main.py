@@ -18,9 +18,9 @@ class Solver:
         """Print the result to a console."""
         task = get_data(day=day, year=year)
 
-        solver = importlib.import_module(f'src.year{year}.day{day}{part}')
+        solver = importlib.import_module(f"src.year{year}.day{day}{part}")
         solution = solver.solve(task)  # type: ignore
-        print('Answer:', solution)
+        print("Answer:", solution)
 
 
 @click.group()
@@ -31,14 +31,14 @@ def cli(ctx):
 
 
 @cli.command()
-@click.argument('year', type=YEAR)
-@click.argument('day', type=DAY)
-@click.argument('part', type=PART)
+@click.argument("year", type=YEAR)
+@click.argument("day", type=DAY)
+@click.argument("part", type=PART)
 @click.pass_obj
 def solve(solver, year, day, part):
     """Solve the given puzzle."""
     solver.main(year, day, part)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

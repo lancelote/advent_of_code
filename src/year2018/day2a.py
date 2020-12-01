@@ -49,7 +49,7 @@ from typing import Generator
 
 def process_data(data: str) -> Generator[Counter, None, None]:
     """Create stream of counters for each input line."""
-    for box in data.strip().split('\n'):
+    for box in data.strip().split("\n"):
         yield Counter(box)
 
 

@@ -5,7 +5,13 @@ from dataclasses import dataclass, field
 from typing import Deque
 
 from src.year2019.day11a import (
-    Robot, Direction, Coordinates, Hull, Color, Panel, Computer
+    Robot,
+    Direction,
+    Coordinates,
+    Hull,
+    Color,
+    Panel,
+    Computer,
 )
 
 

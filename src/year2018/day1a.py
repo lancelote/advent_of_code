@@ -53,7 +53,7 @@ from typing import Generator
 
 def process_data(data: str) -> Generator[int, None, None]:
     """Process frequency data yielding each change as integer."""
-    for change in data.strip().split('\n'):
+    for change in data.strip().split("\n"):
         yield int(change)
 
 

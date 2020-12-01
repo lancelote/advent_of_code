@@ -7,6 +7,5 @@ from tests.src.year2016.test_day6a import EXAMPLE_TASK
 
 
 class SolveTest(unittest.TestCase):
-
     def test_solve(self):
-        self.assertEqual(solve(EXAMPLE_TASK), 'advent')
+        self.assertEqual(solve(EXAMPLE_TASK), "advent")

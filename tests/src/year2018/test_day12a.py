@@ -5,13 +5,18 @@ from textwrap import dedent
 import pytest
 
 from src.year2018.day12a import (
-    get_pattern, get_new_generation, process_data, solve, Pot
+    get_pattern,
+    get_new_generation,
+    process_data,
+    solve,
+    Pot,
 )
 
 
 @pytest.fixture
 def task():
-    return dedent("""
+    return dedent(
+        """
     initial state: #..#.#..##......###...###
 
     ...## => #
@@ -28,25 +33,28 @@ def task():
     ###.. => #
     ###.# => #
     ####. => #
-    """)
+    """
+    )
 
 
 def test_process_data():
-    test_data = dedent("""
+    test_data = dedent(
+        """
         initial state: .##..
 
         ##.#. => #
         ##... => #
         #.... => .
-    """)
+    """
+    )
     expected_plants = {
         1: Pot.PLANT,
         2: Pot.PLANT,
     }
     expected_patterns = {
-        '##.#.': Pot.PLANT,
-        '##...': Pot.PLANT,
-        '#....': Pot.EMPTY,
+        "##.#.": Pot.PLANT,
+        "##...": Pot.PLANT,
+        "#....": Pot.EMPTY,
     }
 
     actual_state, actual_patterns = process_data(test_data)
@@ -56,7 +64,7 @@ def test_process_data():
 
 def test_get_pattern():
     test_plants = {1: Pot.PLANT, 3: Pot.PLANT}
-    assert get_pattern(test_plants, 2) == '.#.#.'
+    assert get_pattern(test_plants, 2) == ".#.#."
 
 
 def test_solve(task):
@@ -74,6 +82,6 @@ def test_get_new_generation(task):
         15: Pot.PLANT,
         18: Pot.PLANT,
         21: Pot.PLANT,
-        24: Pot.PLANT
+        24: Pot.PLANT,
     }
     assert new_generation == expected_generation

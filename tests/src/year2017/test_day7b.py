@@ -6,14 +6,14 @@ from src.year2017.day7b import solve, find_unique
 
 
 @pytest.mark.parametrize(
-    ('items', 'expected'),
+    ("items", "expected"),
     [
         ([2, 1, 1], (-1, 0)),
         ([0, 1, 1], (1, 0)),
         ([1, 1, 2], (-1, 2)),
         ([1, 1, 0], (1, 2)),
-        ([1, 2, 1], (-1, 1))
-    ]
+        ([1, 2, 1], (-1, 1)),
+    ],
 )
 def test_find_unique(items, expected):
     assert find_unique(items) == expected

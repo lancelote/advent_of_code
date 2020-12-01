@@ -19,10 +19,12 @@ class Chart:
     @classmethod
     def from_string(cls, string: str) -> Chart:
         """Covert a raw task into a chart."""
-        return cls([
-            [location == '#' for location in line]
-            for line in string.strip().split('\n')
-        ])
+        return cls(
+            [
+                [location == "#" for location in line]
+                for line in string.strip().split("\n")
+            ]
+        )
 
     def not_base(self, x: int, y: int) -> bool:
         """Check if a given point is a base."""
@@ -58,7 +60,7 @@ class Chart:
         incl_x = -norm_y
         incl_y = norm_x
 
-        return math.sqrt(incl_x**2 + incl_y**2)
+        return math.sqrt(incl_x ** 2 + incl_y ** 2)
 
     def seen_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""
@@ -95,7 +97,7 @@ class Chart:
                 if n == 0:
                     return x, y
 
-        raise ValueError(f'cannot reach {n} asteroid')
+        raise ValueError(f"cannot reach {n} asteroid")
 
     @property
     def optimal_station_position(self) -> Tuple[int, int, int]:

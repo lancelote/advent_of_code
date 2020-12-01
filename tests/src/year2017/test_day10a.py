@@ -5,18 +5,18 @@ import pytest
 from src.year2017.day10a import process_data, Rope
 
 
-@pytest.fixture(name='rope')
+@pytest.fixture(name="rope")
 def fixture_rope():
     return Rope([0, 1, 2, 3, 4])
 
 
 @pytest.mark.parametrize(
-    ('rope', 'expected'),
+    ("rope", "expected"),
     [
         (Rope([1, 2, 3]), 2),
         (Rope([3, 4, 5]), 12),
         (Rope([2, 0, 1]), 0),
-    ]
+    ],
 )
 def test_first_two_multiply(rope, expected):
     assert rope.first_two_multiply() == expected
@@ -28,7 +28,7 @@ def test_reverse(rope):
         [2, 1, 0, 3, 4],
         [4, 3, 0, 1, 2],
         [4, 3, 0, 1, 2],
-        [3, 4, 2, 1, 0]
+        [3, 4, 2, 1, 0],
     ]
     for length, shape in zip(lengths, shapes):
         rope.reverse(length)
@@ -46,4 +46,4 @@ def test_move(rope):
 
 
 def test_process_data():
-    assert process_data('1,2,3\n') == [1, 2, 3]
+    assert process_data("1,2,3\n") == [1, 2, 3]

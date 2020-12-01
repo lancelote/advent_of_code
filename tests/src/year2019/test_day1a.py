@@ -9,11 +9,14 @@ def test_process_data():
     assert process_data(test_data) == [12, 14, 1969, 100756]
 
 
-@pytest.mark.parametrize('mass,fuel', [
-    (12, 2),
-    (14, 2),
-    (1969, 654),
-    (100756, 33583),
-])
+@pytest.mark.parametrize(
+    "mass,fuel",
+    [
+        (12, 2),
+        (14, 2),
+        (1969, 654),
+        (100756, 33583),
+    ],
+)
 def test_count_fuel(mass, fuel):
     assert count_fuel(mass) == fuel

@@ -24,7 +24,7 @@ from src.year2016.day6a import process_data
 
 def solve(task: str) -> str:
     """Filter errors from the message."""
-    message = ''
+    message = ""
     for char in process_data(task):
         message += Counter(char).most_common()[-1][0]
     return message

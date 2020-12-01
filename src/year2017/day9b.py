@@ -27,16 +27,16 @@ def solve(task: str) -> int:
     for token in task.strip():
         if escape:
             escape = False
-        elif token == '>':
+        elif token == ">":
             garbage = False
-        elif token == '!':
+        elif token == "!":
             escape = True
         elif garbage:
             garbage_chars += 1
-        elif token == '{':
+        elif token == "{":
             pass
-        elif token == '}':
+        elif token == "}":
             pass
-        elif token == '<':
+        elif token == "<":
             garbage = True
     return garbage_chars

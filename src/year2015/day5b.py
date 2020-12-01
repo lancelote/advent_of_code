@@ -46,8 +46,8 @@ def is_nice(word):
         bool: True if nice, False if naughty
 
     """
-    pairs = len(re.findall(r'(..).*\1', word))
-    guarded_letter = len(re.findall(r'(.).\1', word))
+    pairs = len(re.findall(r"(..).*\1", word))
+    guarded_letter = len(re.findall(r"(.).\1", word))
     return pairs >= 1 and guarded_letter >= 1
 
 

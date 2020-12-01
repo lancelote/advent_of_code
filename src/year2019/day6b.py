@@ -10,8 +10,8 @@ def process_data(data: str) -> MAP:
     """Create a orbit map from raw data."""
     orbit_map: MAP = defaultdict(set)
 
-    for line in data.strip().split('\n'):
-        obj1, obj2 = line.split(')')
+    for line in data.strip().split("\n"):
+        obj1, obj2 = line.split(")")
         orbit_map[obj1].add(obj2)
         orbit_map[obj2].add(obj1)
 
@@ -41,4 +41,4 @@ def closest_distance(start: str, stop: str, orbit_map: MAP) -> int:
 def solve(task: str) -> int:
     """Calculate closest distance between YOU and SAN."""
     orbit_map = process_data(task)
-    return closest_distance('YOU', 'SAN', orbit_map)
+    return closest_distance("YOU", "SAN", orbit_map)

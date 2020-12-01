@@ -26,12 +26,12 @@ For example:
 
 from collections import defaultdict, namedtuple
 
-Coordinates = namedtuple('Coordinates', ['x', 'y'])
+Coordinates = namedtuple("Coordinates", ["x", "y"])
 SHIFT = {
-    '<': Coordinates(-1, 0),
-    '^': Coordinates(0, 1),
-    '>': Coordinates(1, 0),
-    'v': Coordinates(0, -1)
+    "<": Coordinates(-1, 0),
+    "^": Coordinates(0, 1),
+    ">": Coordinates(1, 0),
+    "v": Coordinates(0, -1),
 }
 
 
@@ -50,8 +50,10 @@ def visit_houses(task):
     visited_houses[current_position] = 1
 
     for direction in task:
-        current_position = Coordinates(current_position.x - SHIFT[direction].x,
-                                       current_position.y - SHIFT[direction].y)
+        current_position = Coordinates(
+            current_position.x - SHIFT[direction].x,
+            current_position.y - SHIFT[direction].y,
+        )
         visited_houses[current_position] += 1
     return visited_houses
 

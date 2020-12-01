@@ -64,7 +64,7 @@ fabric. How many square inches of fabric are within two or more claims?
 import re
 from typing import Generator, List, NamedTuple
 
-PATTERN = r'^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$'
+PATTERN = r"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$"
 
 
 class Claim(NamedTuple):
@@ -89,7 +89,7 @@ def parse_claim(raw_claim: str) -> Claim:
 
 def process_data(data: str) -> Generator[Claim, None, None]:
     """Yield parsed claims from raw data."""
-    for raw_claim in data.strip().split('\n'):
+    for raw_claim in data.strip().split("\n"):
         yield parse_claim(raw_claim)
 
 

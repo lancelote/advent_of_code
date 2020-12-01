@@ -70,7 +70,7 @@ from typing import Tuple, List, Dict, Optional
 
 import re
 
-PATTERN = r'(?P<parent>\w+) \((?P<weight>\d+)\)( -> (?P<children>[\w, ]+))?'
+PATTERN = r"(?P<parent>\w+) \((?P<weight>\d+)\)( -> (?P<children>[\w, ]+))?"
 
 
 def process_line(line: str) -> Tuple[str, int, List[str]]:
@@ -83,11 +83,11 @@ def process_line(line: str) -> Tuple[str, int, List[str]]:
     """
     match = re.match(PATTERN, line)
     if not match:
-        raise ValueError('Wrong command format')
-    parent = match.group('parent')
-    weight = int(match.group('weight'))
-    children = match.group('children')
-    return parent, weight, children.split(', ') if children else []
+        raise ValueError("Wrong command format")
+    parent = match.group("parent")
+    weight = int(match.group("weight"))
+    children = match.group("children")
+    return parent, weight, children.split(", ") if children else []
 
 
 def process_data(data: str) -> List[Tuple[str, int, List[str]]]:
@@ -96,7 +96,7 @@ def process_data(data: str) -> List[Tuple[str, int, List[str]]]:
     Returns a list where each item is a parsed answer from each command. See
     process_line docstring for details per line.
     """
-    lines = data.strip().split('\n')
+    lines = data.strip().split("\n")
     return [process_line(line.strip()) for line in lines]
 
 
@@ -121,5 +121,5 @@ def solve(task: str) -> str:
             tree[child] = parent
     root = find_root(tree)
     if not root:
-        raise ValueError('Impossible to find a base command.')
+        raise ValueError("Impossible to find a base command.")
     return root

@@ -62,7 +62,7 @@ import re
 from collections import namedtuple
 from functools import lru_cache
 
-PATTERN = re.compile(r'^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$')
+PATTERN = re.compile(r"^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$")
 
 
 def process_data(data):
@@ -76,9 +76,9 @@ def process_data(data):
 
     """
     processed_data = []
-    command = namedtuple('Command', ['input_a', 'gate', 'input_b', 'output'])
+    command = namedtuple("Command", ["input_a", "gate", "input_b", "output"])
 
-    for line in data.strip().split('\n'):
+    for line in data.strip().split("\n"):
         input_a, gate, input_b, output = re.match(PATTERN, line).groups()
         processed_data.append(command(input_a, gate, input_b, output))
 
@@ -117,21 +117,22 @@ def get_value(wire, wires):
             value = int(wire.input_b)
         except ValueError:
             value = get_value(wires[wire.input_b], wires)
-    elif wire.gate == 'NOT':
+    elif wire.gate == "NOT":
         value = 65535 - get_value(wires[wire.input_b], wires)
-    elif wire.gate == 'RSHIFT':
+    elif wire.gate == "RSHIFT":
         value = get_value(wires[wire.input_a], wires) >> int(wire.input_b)
-    elif wire.gate == 'LSHIFT':
+    elif wire.gate == "LSHIFT":
         value = get_value(wires[wire.input_a], wires) << int(wire.input_b)
-    elif wire.gate == 'AND':
+    elif wire.gate == "AND":
         try:
             value_a = int(wire.input_a)
         except ValueError:
             value_a = get_value(wires[wire.input_a], wires)
         value = value_a & get_value(wires[wire.input_b], wires)
-    elif wire.gate == 'OR':
-        value = get_value(wires[wire.input_a], wires) | \
-            get_value(wires[wire.input_b], wires)
+    elif wire.gate == "OR":
+        value = get_value(wires[wire.input_a], wires) | get_value(
+            wires[wire.input_b], wires
+        )
 
     # wires[wire.output] = value
     return value
@@ -153,4 +154,4 @@ def solve(task):
     for command in commands:
         wires[command.output] = command
 
-    return get_value(wires['a'], wires)
+    return get_value(wires["a"], wires)

@@ -35,7 +35,7 @@ def process_data(data: str) -> List[List[int]]:
 
     Return list of rows, each row item is integer.
     """
-    rows = [row.split('\t') for row in data.strip().split('\n')]
+    rows = [row.split("\t") for row in data.strip().split("\n")]
     return [[int(item) for item in row] for row in rows]
 
 

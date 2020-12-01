@@ -29,8 +29,8 @@ def solve(task: str) -> int:
         prev_diffs.append(new_diff)
         if len(set(prev_diffs)) == 1:
             stable_diff = new_diff
-            print(f'stable diff: {stable_diff}')
-            print(f'generation: {generations}')
+            print(f"stable diff: {stable_diff}")
+            print(f"generation: {generations}")
             break
 
         prev_sum = new_sum

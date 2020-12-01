@@ -13,7 +13,7 @@ def solve(task: str) -> int:
     """
     furthest = 0
     x, y, z = 0, 0, 0
-    for direction in task.strip().split(','):
+    for direction in task.strip().split(","):
         dx, dy, dz = SHIFTS[direction]
         x += dx
         y += dy

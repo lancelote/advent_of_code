@@ -20,17 +20,17 @@ class Tile(Enum):
 
     def __str__(self):
         if self.value == 0:
-            return ' '
+            return " "
         elif self.value == 1:
-            return '#'
+            return "#"
         elif self.value == 2:
-            return '□'
+            return "□"
         elif self.value == 3:
-            return '-'
+            return "-"
         elif self.value == 4:
-            return 'o'
+            return "o"
         else:
-            raise ValueError(f'unknown enum value: {self.value}')
+            raise ValueError(f"unknown enum value: {self.value}")
 
 
 class Arcade:
@@ -54,7 +54,7 @@ class Arcade:
             self.update_map()
             self.print()
             self.move_paddle()
-            os.system('clear')
+            os.system("clear")
 
     def move_paddle(self):
         """Move paddle automatically depending on ball position."""
@@ -88,8 +88,7 @@ class Arcade:
         max_y = max(self.map.keys(), key=lambda point: point[1])[1]
 
         canvas: List[List[Tile]] = [
-            [Tile.EMPTY for _ in range(max_x + 1)]
-            for _ in range(max_y + 1)
+            [Tile.EMPTY for _ in range(max_x + 1)] for _ in range(max_y + 1)
         ]
 
         for ((x, y), tile) in self.map.items():
@@ -97,7 +96,7 @@ class Arcade:
 
         for row in canvas:
             for item in row:
-                print(item, end='')
+                print(item, end="")
             print()
 
     def make_free(self):

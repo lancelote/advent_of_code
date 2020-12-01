@@ -32,7 +32,7 @@ def process_data(data: str) -> List[Tuple[int, int, int]]:
     Into list of tuples, where each item is a triangle with a, b, c sides
     """
     triangles = []
-    for triangle in data.strip().split('\n'):
+    for triangle in data.strip().split("\n"):
         a, b, c = triangle.split()
         triangles.append((int(a), int(b), int(c)))
     return triangles

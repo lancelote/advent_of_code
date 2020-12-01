@@ -40,9 +40,9 @@ def update_light(command, light):
 
     """
     logic = {
-        'toggle': light + 2,
-        'turn on': light + 1,
-        'turn off': light - 1 if light != 0 else 0
+        "toggle": light + 2,
+        "turn on": light + 1,
+        "turn off": light - 1 if light != 0 else 0,
     }
     return logic[command]
 

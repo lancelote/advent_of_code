@@ -79,7 +79,7 @@ def process_data(data: str) -> List[int]:
 
 def split(sequence: List, chunk) -> List[List]:
     """Split sequence into equal segments of the given length."""
-    return [sequence[i * chunk:(i + 1) * chunk] for i in range(chunk)]
+    return [sequence[i * chunk : (i + 1) * chunk] for i in range(chunk)]
 
 
 def compress(sparse_hash: List[int], chunk=16) -> List[int]:
@@ -102,4 +102,4 @@ def solve(task: str) -> str:
             rope.move(length)
     sparse_hash = rope.nodes
     dense_hash = compress(sparse_hash)
-    return ''.join(to_hex(number) for number in dense_hash)
+    return "".join(to_hex(number) for number in dense_hash)

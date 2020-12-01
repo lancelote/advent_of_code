@@ -55,7 +55,7 @@ from dataclasses import dataclass
 class Node:
     """Has a list of child-nodes and a metadata as a list of ints."""
 
-    children: List['Node']
+    children: List["Node"]
     metadata: List[int]
 
 
@@ -66,7 +66,7 @@ def parse_tree(data: List[int], start=0) -> Tuple[Node, int]:
 
     if children_num == 0:
         end = start + 2 + metadata_len
-        metadata = data[start + 2:end]
+        metadata = data[start + 2 : end]
         return Node(children=[], metadata=metadata), end
 
     else:
@@ -76,7 +76,10 @@ def parse_tree(data: List[int], start=0) -> Tuple[Node, int]:
         for _ in range(children_num):
             child, end = parse_tree(data, end)
             children.append(child)
-        return Node(children, data[end:end + metadata_len]), end + metadata_len
+        return (
+            Node(children, data[end : end + metadata_len]),
+            end + metadata_len,
+        )
 
 
 def sum_metadata(node: Node) -> int:

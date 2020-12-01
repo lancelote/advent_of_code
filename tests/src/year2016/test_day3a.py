@@ -7,20 +7,18 @@ from src.year2016.day3a import process_data, is_bad, solve
 
 
 class ProcessDataTest(unittest.TestCase):
-
     def test_process_single_line(self):
-        line = '    4   21  894'
+        line = "    4   21  894"
         expected_triangles = [(4, 21, 894)]
         self.assertEqual(process_data(line), expected_triangles)
 
     def test_process_multiple_lines(self):
-        lines = '  419  794  987\n  424  797  125'
+        lines = "  419  794  987\n  424  797  125"
         expected_triangles = [(419, 794, 987), (424, 797, 125)]
         self.assertEqual(process_data(lines), expected_triangles)
 
 
 class IsBadTest(unittest.TestCase):
-
     def test_bad(self):
         for bad_triangle in permutations((5, 10, 25)):
             # noinspection PyTypeChecker
@@ -37,7 +35,6 @@ class IsBadTest(unittest.TestCase):
 
 
 class SolveTest(unittest.TestCase):
-
     def test_solve(self):
-        data = '    1 2 3\n    4 5 6\n   17 8 100'
+        data = "    1 2 3\n    4 5 6\n   17 8 100"
         self.assertEqual(solve(data), 1)

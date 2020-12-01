@@ -47,7 +47,7 @@ def process_data(task):
         list: ['agagasdgsdg', 'aasdfasgsdg', ...]
 
     """
-    data = task.strip().split('\n')
+    data = task.strip().split("\n")
     return data
 
 
@@ -61,9 +61,9 @@ def is_nice(word):
         bool: True if nice, False if naughty
 
     """
-    vowels = len(re.findall(r'[aeiou]', word))
-    pairs = len(re.findall(r'(.)\1', word))
-    banned = len(re.findall(r'ab|cd|pq|xy', word))
+    vowels = len(re.findall(r"[aeiou]", word))
+    pairs = len(re.findall(r"(.)\1", word))
+    banned = len(re.findall(r"ab|cd|pq|xy", word))
     return vowels > 2 and pairs > 0 and banned == 0
 
 

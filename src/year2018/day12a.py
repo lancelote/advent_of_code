@@ -110,8 +110,8 @@ from typing import Dict, Tuple
 class Pot(Enum):
     """Represent a pot with (#) or without (.) a plant."""
 
-    EMPTY = '.'
-    PLANT = '#'
+    EMPTY = "."
+    PLANT = "#"
 
 
 POT_ID = int
@@ -122,23 +122,23 @@ PATTERNS = Dict[PATTERN, Pot]
 
 def process_data(task: str) -> Tuple[GEN, PATTERNS]:
     """Convert raw data into initial generation and the list of patterns."""
-    data_lines = task.strip().split('\n')
+    data_lines = task.strip().split("\n")
     raw_initial_state = data_lines[0].split()[2]
 
     start_generation: GEN = dict()
     for i, pot in enumerate(raw_initial_state):
-        if pot == '#':
+        if pot == "#":
             start_generation[i] = Pot.PLANT
 
     patterns: PATTERNS = dict()
     for line in data_lines[2:]:
         pattern, _, pot = line.split()
-        if pot == '#':
+        if pot == "#":
             patterns[pattern] = Pot.PLANT
-        elif pot == '.':
+        elif pot == ".":
             patterns[pattern] = Pot.EMPTY
         else:
-            raise ValueError(f'Unknown plot state: {pot}')
+            raise ValueError(f"Unknown plot state: {pot}")
 
     return start_generation, patterns
 
@@ -146,14 +146,14 @@ def process_data(task: str) -> Tuple[GEN, PATTERNS]:
 def get_pattern(generation: GEN, i: int) -> PATTERN:
     """Get around pattern for a given pot."""
     indexes = [i - 2, i - 1, i, i + 1, i + 2]
-    return ''.join(generation.get(index, Pot.EMPTY).value for index in indexes)
+    return "".join(generation.get(index, Pot.EMPTY).value for index in indexes)
 
 
 def print_plants(generation: GEN, generation_id: int = 0):
     """Print current plants layout."""
     start = min(generation.keys())
     end = max(generation.keys())
-    representation = ''
+    representation = ""
 
     for i in range(start, end + 1):
         representation += generation.get(i, Pot.EMPTY).value

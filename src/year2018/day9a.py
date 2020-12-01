@@ -91,44 +91,44 @@ class Marble:
     """Marble representation, stores the references to parent and child."""
 
     value: int = 0
-    parent: Optional['Marble'] = None
-    child: Optional['Marble'] = None
+    parent: Optional["Marble"] = None
+    child: Optional["Marble"] = None
 
-    def insert_new(self, marble: 'Marble'):
+    def insert_new(self, marble: "Marble"):
         """Insert a new marble between 1 and 2 from self."""
         first = self.child
         if not first:
-            raise ValueError('Marble has no child.')
+            raise ValueError("Marble has no child.")
         second = first.child
         if not second:
-            raise ValueError('Marble has not child.')
+            raise ValueError("Marble has not child.")
         first.child = marble
         marble.parent = first
         marble.child = second
         second.parent = marble
 
-    def remove_counter_clockwise(self, times: int) -> Tuple['Marble', int]:
+    def remove_counter_clockwise(self, times: int) -> Tuple["Marble", int]:
         """Remove item counter clockwise after times rotations."""
         before = self
         for _ in range(times - 1):
             if not before.parent:
-                raise ValueError('Marble has not parent.')
+                raise ValueError("Marble has not parent.")
             before = before.parent
         if not before:
-            raise ValueError('Counter clockwise turn should be done >1 times.')
+            raise ValueError("Counter clockwise turn should be done >1 times.")
         remove = before.parent
         if not remove:
-            raise ValueError('Marble has not parent.')
+            raise ValueError("Marble has not parent.")
         after = remove.parent
         if not after:
-            raise ValueError('Marble has not parent.')
+            raise ValueError("Marble has not parent.")
 
         after.child = before
         before.parent = after
         return before, remove.value
 
     @classmethod
-    def get_zero_marble(cls) -> 'Marble':
+    def get_zero_marble(cls) -> "Marble":
         """Instantiate first marble."""
         marble = cls()
         marble.parent = marble
@@ -136,7 +136,7 @@ class Marble:
         return marble
 
     def __str__(self):
-        return f'Marble({self.value})'
+        return f"Marble({self.value})"
 
 
 class Game:

@@ -6,25 +6,25 @@ from src.year2017.day7a import solve, process_line, process_data, find_root
 
 
 @pytest.mark.parametrize(
-    ('line', 'expected'),
+    ("line", "expected"),
     [
-        ('pbga (66)', ('pbga', 66, [])),
-        ('abcdefg (12345)', ('abcdefg', 12345, [])),
-        ('fwft (72) -> ktlj, cntj', ('fwft', 72, ['ktlj', 'cntj']))
-    ]
+        ("pbga (66)", ("pbga", 66, [])),
+        ("abcdefg (12345)", ("abcdefg", 12345, [])),
+        ("fwft (72) -> ktlj, cntj", ("fwft", 72, ["ktlj", "cntj"])),
+    ],
 )
 def test_process_line(line, expected):
     assert process_line(line) == expected
 
 
 def test_process_line_wrong_command_format():
-    with pytest.raises(ValueError, match='Wrong command format'):
-        process_line('hello world')
+    with pytest.raises(ValueError, match="Wrong command format"):
+        process_line("hello world")
 
 
 def test_process_line_wrong_weight_format():
-    with pytest.raises(ValueError, match='Wrong command format'):
-        process_line('pbga (hello)')
+    with pytest.raises(ValueError, match="Wrong command format"):
+        process_line("pbga (hello)")
 
 
 def test_process_data():
@@ -33,19 +33,19 @@ def test_process_data():
     ugml (68) -> gyxo, ebii, jptl
     """
     expected = [
-        ('jptl', 61, []),
-        ('ugml', 68, ['gyxo', 'ebii', 'jptl']),
+        ("jptl", 61, []),
+        ("ugml", 68, ["gyxo", "ebii", "jptl"]),
     ]
     assert process_data(data) == expected
 
 
 @pytest.mark.parametrize(
-    ('tree', 'expected'),
+    ("tree", "expected"),
     [
-        ({'b': 'a', 'c': 'a', 'a': None}, 'a'),
-        ({'b': 'a', 'a': 'b'}, None),
-        ({'d': 'b', 'b': 'a', 'a': None, 'c': 'a'}, 'a')
-    ]
+        ({"b": "a", "c": "a", "a": None}, "a"),
+        ({"b": "a", "a": "b"}, None),
+        ({"d": "b", "b": "a", "a": None, "c": "a"}, "a"),
+    ],
 )
 def test_find_root(tree, expected):
     assert find_root(tree) == expected
@@ -67,4 +67,4 @@ def test_solve():
     gyxo (61)
     cntj (57)
     """
-    assert solve(data) == 'tknk'
+    assert solve(data) == "tknk"

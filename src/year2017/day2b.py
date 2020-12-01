@@ -37,7 +37,7 @@ from src.year2017.day2a import process_data
 def find_division(row: List[int]) -> int:
     """Find two evenly divisible items and return the division result."""
     for i, item1 in enumerate(row):
-        for item2 in row[i + 1:]:
+        for item2 in row[i + 1 :]:
             if item1 % item2 == 0:
                 return item1 // item2
             if item2 % item1 == 0:

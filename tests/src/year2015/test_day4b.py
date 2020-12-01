@@ -6,6 +6,5 @@ from src.year2015.day4b import solve
 
 
 class TestSolve(unittest.TestCase):
-
     def test_returns_correct_result(self):
-        self.assertEqual(solve('yzbqklnj'), 9962624)
+        self.assertEqual(solve("yzbqklnj"), 9962624)

@@ -97,12 +97,12 @@ class Grid:
 
     def show(self):
         """Plot a human readable grid image."""
-        grid = [['.' for _ in range(self.side)] for _ in range(self.side)]
+        grid = [["." for _ in range(self.side)] for _ in range(self.side)]
         for cell, value in self.cells.items():
             x, y = cell
-            grid[y][x] = f'{value}'.rjust(2)
-        print('\n')
-        print('\n'.join(' '.join(line) for line in grid))
+            grid[y][x] = f"{value}".rjust(2)
+        print("\n")
+        print("\n".join(" ".join(line) for line in grid))
 
     @staticmethod
     def get_power_level(x: int, y: int, serial: int) -> Power:

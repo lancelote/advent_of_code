@@ -45,7 +45,7 @@ def count_fuel(mass: int) -> int:
 
 def process_data(data: str) -> List[int]:
     """Convert raw data to a list of modules masses."""
-    return [int(line) for line in data.strip().split('\n')]
+    return [int(line) for line in data.strip().split("\n")]
 
 
 def solve(task: str) -> int:

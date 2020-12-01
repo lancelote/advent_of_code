@@ -14,17 +14,17 @@ from src.year2019.intcode import Computer
 class Direction(Enum):
     """Direction for robot to move."""
 
-    UP = '^'
-    RIGHT = '>'
-    DOWN = 'v'
-    LEFT = '<'
+    UP = "^"
+    RIGHT = ">"
+    DOWN = "v"
+    LEFT = "<"
 
 
 LEFT_TURN = {
     Direction.UP: Direction.LEFT,
     Direction.RIGHT: Direction.UP,
     Direction.DOWN: Direction.RIGHT,
-    Direction.LEFT: Direction.DOWN
+    Direction.LEFT: Direction.DOWN,
 }
 
 RIGHT_TURN = {
@@ -56,8 +56,8 @@ SHIFT = {
 class Color(Enum):
     """Hull colors."""
 
-    WHITE = '#'
-    BLACK = '.'
+    WHITE = "#"
+    BLACK = "."
 
 
 @dataclass
@@ -83,7 +83,7 @@ class Hull(defaultdict):
         max_y = max(self.keys(), key=lambda point: point.y).y
 
         canvas = [
-            ['?' for _ in range(max_x - min_x + 1)]
+            ["?" for _ in range(max_x - min_x + 1)]
             for _ in range(max_y - min_y + 1)
         ]
 
@@ -94,7 +94,7 @@ class Hull(defaultdict):
 
         for row in canvas:
             for item in row:
-                print(item, end='')
+                print(item, end="")
             print()
 
 
@@ -138,7 +138,7 @@ class Robot:
         elif angle == 1:  # Right
             self.direction = RIGHT_TURN[self.direction]
         else:
-            raise ValueError(f'unknown angle {angle}')
+            raise ValueError(f"unknown angle {angle}")
 
     def move(self):
         """Move the robot to a next panel."""

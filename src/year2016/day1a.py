@@ -38,7 +38,7 @@ from typing import List
 
 from collections import namedtuple
 
-Instruction = namedtuple('Instruction', 'direction distance')
+Instruction = namedtuple("Instruction", "direction distance")
 
 
 class Point:
@@ -57,7 +57,7 @@ class Point:
 
     def move(self, direction: int, distance: int):
         """Move the point to given direction by given distance."""
-        if direction == 0:    # North
+        if direction == 0:  # North
             self.y += distance
         elif direction == 1:  # East
             self.x += distance
@@ -72,7 +72,7 @@ class Point:
 
     def __repr__(self):
         """Point(1, 2) -> (1, 2)."""
-        return '(%s, %s)' % (self.x, self.y)
+        return "(%s, %s)" % (self.x, self.y)
 
     def __eq__(self, other):
         """Check if the two Point equal (have the same coordinates)."""
@@ -81,15 +81,15 @@ class Point:
 
 def processed_data(data: str) -> List[Instruction]:
     """Convert raw sequence of instructions into the list of named tuples."""
-    return [Instruction(x[0], int(x[1:])) for x in data.split(', ')]
+    return [Instruction(x[0], int(x[1:])) for x in data.split(", ")]
 
 
 def update_direction(direction, turn):
     """Return the directions ID after the given turn."""
     answer = None
-    if turn == 'R':
+    if turn == "R":
         answer = (direction + 1) % 4
-    elif turn == 'L':
+    elif turn == "L":
         answer = (direction - 1) % 4
     return answer
 

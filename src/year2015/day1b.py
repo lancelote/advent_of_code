@@ -29,9 +29,9 @@ def solve(task):
     i = 0
     for char in task:
         i += 1
-        if char == '(':
+        if char == "(":
             level += 1
-        elif char == ')':
+        elif char == ")":
             level -= 1
         if level == -1:
             answer = i

@@ -75,13 +75,13 @@ class Keypad:
     def move(self, instruction: str, times=1) -> None:
         """Move Up(U), Right(R), Down(D) or Left(L)."""
         for _ in range(times):
-            if instruction == 'U' and self.can_move_up():
+            if instruction == "U" and self.can_move_up():
                 self.row -= 1
-            elif instruction == 'R' and self.can_move_right():
+            elif instruction == "R" and self.can_move_right():
                 self.col += 1
-            elif instruction == 'D' and self.can_move_down():
+            elif instruction == "D" and self.can_move_down():
                 self.row += 1
-            elif instruction == 'L' and self.can_move_left():
+            elif instruction == "L" and self.can_move_left():
                 self.col -= 1
 
     def can_move_up(self):
@@ -139,16 +139,13 @@ def processed_data(data: str) -> List[List[str]]:
     From: 'UR\nDL'
     To:   [['U', 'R'], ['D', 'L']
     """
-    return [list(instruction) for instruction in data.strip().split('\n')]
+    return [list(instruction) for instruction in data.strip().split("\n")]
 
 
 def solve(task: str) -> str:
     """Find the code for keypad according to instructions given."""
-    code = ''
-    keypad = Keypad([
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]])
+    code = ""
+    keypad = Keypad([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     digits = processed_data(task)
 
     for digit in digits:

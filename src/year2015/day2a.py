@@ -36,10 +36,10 @@ def process_data(data):
         list: list of tuples [(length, width, height), (...), ...]
 
     """
-    box = namedtuple('Box', ['length', 'height', 'width'])
+    box = namedtuple("Box", ["length", "height", "width"])
     dimensions = [
-        box(*[int(x) for x in size.split('x')])
-        for size in data.strip().split('\n')
+        box(*[int(x) for x in size.split("x")])
+        for size in data.strip().split("\n")
     ]
     return dimensions
 
@@ -60,7 +60,7 @@ def solve(task):
         sides = (
             size.length * size.height,
             size.length * size.width,
-            size.height * size.width
+            size.height * size.width,
         )
         result += 2 * sum(sides) + min(sides)
     return result

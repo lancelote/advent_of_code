@@ -46,7 +46,7 @@ def solve(task: str) -> int:
     """Find number of steps required to jump out of maze."""
     current_index = 0
     steps = 0
-    data = [int(item) for item in task.strip().split('\n')]
+    data = [int(item) for item in task.strip().split("\n")]
 
     while 0 <= current_index < len(data):
         next_index = current_index + data[current_index]

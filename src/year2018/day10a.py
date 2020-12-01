@@ -183,12 +183,12 @@ class Point:
     @classmethod
     def from_line(cls, line: str) -> Point:
         """Get Point from the line."""
-        return cls(*map(int, re.findall(r'[\d-]+', line)))
+        return cls(*map(int, re.findall(r"[\d-]+", line)))
 
     @classmethod
     def parse_task(cls, task: str) -> List[Point]:
         """Parse the given task returning a list of rescue points."""
-        return [cls.from_line(line) for line in task.strip().split('\n')]
+        return [cls.from_line(line) for line in task.strip().split("\n")]
 
     def move(self):
         """Move a star by one tick."""
@@ -252,13 +252,13 @@ class Sky:
         for _ in range(min_y, max_y + 1):
             line = []
             for _ in range(min_x, max_x + 1):
-                line.append('.')
+                line.append(".")
             sky.append(line)
 
         for point in self.points:
-            sky[point.y - min_y][point.x - min_x] = '#'
+            sky[point.y - min_y][point.x - min_x] = "#"
 
-        return '\n'.join(''.join(line) for line in sky)
+        return "\n".join("".join(line) for line in sky)
 
 
 def solve(task: str) -> None:

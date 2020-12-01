@@ -14,16 +14,20 @@ How many blocks away is the first location you visit twice?
 from copy import copy
 from typing import List, Generator
 
-from src.year2016.day1a import Point, processed_data, update_direction, \
-    Instruction
+from src.year2016.day1a import (
+    Point,
+    processed_data,
+    update_direction,
+    Instruction,
+)
 
 
 def in_between(start: Point, end: Point) -> Generator[Point, None, None]:
     """Generate points between start and end including end."""
     if start.x != end.x and start.y != end.y:
-        raise ValueError('Points not belong to same horizontal or vertical')
+        raise ValueError("Points not belong to same horizontal or vertical")
 
-    if start.x < end.x:    # East
+    if start.x < end.x:  # East
         difference = end.x - start.x
         for i in range(1, difference + 1):
             yield Point(start.x + i, start.y)
@@ -40,7 +44,7 @@ def in_between(start: Point, end: Point) -> Generator[Point, None, None]:
         for i in range(1, difference + 1):
             yield Point(start.x, start.y - i)
     else:
-        raise ValueError('Start point equals to end point')
+        raise ValueError("Start point equals to end point")
 
 
 def solve(task: str) -> int:

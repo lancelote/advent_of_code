@@ -37,11 +37,11 @@ def process_data(data: str) -> List[Tuple[int, int, int]]:
     Note that triangle sides are given in the columns and not in rows
     """
     triangles = []
-    rows = [row.split() for row in data.strip().split('\n')]
+    rows = [row.split() for row in data.strip().split("\n")]
     sides = list(map(int, chain.from_iterable(zip(*rows))))
 
     for i in range(0, len(sides), 3):
-        a, b, c = sides[i:i + 3]
+        a, b, c = sides[i : i + 3]
         triangles.append((a, b, c))
     return triangles
 

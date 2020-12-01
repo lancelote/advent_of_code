@@ -6,7 +6,8 @@ from src.year2018.day10b import solve
 
 
 def test_iterate_till_min_area():
-    task = dedent("""
+    task = dedent(
+        """
         position=< 9,  1> velocity=< 0,  2>
         position=< 7,  0> velocity=<-1,  0>
         position=< 3, -2> velocity=<-1,  1>
@@ -38,5 +39,6 @@ def test_iterate_till_min_area():
         position=< 5,  9> velocity=< 1, -2>
         position=<14,  7> velocity=<-2,  0>
         position=<-3,  6> velocity=< 2, -1>
-    """)
+    """
+    )
     assert solve(task) == 3

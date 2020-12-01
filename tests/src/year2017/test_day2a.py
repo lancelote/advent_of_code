@@ -5,7 +5,7 @@ import pytest
 from src.year2017.day2a import process_data, solve
 
 
-@pytest.fixture(name='data')
+@pytest.fixture(name="data")
 def fixture_data():
     return """5	1	9	5
     7	5	3

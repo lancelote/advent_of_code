@@ -40,5 +40,6 @@ def solve(task):
 
     """
     data = process_data(task)
-    return sum(2 * (sum(size) - max(size)) + reduce(mul, size, 1)
-               for size in data)
+    return sum(
+        2 * (sum(size) - max(size)) + reduce(mul, size, 1) for size in data
+    )

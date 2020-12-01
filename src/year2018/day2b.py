@@ -26,7 +26,7 @@ fgij.)
 
 def get_similar_id_part(box1: str, box2: str) -> str:
     """Get similar part between box1 and box2."""
-    common = ''
+    common = ""
     for i, char in enumerate(box1):
         if char == box2[i]:
             common += char
@@ -35,8 +35,8 @@ def get_similar_id_part(box1: str, box2: str) -> str:
 
 def solve(task: str) -> str:
     """Find first boxes with id different by 1 character."""
-    common = ''
-    boxes = task.strip().split('\n')
+    common = ""
+    boxes = task.strip().split("\n")
     limit = len(boxes[0]) - 1
 
     for i, box1 in enumerate(boxes):

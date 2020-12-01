@@ -28,7 +28,7 @@ def duplicates(passphrase: str) -> bool:
 def count_valid(passphrases: str, valid: Callable) -> int:
     """Count valid passphrases."""
     result = 0
-    for passphrase in passphrases.strip().split('\n'):
+    for passphrase in passphrases.strip().split("\n"):
         if valid(passphrase):
             result += 1
     return result

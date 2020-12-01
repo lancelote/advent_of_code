@@ -36,7 +36,7 @@ def solve(task: str) -> int:
     polymer = task.strip()
 
     for char in string.ascii_lowercase:
-        pattern = f'{char}|{char.upper()}'
-        results.append(length(re.sub(pattern, '', polymer)))
+        pattern = f"{char}|{char.upper()}"
+        results.append(length(re.sub(pattern, "", polymer)))
 
     return min(results)

@@ -71,19 +71,19 @@ def solve(task: str, steps=ascii_uppercase, workers=5, duration=60) -> int:
         # Get complete jobs or update work time
         for worker in workers:
             # In progress
-            if job_time[worker] != 0 and job_step[worker] != '':
+            if job_time[worker] != 0 and job_step[worker] != "":
                 job_time[worker] -= 1
 
             # Done
             else:
-                if job_time[worker] == 0 and job_step[worker] != '':
+                if job_time[worker] == 0 and job_step[worker] != "":
                     done.add(job_step[worker])
-                    job_step[worker] = ''
+                    job_step[worker] = ""
 
         # Assign new jobs
         for worker in workers:
             # Ready to work
-            if job_step[worker] == '':
+            if job_step[worker] == "":
                 new_step = next_step(parents, done, todo)
                 if new_step:
                     todo.remove(new_step)

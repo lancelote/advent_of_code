@@ -4,4 +4,4 @@ from src.year2017.day11b import solve
 
 
 def test_solve():
-    assert solve('n,n,n,s') == 3
+    assert solve("n,n,n,s") == 3

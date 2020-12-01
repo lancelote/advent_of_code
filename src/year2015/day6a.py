@@ -33,7 +33,7 @@ After following the instructions, how many lights are lit?
 import re
 from collections import namedtuple
 
-PATTERN = re.compile(r'([a-z ]*) ([\d,]*) through ([\d,]*)')
+PATTERN = re.compile(r"([a-z ]*) ([\d,]*) through ([\d,]*)")
 
 
 def process_data(data):
@@ -48,13 +48,13 @@ def process_data(data):
 
     """
     processed_data = []
-    coordinates = namedtuple('Coordinates', ['x', 'y'])
-    instruction = namedtuple('Instruction', ['command', 'start', 'end'])
+    coordinates = namedtuple("Coordinates", ["x", "y"])
+    instruction = namedtuple("Instruction", ["command", "start", "end"])
 
-    for string in data.strip().split('\n'):
+    for string in data.strip().split("\n"):
         command, start, end = re.match(PATTERN, string).groups()
-        start = coordinates(*map(int, start.split(',')))
-        end = coordinates(*map(int, end.split(',')))
+        start = coordinates(*map(int, start.split(",")))
+        end = coordinates(*map(int, end.split(",")))
         processed_data.append(instruction(command, start, end))
 
     return processed_data
@@ -71,11 +71,7 @@ def update_light(command, light):
         bool: New light status
 
     """
-    logic = {
-        'toggle': not light,
-        'turn on': True,
-        'turn off': False
-    }
+    logic = {"toggle": not light, "turn on": True, "turn off": False}
     return logic[command]
 
 

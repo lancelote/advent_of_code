@@ -32,12 +32,12 @@ For example:
 """
 
 SHIFTS = {
-    'n': (0, 1, -1),
-    'ne': (1, 0, -1),
-    'se': (1, -1, 0),
-    's': (0, -1, 1),
-    'sw': (-1, 0, 1),
-    'nw': (-1, 1, 0),
+    "n": (0, 1, -1),
+    "ne": (1, 0, -1),
+    "se": (1, -1, 0),
+    "s": (0, -1, 1),
+    "sw": (-1, 0, 1),
+    "nw": (-1, 1, 0),
 }
 
 
@@ -47,7 +47,7 @@ def solve(task: str) -> int:
     Relevant docs: https://www.redblobgames.com/grids/hexagons/
     """
     x, y, z = 0, 0, 0
-    for direction in task.strip().split(','):
+    for direction in task.strip().split(","):
         dx, dy, dz = SHIFTS[direction]
         x += dx
         y += dy

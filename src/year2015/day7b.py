@@ -28,6 +28,6 @@ def solve(task):
     for command in commands:
         wires[command.output] = command
 
-    wires['b'] = get_value(wires['a'], wires)
+    wires["b"] = get_value(wires["a"], wires)
 
-    return get_value(wires['a'], wires)
+    return get_value(wires["a"], wires)

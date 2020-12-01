@@ -86,7 +86,7 @@ class Rope:
 
     def reverse(self, length):
         """Reverse selection of the rope."""
-        rope_view = cycle(self.nodes[self.pos:] + self.nodes[:self.pos])
+        rope_view = cycle(self.nodes[self.pos :] + self.nodes[: self.pos])
         selection = list(islice(rope_view, length))
         index = self.pos
         for node in reversed(selection):
@@ -105,7 +105,7 @@ class Rope:
 
 def process_data(data: str) -> List[int]:
     """Convert raw data into list of int lengths."""
-    return [int(length) for length in data.split(',')]
+    return [int(length) for length in data.split(",")]
 
 
 def solve(task: str) -> int:

@@ -34,14 +34,10 @@ from src.year2016.day2a import Keypad, processed_data
 
 def solve(task: str) -> str:
     """Find the code for keypad according to instructions given."""
-    code = ''
-    keypad = Keypad([
-        [1],
-        [2, 3, 4],
-        [5, 6, 7, 8, 9],
-        ['A', 'B', 'C'],
-        ['D']
-    ], row=2, col=0)
+    code = ""
+    keypad = Keypad(
+        [[1], [2, 3, 4], [5, 6, 7, 8, 9], ["A", "B", "C"], ["D"]], row=2, col=0
+    )
     digits = processed_data(task)
 
     for digit in digits:

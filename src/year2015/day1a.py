@@ -33,4 +33,4 @@ def solve(task):
         int: Puzzle solution
 
     """
-    return task.count('(') - task.count(')')
+    return task.count("(") - task.count(")")

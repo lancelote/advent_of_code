@@ -29,9 +29,9 @@ from typing import List, Generator
 class IP:
     """IPv7 representation."""
 
-    def __init__(self,
-                 supernet_parts: List[str],
-                 hypernet_parts: List[str]) -> None:
+    def __init__(
+        self, supernet_parts: List[str], hypernet_parts: List[str]
+    ) -> None:
         """Create an IPv7 instance.
 
         Args:
@@ -46,9 +46,11 @@ class IP:
     def _has_abba(part: str) -> bool:
         """Check if the string has ABBA."""
         for i in range(max(len(part) - 3, 0)):
-            if part[i] == part[i + 3] \
-                    and part[i + 1] == part[i + 2] \
-                    and part[i] != part[i + 1]:
+            if (
+                part[i] == part[i + 3]
+                and part[i + 1] == part[i + 2]
+                and part[i] != part[i + 1]
+            ):
                 return True
         return False
 
@@ -69,7 +71,7 @@ class IP:
         for super_part in self.supernet_parts:
             for i in range(max(len(super_part) - 2, 0)):
                 if super_part[i] == super_part[i + 2] != super_part[i + 1]:
-                    yield super_part[i:i + 3]
+                    yield super_part[i : i + 3]
 
     @property
     def support_ssl(self) -> bool:
@@ -85,23 +87,25 @@ class IP:
         """Check for IP equality by comparing supernet and hypernet parts."""
         if not isinstance(other, IP):
             return False
-        return self.supernet_parts == other.supernet_parts and \
-            self.hypernet_parts == other.hypernet_parts
+        return (
+            self.supernet_parts == other.supernet_parts
+            and self.hypernet_parts == other.hypernet_parts
+        )
 
 
 def process_line(line: str) -> IP:
     """Find all supernet and hypernet parts inside one line (ip)."""
-    part = ''
+    part = ""
     supernet_parts = []
     hypernet_parts = []
 
     for char in line:
-        if char == '[':
+        if char == "[":
             supernet_parts.append(part)
-            part = ''
-        elif char == ']':
+            part = ""
+        elif char == "]":
             hypernet_parts.append(part)
-            part = ''
+            part = ""
         else:
             part += char
 
@@ -113,7 +117,7 @@ def process_line(line: str) -> IP:
 def process_date(data: str) -> List[IP]:
     """Convert raw data in the list of ips with supernet and hypernet parts."""
     ips = []
-    for line in data.strip().split('\n'):
+    for line in data.strip().split("\n"):
         ips.append(process_line(line))
     return ips
 

@@ -6,25 +6,25 @@ from src.year2017.day4a import count_valid, duplicates
 
 
 @pytest.mark.parametrize(
-    ('task', 'expected'),
+    ("task", "expected"),
     [
-        ('aa aa\ncc cc', 0),
-        ('aa cc\naa bb\ncc cc', 2),
-        ('a\nc b a\na aa', 3),
-    ]
+        ("aa aa\ncc cc", 0),
+        ("aa cc\naa bb\ncc cc", 2),
+        ("a\nc b a\na aa", 3),
+    ],
 )
 def test_count_valid(task, expected):
     assert count_valid(task, valid=duplicates) == expected
 
 
 @pytest.mark.parametrize(
-    ('passphrase', 'expected'),
+    ("passphrase", "expected"),
     [
-        ('a aa', True),
-        ('a a', False),
-        ('bb bb', False),
-        ('a b c d a', False),
-    ]
+        ("a aa", True),
+        ("a a", False),
+        ("bb bb", False),
+        ("a b c d a", False),
+    ],
 )
 def test_are_duplicates(passphrase, expected):
     assert duplicates(passphrase) == expected

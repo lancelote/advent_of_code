@@ -64,10 +64,10 @@ from dataclasses import dataclass, field
 from typing import DefaultDict, Tuple
 
 SHIFT = {
-    'R': (1, 0),
-    'L': (-1, 0),
-    'U': (0, 1),
-    'D': (0, -1),
+    "R": (1, 0),
+    "L": (-1, 0),
+    "U": (0, 1),
+    "D": (0, -1),
 }
 
 Node = Tuple[int, int]
@@ -92,7 +92,7 @@ class Grid:
         """Add wire to the grid."""
         nodes = set()
 
-        for command in wire.strip().split(','):
+        for command in wire.strip().split(","):
             direction, steps = parse_command(command)
             for _ in range(steps):
                 self.shift(direction)
@@ -132,7 +132,7 @@ def solve(task: str) -> int:
     """Find the closest to (0, 0) intersection Manhattan distance."""
     grid = Grid()
 
-    for wire in task.strip().split('\n'):
+    for wire in task.strip().split("\n"):
         grid.plot(wire)
 
     return grid.closest

@@ -73,7 +73,7 @@ class Memory:
 
     def __str__(self):
         """Each bank to string separated by space."""
-        return ' '.join([str(bank) for bank in self.banks])
+        return " ".join([str(bank) for bank in self.banks])
 
 
 def solve(task: str) -> int:

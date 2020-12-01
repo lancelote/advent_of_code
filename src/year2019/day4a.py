@@ -39,7 +39,7 @@ def never_decrease(num: str) -> bool:
 
 def process_data(data: str):
     """Process initial data."""
-    return map(int, data.strip().split('-'))
+    return map(int, data.strip().split("-"))
 
 
 def get_passwords(start: int, stop: int) -> Password:
@@ -50,7 +50,10 @@ def get_passwords(start: int, stop: int) -> Password:
 def solve(task: str) -> int:
     """Count the number of possible passwords."""
     start, stop = process_data(task)
-    return len([
-        password for password in get_passwords(start, stop)
-        if two_adjacent(password) and never_decrease(password)
-    ])
+    return len(
+        [
+            password
+            for password in get_passwords(start, stop)
+            if two_adjacent(password) and never_decrease(password)
+        ]
+    )

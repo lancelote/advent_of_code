@@ -46,13 +46,13 @@ def process_data(data: str) -> List[Tuple[str, ...]]:
 
     Each tuple corresponds to one character.
     """
-    lines = data.strip().split('\n')
+    lines = data.strip().split("\n")
     return list(zip(*lines))
 
 
 def solve(task: str) -> str:
     """Filter errors from the message."""
-    message = ''
+    message = ""
     for char in process_data(task):
         message += Counter(char).most_common(1)[0][0]
     return message

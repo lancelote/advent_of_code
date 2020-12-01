@@ -4,15 +4,14 @@ from src.year2017.day6a import solve, Memory
 
 
 class TestMemory:
-
     def test_copy(self):
-        assert str(Memory([1, 2, 3])) == '1 2 3'
+        assert str(Memory([1, 2, 3])) == "1 2 3"
 
     def test_copy_multiple_digit_numbers(self):
-        assert str(Memory([11, 22, 33])) == '11 22 33'
+        assert str(Memory([11, 22, 33])) == "11 22 33"
 
     def test_copy_negative_numbers(self):
-        assert str(Memory([-1, -11, 111])) == '-1 -11 111'
+        assert str(Memory([-1, -11, 111])) == "-1 -11 111"
 
     def test_redistribute(self):
         memory = Memory([0, 2, 7, 0])
@@ -29,4 +28,4 @@ class TestMemory:
 
 
 def test_solve():
-    assert solve('0	2	7	0') == 5
+    assert solve("0	2	7	0") == 5

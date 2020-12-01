@@ -92,7 +92,7 @@ from operator import itemgetter
 from typing import DefaultDict, List, Optional, Tuple
 from dataclasses import dataclass
 
-RECORD_PATTERN = r'\[(.*)\] (?:(G)uard #(\d+)|(f)|(w))'
+RECORD_PATTERN = r"\[(.*)\] (?:(G)uard #(\d+)|(f)|(w))"
 
 
 class Event(Enum):
@@ -118,9 +118,9 @@ class Record:
         if match:
             stamp, new, guard, asleep, awake = match.groups()
         else:
-            raise ValueError('Unknown record format')
+            raise ValueError("Unknown record format")
 
-        time = dt.datetime.strptime(stamp, '%Y-%m-%d %H:%M')
+        time = dt.datetime.strptime(stamp, "%Y-%m-%d %H:%M")
         if new:
             event = Event.NEW
         elif asleep:
@@ -128,14 +128,14 @@ class Record:
         elif awake:
             event = Event.AWAKE
         else:
-            raise ValueError('Unknown event')
+            raise ValueError("Unknown event")
 
         return cls(time, event, int(guard) if guard else None)
 
     @classmethod
     def parse_all(cls, data: str) -> List[Record]:
         """Convert a bunch of lines into Record instances."""
-        records = [cls.parse(line) for line in data.strip().split('\n')]
+        records = [cls.parse(line) for line in data.strip().split("\n")]
         return sorted(records, key=lambda x: x.time)
 
     @classmethod

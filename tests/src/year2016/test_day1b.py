@@ -6,7 +6,6 @@ from src.year2016.day1b import solve, in_between, Point
 
 
 class InBetweenTest(unittest.TestCase):
-
     def test_east(self):
         points = list(in_between(Point(), Point(2, 0)))
         self.assertEqual(points, [Point(1, 0), Point(2, 0)])
@@ -37,10 +36,9 @@ class InBetweenTest(unittest.TestCase):
 
 
 class SolveTest(unittest.TestCase):
-
     def test_sample_path(self):
-        self.assertEqual(solve('R8, R4, R4, R8'), 4)
+        self.assertEqual(solve("R8, R4, R4, R8"), 4)
 
     def test_no_points_are_visited(self):
         with self.assertRaises(ValueError):
-            solve('R4 R4 R4')
+            solve("R4 R4 R4")

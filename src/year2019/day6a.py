@@ -25,8 +25,8 @@ def process_data(task: str) -> Dict[str, Object]:
     """Construct map from object name to object instance."""
     objects: Dict[str, Object] = {}
 
-    for line in task.strip().split('\n'):
-        obj1_name, obj2_name = line.split(')')
+    for line in task.strip().split("\n"):
+        obj1_name, obj2_name = line.split(")")
 
         planet = objects.get(obj1_name, Object(obj1_name))
         satellite = objects.get(obj2_name, Object(obj2_name))
@@ -42,4 +42,4 @@ def process_data(task: str) -> Dict[str, Object]:
 def solve(task: str) -> int:
     """Find the number of direct and indirect orbits."""
     orbit_map = process_data(task)
-    return orbit_map['COM'].traverse()
+    return orbit_map["COM"].traverse()

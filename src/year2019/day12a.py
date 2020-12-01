@@ -28,7 +28,7 @@ class Moon:
     @classmethod
     def from_string(cls, string: str) -> Moon:
         """Create Moon instance from raw data: e.g. "<x=1, y=3, z=-11>"."""
-        x, y, z = [int(part[2:]) for part in string[1:-1].split(', ')]
+        x, y, z = [int(part[2:]) for part in string[1:-1].split(", ")]
         return cls(x, y, z)
 
     @property
@@ -99,7 +99,7 @@ class System:
             <x=-1, y=-15, z=2>
             <x=12, y=-4, z=-4>
         """
-        moons = [Moon.from_string(line) for line in data.strip().split('\n')]
+        moons = [Moon.from_string(line) for line in data.strip().split("\n")]
         return cls(moons)
 
     @property

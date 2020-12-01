@@ -9,13 +9,13 @@ def find_top(layers: List[List[int]], pixel: int) -> str:
     """Find the given visible pixel number color."""
     for layer in layers:
         if layer[pixel] == 0:  # black
-            return ' '
+            return " "
         elif layer[pixel] == 1:  # white
-            return '#'
+            return "#"
         elif layer[pixel] == 2:  # transparent
             continue
-        raise ValueError(f'unexpected pixel color {layer[pixel]}')
-    raise ValueError(f'no visible pixel at position {pixel}')
+        raise ValueError(f"unexpected pixel color {layer[pixel]}")
+    raise ValueError(f"no visible pixel at position {pixel}")
 
 
 def decode_image(layers: List[List[int]]) -> List[str]:
@@ -28,7 +28,7 @@ def print_image(image: List[str], cols: int) -> None:
     for i, pixel in enumerate(image):
         if i % cols == 0:
             print()
-        print(pixel, end='')
+        print(pixel, end="")
 
 
 def solve(task: str) -> int:

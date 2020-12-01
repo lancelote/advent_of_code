@@ -100,7 +100,7 @@ class Coordinate(ABC):
 
     def __str__(self) -> str:
         """E.g. `Coordinate(x, y)`."""
-        return f'{self.__class__.__name__}({self.x}, {self.y})'
+        return f"{self.__class__.__name__}({self.x}, {self.y})"
 
 
 class Dot(Coordinate):
@@ -119,24 +119,20 @@ class Pin(Coordinate):
     @classmethod
     def from_string(cls, line: str) -> Pin:
         """From '81, 252' string."""
-        x, y = line.split(', ')
+        x, y = line.split(", ")
         return cls(int(x), int(y))
 
     @classmethod
     def parse_task(cls, task: str) -> List[Pin]:
         """Parse one coordinate per line from task input."""
-        return [Pin.from_string(line) for line in task.strip().split('\n')]
+        return [Pin.from_string(line) for line in task.strip().split("\n")]
 
 
 class Grid:
     """A gird of time dots with pins."""
 
     def __init__(
-            self,
-            pins: List[Pin],
-            dots: List[Dot],
-            width: int,
-            height: int
+        self, pins: List[Pin], dots: List[Dot], width: int, height: int
     ):
         """With list pof pins and dots on the grid."""
         self.pins = pins
@@ -146,12 +142,14 @@ class Grid:
 
     def __eq__(self, other: Any) -> bool:
         assert isinstance(other, Grid)
-        return all([
-            self.pins == other.pins,
-            self.dots == other.dots,
-            self.width == other.width,
-            self.height == other.height
-        ])
+        return all(
+            [
+                self.pins == other.pins,
+                self.dots == other.dots,
+                self.width == other.width,
+                self.height == other.height,
+            ]
+        )
 
     @classmethod
     def parse_task(cls, task: str):
@@ -206,11 +204,11 @@ class Grid:
         for pin, name in zip(self.pins, ascii_lowercase):
             names[pin] = name
 
-        data = [['.' for _ in range(self.width)] for _ in range(self.height)]
+        data = [["." for _ in range(self.width)] for _ in range(self.height)]
         for dot in self.dots:
-            data[dot.y][dot.x] = names.get(dot.closest, '.')
+            data[dot.y][dot.x] = names.get(dot.closest, ".")
 
-        print('\n'.join(''.join(row) for row in data))
+        print("\n".join("".join(row) for row in data))
 
 
 def solve(task: str) -> int:

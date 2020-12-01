@@ -6,16 +6,16 @@ from src.year2017.day9b import solve
 
 
 @pytest.mark.parametrize(
-    ('stream', 'expected'),
+    ("stream", "expected"),
     [
-        ('<>', 0),
-        ('<random characters>', 17),
-        ('<<<<>', 3),
-        ('<{!>}>', 2),
-        ('<!!>', 0),
-        ('<!!!>>', 0),
-        ('<{o"i!a,<{i<a>', 10)
-    ]
+        ("<>", 0),
+        ("<random characters>", 17),
+        ("<<<<>", 3),
+        ("<{!>}>", 2),
+        ("<!!>", 0),
+        ("<!!!>>", 0),
+        ('<{o"i!a,<{i<a>', 10),
+    ],
 )
 def test_solve(stream, expected):
     assert solve(stream) == expected

@@ -61,7 +61,7 @@ class Grid(BaseGrid):
         step = 0
         nodes: DefaultDict[Node, int] = defaultdict(int)
 
-        for command in wire.strip().split(','):
+        for command in wire.strip().split(","):
             direction, steps = parse_command(command)
             for _ in range(steps):
                 step += 1
@@ -96,7 +96,7 @@ def solve(task: str) -> int:
     """Find the closest intersection based on the wires length to it."""
     grid = Grid()
 
-    for wire in task.strip().split('\n'):
+    for wire in task.strip().split("\n"):
         grid.plot(wire)
 
     return grid.closest

@@ -46,9 +46,9 @@ def find_unique(children: List[int]) -> Tuple[int, int]:
     return common - unique, children.index(unique)
 
 
-def unbalanced(command: str,
-               tree: Dict[str, List[str]],
-               weights: Dict[str, int]) -> Tuple[bool, int]:
+def unbalanced(
+    command: str, tree: Dict[str, List[str]], weights: Dict[str, int]
+) -> Tuple[bool, int]:
     """Recursively search for unbalanced node."""
     children_weights = []
     children = tree[command]

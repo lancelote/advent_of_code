@@ -39,18 +39,19 @@ from typing import List, DefaultDict
 import operator
 from collections import namedtuple, defaultdict
 
-Instruction = namedtuple('Instruction', [
-    'register', 'op', 'value', 'base', 'check', 'limit'])
+Instruction = namedtuple(
+    "Instruction", ["register", "op", "value", "base", "check", "limit"]
+)
 
 OPERATORS = {
-    '>': operator.gt,
-    '<': operator.lt,
-    '>=': operator.ge,
-    '<=': operator.le,
-    '==': operator.eq,
-    '!=': operator.ne,
-    'inc': operator.iadd,
-    'dec': operator.isub,
+    ">": operator.gt,
+    "<": operator.lt,
+    ">=": operator.ge,
+    "<=": operator.le,
+    "==": operator.eq,
+    "!=": operator.ne,
+    "inc": operator.iadd,
+    "dec": operator.isub,
 }
 
 
@@ -63,7 +64,7 @@ def process_line(line: str) -> Instruction:
 def process_data(data: str) -> List[Instruction]:
     """Convert raw data in the easy to use list of Instruction instances."""
     instructions = []
-    for line in data.strip().split('\n'):
+    for line in data.strip().split("\n"):
         instruction = process_line(line)
         instructions.append(instruction)
     return instructions

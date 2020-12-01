@@ -6,11 +6,11 @@ import click
 
 
 SUPPORTED_YEARS = [
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-    '2019',
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
 ]
 
 
@@ -25,8 +25,8 @@ class YearType(click.ParamType):
             assert value in SUPPORTED_YEARS
             return int(value)
         except (TypeError, AssertionError):
-            supported_year = '/'.join(SUPPORTED_YEARS)
-            self.fail(f'Expected {supported_year}, got {value}', param, ctx)
+            supported_year = "/".join(SUPPORTED_YEARS)
+            self.fail(f"Expected {supported_year}, got {value}", param, ctx)
 
 
 class DayType(click.ParamType):
@@ -41,7 +41,7 @@ class DayType(click.ParamType):
             assert value in range(1, 32)
             return value
         except (TypeError, AssertionError):
-            self.fail(f'Expected in range 1-31, got {value}', param, ctx)
+            self.fail(f"Expected in range 1-31, got {value}", param, ctx)
 
 
 class PartType(click.ParamType):
@@ -52,14 +52,14 @@ class PartType(click.ParamType):
 
     def convert(self, value, param, ctx):
         formatted_value = value.lower()
-        if formatted_value in ['a', 'b']:
+        if formatted_value in ["a", "b"]:
             return formatted_value
         else:
-            self.fail(f'Expected either A or B, got {value}', param, ctx)
+            self.fail(f"Expected either A or B, got {value}", param, ctx)
 
 
 YEAR = YearType()
 DAY = DayType()
 PART = PartType()
 
-__all__ = ['YEAR', 'DAY', 'PART']
+__all__ = ["YEAR", "DAY", "PART"]

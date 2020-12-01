@@ -23,7 +23,7 @@ def steps_until_repeat(task: str) -> int:
         system.step()
 
     x_steps = system.steps
-    print(f'x steps {x_steps}')
+    print(f"x steps {x_steps}")
 
     # Calculate ys
     system = System.from_raw_data(task)
@@ -34,7 +34,7 @@ def steps_until_repeat(task: str) -> int:
         system.step()
 
     y_steps = system.steps
-    print(f'y steps {y_steps}')
+    print(f"y steps {y_steps}")
 
     # Calculate zs
     system = System.from_raw_data(task)
@@ -45,7 +45,7 @@ def steps_until_repeat(task: str) -> int:
         system.step()
 
     z_steps = system.steps
-    print(f'z steps {z_steps}')
+    print(f"z steps {z_steps}")
 
     return lcd(lcd(x_steps, y_steps), z_steps)
 

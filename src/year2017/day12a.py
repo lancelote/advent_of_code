@@ -57,7 +57,7 @@ from collections import defaultdict
 
 def process_data(data: str) -> List[List[str]]:
     """Convert each line of data into list of ints where first is parent."""
-    return [re.findall(r'\d+', line) for line in data.strip().split('\n')]
+    return [re.findall(r"\d+", line) for line in data.strip().split("\n")]
 
 
 def process_nodes(connections: List[List[str]]) -> DefaultDict[str, Set[str]]:
@@ -75,4 +75,4 @@ def solve(task: str) -> int:
     """Find the biggest connected component in graph."""
     connections = process_data(task)
     nodes = process_nodes(connections)
-    return len(nodes['0'])
+    return len(nodes["0"])

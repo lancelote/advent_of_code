@@ -8,20 +8,25 @@ from src.year2019.day12a import Moon, System
 
 @pytest.fixture
 def sample_data():
-    return dedent("""
+    return dedent(
+        """
         <x=1, y=3, z=-11>
         <x=17, y=-10, z=-8>
         <x=-1, y=-15, z=2>
         <x=12, y=-4, z=-4>
-    """)
+    """
+    )
 
 
-@pytest.mark.parametrize('string,expected_moon', [
-    ('<x=1, y=3, z=-11>', Moon(1, 3, -11)),
-    ('<x=17, y=-10, z=-8>', Moon(17, -10, -8)),
-    ('<x=-1, y=-15, z=2>', Moon(-1, -15, 2)),
-    ('<x=12, y=-4, z=-4>', Moon(12, -4, -4)),
-])
+@pytest.mark.parametrize(
+    "string,expected_moon",
+    [
+        ("<x=1, y=3, z=-11>", Moon(1, 3, -11)),
+        ("<x=17, y=-10, z=-8>", Moon(17, -10, -8)),
+        ("<x=-1, y=-15, z=2>", Moon(-1, -15, 2)),
+        ("<x=12, y=-4, z=-4>", Moon(12, -4, -4)),
+    ],
+)
 def test_moon_from_string(string, expected_moon):
     assert Moon.from_string(string) == expected_moon
 
@@ -105,12 +110,14 @@ def test_moon_energy():
 
 
 def test_system_energy():
-    system = System([
-        Moon(2, 1, -3, -3, -2, 1),
-        Moon(1, -8, 0, -1, 1, 3),
-        Moon(3, -6, 1, 3, 2, -3),
-        Moon(2, 0, 4, 1, -1, -1),
-    ])
+    system = System(
+        [
+            Moon(2, 1, -3, -3, -2, 1),
+            Moon(1, -8, 0, -1, 1, 3),
+            Moon(3, -6, 1, 3, 2, -3),
+            Moon(2, 0, 4, 1, -1, -1),
+        ]
+    )
 
     assert system.potential_energy == 31
     assert system.kinetic_energy == 22

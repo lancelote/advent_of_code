@@ -7,7 +7,6 @@ from src.year2016.day5b import solve
 
 
 class SolveTest(unittest.TestCase):
-
     def test_solve(self):
-        with mock.patch('src.year2016.day5b.print_password'):
-            self.assertEqual(solve('abc'), '05ace8e3')
+        with mock.patch("src.year2016.day5b.print_password"):
+            self.assertEqual(solve("abc"), "05ace8e3")

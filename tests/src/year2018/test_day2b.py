@@ -6,11 +6,12 @@ from src.year2018.day2b import get_similar_id_part, solve
 
 
 def test_get_similar_id_part():
-    assert get_similar_id_part('aabc', 'abba') == 'ab'
+    assert get_similar_id_part("aabc", "abba") == "ab"
 
 
 def test_solve():
-    task = dedent("""
+    task = dedent(
+        """
         abcde
         fghij
         klmno
@@ -18,5 +19,6 @@ def test_solve():
         fguij
         axcye
         wvxyz
-    """)
-    assert solve(task) == 'fgij'
+    """
+    )
+    assert solve(task) == "fgij"

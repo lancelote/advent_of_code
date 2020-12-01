@@ -4,8 +4,8 @@ from src.year2018.day1a import process_data, solve
 
 
 def test_process_data():
-    assert list(process_data('+1\n0\n-2\n2\n')) == [1, 0, -2, 2]
+    assert list(process_data("+1\n0\n-2\n2\n")) == [1, 0, -2, 2]
 
 
 def test_solve():
-    assert solve('+1\n0\n-2\n2\n') == 1
+    assert solve("+1\n0\n-2\n2\n") == 1

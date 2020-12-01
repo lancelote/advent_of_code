@@ -4,4 +4,4 @@ from src.year2018.day5b import solve
 
 
 def test_solve():
-    assert solve('dabAcCaCBAcCcaDA') == 4
+    assert solve("dabAcCaCBAcCcaDA") == 4
