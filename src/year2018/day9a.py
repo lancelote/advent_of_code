@@ -74,8 +74,8 @@ Here are a few more examples:
 What is the winning Elf's score?
 """
 
-from typing import Optional, Tuple
 from dataclasses import dataclass
+from typing import Optional, Tuple
 
 
 @dataclass

@@ -1,9 +1,6 @@
-# pylint: disable=inconsistent-return-statements
-
 """CLI arguments validation helpers."""
 
 import click
-
 
 SUPPORTED_YEARS = [
     "2015",

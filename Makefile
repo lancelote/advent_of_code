@@ -2,11 +2,7 @@ test:
 	python -m pytest tests
 
 lint:
-	python -m pylint --rcfile=.pylintrc main.py src
-	python -m pylint --rcfile=.pylintrc_tests tests
-	python -m pydocstyle --add-ignore=D105
-	python -m mypy . --ignore-missing-imports
-	python -m black --check .
+	pre-commit run --all-files
 
 run:
 	python main.py solve

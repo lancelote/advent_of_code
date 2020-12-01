@@ -20,10 +20,10 @@ For example:
 What is the X,Y,size identifier of the square with the largest total power?
 """
 
-from typing import Tuple
 from functools import lru_cache
+from typing import Tuple
 
-from src.year2018.day11a import Grid, Cell, Power
+from src.year2018.day11a import Cell, Grid, Power
 
 Size = int
 

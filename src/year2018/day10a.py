@@ -166,9 +166,10 @@ What message will eventually appear in the sky?
 """
 
 from __future__ import annotations
+
 import re
-from typing import List
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass

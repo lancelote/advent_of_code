@@ -34,10 +34,9 @@ What is the largest value in any register after completing the instructions in
 your puzzle input?
 """
 
-from typing import List, DefaultDict
-
 import operator
-from collections import namedtuple, defaultdict
+from collections import defaultdict, namedtuple
+from typing import DefaultDict, List
 
 Instruction = namedtuple(
     "Instruction", ["register", "op", "value", "base", "check", "limit"]

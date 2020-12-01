@@ -64,10 +64,9 @@ Hash of your puzzle input? Ignore any leading or trailing whitespace you might
 encounter.
 """
 
-from typing import List
-
 from functools import reduce
 from operator import xor
+from typing import List
 
 from src.year2017.day10a import Rope
 

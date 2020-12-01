@@ -71,7 +71,6 @@ in the list?
 """
 
 from itertools import cycle, islice
-
 from typing import List
 
 

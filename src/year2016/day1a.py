@@ -1,5 +1,3 @@
-# pylint: disable=invalid-name
-
 """2016 - Day 1 Part 1: No Time for a Taxicab.
 
 Santa's sleigh uses a very high-precision clock to guide its movements, and
@@ -34,9 +32,8 @@ For example:
     - R5, L5, R5, R3 leaves you 12 blocks away.
 """
 
-from typing import List
-
 from collections import namedtuple
+from typing import List
 
 Instruction = namedtuple("Instruction", "direction distance")
 

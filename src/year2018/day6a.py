@@ -1,5 +1,3 @@
-# pylint: disable=too-few-public-methods
-
 """2018 - Day 6 Part 1: Chronal Coordinates.
 
 The device on your wrist beeps several times, and once again you feel like

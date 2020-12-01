@@ -1,5 +1,3 @@
-# pylint: disable=too-few-public-methods
-
 """2017 - Day 6 Part 1: Memory Reallocation.
 
 A debugger program here is having an issue: it is trying to repair a memory

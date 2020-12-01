@@ -6,7 +6,7 @@ provided to wire a?
 
 """
 
-from src.year2015.day7a import process_data, get_value, HDict
+from src.year2015.day7a import HDict, get_value, process_data
 
 
 def solve(task):

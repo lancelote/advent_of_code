@@ -19,7 +19,7 @@ triangles are possible?
 """
 
 from itertools import chain
-from typing import Tuple, List
+from typing import List, Tuple
 
 from src.year2016.day3a import count_possible
 

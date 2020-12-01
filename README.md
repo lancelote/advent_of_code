@@ -28,11 +28,13 @@ need to set up a token for it to work. See the [instruction][2].
 I use Python 3.8 for development. The code should work fine on Python 3.7 as
 well.
 
+To install requirements:
+
 ```bash
 make install
 ```
 
-To update `requirements.txt`:
+To update `requirements.txt` with the newest package versions:
 
 ```bash
 make pur
@@ -46,12 +48,12 @@ I store all the tests in `tests` folder and use `pytest` as a test runner:
 make test
 ```
 
-## Syntax Validation
+## Linters
 
-Make sure to have `pylint`, `pydocstyle`, `pycodestyle` and `mypy` installed
-(yes I love linters) and run:
+`mypy`, `flake8`, and `black` are used in pre-commit hooks. To run linters:
 
 ```bash
+pre-commit install
 make lint
 ```
 

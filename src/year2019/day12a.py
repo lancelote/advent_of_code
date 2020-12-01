@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from itertools import permutations
 from dataclasses import dataclass
+from itertools import permutations
 from typing import List, Tuple
 
 

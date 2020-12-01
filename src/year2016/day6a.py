@@ -36,9 +36,8 @@ Given the recording in your puzzle input, what is the error-corrected version
 of the message being sent?
 """
 
-from typing import List, Tuple
-
 from collections import Counter
+from typing import List, Tuple
 
 
 def process_data(data: str) -> List[Tuple[str, ...]]:

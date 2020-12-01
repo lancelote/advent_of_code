@@ -3,6 +3,7 @@
 from textwrap import dedent
 
 import pytest
+
 from src.year2019.day12a import Moon, System
 
 

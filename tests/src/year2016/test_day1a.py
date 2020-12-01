@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.year2016.day1a import solve, processed_data, update_direction, Point
+from src.year2016.day1a import Point, processed_data, solve, update_direction
 
 
 class UpdateDirectionTest(unittest.TestCase):

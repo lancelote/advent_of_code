@@ -25,10 +25,8 @@ What is the sum of the sector IDs of the real rooms?
 
 import operator
 import re
-from collections import namedtuple, Counter
-from typing import List
-from typing import Tuple
-from typing import Any
+from collections import Counter, namedtuple
+from typing import Any, List, Tuple
 
 Room = namedtuple("Room", "name sector_id checksum")
 ROOM_PATTERN = re.compile(

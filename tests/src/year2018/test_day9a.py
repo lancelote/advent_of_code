@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.year2018.day9a import parse_task, solve, Marble
+from src.year2018.day9a import Marble, parse_task, solve
 
 
 def test_parse_task():

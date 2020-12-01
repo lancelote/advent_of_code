@@ -44,10 +44,11 @@ intersection?
 """
 
 from collections import defaultdict
-from typing import List, DefaultDict
 from dataclasses import dataclass, field
+from typing import DefaultDict, List
 
-from src.year2019.day3a import Grid as BaseGrid, parse_command, Node
+from src.year2019.day3a import Grid as BaseGrid
+from src.year2019.day3a import Node, parse_command
 
 
 @dataclass

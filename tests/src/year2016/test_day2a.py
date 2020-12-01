@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.year2016.day2a import solve, processed_data, Keypad
+from src.year2016.day2a import Keypad, processed_data, solve
 
 
 class ProcessedDataTest(unittest.TestCase):

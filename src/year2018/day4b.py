@@ -12,7 +12,7 @@ the above example, the answer would be 99 * 45 = 4455.)
 """
 
 from operator import itemgetter
-from typing import Tuple, List
+from typing import List, Tuple
 
 from src.year2018.day4a import Record
 

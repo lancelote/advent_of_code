@@ -1,15 +1,12 @@
-# pylint: disable=too-many-instance-attributes
-
 """Intcode computer implementation."""
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections import defaultdict, deque
 from copy import copy
-from collections import deque, defaultdict
 from dataclasses import dataclass, field
-from typing import Deque, DefaultDict
-
+from typing import DefaultDict, Deque
 
 Memory = DefaultDict[int, int]
 

@@ -1,13 +1,11 @@
-# pylint: disable=no-value-for-parameter
-
 """Puzzle Solver Runner."""
 
 import importlib
 
-from aocd import get_data
 import click
+from aocd import get_data
 
-from src.utils.cli import YEAR, PART, DAY
+from src.utils.cli import DAY, PART, YEAR
 
 
 class Solver:

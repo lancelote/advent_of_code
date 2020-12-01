@@ -1,5 +1,3 @@
-# pylint: disable=comparison-with-callable
-
 """2019 - Day 13 Part 2: Care Package."""
 
 import os

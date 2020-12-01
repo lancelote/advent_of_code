@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.year2016.day7a import solve, process_date, process_line, IP
+from src.year2016.day7a import IP, process_date, process_line, solve
 
 
 class ProcessLineTest(unittest.TestCase):

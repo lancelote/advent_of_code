@@ -3,7 +3,7 @@
 import unittest
 from itertools import permutations
 
-from src.year2016.day3a import process_data, is_bad, solve
+from src.year2016.day3a import is_bad, process_data, solve
 
 
 class ProcessDataTest(unittest.TestCase):

@@ -32,7 +32,7 @@ spacecraft when also taking into account the mass of the added fuel?
 up at the end.)
 """
 
-from src.year2019.day1a import process_data, count_fuel
+from src.year2019.day1a import count_fuel, process_data
 
 
 def solve(task: str) -> int:

@@ -80,7 +80,6 @@ from functools import lru_cache
 from itertools import product
 from typing import DefaultDict, Tuple
 
-
 Power = int
 Cell = Tuple[int, int]
 

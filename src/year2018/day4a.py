@@ -87,10 +87,10 @@ from __future__ import annotations
 import datetime as dt
 import re
 from collections import defaultdict
+from dataclasses import dataclass
 from enum import Enum
 from operator import itemgetter
 from typing import DefaultDict, List, Optional, Tuple
-from dataclasses import dataclass
 
 RECORD_PATTERN = r"\[(.*)\] (?:(G)uard #(\d+)|(f)|(w))"
 

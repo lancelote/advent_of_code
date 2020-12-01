@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.year2015.day6a import update_light, process_data, solve
+from src.year2015.day6a import process_data, solve, update_light
 
 
 class TestProcessData(unittest.TestCase):

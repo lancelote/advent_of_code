@@ -3,7 +3,6 @@
 from itertools import permutations
 from typing import Tuple
 
-
 from src.year2019.intcode import Computer
 
 

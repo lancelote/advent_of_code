@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.year2016.day1b import solve, in_between, Point
+from src.year2016.day1b import Point, in_between, solve
 
 
 class InBetweenTest(unittest.TestCase):

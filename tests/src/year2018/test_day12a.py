@@ -5,11 +5,11 @@ from textwrap import dedent
 import pytest
 
 from src.year2018.day12a import (
-    get_pattern,
+    Pot,
     get_new_generation,
+    get_pattern,
     process_data,
     solve,
-    Pot,
 )
 
 

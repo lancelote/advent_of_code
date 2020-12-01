@@ -5,7 +5,7 @@ Amused by the speed of your answer, the Elves are curious:
 What would the new winning Elf's score be if the number of the last marble were
 100 times larger?
 """
-from src.year2018.day9a import parse_task, Game
+from src.year2018.day9a import Game, parse_task
 
 
 def solve(task: str) -> int:

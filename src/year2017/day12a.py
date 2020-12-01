@@ -49,10 +49,9 @@ has a pipe that connects it to itself.
 How many programs are in the group that contains program ID 0?
 """
 
-from typing import DefaultDict, List, Set
-
 import re
 from collections import defaultdict
+from typing import DefaultDict, List, Set
 
 
 def process_data(data: str) -> List[List[str]]:

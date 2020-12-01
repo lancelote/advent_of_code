@@ -1,6 +1,6 @@
 """2019 - Day 11 Part 2: Space Police."""
 
-from src.year2019.day11a import Hull, Robot, Coordinates, Color, Panel
+from src.year2019.day11a import Color, Coordinates, Hull, Panel, Robot
 
 
 def solve(task: str) -> int:

@@ -1,5 +1,3 @@
-# pylint: disable=unused-import
-
 """2016 - Day 1 Part 2: No Time for a Taxicab.
 
 Then, you notice the instructions continue on the back of the Recruiting
@@ -12,13 +10,13 @@ How many blocks away is the first location you visit twice?
 """
 
 from copy import copy
-from typing import List, Generator
+from typing import Generator, List
 
 from src.year2016.day1a import (
+    Instruction,
     Point,
     processed_data,
     update_direction,
-    Instruction,
 )
 
 

@@ -10,7 +10,7 @@ of all pots which contain a plant?
 
 from collections import deque
 
-from src.year2018.day12a import process_data, get_new_generation
+from src.year2018.day12a import get_new_generation, process_data
 
 
 def solve(task: str) -> int:
