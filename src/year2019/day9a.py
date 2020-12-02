@@ -1,5 +1,4 @@
 """2019 - Day 9 Part 1: Sensor Boost."""
-
 from src.year2019.intcode import Computer
 
 

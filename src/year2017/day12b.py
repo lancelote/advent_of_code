@@ -14,8 +14,8 @@ In the example above, there were 2 groups: one consisting of programs
 
 How many groups are there in total?
 """
-
-from src.year2017.day12a import process_data, process_nodes
+from src.year2017.day12a import process_data
+from src.year2017.day12a import process_nodes
 
 
 def solve(task: str) -> int:

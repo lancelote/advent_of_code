@@ -23,7 +23,6 @@ For example:
 
 How many IPs in your puzzle input support SSL?
 """
-
 from src.year2016.day7a import process_date
 
 

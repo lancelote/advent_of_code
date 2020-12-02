@@ -60,10 +60,12 @@ So, in this example, the correct order is CABDFE.
 
 In what order should the steps in your instructions be completed?
 """
-
 from collections import defaultdict
 from string import ascii_uppercase
-from typing import DefaultDict, Generator, Optional, Set
+from typing import DefaultDict
+from typing import Generator
+from typing import Optional
+from typing import Set
 
 Step = str
 Parents = DefaultDict[Step, Set[Step]]

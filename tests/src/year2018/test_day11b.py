@@ -1,5 +1,4 @@
 """Day 11 Part 2: Chronal Charge."""
-
 import pytest
 
 from src.year2018.day11b import CachedGrid

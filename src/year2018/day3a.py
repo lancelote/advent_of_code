@@ -60,9 +60,10 @@ while adjacent to the others, does not overlap either of them.)
 If the Elves all proceed with their own plans, none of them will have enough
 fabric. How many square inches of fabric are within two or more claims?
 """
-
 import re
-from typing import Generator, List, NamedTuple
+from typing import Generator
+from typing import List
+from typing import NamedTuple
 
 PATTERN = r"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$"
 

@@ -1,10 +1,10 @@
 """2019 - Day 12 Part 1: The N-Body Problem tests."""
-
 from textwrap import dedent
 
 import pytest
 
-from src.year2019.day12a import Moon, System
+from src.year2019.day12a import Moon
+from src.year2019.day12a import System
 
 
 @pytest.fixture

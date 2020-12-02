@@ -1,6 +1,6 @@
 """2019 - Day 8 Part 2: Space Image Format tests."""
-
-from src.year2019.day8b import decode_image, parse_layers
+from src.year2019.day8b import decode_image
+from src.year2019.day8b import parse_layers
 
 
 def test_decode_image():

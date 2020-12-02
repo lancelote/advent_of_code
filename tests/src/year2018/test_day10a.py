@@ -1,10 +1,10 @@
 """2018 - Day 10 Part 1: The Stars Align tests."""
-
 from textwrap import dedent
 
 import pytest
 
-from src.year2018.day10a import Point, Sky
+from src.year2018.day10a import Point
+from src.year2018.day10a import Sky
 
 
 class TestPoint:

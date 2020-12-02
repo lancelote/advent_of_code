@@ -34,7 +34,6 @@ individually calculate the fuel needed for the mass of each module
 What is the sum of the fuel requirements for all of the modules on your
 spacecraft?
 """
-
 from typing import List
 
 

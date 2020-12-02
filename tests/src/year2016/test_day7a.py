@@ -1,8 +1,10 @@
 """Day 7: Internet Protocol Version 7 tests."""
-
 import unittest
 
-from src.year2016.day7a import IP, process_date, process_line, solve
+from src.year2016.day7a import IP
+from src.year2016.day7a import process_date
+from src.year2016.day7a import process_line
+from src.year2016.day7a import solve
 
 
 class ProcessLineTest(unittest.TestCase):

@@ -1,16 +1,13 @@
 """"Day 12 Part 1: Subterranean Sustainability tests."""
-
 from textwrap import dedent
 
 import pytest
 
-from src.year2018.day12a import (
-    Pot,
-    get_new_generation,
-    get_pattern,
-    process_data,
-    solve,
-)
+from src.year2018.day12a import get_new_generation
+from src.year2018.day12a import get_pattern
+from src.year2018.day12a import Pot
+from src.year2018.day12a import process_data
+from src.year2018.day12a import solve
 
 
 @pytest.fixture

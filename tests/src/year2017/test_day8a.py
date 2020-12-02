@@ -1,8 +1,10 @@
 """2017 - Day 8 Part 1: I Heard You Like Registers tests."""
-
 import pytest
 
-from src.year2017.day8a import Instruction, process_data, process_line, solve
+from src.year2017.day8a import Instruction
+from src.year2017.day8a import process_data
+from src.year2017.day8a import process_line
+from src.year2017.day8a import solve
 
 
 @pytest.mark.parametrize(

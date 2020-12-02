@@ -1,5 +1,4 @@
 """Day 1 Puzzle Part 2 tests."""
-
 import unittest
 
 from src.year2015.day1b import solve

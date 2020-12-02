@@ -1,5 +1,4 @@
 """2019 - Day 8 Part 1: Space Image Format."""
-
 from typing import List
 
 

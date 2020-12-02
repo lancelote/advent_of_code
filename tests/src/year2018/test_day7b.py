@@ -1,5 +1,4 @@
 """2018 - Day 7 Part 2: The Sum of Its Parts tests."""
-
 from textwrap import dedent
 
 from src.year2018.day7b import solve

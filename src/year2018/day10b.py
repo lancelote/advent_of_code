@@ -7,8 +7,8 @@ Impressed by your sub-hour communication capabilities, the Elves are curious:
 exactly how many seconds would they have needed to wait for that message to
 appear?
 """
-
-from src.year2018.day10a import Point, Sky
+from src.year2018.day10a import Point
+from src.year2018.day10a import Sky
 
 
 def solve(task: str) -> int:

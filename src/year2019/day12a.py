@@ -1,10 +1,10 @@
 """2019 - Day 12 Part 1: The N-Body Problem."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import permutations
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 
 @dataclass

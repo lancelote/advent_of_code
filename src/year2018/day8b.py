@@ -30,8 +30,8 @@ So, in this example, the value of the root node is 66.
 
 What is the value of the root node?
 """
-
-from src.year2018.day8a import Node, parse_tree
+from src.year2018.day8a import Node
+from src.year2018.day8a import parse_tree
 
 
 def get_node_value(node: Node) -> int:

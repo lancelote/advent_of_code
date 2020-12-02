@@ -74,11 +74,11 @@ total power of 30); they are in the middle of this region:
 What is the X,Y coordinate of the top-left fuel cell of the 3x3 square with the
 largest total power?
 """
-
 from collections import defaultdict
 from functools import lru_cache
 from itertools import product
-from typing import DefaultDict, Tuple
+from typing import DefaultDict
+from typing import Tuple
 
 Power = int
 Cell = Tuple[int, int]

@@ -1,8 +1,8 @@
 """2017 - Day 10 Part 1: Knot Hash tests."""
-
 import pytest
 
-from src.year2017.day10a import Rope, process_data
+from src.year2017.day10a import process_data
+from src.year2017.day10a import Rope
 
 
 @pytest.fixture(name="rope")

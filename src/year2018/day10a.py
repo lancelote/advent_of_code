@@ -164,7 +164,6 @@ be much longer and will take many more seconds to appear.
 
 What message will eventually appear in the sky?
 """
-
 from __future__ import annotations
 
 import re

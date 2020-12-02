@@ -1,5 +1,4 @@
 """2019 - Day 6 Part 1: Universal Orbit Map tests."""
-
 import pytest
 
 from src.year2019.day6a import process_data

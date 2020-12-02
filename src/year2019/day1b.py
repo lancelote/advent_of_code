@@ -31,8 +31,8 @@ spacecraft when also taking into account the mass of the added fuel?
 (Calculate the fuel requirements for each module separately, then add them all
 up at the end.)
 """
-
-from src.year2019.day1a import count_fuel, process_data
+from src.year2019.day1a import count_fuel
+from src.year2019.day1a import process_data
 
 
 def solve(task: str) -> int:

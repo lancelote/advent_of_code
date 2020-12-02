@@ -1,8 +1,8 @@
 """2017 - Day 4 Part 1: High-Entropy Passphrases tests."""
-
 import pytest
 
-from src.year2017.day4a import count_valid, duplicates
+from src.year2017.day4a import count_valid
+from src.year2017.day4a import duplicates
 
 
 @pytest.mark.parametrize(

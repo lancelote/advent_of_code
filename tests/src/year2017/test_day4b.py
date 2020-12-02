@@ -1,5 +1,4 @@
 """2017 - Day 4 Part 2: High-Entropy Passphrases tests."""
-
 import pytest
 
 from src.year2017.day4b import anagrams

@@ -8,16 +8,14 @@ visit twice is 4 blocks away, due East.
 
 How many blocks away is the first location you visit twice?
 """
-
 from copy import copy
-from typing import Generator, List
+from typing import Generator
+from typing import List
 
-from src.year2016.day1a import (
-    Instruction,
-    Point,
-    processed_data,
-    update_direction,
-)
+from src.year2016.day1a import Instruction
+from src.year2016.day1a import Point
+from src.year2016.day1a import processed_data
+from src.year2016.day1a import update_direction
 
 
 def in_between(start: Point, end: Point) -> Generator[Point, None, None]:

@@ -30,7 +30,6 @@ For example:
 
 How many strings are nice under these new rules?
 """
-
 import re
 
 from src.year2015.day5a import process_data

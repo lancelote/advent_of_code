@@ -19,11 +19,12 @@ For example:
 
 What is the X,Y,size identifier of the square with the largest total power?
 """
-
 from functools import lru_cache
 from typing import Tuple
 
-from src.year2018.day11a import Cell, Grid, Power
+from src.year2018.day11a import Cell
+from src.year2018.day11a import Grid
+from src.year2018.day11a import Power
 
 Size = int
 

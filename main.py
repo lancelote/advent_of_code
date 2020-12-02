@@ -1,11 +1,12 @@
 """Puzzle Solver Runner."""
-
 import importlib
 
 import click
 from aocd import get_data
 
-from src.utils.cli import DAY, PART, YEAR
+from src.utils.cli import DAY
+from src.utils.cli import PART
+from src.utils.cli import YEAR
 
 
 class Solver:

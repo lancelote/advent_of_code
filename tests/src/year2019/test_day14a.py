@@ -1,10 +1,11 @@
 """2019 - Day 14 Part 1: Space Stoichiometry tests."""
-
 from textwrap import dedent
 
 import pytest
 
-from src.year2019.day14a import ChemicalRecipe, Factory, Reaction
+from src.year2019.day14a import ChemicalRecipe
+from src.year2019.day14a import Factory
+from src.year2019.day14a import Reaction
 
 
 def test_read_task_data():

@@ -1,9 +1,9 @@
 """2018 - Day 2 Part 1: Inventory Management System tests."""
-
 from collections import Counter
 from textwrap import dedent
 
-from src.year2018.day2a import process_data, solve
+from src.year2018.day2a import process_data
+from src.year2018.day2a import solve
 
 
 def test_process_data():

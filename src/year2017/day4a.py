@@ -15,7 +15,6 @@ For example:
 The system's full passphrase list is available as your puzzle input. How many
 passphrases are valid?
 """
-
 from typing import Callable
 
 

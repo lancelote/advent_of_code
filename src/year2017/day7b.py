@@ -29,8 +29,9 @@ towers balanced. If this change were made, its weight would be 60.
 Given that exactly one program is the wrong weight, what would its weight
 need to be to balance the entire tower?
 """
-
-from typing import Dict, List, Tuple
+from typing import Dict
+from typing import List
+from typing import Tuple
 
 from src.year2017.day7a import process_data
 from src.year2017.day7a import solve as find_root

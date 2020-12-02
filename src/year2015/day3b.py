@@ -20,7 +20,6 @@ For example:
     ^v^v^v^v^v now delivers presents to 11 houses, with Santa going one
     direction and Robo-Santa going the other.
 """
-
 from src.year2015.day3a import visit_houses
 
 

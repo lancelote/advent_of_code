@@ -1,8 +1,9 @@
 """2016 - Day 1 Puzzle Part 2 tests."""
-
 import unittest
 
-from src.year2016.day1b import Point, in_between, solve
+from src.year2016.day1b import in_between
+from src.year2016.day1b import Point
+from src.year2016.day1b import solve
 
 
 class InBetweenTest(unittest.TestCase):

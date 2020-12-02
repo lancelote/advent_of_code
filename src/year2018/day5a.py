@@ -37,7 +37,6 @@ After all possible reactions, the resulting polymer contains 10 units.
 
 How many units remain after fully reacting the polymer you scanned?
 """
-
 from typing import List
 
 

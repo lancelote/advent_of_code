@@ -22,7 +22,6 @@ For example:
 
 How many total feet of ribbon should they order?
 """
-
 from functools import reduce
 from operator import mul
 

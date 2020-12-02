@@ -1,8 +1,10 @@
 """2016 - Day 4 Puzzle Part 1 tests."""
-
 import unittest
 
-from src.year2016.day4a import Room, is_real, process_data, solve
+from src.year2016.day4a import is_real
+from src.year2016.day4a import process_data
+from src.year2016.day4a import Room
+from src.year2016.day4a import solve
 
 
 class ProcessDataTest(unittest.TestCase):

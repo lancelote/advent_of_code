@@ -63,7 +63,6 @@ Treating your puzzle input as a string of ASCII characters, what is the Knot
 Hash of your puzzle input? Ignore any leading or trailing whitespace you might
 encounter.
 """
-
 from functools import reduce
 from operator import xor
 from typing import List

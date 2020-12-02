@@ -1,9 +1,10 @@
 """2016 - Day 3 Puzzle Part 1 tests."""
-
 import unittest
 from itertools import permutations
 
-from src.year2016.day3a import is_bad, process_data, solve
+from src.year2016.day3a import is_bad
+from src.year2016.day3a import process_data
+from src.year2016.day3a import solve
 
 
 class ProcessDataTest(unittest.TestCase):

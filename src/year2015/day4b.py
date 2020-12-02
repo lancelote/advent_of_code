@@ -19,7 +19,6 @@ For example:
     an MD5 hash starting with five zeroes is 1048970; that is, the MD5 hash
     of pqrstuv1048970 looks like 000006136ef....
 """
-
 from src.year2015.day4a import solve as part_a_solve
 
 

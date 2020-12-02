@@ -17,9 +17,9 @@ digit would be part of the same triangle:
 In your puzzle input, and instead reading by columns, how many of the listed
 triangles are possible?
 """
-
 from itertools import chain
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 from src.year2016.day3a import count_possible
 

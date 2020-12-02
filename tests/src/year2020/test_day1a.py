@@ -1,9 +1,8 @@
 """2020 - Day 1 Part 1: Report Repair."""
-
 import pytest
 
-from src.year2020.day1a import process_data
 from src.year2020.day1a import find_2020_summands
+from src.year2020.day1a import process_data
 from src.year2020.day1a import solve
 
 

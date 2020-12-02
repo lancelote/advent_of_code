@@ -1,8 +1,8 @@
 """Day 5 Puzzle Part 1 tests."""
-
 import unittest
 
-from src.year2015.day5a import is_nice, process_data
+from src.year2015.day5a import is_nice
+from src.year2015.day5a import process_data
 
 
 class TestIsNice(unittest.TestCase):

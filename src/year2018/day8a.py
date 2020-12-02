@@ -46,9 +46,9 @@ metadata entries. In this example, that sum is 1+1+2+10+11+12+2+99=138.
 
 What is the sum of all metadata entries?
 """
-
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 
 @dataclass

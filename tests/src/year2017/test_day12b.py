@@ -1,5 +1,4 @@
 """2017 - Day 12 Part 2: Digital Plumber tests."""
-
 from src.year2017.day12b import solve
 
 

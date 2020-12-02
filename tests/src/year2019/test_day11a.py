@@ -1,18 +1,16 @@
 """2019 - Day 11 Part 1: Space Police tests."""
-
 from collections import deque
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from dataclasses import field
 from typing import Deque
 
-from src.year2019.day11a import (
-    Color,
-    Computer,
-    Coordinates,
-    Direction,
-    Hull,
-    Panel,
-    Robot,
-)
+from src.year2019.day11a import Color
+from src.year2019.day11a import Computer
+from src.year2019.day11a import Coordinates
+from src.year2019.day11a import Direction
+from src.year2019.day11a import Hull
+from src.year2019.day11a import Panel
+from src.year2019.day11a import Robot
 
 
 @dataclass

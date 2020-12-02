@@ -5,8 +5,9 @@ reset the other wires (including wire a). What new signal is ultimately
 provided to wire a?
 
 """
-
-from src.year2015.day7a import HDict, get_value, process_data
+from src.year2015.day7a import get_value
+from src.year2015.day7a import HDict
+from src.year2015.day7a import process_data
 
 
 def solve(task):

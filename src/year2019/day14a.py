@@ -1,10 +1,12 @@
 """2019 - Day 14 Part 1: Space Stoichiometry."""
-
 from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import DefaultDict, Dict, List, Optional
+from typing import DefaultDict
+from typing import Dict
+from typing import List
+from typing import Optional
 
 ChemicalName = str
 

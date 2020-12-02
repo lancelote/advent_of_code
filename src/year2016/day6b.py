@@ -16,7 +16,6 @@ characters produces the original message, advent.
 Given the recording in your puzzle input and this new decoding methodology,
 what is the original message that Santa is trying to send?
 """
-
 from collections import Counter
 
 from src.year2016.day6a import process_data

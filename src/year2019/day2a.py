@@ -84,7 +84,6 @@ just before the last computer caught fire. To do this, before running the
 program, replace position 1 with the value 12 and replace position 2 with the
 value 2. What value is left at position 0 after the program halts?
 """
-
 from src.year2019.intcode import Computer
 
 

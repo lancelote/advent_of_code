@@ -1,7 +1,7 @@
 """2019 - Day 6 Part 2: Universal Orbit Map."""
-
 from collections import defaultdict
-from typing import DefaultDict, Set
+from typing import DefaultDict
+from typing import Set
 
 MAP = DefaultDict[str, Set]
 

@@ -26,7 +26,6 @@ the password is 18f47a30.
 
 Given the actual Door ID, what is the password?
 """
-
 import hashlib
 
 

@@ -1,10 +1,12 @@
 """2019 - Day 10 Part 1: Monitoring Station."""
-
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Dict, Generator, List, Tuple
+from typing import Dict
+from typing import Generator
+from typing import List
+from typing import Tuple
 
 
 @dataclass

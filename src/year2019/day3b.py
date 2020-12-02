@@ -42,13 +42,15 @@ Here are the best steps for the extra examples from above:
 What is the fewest combined steps the wires must take to reach an
 intersection?
 """
-
 from collections import defaultdict
-from dataclasses import dataclass, field
-from typing import DefaultDict, List
+from dataclasses import dataclass
+from dataclasses import field
+from typing import DefaultDict
+from typing import List
 
 from src.year2019.day3a import Grid as BaseGrid
-from src.year2019.day3a import Node, parse_command
+from src.year2019.day3a import Node
+from src.year2019.day3a import parse_command
 
 
 @dataclass

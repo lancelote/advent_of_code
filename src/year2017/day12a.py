@@ -48,10 +48,11 @@ has a pipe that connects it to itself.
 
 How many programs are in the group that contains program ID 0?
 """
-
 import re
 from collections import defaultdict
-from typing import DefaultDict, List, Set
+from typing import DefaultDict
+from typing import List
+from typing import Set
 
 
 def process_data(data: str) -> List[List[str]]:

@@ -17,8 +17,8 @@ not larger than 25.
 
 In your puzzle input, how many of the listed triangles are possible?
 """
-
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 
 def process_data(data: str) -> List[Tuple[int, int, int]]:

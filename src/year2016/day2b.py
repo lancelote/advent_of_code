@@ -28,8 +28,8 @@ So, given the actual keypad layout, the code would be 5DB3.
 Using the same instructions in your puzzle input, what is the correct bathroom
 code?
 """
-
-from src.year2016.day2a import Keypad, processed_data
+from src.year2016.day2a import Keypad
+from src.year2016.day2a import processed_data
 
 
 def solve(task: str) -> str:

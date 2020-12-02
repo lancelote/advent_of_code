@@ -1,5 +1,4 @@
 """2019 - Day 3 Part 2: Crossed Wires tests."""
-
 import pytest
 
 from src.year2019.day3b import Grid

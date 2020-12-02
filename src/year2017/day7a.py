@@ -65,9 +65,11 @@ balancing in front of you is much larger.)
 Before you're ready to help them, you need to make sure your information is
 correct. What is the name of the bottom program?
 """
-
 import re
-from typing import Dict, List, Optional, Tuple
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
 
 PATTERN = r"(?P<parent>\w+) \((?P<weight>\d+)\)( -> (?P<children>[\w, ]+))?"
 

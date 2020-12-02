@@ -1,5 +1,4 @@
 """2019 - Day 7 Part 2: Amplification Circuit tests."""
-
 import pytest
 
 from src.year2019.day7b import compute_output

@@ -46,12 +46,15 @@ steps.
 With 5 workers and the 60+ second step durations described above, how long will
 it take to complete all of the steps?
 """
-
 from collections import defaultdict
 from string import ascii_uppercase
-from typing import DefaultDict, Set
+from typing import DefaultDict
+from typing import Set
 
-from src.year2018.day7a import Parents, Step, next_step, process_date
+from src.year2018.day7a import next_step
+from src.year2018.day7a import Parents
+from src.year2018.day7a import process_date
+from src.year2018.day7a import Step
 
 
 def solve(task: str, steps=ascii_uppercase, workers=5, duration=60) -> int:

@@ -1,5 +1,4 @@
 """2019 - Day 10 Part 2: Monitoring Station tests."""
-
 from textwrap import dedent
 
 import pytest

@@ -1,8 +1,8 @@
 """2019 - Day 1 Part 1: The Tyranny of the Rocket Equation."""
-
 import pytest
 
-from src.year2019.day1a import count_fuel, process_data
+from src.year2019.day1a import count_fuel
+from src.year2019.day1a import process_data
 
 
 def test_process_data():

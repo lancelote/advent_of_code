@@ -1,5 +1,4 @@
 """2017 - Day 11 Part 1: Hex Edh test."""
-
 import pytest
 
 from src.year2017.day11a import solve

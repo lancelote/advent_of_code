@@ -58,10 +58,11 @@ Here are a few more examples:
 What is the Manhattan distance from the central port to the closest
 intersection?
 """
-
 from collections import defaultdict
-from dataclasses import dataclass, field
-from typing import DefaultDict, Tuple
+from dataclasses import dataclass
+from dataclasses import field
+from typing import DefaultDict
+from typing import Tuple
 
 SHIFT = {
     "R": (1, 0),

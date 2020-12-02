@@ -81,7 +81,6 @@ analyzed.
 What is the ID of the guard you chose multiplied by the minute you chose? (In
 the above example, the answer would be 10 * 24 = 240.)
 """
-
 from __future__ import annotations
 
 import datetime as dt
@@ -90,7 +89,10 @@ from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum
 from operator import itemgetter
-from typing import DefaultDict, List, Optional, Tuple
+from typing import DefaultDict
+from typing import List
+from typing import Optional
+from typing import Tuple
 
 RECORD_PATTERN = r"\[(.*)\] (?:(G)uard #(\d+)|(f)|(w))"
 

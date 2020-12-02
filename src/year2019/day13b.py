@@ -1,8 +1,9 @@
 """2019 - Day 13 Part 2: Care Package."""
-
 import os
 from enum import Enum
-from typing import Dict, List, Tuple
+from typing import Dict
+from typing import List
+from typing import Tuple
 
 from src.year2019.intcode import Computer
 

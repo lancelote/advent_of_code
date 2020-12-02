@@ -1,8 +1,8 @@
 """2019 - Day 6 Part 2: Universal Orbit Map tests."""
-
 import pytest
 
-from src.year2019.day6b import closest_distance, process_data
+from src.year2019.day6b import closest_distance
+from src.year2019.day6b import process_data
 
 
 @pytest.fixture

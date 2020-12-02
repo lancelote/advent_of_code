@@ -9,10 +9,11 @@ made.
 
 What is the ID of the only claim that doesn't overlap?
 """
+from typing import List
+from typing import Set
 
-from typing import List, Set
-
-from src.year2018.day3a import Claim, process_data
+from src.year2018.day3a import Claim
+from src.year2018.day3a import process_data
 
 
 def apply_claim(fabric: List[List[int]], claim: Claim, not_overlap: Set[int]):

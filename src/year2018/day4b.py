@@ -10,9 +10,9 @@ any minute asleep at most twice.)
 What is the ID of the guard you chose multiplied by the minute you chose? (In
 the above example, the answer would be 99 * 45 = 4455.)
 """
-
 from operator import itemgetter
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 from src.year2018.day4a import Record
 

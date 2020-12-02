@@ -23,8 +23,8 @@ For example:
     ^v^v^v^v^v delivers a bunch of presents to some very lucky children at only
     2 houses.
 """
-
-from collections import defaultdict, namedtuple
+from collections import defaultdict
+from collections import namedtuple
 
 Coordinates = namedtuple("Coordinates", ["x", "y"])
 SHIFT = {

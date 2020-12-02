@@ -1,9 +1,10 @@
 """2019 - Day 6 Part 1: Universal Orbit Map."""
-
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Dict, List
+from dataclasses import dataclass
+from dataclasses import field
+from typing import Dict
+from typing import List
 
 
 @dataclass

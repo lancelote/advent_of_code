@@ -1,5 +1,4 @@
 """2019 - Day 7 Part 1: Amplification Circuit."""
-
 from itertools import permutations
 from typing import Tuple
 

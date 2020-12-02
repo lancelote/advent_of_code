@@ -1,8 +1,8 @@
 """2017 - Day 7 Part 2: Recursive Circus tests."""
-
 import pytest
 
-from src.year2017.day7b import find_unique, solve
+from src.year2017.day7b import find_unique
+from src.year2017.day7b import solve
 
 
 @pytest.mark.parametrize(

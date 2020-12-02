@@ -1,5 +1,4 @@
 """2018 - Day 6 Part 2: Chronal Coordinates tests."""
-
 from textwrap import dedent
 
 from src.year2018.day6b import solve

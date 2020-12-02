@@ -1,8 +1,11 @@
 """2017 - Day 10 Part 2: Knot Hash tests."""
-
 import pytest
 
-from src.year2017.day10b import compress, process_data, solve, split, to_hex
+from src.year2017.day10b import compress
+from src.year2017.day10b import process_data
+from src.year2017.day10b import solve
+from src.year2017.day10b import split
+from src.year2017.day10b import to_hex
 
 
 def test_process_data():

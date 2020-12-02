@@ -1,8 +1,9 @@
 """2018 - Day 9 Part 1: Marble Mania tests."""
-
 import pytest
 
-from src.year2018.day9a import Marble, parse_task, solve
+from src.year2018.day9a import Marble
+from src.year2018.day9a import parse_task
+from src.year2018.day9a import solve
 
 
 def test_parse_task():

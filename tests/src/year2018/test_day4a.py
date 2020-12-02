@@ -1,11 +1,13 @@
 """2018 - Day 4 Part 1: Repose Record tests."""
-
 import datetime as dt
 from textwrap import dedent
 
 import pytest
 
-from src.year2018.day4a import Event, Record, solve, total_minutes
+from src.year2018.day4a import Event
+from src.year2018.day4a import Record
+from src.year2018.day4a import solve
+from src.year2018.day4a import total_minutes
 
 
 @pytest.mark.parametrize(

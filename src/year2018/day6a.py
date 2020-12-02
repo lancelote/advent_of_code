@@ -67,7 +67,6 @@ Therefore, in this example, the size of the largest area is 17.
 
 What is the size of the largest area that isn't infinite?
 """
-
 from __future__ import annotations
 
 import math
@@ -75,7 +74,12 @@ from abc import ABC
 from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
-from typing import Any, DefaultDict, List, Optional, Set, Union
+from typing import Any
+from typing import DefaultDict
+from typing import List
+from typing import Optional
+from typing import Set
+from typing import Union
 
 
 class Coordinate(ABC):

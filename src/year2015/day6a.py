@@ -29,7 +29,6 @@ For example:
 
 After following the instructions, how many lights are lit?
 """
-
 import re
 from collections import namedtuple
 

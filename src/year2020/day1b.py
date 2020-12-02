@@ -1,5 +1,4 @@
 """2020 - Day 1 Part 1: Report Repair."""
-
 from typing import List
 from typing import Tuple
 

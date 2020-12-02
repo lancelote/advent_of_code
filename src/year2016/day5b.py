@@ -29,7 +29,6 @@ producing the password 05ace8e3.
 Given the actual Door ID and this new method, what is the password? Be extra
 proud of your solution if it uses a cinematic "decrypting" animation.
 """
-
 import hashlib
 
 

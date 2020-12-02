@@ -46,8 +46,8 @@ Given the initial block counts in your puzzle input, how many redistribution
 cycles must be completed before a configuration is produced that has been
 seen before?
 """
-
-from typing import List, Set
+from typing import List
+from typing import Set
 
 
 class Memory:

@@ -1,5 +1,4 @@
 """Day 7 Puzzle Part 1 tests."""
-
 import unittest
 
 from src.year2015.day7a import process_data

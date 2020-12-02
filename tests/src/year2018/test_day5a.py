@@ -1,8 +1,8 @@
 """2018 - Day 5 Part 1: Alchemical Reduction."""
-
 import pytest
 
-from src.year2018.day5a import react, solve
+from src.year2018.day5a import react
+from src.year2018.day5a import solve
 
 
 @pytest.mark.parametrize(

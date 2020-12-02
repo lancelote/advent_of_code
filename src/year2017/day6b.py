@@ -10,7 +10,6 @@ answer in that example would be 4.
 How many cycles are in the infinite loop that arises from the configuration
 in your puzzle input?
 """
-
 from typing import Dict
 
 from src.year2017.day6a import Memory

@@ -18,7 +18,6 @@ For example:
 
 Under this new system policy, how many passphrases are valid?
 """
-
 from src.year2017.day4a import count_valid
 
 

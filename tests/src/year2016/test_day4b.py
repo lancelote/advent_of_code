@@ -1,8 +1,9 @@
 """2016 - Day 4 Puzzle Part 2 tests."""
-
 import unittest
 
-from src.year2016.day4b import decipher, shift, solve
+from src.year2016.day4b import decipher
+from src.year2016.day4b import shift
+from src.year2016.day4b import solve
 
 
 class ShiftTest(unittest.TestCase):

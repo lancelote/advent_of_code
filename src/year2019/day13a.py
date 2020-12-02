@@ -1,5 +1,4 @@
 """2019 - Day 13 Part 1: Care Package."""
-
 from src.year2019.intcode import Computer
 
 

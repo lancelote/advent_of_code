@@ -1,8 +1,10 @@
 """2017 - Day 7 Part 1: Recursive Circus tests."""
-
 import pytest
 
-from src.year2017.day7a import find_root, process_data, process_line, solve
+from src.year2017.day7a import find_root
+from src.year2017.day7a import process_data
+from src.year2017.day7a import process_line
+from src.year2017.day7a import solve
 
 
 @pytest.mark.parametrize(

@@ -1,10 +1,10 @@
 """2017 - Day 3 Part 2: Spiral Memory."""
-
 import itertools
 
 import pytest
 
-from src.year2017.day3b import Memory, solve
+from src.year2017.day3b import Memory
+from src.year2017.day3b import solve
 
 
 @pytest.fixture(name="memory")

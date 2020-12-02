@@ -1,5 +1,4 @@
 """2017 - Day 5 Part 2: A Maze of Twisty Trampolines, All Alike tests."""
-
 from src.year2017.day5b import solve
 
 

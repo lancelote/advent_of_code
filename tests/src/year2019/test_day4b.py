@@ -1,5 +1,4 @@
 """2019 - Day 4 Part 2: Secure Container tests."""
-
 import pytest
 
 from src.year2019.day4b import at_least_one_equal_pair

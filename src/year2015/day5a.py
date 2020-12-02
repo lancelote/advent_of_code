@@ -1,5 +1,4 @@
 # coding=utf-8
-
 """Day 5: Doesn't He Have Intern-Elves For This.
 
 Santa needs help figuring out which strings in his text file are naughty or
@@ -33,7 +32,6 @@ For example:
 
 How many strings are nice?
 """
-
 import re
 
 

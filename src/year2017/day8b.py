@@ -5,8 +5,8 @@ during this process so that it can decide how much memory to allocate to these
 operations. For example, in the above instructions, the highest value ever
 held was 10 (in register c after the third instruction was evaluated).
 """
-
-from src.year2017.day8a import perform_instructions, process_data
+from src.year2017.day8a import perform_instructions
+from src.year2017.day8a import process_data
 
 
 def solve(task: str) -> int:

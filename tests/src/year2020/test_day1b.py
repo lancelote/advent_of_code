@@ -1,5 +1,4 @@
 """2020 - Day 1 Part 2: Report Repair."""
-
 import pytest
 
 from src.year2020.day1b import solve

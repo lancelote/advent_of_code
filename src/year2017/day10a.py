@@ -69,8 +69,8 @@ to 255) and the sequence of lengths in your puzzle input. Once this process
 is complete, what is the result of multiplying the first two numbers
 in the list?
 """
-
-from itertools import cycle, islice
+from itertools import cycle
+from itertools import islice
 from typing import List
 
 

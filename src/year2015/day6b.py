@@ -24,7 +24,6 @@ For example:
 
     toggle 0,0 through 999,999 would increase the total brightness by 2000000.
 """
-
 from src.year2015.day6a import compute_result
 
 

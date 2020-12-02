@@ -1,8 +1,8 @@
 """2016 - Day 6 Part 1: Signals and Noise tests."""
-
 import unittest
 
-from src.year2016.day6a import process_data, solve
+from src.year2016.day6a import process_data
+from src.year2016.day6a import solve
 
 EXAMPLE_TASK = (
     "eedadn\n"

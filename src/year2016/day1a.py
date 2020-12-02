@@ -31,7 +31,6 @@ For example:
       is 2 blocks away.
     - R5, L5, R5, R3 leaves you 12 blocks away.
 """
-
 from collections import namedtuple
 from typing import List
 

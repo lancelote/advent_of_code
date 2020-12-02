@@ -1,10 +1,12 @@
 """2018 - Day 6 Part 1: Chronal Coordinates tests."""
-
 from textwrap import dedent
 
 import pytest
 
-from src.year2018.day6a import Coordinate, Dot, Grid, Pin
+from src.year2018.day6a import Coordinate
+from src.year2018.day6a import Dot
+from src.year2018.day6a import Grid
+from src.year2018.day6a import Pin
 
 
 @pytest.fixture

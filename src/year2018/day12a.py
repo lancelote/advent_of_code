@@ -102,9 +102,9 @@ produces 325.
 After 20 generations, what is the sum of the numbers of all pots which contain
 a plant?
 """
-
 from enum import Enum
-from typing import Dict, Tuple
+from typing import Dict
+from typing import Tuple
 
 
 class Pot(Enum):
