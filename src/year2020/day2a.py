@@ -10,15 +10,15 @@ Password = str
 
 class Policy(NamedTuple):
     char: str
-    minimum: int
-    maximum: int
+    first: int
+    second: int
 
     @staticmethod
     def from_str(string: str) -> Policy:
         """E.g. '1-3 a'"""
         diapason, character = string.split()
-        minimum, maximum = diapason.split("-")
-        return Policy(character, int(minimum), int(maximum))
+        first, second = diapason.split("-")
+        return Policy(character, int(first), int(second))
 
 
 def process_data(task: str) -> List[Tuple[Policy, Password]]:
@@ -33,7 +33,7 @@ def process_data(task: str) -> List[Tuple[Policy, Password]]:
 
 
 def is_valid(policy: Policy, password: Password) -> bool:
-    return policy.minimum <= password.count(policy.char) <= policy.maximum
+    return policy.first <= password.count(policy.char) <= policy.second
 
 
 def solve(task: str) -> int:
