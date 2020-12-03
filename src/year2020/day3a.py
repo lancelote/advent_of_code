@@ -8,10 +8,9 @@ def process_data(task: str) -> Plan:
     return [list(line) for line in task.strip().split("\n")]
 
 
-def count_trees(plan: Plan) -> int:
+def count_trees(plan: Plan, x_shift: int, y_shift: int) -> int:
     trees = 0
     x, y = 0, 0
-    x_shift, y_shift = 3, 1
 
     while y < len(plan):
         if plan[y][x] == "#":
@@ -26,4 +25,4 @@ def count_trees(plan: Plan) -> int:
 def solve(task: str) -> int:
     """Count trees on the way."""
     plan = process_data(task)
-    return count_trees(plan)
+    return count_trees(plan, x_shift=3, y_shift=1)
