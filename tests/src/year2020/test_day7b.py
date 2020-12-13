@@ -1,4 +1,4 @@
-"""2020 - Day 7 Part 1: Handy Haversacks."""
+"""2020 - Day 7 Part 2: Handy Haversacks."""
 from textwrap import dedent
 
 from src.year2020.day7b import solve
