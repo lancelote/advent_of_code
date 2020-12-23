@@ -1,30 +1,32 @@
-"""2020 - Day 8 Part 1: Handheld Halting."""
-from __future__ import annotations
+"""2020 - Day 9 Part 1: Encoding Error."""
+from collections import deque
+from itertools import combinations
+from typing import Deque
 from typing import List
-from dataclasses import dataclass
 
 
-@dataclass
-class Transmission:
-    data: List
-    preamble_len: int
-
-    @classmethod
-    def from_string(cls, string: str, preamble_len: int) -> Transmission:
-        numbers = [int(num) for num in string.strip().split("\n")]
-        return cls.from_data(numbers, preamble_len)
-
-    @classmethod
-    def from_data(cls, data: List[int], preamble_len: int) -> Transmission:
-        return cls(data, preamble_len)
-
-    @property
-    def first_invalid(self) -> int:
-        # ToDo: implement
-        ...
+def is_valid(num: int, preamble: Deque[int]) -> bool:
+    for pair in combinations(preamble, 2):
+        if sum(pair) == num:
+            return True
+    return False
 
 
-def solve(task: str) -> int:
+def first_invalid(data: List[int], preamble_length: int) -> int:
+    preamble = deque(data[:preamble_length])
+    numbers = data[preamble_length:]
+
+    for number in numbers:
+        if is_valid(number, preamble):
+            preamble.popleft()
+            preamble.append(number)
+        else:
+            return number
+
+    raise ValueError("invalid number was not found")
+
+
+def solve(task: str, preamble_length=25) -> int:
     """What is the first invalid number?"""
-    transmission = Transmission.from_string(task, preamble_len=25)
-    return transmission.first_invalid
+    data = [int(num) for num in task.strip().split("\n")]
+    return first_invalid(data, preamble_length)
