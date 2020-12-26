@@ -27,5 +27,7 @@ def solve(task: str) -> int:
 
         return result
 
-    adapters: List[int] = [0] + sorted(process_data(task))
+    adapters: List[int] = process_data(task)
+    adapters.append(0)
+    adapters = sorted(adapters)
     return count_arrangements()
