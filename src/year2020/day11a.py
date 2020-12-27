@@ -58,7 +58,7 @@ class Matrix:
             new_j = j + shift_j
 
             i_in_range = 0 <= new_i < len(self.data)
-            j_in_range = 0 <= new_j < len(self.data[new_i])
+            j_in_range = 0 <= new_j < len(self.data[0])
 
             if i_in_range and j_in_range:
                 if self.data[new_i][new_j] is Cell.OCCUPIED:
