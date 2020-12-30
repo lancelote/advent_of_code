@@ -1,12 +1,12 @@
-"""2020 - Day 10 Part 1: Adapter Array."""
+"""2020 - Day 10 Part 2: Adapter Array."""
 from textwrap import dedent
 
 import pytest
 
-from src.year2020.day11a import count_adjacent
 from src.year2020.day11a import generate_next
 from src.year2020.day11a import Matrix
-from src.year2020.day11a import solve
+from src.year2020.day11b import count_visible
+from src.year2020.day11b import solve
 
 
 @pytest.fixture
@@ -45,28 +45,28 @@ def test_steps(task):
             """
         )
     )
-    first_step = generate_next(task_matrix, 4, count_adjacent)
+    first_step = generate_next(task_matrix, 5, count_visible)
     assert first_step == first_step_expected
 
     second_step_expected = Matrix.from_task(
         dedent(
             """
-            #.LL.L#.##
-            #LLLLLL.L#
+            #.LL.LL.L#
+            #LLLLLL.LL
             L.L.L..L..
-            #LLL.LL.L#
-            #.LL.LL.LL
-            #.LLLL#.##
+            LLLL.LL.LL
+            L.LL.LL.LL
+            L.LLLLL.LL
             ..L.L.....
-            #LLLLLLLL#
+            LLLLLLLLL#
             #.LLLLLL.L
-            #.#LLLL.##
+            #.LLLLL.L#
             """
         )
     )
-    second_step = generate_next(first_step, 4, count_adjacent)
+    second_step = generate_next(first_step, 5, count_visible)
     assert second_step == second_step_expected
 
 
 def test_solve(task):
-    assert solve(task) == 37
+    assert solve(task) == 26
