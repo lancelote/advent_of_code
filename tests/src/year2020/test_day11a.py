@@ -1,4 +1,4 @@
-"""2020 - Day 10 Part 1: Adapter Array."""
+"""2020 - Day 11 Part 1: Seating System."""
 from textwrap import dedent
 
 import pytest
