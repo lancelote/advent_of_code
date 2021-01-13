@@ -15,21 +15,18 @@ def process_data(data: str) -> List[Shuttle]:
     ]
 
 
-def found(biggest: Shuttle, current: int, shuttles: List[Shuttle]) -> bool:
-    return all(
-        (current + shuttle.i - biggest.i) % shuttle.pk == 0
-        for shuttle in shuttles
-    )
-
-
 def find_earliest(shuttles: List[Shuttle]) -> int:
-    current = 0
-    biggest = max(shuttles, key=lambda x: x.pk)
+    timestamp = 0
+    step = shuttles[0].pk
 
-    while not found(biggest, current, shuttles):
-        current += biggest.pk
+    for shuttle in shuttles[1:]:
+        while (timestamp + shuttle.i) % shuttle.pk != 0:
+            timestamp += step
 
-    return current - biggest.i
+        # prime numbers p1 and p2 repeat their relative position every p1*p2
+        step *= shuttle.pk
+
+    return timestamp
 
 
 def solve(task: str) -> int:
