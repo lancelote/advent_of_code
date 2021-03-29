@@ -10,13 +10,48 @@ from typing import DefaultDict
 from typing import List
 
 
-class Mask:
-    def __init__(self):
-        self._mask = "X" * 36
+class Mask(ABC):
+    _mask = "X" * 36
 
     def set(self, mask: str) -> None:
         self._mask = mask
 
+    @abstractmethod
+    def apply(self, value: int) -> int:
+        ...
+
+
+class Memory(ABC):
+    _mask: Mask
+    _memory: DefaultDict[int, int] = defaultdict(int)
+
+    def set_mask(self, mask: str) -> None:
+        self._mask.set(mask)
+
+    def sum(self) -> int:
+        return sum(self._memory.values())
+
+    @abstractmethod
+    def add(self, address: int, value: int) -> None:
+        ...
+
+
+class Command(ABC):
+    @staticmethod
+    def from_line(line: str) -> Command:
+        if line.startswith("mask"):
+            return MaskCommand.from_line(line)
+        elif line.startswith("mem"):
+            return MemoryCommand.from_line(line)
+        else:
+            raise ValueError(f"unexpected command line: {line}")
+
+    @abstractmethod
+    def execute(self, memory: Memory) -> None:
+        ...
+
+
+class MaskV1(Mask):
     def apply(self, value: int) -> int:
         str_value = bin(value)[2:].rjust(36, "0")
         result = []
@@ -34,34 +69,11 @@ class Mask:
         return int("".join(result), 2)
 
 
-class Memory:
-    def __init__(self):
-        self._mask = Mask()
-        self._memory: DefaultDict[int, int] = defaultdict(int)
-
-    def set_mask(self, mask: str) -> None:
-        self._mask.set(mask)
+class MemoryV1(Memory):
+    _mask = MaskV1()
 
     def add(self, address: int, value: int) -> None:
         self._memory[address] = self._mask.apply(value)
-
-    def sum(self) -> int:
-        return sum(self._memory.values())
-
-
-class Command(ABC):
-    @staticmethod
-    def from_line(line: str) -> Command:
-        if line.startswith("mask"):
-            return MaskCommand.from_line(line)
-        elif line.startswith("mem"):
-            return MemoryCommand.from_line(line)
-        else:
-            raise ValueError(f"unexpected command line: {line}")
-
-    @abstractmethod
-    def execute(self, memory: Memory) -> None:
-        ...
 
 
 @dataclass
@@ -96,9 +108,9 @@ def process_data(data: str) -> List[Command]:
 
 
 class Program:
-    def __init__(self) -> None:
+    def __init__(self, memory: Memory) -> None:
         self.mask = "X" * 36
-        self.memory = Memory()
+        self.memory = memory
 
     def execute(self, commands: List[Command]) -> None:
         for command in commands:
@@ -112,6 +124,6 @@ class Program:
 def solve(task: str) -> int:
     """Sum all items in memory."""
     commands = process_data(task)
-    program = Program()
+    program = Program(MemoryV1())
     program.execute(commands)
     return program.memory_sum
