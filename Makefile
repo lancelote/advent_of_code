@@ -8,7 +8,7 @@ run:
 	python main.py solve
 
 install:
-	python -m pip install -r requirements.txt
+	python -m pip install -r requirements-dev.txt
 
 pur:
 	pur -r requirements.txt
