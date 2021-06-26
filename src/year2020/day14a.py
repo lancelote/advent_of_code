@@ -7,29 +7,28 @@ from abc import abstractmethod
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict
-from typing import List
 
 
 class Mask(ABC):
-    _mask = "X" * 36
+    mask = "X" * 36
 
     def set(self, mask: str) -> None:
-        self._mask = mask
+        self.mask = mask
 
     @abstractmethod
-    def apply(self, value: int) -> int:
+    def apply_to(self, value: int) -> list[int]:
         ...
 
 
 class Memory(ABC):
-    _mask: Mask
-    _memory: DefaultDict[int, int] = defaultdict(int)
+    mask: Mask
+    memory: DefaultDict[int, int] = defaultdict(int)
 
     def set_mask(self, mask: str) -> None:
-        self._mask.set(mask)
+        self.mask.set(mask)
 
     def sum(self) -> int:
-        return sum(self._memory.values())
+        return sum(self.memory.values())
 
     @abstractmethod
     def add(self, address: int, value: int) -> None:
@@ -52,28 +51,26 @@ class Command(ABC):
 
 
 class MaskV1(Mask):
-    def apply(self, value: int) -> int:
+    def apply_to(self, value: int) -> list[int]:
         str_value = bin(value)[2:].rjust(36, "0")
         result = []
 
-        for bit, mask_bit in zip(str_value, self._mask):
+        for bit, mask_bit in zip(str_value, self.mask):
             if mask_bit == "X":
                 result.append(bit)
-            elif mask_bit == "0":
-                result.append("0")
-            elif mask_bit == "1":
-                result.append("1")
+            elif mask_bit == "0" or mask_bit == "1":
+                result.append(mask_bit)
             else:
                 raise ValueError(f"unexpected mask bit: {mask_bit}")
 
-        return int("".join(result), 2)
+        return [int("".join(result), 2)]
 
 
 class MemoryV1(Memory):
-    _mask = MaskV1()
+    mask = MaskV1()
 
     def add(self, address: int, value: int) -> None:
-        self._memory[address] = self._mask.apply(value)
+        self.memory[address] = self.mask.apply_to(value)[0]
 
 
 @dataclass
@@ -103,7 +100,7 @@ class MemoryCommand(Command):
         memory.add(self.address, self.value)
 
 
-def process_data(data: str) -> List[Command]:
+def process_data(data: str) -> list[Command]:
     return [Command.from_line(line) for line in data.strip().split("\n")]
 
 
@@ -112,7 +109,7 @@ class Program:
         self.mask = "X" * 36
         self.memory = memory
 
-    def execute(self, commands: List[Command]) -> None:
+    def execute(self, commands: list[Command]) -> None:
         for command in commands:
             command.execute(self.memory)
 
