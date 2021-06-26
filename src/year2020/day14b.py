@@ -35,7 +35,8 @@ class MaskV2(Mask):
 
 
 class MemoryV2(Memory):
-    mask = MaskV2()
+    def __init__(self) -> None:
+        super().__init__(mask=MaskV2())
 
     def add(self, address: int, value: int) -> None:
         masked_addresses = self.mask.apply_to(address)

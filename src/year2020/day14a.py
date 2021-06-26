@@ -21,8 +21,9 @@ class Mask(ABC):
 
 
 class Memory(ABC):
-    mask: Mask
-    memory: DefaultDict[int, int] = defaultdict(int)
+    def __init__(self, mask: Mask) -> None:
+        self.mask = mask
+        self.memory: DefaultDict[int, int] = defaultdict(int)
 
     def set_mask(self, mask: str) -> None:
         self.mask.set(mask)
@@ -67,7 +68,8 @@ class MaskV1(Mask):
 
 
 class MemoryV1(Memory):
-    mask = MaskV1()
+    def __init__(self) -> None:
+        super().__init__(mask=MaskV1())
 
     def add(self, address: int, value: int) -> None:
         self.memory[address] = self.mask.apply_to(value)[0]
