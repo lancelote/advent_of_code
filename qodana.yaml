@@ -1,0 +1,10 @@
+exclude:
+  - name: All
+    paths:
+      - .venv/
+      - .github/
+      - .mypy_cache/
+      - .pytest_cache/
+      - cache/
+      - output/
+      - qodana/

@@ -6,22 +6,48 @@ on:
       - master
 
 jobs:
-  check:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+      - name: Setup Qodana
+        run: |
+          docker run --rm \
+          -v ${{ github.workspace }}/:/data/project/ \
+          --entrypoint=bash \
+          jetbrains/qodana -c '
+            python3 -m venv /data/project/.venv
+            source /data/project/.venv/bin/activate
+            pip3 install -r /data/project/requirements-dev.txt
+          '
+      - name: Run Qodana
+        uses: JetBrains/qodana-action@v2.0-eap
+#      - name: Upload Qodana Artifacts
+#        uses: actions/upload-artifact@v2
+#        with:
+#          path: ${{ github.workspace }}/qodana
+#      - name: Deploy Qodana Report to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ${{ github.workspace }}/qodana/report
+#          destination_dir: ./
 
+  check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.10]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: install
-      run: make install
-    - name: test
-      run: make test
-    - name: lint
-      run: make lint
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: install
+        run: make install
+      - name: test
+        run: make test
+      - name: lint
+        run: make lint
