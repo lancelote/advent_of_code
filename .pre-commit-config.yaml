@@ -9,10 +9,9 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/psf/black
-    rev: 21.6b0
+    rev: 21.7b0
     hooks:
       - id: black
-        language_version: python3.9
         args: [-l79]
 
   - repo: https://gitlab.com/pycqa/flake8
@@ -26,6 +25,6 @@ repos:
       - id: mypy
 
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.5.0
+    rev: v2.6.0
     hooks:
       - id: reorder-python-imports
