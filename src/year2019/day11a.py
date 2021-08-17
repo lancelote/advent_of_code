@@ -100,7 +100,7 @@ class Robot:
     """Painting robot."""
 
     def __init__(self, cpu: Computer = None):
-        """Robot has a CPU and tracks it's hull position and direction."""
+        """Robot has a CPU and tracks its hull position and direction."""
         self.coordinates = Coordinates()
         self.cpu = cpu or Computer()
         self.direction = Direction.UP
@@ -117,7 +117,7 @@ class Robot:
             self.step(hull)
 
     def step(self, hull: Hull):
-        """Make one painting step."""
+        """Make one paint step."""
         panel = hull[self.coordinates]
         self.cpu.stdin.append(0 if panel.color is Color.BLACK else 1)
         self.cpu.execute()

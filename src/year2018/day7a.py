@@ -86,7 +86,7 @@ def process_date(data: str) -> Parents:
 def next_step(
     parents: Parents, done: Set[Step], todo: Set[Step]
 ) -> Optional[Step]:
-    """Get next available step to do."""
+    """Get next available step to take."""
     ready = set()
     for step in todo:
         if parents[step].issubset(done):

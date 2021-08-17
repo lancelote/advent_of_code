@@ -6,7 +6,7 @@ from src.year2017.day11a import SHIFTS
 
 
 def solve(task: str) -> int:
-    """Find furthest distance in hex grid.
+    """Find the furthest distance in hex grid.
 
     Relevant docs: https://www.redblobgames.com/grids/hexagons/
     """

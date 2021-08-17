@@ -7,7 +7,7 @@ from src.year2019.day12a import System
 
 
 def lcd(x: int, y: int) -> int:
-    """Calculate least common divisor between x and y."""
+    """Calculate the least common divisor between x and y."""
     return abs(x * y) // gcd(x, y)
 
 

@@ -1,4 +1,4 @@
-""""Day 12 Part 1: Subterranean Sustainability tests."""
+"""Day 12 Part 1: Subterranean Sustainability tests."""
 from textwrap import dedent
 
 import pytest

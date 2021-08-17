@@ -109,7 +109,7 @@ class Dot(Coordinate):
     """A dot of the grid."""
 
     def __init__(self, x: int, y: int):
-        """With closest pin reference and distance to it."""
+        """With the closest pin reference and distance to it."""
         self.closest: Optional[Pin] = None
         self.distance: Union[int, float] = math.inf
         super().__init__(x, y)
@@ -169,7 +169,7 @@ class Grid:
         return cls(pins, dots, width, height)
 
     def calc_distances(self):
-        """Calculate closest pin for each dot of the grid."""
+        """Calculate the closest pin for each dot of the grid."""
         for pin in self.pins:
             for dot in self.dots:
                 distance = pin - dot
@@ -201,7 +201,7 @@ class Grid:
         return largest_area
 
     def display(self):
-        """Print grid in a human readable view."""
+        """Print grid in a human-readable view."""
         names = {}
         for pin, name in zip(self.pins, ascii_lowercase):
             names[pin] = name

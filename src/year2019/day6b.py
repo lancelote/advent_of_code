@@ -19,7 +19,7 @@ def process_data(data: str) -> MAP:
 
 
 def closest_distance(start: str, stop: str, orbit_map: MAP) -> int:
-    """Find closest distance between start and stop."""
+    """Find the closest distance between start and stop."""
     distance = 0
     to_visit_now = {start}
     to_visit_next = set()
@@ -39,6 +39,6 @@ def closest_distance(start: str, stop: str, orbit_map: MAP) -> int:
 
 
 def solve(task: str) -> int:
-    """Calculate closest distance between YOU and SAN."""
+    """Calculate the closest distance between YOU and SAN."""
     orbit_map = process_data(task)
     return closest_distance("YOU", "SAN", orbit_map)

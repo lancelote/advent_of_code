@@ -78,9 +78,9 @@ def process_line(line: str) -> Tuple[str, int, List[str]]:
     """Convert raw line to a manageable view.
 
     Returns a tuple of:
-        - command name itself
-        - it's integer weight
-        - list of depending commands name
+        - Command name itself.
+        - Its integer weight.
+        - The list of dependent command names.
     """
     match = re.match(PATTERN, line)
     if not match:

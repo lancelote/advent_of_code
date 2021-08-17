@@ -14,7 +14,7 @@ def test_parse_task():
 class TestMarble:
     @staticmethod
     def generate_circle(step):
-        """Generate a marble circle returning it's start and end."""
+        """Generate a marble circle returning its start and end."""
         start = current = Marble.get_zero_marble()
         for i in range(1, step + 1):
             new = Marble(i)

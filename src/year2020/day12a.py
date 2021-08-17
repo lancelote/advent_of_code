@@ -75,7 +75,7 @@ def process_data(data: str) -> List[Instruction]:
 
 
 def solve(task: str) -> int:
-    """Manhattan distance to ship."""
+    """Find the Manhattan distance to ship."""
     ship = Ship()
     instructions = process_data(task)
     ship.apply_instructions(instructions)

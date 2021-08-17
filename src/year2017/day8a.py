@@ -62,7 +62,7 @@ def process_line(line: str) -> Instruction:
 
 
 def process_data(data: str) -> List[Instruction]:
-    """Convert raw data in the easy to use list of Instruction instances."""
+    """Convert raw data in the easy-to-use list of Instruction instances."""
     instructions = []
     for line in data.strip().split("\n"):
         instruction = process_line(line)
@@ -71,7 +71,7 @@ def process_data(data: str) -> List[Instruction]:
 
 
 def perform_instructions(instructions: List[Instruction]):
-    """Apply all instructions and return registers + biggest value seen."""
+    """Apply all instructions and return registers + the biggest value seen."""
     registers: DefaultDict[str, int] = defaultdict(int)
     biggest = 0
 

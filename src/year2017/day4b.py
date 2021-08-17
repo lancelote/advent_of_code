@@ -22,7 +22,7 @@ from src.year2017.day4a import count_valid
 
 
 def anagrams(passphrase: str) -> bool:
-    """Check if there're anagrams in passphrase."""
+    """Check if there are anagrams in passphrase."""
     words = passphrase.split()
     return len(words) == len({"".join(sorted(word)) for word in words})
 

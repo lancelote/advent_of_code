@@ -60,7 +60,7 @@ class Memory(Iterable):
         """Return number of items to pass on the given side."""
         length = 2 * self.circle + 1
         if side == 0:
-            length -= 1  # We need less steps on the right side
+            length -= 1  # We need fewer steps on the right side
         elif side == 3:
             length += 1  # We need one more item to step out of the last side
         return length

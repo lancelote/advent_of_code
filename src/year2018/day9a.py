@@ -108,14 +108,14 @@ class Marble:
         second.parent = marble
 
     def remove_counter_clockwise(self, times: int) -> Tuple["Marble", int]:
-        """Remove item counter clockwise after times rotations."""
+        """Remove item counter-clockwise after times rotations."""
         before = self
         for _ in range(times - 1):
             if not before.parent:
                 raise ValueError("Marble has not parent.")
             before = before.parent
         if not before:
-            raise ValueError("Counter clockwise turn should be done >1 times.")
+            raise ValueError("Counter-clockwise turn should be done >1 times.")
         remove = before.parent
         if not remove:
             raise ValueError("Marble has not parent.")

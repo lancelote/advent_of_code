@@ -53,7 +53,7 @@ class ShipWithWaypoint(Ship):
 
 
 def solve(task: str) -> int:
-    """Manhattan distance to ship."""
+    """Find the Manhattan distance to ship."""
     ship = ShipWithWaypoint()
     instructions = process_data(task)
     ship.apply_instructions(instructions)
