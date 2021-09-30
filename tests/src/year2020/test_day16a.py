@@ -19,6 +19,6 @@ def test_solve():
         40,4,50
         55,2,20
         38,6,12
-    """
+        """
     ).strip()
     assert solve(task) == 71

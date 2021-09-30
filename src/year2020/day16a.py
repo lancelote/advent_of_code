@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Iterator
 
 
 @dataclass
@@ -78,6 +79,28 @@ class Puzzle:
     @property
     def ticket_scanning_error_rate(self) -> int:
         return sum(ticket.error_rate(self.rules) for ticket in self.tickets)
+
+    @property
+    def valid_tickets(self) -> Iterator[Ticket]:
+        yield self.my_ticket
+
+        for ticket in self.tickets:
+            if ticket.error_rate(self.rules) == 0:
+                yield ticket
+
+    def get_fields(self) -> dict[str, int]:
+        fields: dict[str, int] = {}
+
+        for rule in self.rules:
+            for i in range(len(self.my_ticket.fields)):
+                for ticket in self.valid_tickets:
+                    if ticket.fields[i] not in rule:
+                        break
+                else:
+                    fields[rule.field] = self.my_ticket.fields[i]
+                    break
+
+        return fields
 
 
 def solve(task: str) -> int:
