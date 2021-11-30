@@ -29,24 +29,24 @@ need to set up a token for it to work. See the [instruction][2].
 I use Python 3.11 for development. The code should work fine with older
 versions.
 
-To install requirements:
+To install requirements (virtual environment is recommended)
 
 ```bash
-make install
+python -m pip install -r requirements-dev.txt
 ```
 
-To update `requirements.txt` with the newest package versions:
+To update `requirements.txt` with the newest package versions
 
 ```bash
-make pur
+pur -r requirements.txt
 ```
 
 ## Tests
 
-I store all the tests in `tests` folder and use `pytest` as a test runner:
+I store all the tests in `tests` folder and use `pytest` as a test runner
 
 ```bash
-make test
+python -m pytest tests
 ```
 
 ## Linters
@@ -56,7 +56,7 @@ hook. To run linters
 
 ```bash
 pre-commit install
-make lint
+pre-commit run --all-files
 ```
 
 # Merry Christmas and Happy New Year!
