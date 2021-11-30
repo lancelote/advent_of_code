@@ -51,8 +51,8 @@ make test
 
 ## Linters
 
-`mypy`, `flake8`, and `reorder-python-imports` are used in pre-commit hook.
-To run linters
+`mypy`, `flake8`, `black`, and `reorder-python-imports` are used in pre-commit
+hook. To run linters
 
 ```bash
 pre-commit install

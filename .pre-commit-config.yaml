@@ -8,6 +8,12 @@ repos:
       - id: check-added-large-files
       - id: requirements-txt-fixer
 
+  - repo: https://github.com/psf/black
+    rev: 21.11b1
+    hooks:
+      - id: black
+        args: [-l79]
+
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.9.2
     hooks:
