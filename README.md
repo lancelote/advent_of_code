@@ -26,8 +26,8 @@ python main.py solve 2017 5 a
 Solver uses [advent-of-code-data][1] to fetch tasks from the server. You
 need to set up a token for it to work. See the [instruction][2].
 
-I use Python 3.8 for development. The code should work fine on Python 3.7 as
-well.
+I use Python 3.11 for development. The code should work fine with older
+versions.
 
 To install requirements:
 
