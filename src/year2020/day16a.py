@@ -92,6 +92,7 @@ class Puzzle:
         fields: dict[str, int] = {}
 
         for rule in self.rules:
+            # ToDo: should remove the already matched field
             for i in range(len(self.my_ticket.fields)):
                 for ticket in self.valid_tickets:
                     if ticket.fields[i] not in rule:
