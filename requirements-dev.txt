@@ -1,5 +1,4 @@
 advent-of-code-data==0.9.8
-black==20.8b1
 click<8.0.0
 mypy==0.910
 pre-commit==2.14.0
