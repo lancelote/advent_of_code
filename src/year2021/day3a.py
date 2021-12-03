@@ -14,12 +14,12 @@ def count_zeros_and_ones(bits: Iterator[str]) -> tuple[int, int]:
     return zeros, ones
 
 
-def get_most_common(bits: Iterator[str]) -> str:
+def most_common(bits: Iterator[str]) -> str:
     zeros, ones = count_zeros_and_ones(bits)
     return "0" if zeros > ones else "1"
 
 
-def get_least_common(bits: Iterator[str]) -> str:
+def least_common(bits: Iterator[str]) -> str:
     zeros, ones = count_zeros_and_ones(bits)
     return "0" if zeros <= ones else "1"
 
@@ -35,7 +35,7 @@ def get_gamma(nums: list[str]) -> int:
     result = []
 
     for i_bits in iterate_bits(nums):
-        result.append(get_most_common(i_bits))
+        result.append(most_common(i_bits))
 
     return int("".join(result), base=2)
 
@@ -44,7 +44,7 @@ def get_epsilon(nums: list[str]) -> int:
     result = []
 
     for bits in iterate_bits(nums):
-        result.append(get_least_common(bits))
+        result.append(least_common(bits))
 
     return int("".join(result), base=2)
 
