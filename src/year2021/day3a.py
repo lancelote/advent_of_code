@@ -43,8 +43,8 @@ def get_gamma(nums: list[str]) -> int:
 def get_epsilon(nums: list[str]) -> int:
     result = []
 
-    for bits in iterate_bits(nums):
-        result.append(least_common(bits))
+    for i_bits in iterate_bits(nums):
+        result.append(least_common(i_bits))
 
     return int("".join(result), base=2)
 
