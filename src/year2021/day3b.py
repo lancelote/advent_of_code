@@ -14,10 +14,12 @@ def search(nums: list[str], criteria: Criteria) -> int:
     while len(left_indexes) != 1:
         filtered_out = set()
 
-        for i in left_indexes:
+        for left_index in left_indexes:
             left_nums = (nums[i] for i in left_indexes)
-            if not criteria(nums[i], bit_index, left_nums):
-                filtered_out.add(i)
+            num_to_check = nums[left_index]
+
+            if not criteria(num_to_check, bit_index, left_nums):
+                filtered_out.add(left_index)
 
         left_indexes.difference_update(filtered_out)
         bit_index += 1
