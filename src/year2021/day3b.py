@@ -37,7 +37,7 @@ def co2_criteria(num: str, i_bit: int, nums: Iterator[str]) -> bool:
 
 
 def solve(task: str) -> int:
-    nums = [x for x in task.strip().split("\n")]
+    nums = task.strip().split("\n")
 
     oxygen = search(nums, oxygen_criteria)
     co2 = search(nums, co2_criteria)

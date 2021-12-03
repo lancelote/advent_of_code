@@ -50,7 +50,7 @@ def get_epsilon(nums: list[str]) -> int:
 
 
 def solve(task: str) -> int:
-    nums = [x for x in task.strip().split("\n")]
+    nums = task.strip().split("\n")
 
     gamma = get_gamma(nums)
     epsilon = get_epsilon(nums)
