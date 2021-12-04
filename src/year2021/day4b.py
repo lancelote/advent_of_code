@@ -2,29 +2,25 @@ from src.year2021.day4a import Board
 
 
 def solve(task: str) -> int:
-    first_line, *other_chunks = task.strip().split("\n\n")
+    first_line, *raw_boards = task.strip().split("\n\n")
 
     nums = [int(x) for x in first_line.strip().split(",")]
-    boards = [Board.from_text(chunk) for chunk in other_chunks]
+    boards = [Board.from_text(raw_board) for raw_board in raw_boards]
 
-    i = 0
-
-    for i in range(len(nums)):
-        new_boards = []
+    for num in nums:
+        next_round_boards = []
 
         for board in boards:
-            board.draw(nums[i])
-            if not board.won:
-                new_boards.append(board)
+            board.draw(num)
 
-        boards = new_boards
-        if len(boards) == 1:
-            break
+            did_win = board.won
+            is_last_board = len(boards) == 1
 
-    the_board = boards[0]
-    for j in range(i + 1, len(nums)):
-        the_board.draw(nums[j])
-        if the_board.won:
-            return the_board.score
+            if is_last_board and did_win:
+                return board.score
+            elif not did_win:
+                next_round_boards.append(board)
 
-    raise ValueError("cannot find the last winning board")
+        boards = next_round_boards
+
+    raise ValueError("cannot find the single last winning board")

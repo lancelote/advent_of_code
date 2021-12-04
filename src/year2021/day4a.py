@@ -52,10 +52,10 @@ class Board:
 
 
 def solve(task: str) -> int:
-    first_line, *other_chunks = task.strip().split("\n\n")
+    first_line, *raw_boards = task.strip().split("\n\n")
 
     nums = [int(x) for x in first_line.strip().split(",")]
-    boards = [Board.from_text(chunk) for chunk in other_chunks]
+    boards = [Board.from_text(raw_board) for raw_board in raw_boards]
 
     for num in nums:
         for board in boards:
