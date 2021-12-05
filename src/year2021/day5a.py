@@ -1,56 +1,44 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from itertools import repeat
+from typing import Iterable
 from typing import Iterator
+from typing import NamedTuple
 
 
-def iter_ints(a: int, b: int) -> Iterator[int]:
+def range_between(a: int, b: int) -> Iterable[int]:
+    """Get a range from a to b inclusively (can do reverse)."""
     if a < b:
-        for x in range(a, b + 1):
-            yield x
-    elif a > b:
-        for x in range(a, b - 1, -1):
-            yield x
+        return range(a, b + 1, 1)
     else:
-        raise ValueError("iterating between equal ints")
+        return range(a, b - 1, -1)
 
 
 class Floor:
-    def __init__(self) -> None:
-        self.points: dict[Point, int] = defaultdict(int)
+    """Ocean floor."""
 
-    def draw(self, segments: list[Segment]):
+    def __init__(self) -> None:
+        self.overlaps: dict[Point, int] = defaultdict(int)
+
+    def draw(self, segments: list[Segment]) -> None:
         for segment in segments:
             for point in segment.iter_points():
-                self.points[point] += 1
+                self.overlaps[point] += 1
 
     @property
     def num_overlap(self) -> int:
-        return sum(1 for k, v in self.points.items() if v >= 2)
+        return sum(1 for _, overlap in self.overlaps.items() if overlap >= 2)
 
 
-class Point:
-    def __init__(self, x: int, y: int) -> None:
-        self.x = x
-        self.y = y
+class Point(NamedTuple):
+    x: int
+    y: int
 
     @classmethod
     def from_str(cls, line: str) -> Point:
         x_s, y_s = line.split(",")
         return cls(int(x_s), int(y_s))
-
-    def __str__(self) -> str:
-        return f"Point(x={self.x}, y={self.y})"
-
-    __repr__ = __str__
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Point):
-            raise ValueError(f"comparing point with {type(other)}")
-        return self.x == other.x and self.y == other.y
-
-    def __hash__(self) -> int:
-        return (self.x, self.y).__hash__()
 
 
 class Segment:
@@ -60,8 +48,10 @@ class Segment:
 
     @classmethod
     def from_line(cls, line: str) -> Segment:
-        start_s, stop_s = line.split(" -> ")
-        return cls(Point.from_str(start_s), Point.from_str(stop_s))
+        start_s, end_s = line.split(" -> ")
+        start = Point.from_str(start_s)
+        end = Point.from_str(end_s)
+        return cls(start, end)
 
     @property
     def is_horizontal(self) -> bool:
@@ -76,14 +66,16 @@ class Segment:
         return not (self.is_vertical or self.is_horizontal)
 
     def iter_points(self) -> Iterator[Point]:
+        iter_x = range_between(self.start.x, self.end.x)
+        iter_y = range_between(self.start.y, self.end.y)
+
         if self.is_horizontal:
-            for x in iter_ints(self.start.x, self.end.x):
-                yield Point(x, self.start.y)
+            iter_y = repeat(self.start.y)
         elif self.is_vertical:
-            for y in iter_ints(self.start.y, self.end.y):
-                yield Point(self.start.x, y)
-        else:
-            raise ValueError("trying iterate a diagonal segment")
+            iter_x = repeat(self.start.x)
+
+        for x, y in zip(iter_x, iter_y):
+            yield Point(x, y)
 
     def __str__(self) -> str:
         return f"Segment(start={self.start}, end={self.end})"
