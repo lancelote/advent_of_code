@@ -3,7 +3,6 @@ from __future__ import annotations
 
 class Board:
     def __init__(self, nums: list[list[int]]) -> None:
-        self.last_draw = 0
         self.nums = nums
         self.unmarked: set[int] = {x for row in nums for x in row}
 
@@ -16,10 +15,6 @@ class Board:
                 row.append(int(num))
             nums.append(row)
         return cls(nums)
-
-    def draw(self, num: int) -> None:
-        self.last_draw = num
-        self.unmarked.discard(num)
 
     def has_marked_rows(self) -> bool:
         for row in self.nums:
@@ -37,10 +32,6 @@ class Board:
     def won(self) -> bool:
         return self.has_marked_cols() or self.has_marked_rows()
 
-    @property
-    def score(self) -> int:
-        return self.last_draw * sum(self.unmarked)
-
 
 def solve(task: str) -> int:
     first_line, *raw_boards = task.strip().split("\n\n")
@@ -50,8 +41,8 @@ def solve(task: str) -> int:
 
     for num in nums:
         for board in boards:
-            board.draw(num)
+            board.unmarked.discard(num)
             if board.won:
-                return board.score
+                return num * sum(board.unmarked)
 
     raise ValueError("no board won")

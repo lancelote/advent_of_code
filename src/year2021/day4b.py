@@ -11,13 +11,13 @@ def solve(task: str) -> int:
         next_round_boards = []
 
         for board in boards:
-            board.draw(num)
+            board.unmarked.discard(num)
 
             did_win = board.won
             is_last_board = len(boards) == 1
 
             if is_last_board and did_win:
-                return board.score
+                return num * sum(board.unmarked)
             elif not did_win:
                 next_round_boards.append(board)
 
