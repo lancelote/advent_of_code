@@ -1,3 +1,4 @@
+"""2021 - Day 3 Part 2: Binary Diagnostic."""
 from collections.abc import Callable
 from typing import Iterator
 

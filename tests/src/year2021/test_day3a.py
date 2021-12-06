@@ -1,3 +1,4 @@
+"""2021 - Day 3 Part 1: Binary Diagnostic."""
 from textwrap import dedent
 
 from src.year2021.day3a import solve

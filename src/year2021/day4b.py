@@ -1,3 +1,4 @@
+"""2021 - Day 4 Part 2: Giant Squid."""
 from src.year2021.day4a import Board
 
 

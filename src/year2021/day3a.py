@@ -1,3 +1,4 @@
+"""2021 - Day 3 Part 1: Binary Diagnostic."""
 from typing import Iterator
 
 
