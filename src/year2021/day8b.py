@@ -6,10 +6,14 @@ from collections import defaultdict
 from src.year2021.day8a import process_data
 
 fz = frozenset
+union = set.union
+intersect = set.intersection
 
 
 class Screen:
-    def __init__(self, a, b, c, d, e, f, g) -> None:
+    def __init__(
+        self, a: str, b: str, c: str, d: str, e: str, f: str, g: str
+    ) -> None:
         self.a = a
         self.b = b
         self.c = c
@@ -31,30 +35,13 @@ class Screen:
             fz({self.a, self.b, self.c, self.d, self.f, self.g}): "9",
         }
 
-    def parse_num(self):
-        return {
-            0: {self.a, self.b, self.c, self.e, self.f, self.g},
-            1: {self.c, self.f},
-            2: {self.a, self.c, self.d, self.e, self.g},
-            3: {self.a, self.c, self.d, self.f, self.g},
-            4: {self.b, self.c, self.d, self.f},
-            5: {self.a, self.b, self.d, self.f, self.g},
-            6: {self.a, self.b, self.d, self.e, self.f, self.g},
-            7: {self.a, self.c, self.f},
-            8: {self.a, self.b, self.c, self.d, self.e, self.f, self.g},
-            9: {self.a, self.b, self.c, self.d, self.f, self.g},
-        }
-
     def parse_output(self, output: list[str]) -> int:
-        digits = []
-
-        for num in output:
-            digits.append(self.mapping[frozenset(num)])
-
-        return int("".join(digits))
+        """Convert raw string output to the corresponding integer."""
+        return int("".join(self.mapping[fz(x)] for x in output))
 
     @classmethod
     def from_signal(cls, nums: list[str]) -> Screen:
+        """Given a signal deduce its meaning and create a screen for it."""
         lengths = defaultdict(list)
         for num in nums:
             lengths[len(num)].append(set(num))
@@ -64,26 +51,25 @@ class Screen:
         seven = lengths[3][0]
         eight = lengths[7][0]
         zero_six_nine = lengths[6]
-        two_three_five = lengths[5]
 
         # magic
         a = seven - four
-        e = (set.union(*zero_six_nine) - set.intersection(*zero_six_nine)) - four
-        d = (set.union(*zero_six_nine) - set.intersection(*zero_six_nine)) - e - one
-        c = (set.union(*zero_six_nine) - set.intersection(*zero_six_nine)) - e - d
+        e = (eight - intersect(*zero_six_nine)) - four  # type: ignore
+        d = (eight - intersect(*zero_six_nine)) - e - one  # type: ignore
+        c = (eight - intersect(*zero_six_nine)) - e - d  # type: ignore
         b = four - one - d
         f = four - b - c - d
         g = eight - a - b - c - d - e - f
 
-        a = a.pop()
-        b = b.pop()
-        c = c.pop()
-        d = d.pop()
-        e = e.pop()
-        f = f.pop()
-        g = g.pop()
-
-        return cls(a, b, c, d, e, f, g)
+        return cls(
+            a.pop(),
+            b.pop(),
+            c.pop(),
+            d.pop(),
+            e.pop(),
+            f.pop(),
+            g.pop(),
+        )
 
 
 def solve(task: str) -> int:
