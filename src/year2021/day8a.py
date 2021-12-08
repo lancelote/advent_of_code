@@ -1,5 +1,6 @@
 """2021 - Day 8 Part 1: ."""
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -25,7 +26,5 @@ def solve(task: str) -> int:
     entries = process_data(task)
     simple = {2, 3, 4, 7}
     return sum(
-        len(pattern) in simple
-        for entry in entries
-        for pattern in entry.output
+        len(pattern) in simple for entry in entries for pattern in entry.output
     )
