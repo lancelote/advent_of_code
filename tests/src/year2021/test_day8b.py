@@ -1,4 +1,4 @@
-"""2021 - Day 7 Part 2: ."""
+"""2021 - Day 8 Part 2: Seven Segment Search."""
 from textwrap import dedent
 
 from src.year2021.day8b import Screen
