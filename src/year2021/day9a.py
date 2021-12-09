@@ -1,5 +1,8 @@
 """2021 - Day 9 Part 1: Smoke Basin."""
 from typing import Iterator
+from typing import NamedTuple
+
+Heightmap = list[list[int]]
 
 SHIFTS = [
     (-1, 0),
@@ -9,30 +12,38 @@ SHIFTS = [
 ]
 
 
-def adjacent(i: int, j: int, points: list[list[int]]) -> Iterator[int]:
-    row_length = len(points[0])
-    col_length = len(points)
+class Point(NamedTuple):
+    i: int
+    j: int
+    height: int
+
+
+def adjacent(point: Point, heightmap: Heightmap) -> Iterator[Point]:
+    """Yields given point neighbors."""
+    row_length = len(heightmap[0])
+    col_length = len(heightmap)
 
     for di, dj in SHIFTS:
-        valid_i = 0 <= i + di < col_length
-        valid_j = 0 <= j + dj < row_length
+        new_i = point.i + di
+        new_j = point.j + dj
+        valid_i = 0 <= new_i < col_length
+        valid_j = 0 <= new_j < row_length
 
         if valid_i and valid_j:
-            yield points[i + di][j + dj]
+            height = heightmap[new_i][new_j]
+            yield Point(new_i, new_j, height)
 
 
-def lowest(points: list[list[int]]) -> list[int]:
-    result = []
-
-    for i, row in enumerate(points):
-        for j, item in enumerate(row):
-            for neighbor in adjacent(i, j, points):
-                if neighbor <= item:
+def lowest(heightmap: Heightmap) -> Iterator[Point]:
+    """Yields the lowest points on the heightmap."""
+    for i, row in enumerate(heightmap):
+        for j, height in enumerate(row):
+            current = Point(i, j, height)
+            for neighbor in adjacent(current, heightmap):
+                if neighbor.height <= current.height:
                     break
             else:
-                result.append(item)
-
-    return result
+                yield current
 
 
 def risk_level(point: int) -> int:
@@ -40,9 +51,10 @@ def risk_level(point: int) -> int:
 
 
 def solve(task: str) -> int:
-    points = [
+    """Sum risk level of the lowest heightmap points."""
+    heightmap = [
         [int(x) for x in list(line.strip())]
         for line in task.strip().split("\n")
     ]
-    low_points = lowest(points)
-    return sum(risk_level(point) for point in low_points)
+    low_points = lowest(heightmap)
+    return sum(risk_level(point.height) for point in low_points)
