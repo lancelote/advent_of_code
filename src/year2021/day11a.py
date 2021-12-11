@@ -1,4 +1,6 @@
 """2021 - Day 11 Part 1: Dumbo Octopus."""
+from __future__ import annotations
+
 from collections import deque
 from typing import Deque
 from typing import Iterator
@@ -30,6 +32,19 @@ class Data:
     def __init__(self, data: list[list[Octopus]]) -> None:
         self.data = data
 
+    @classmethod
+    def from_task(cls, task: str) -> Data:
+        return Data(
+            [
+                [Octopus(i, j, int(energy)) for j, energy in enumerate(line)]
+                for i, line in enumerate(task.splitlines())
+            ]
+        )
+
+    @property
+    def all_zeros(self) -> bool:
+        return all(x.energy == 0 for line in self.data for x in line)
+
     def iter_adjacent_to(self, octopus: Octopus) -> Iterator[Octopus]:
         for di, dj in SHIFTS:
             new_i = octopus.i + di
@@ -49,8 +64,7 @@ class Data:
         return self.data.__iter__()
 
 
-def step(data: Data) -> int:
-    """Perform a single step by increasing energy and flashing octopuses."""
+def make_step(data: Data) -> int:
     flashes = 0
     to_flash: Deque[Octopus] = deque()
 
@@ -76,15 +90,10 @@ def step(data: Data) -> int:
 
 
 def solve(task: str) -> int:
-    data = Data(
-        [
-            [Octopus(i, j, int(energy)) for j, energy in enumerate(line)]
-            for i, line in enumerate(task.splitlines())
-        ]
-    )
+    data = Data.from_task(task)
     flashes = 0
 
     for _ in range(100):
-        flashes += step(data)
+        flashes += make_step(data)
 
     return flashes
