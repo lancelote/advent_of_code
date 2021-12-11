@@ -2,7 +2,7 @@ advent-of-code-data==1.1.0
 black==21.11b1
 click<8.0.0
 mypy==0.910
-pre-commit==2.15.0
+pre-commit==2.16.0
 pur==5.4.2
 pytest==6.2.5
 pytest-mock==3.6.1
