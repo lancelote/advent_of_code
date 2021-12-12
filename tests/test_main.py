@@ -1,3 +1,6 @@
+import re
+from pathlib import Path
+
 import pytest
 from click.testing import CliRunner
 
@@ -39,3 +42,23 @@ def test_wrong_part(runner):
 
     assert result.exit_code == 2
     assert "Invalid value for 'PART'" in result.output
+
+
+def test_correct_solution_file_names():
+    src = Path("src")
+    for year_dir in src.glob("year*"):
+        for file in year_dir.glob("*.py"):
+            allowed = {"__init__.py", "intcode.py"}
+            solution = re.match(r"day[0-3][0-9][ab].py", file.name)
+            valid = solution or file.name in allowed
+            assert solution or file.name in allowed, f"unexpected file {file}"
+
+
+def test_correct_test_file_names():
+    tests = Path("tests") / "src"
+    for year_dir in tests.glob("year*"):
+        for file in year_dir.glob("*.py"):
+            allowed = {"__init__.py", "test_intcode.py"}
+            solution_test = re.match(r"test_day[0-3][0-9][ab].py", file.name)
+            valid = solution_test or file.name in allowed
+            assert valid, f"unexpected file {file}"
