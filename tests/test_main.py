@@ -51,7 +51,7 @@ def test_correct_solution_file_names():
             allowed = {"__init__.py", "intcode.py"}
             solution = re.match(r"day[0-3][0-9][ab].py", file.name)
             valid = solution or file.name in allowed
-            assert solution or file.name in allowed, f"unexpected file {file}"
+            assert valid, f"unexpected file {file}"
 
 
 def test_correct_test_file_names():
