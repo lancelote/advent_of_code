@@ -34,23 +34,21 @@ def parse_task(task: str) -> dict[str, Cave]:
     return caves
 
 
+def visit(cave: Cave, visited: set) -> int:
+    if cave.name == "end":
+        return 1
+
+    routes = 0
+    visited.add(cave.name)
+
+    for neighbor in cave.adjacent:
+        if not (neighbor.is_small and neighbor.name in visited):
+            routes += visit(neighbor, visited=visited)
+
+    visited.discard(cave.name)
+    return routes
+
+
 def solve(task: str) -> int:
     caves = parse_task(task)
-    unique_paths = 0
-
-    def visit(cave: Cave, visited: set) -> None:
-        nonlocal unique_paths
-
-        if cave.name == "end":
-            unique_paths += 1
-            return
-
-        visited.add(cave.name)
-        for neighbor in cave.adjacent:
-            if not (neighbor.is_small and neighbor.name in visited):
-                visit(neighbor, visited=visited)
-
-        visited.discard(cave.name)
-
-    visit(caves["start"], visited=set())
-    return unique_paths
+    return visit(caves["start"], visited=set())

@@ -1,14 +1,23 @@
-"""2021 - Day 12 Part 1: Passage Pathing."""
+"""2021 - Day 12 Part 2: Passage Pathing."""
 from textwrap import dedent
 
 import pytest
 
-from src.year2021.day12a import solve
+from src.year2021.day12b import solve
 
 
 @pytest.mark.parametrize(
     "task,routes",
     [
+        (
+            """
+            start-A
+            A-b
+            b-c
+            A-end
+            """,
+            4,
+        ),
         (
             """
             start-A
@@ -19,7 +28,7 @@ from src.year2021.day12a import solve
             A-end
             b-end
             """,
-            10,
+            36,
         ),
         (
             """
@@ -34,7 +43,7 @@ from src.year2021.day12a import solve
             kj-HN
             kj-dc
             """,
-            19,
+            103,
         ),
         (
             """
@@ -57,7 +66,7 @@ from src.year2021.day12a import solve
             pj-fs
             start-RW
             """,
-            226,
+            3509,
         ),
     ],
 )
