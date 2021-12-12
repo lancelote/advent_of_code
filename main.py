@@ -17,7 +17,7 @@ class Solver:
         """Print the result to a console."""
         task = get_data(day=day, year=year)
 
-        solver = importlib.import_module(f"src.year{year}.day{day}{part}")
+        solver = importlib.import_module(f"src.year{year}.day{day:02}{part}")
         solution = solver.solve(task)  # type: ignore
         print("Answer:", solution)
 
