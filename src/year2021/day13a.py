@@ -1,5 +1,6 @@
 """2021 - Day 13 Part 1: Transparent Origami."""
 from __future__ import annotations
+
 from enum import Enum
 from typing import NamedTuple
 
@@ -11,15 +12,10 @@ class Point(NamedTuple):
     @classmethod
     def from_line(cls, line: str) -> Point:
         raw_x, raw_y = line.split(",")
-        return Point(
-            x=int(raw_x),
-            y=int(raw_y)
-        )
+        return Point(x=int(raw_x), y=int(raw_y))
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         return f"Point({self.x}, {self.y})"
-
-    __repr__ = __str__
 
 
 class Fold(Enum):
@@ -54,7 +50,7 @@ class Paper:
             if point.y < position:
                 left_points.add(point)
             elif point.y > position:
-                new_point = Point(point.x, 2*position - point.y)
+                new_point = Point(point.x, 2 * position - point.y)
                 left_points.add(new_point)
             else:
                 raise ValueError(f"point on a fold line: {point}")
@@ -101,10 +97,7 @@ class Instruction(NamedTuple):
     @classmethod
     def from_line(cls, line: str) -> Instruction:
         raw_fold, raw_line = line.split("=")
-        return Instruction(
-            fold=Fold(raw_fold[-1]),
-            position=int(raw_line)
-        )
+        return Instruction(fold=Fold(raw_fold[-1]), position=int(raw_line))
 
 
 def parse_task(task: str) -> tuple[Paper, list[Instruction]]:
