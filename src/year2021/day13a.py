@@ -75,6 +75,24 @@ class Paper:
 
         self.points = left_points
 
+    def print(self) -> None:
+        max_x = 0
+        max_y = 0
+
+        for point in self.points:
+            max_x = max(max_x, point.x)
+            max_y = max(max_y, point.y)
+
+        array = [[" " for _ in range(max_x + 1)] for _ in range(max_y + 1)]
+
+        for point in self.points:
+            array[point.y][point.x] = "#"
+
+        for row in array:
+            for item in row:
+                print(item, end="")
+            print()
+
 
 class Instruction(NamedTuple):
     fold: Fold
