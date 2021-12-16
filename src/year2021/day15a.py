@@ -17,8 +17,33 @@ class RiskMap:
         self.data = data
 
     @classmethod
-    def from_task(cls, task: str) -> RiskMap:
+    def from_task_a(cls, task: str) -> RiskMap:
         data = [[int(x) for x in line] for line in task.splitlines()]
+        return cls(data)
+
+    @classmethod
+    def from_task_b(cls, task: str) -> RiskMap:
+        chunk = [[int(x) for x in line] for line in task.splitlines()]
+
+        chunk_h = len(chunk[0])
+        chunk_v = len(chunk)
+
+        data_h = chunk_h * 5
+        data_v = chunk_v * 5
+
+        data = [[0 for _ in range(data_h)] for _ in range(data_v)]
+
+        for row_i in range(5):
+            for col_i in range(5):
+                inc = row_i + col_i
+
+                for y, chunk_row in enumerate(chunk):
+                    for x, item in enumerate(chunk_row):
+                        new_x = x + chunk_h * col_i
+                        new_y = y + chunk_v * row_i
+
+                        data[new_y][new_x] = (item - 1 + inc) % 9 + 1
+
         return cls(data)
 
     @property
@@ -76,7 +101,7 @@ def walk(start: Point, target: Point, risk_map: RiskMap) -> int:
 
 
 def solve(task: str) -> int:
-    risk_map = RiskMap.from_task(task)
+    risk_map = RiskMap.from_task_a(task)
 
     start = Point(0, 0)
     target = Point(risk_map.max_x, risk_map.max_y)
