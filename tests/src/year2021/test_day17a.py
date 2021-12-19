@@ -1,5 +1,6 @@
 """2021 - Day 17 Part 1: Trick Shot."""
 from src.year2021.day17a import Target
+from src.year2021.day17a import solve
 
 
 def test_target_from_line():
@@ -8,3 +9,7 @@ def test_target_from_line():
     assert target.right_x == 30
     assert target.bottom_y == -10
     assert target.top_y == -5
+
+
+def test_solve():
+    assert solve("target area: x=20..30, y=-10..-5") == 45
