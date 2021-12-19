@@ -34,13 +34,13 @@ class Trajectory:
         self.dy = velocity.dy
 
         self.hit = False
-        self.too_low = False
         self.too_close = False
+        self.too_high = False
 
         self.target = target
 
     def calculate(self) -> None:
-        while not (self.hit or self.too_close or self.too_low):
+        while not (self.hit or self.too_close or self.too_high):
             self.step()
 
     def step(self) -> None:
@@ -62,8 +62,8 @@ class Trajectory:
             self.hit = True
         elif self.dx == 0 and self.y < self.target.bottom_y:
             self.too_close = True
-        elif self.y < self.target.bottom_y:
-            self.too_low = True
+        elif self.dx >= self.target.left_x and self.y < self.target.bottom_y:
+            self.too_high = True
 
     def inc_dx(self) -> None:
         self.dx = max(0, self.dx - 1)
@@ -82,14 +82,13 @@ def find_max_y(target: Target) -> int:
         trajectory = Trajectory(velocity, target)
         trajectory.calculate()
 
-        if trajectory.too_low:
-            dy += 1
-        elif trajectory.too_close:
+        if trajectory.too_close:
             dx += 1
-        elif trajectory.max_y > max_y:
-            max_y = trajectory.max_y
-        else:
+        elif trajectory.too_high:
             break
+        else:
+            max_y = trajectory.max_y
+            dy += 1
 
     return max_y
 
