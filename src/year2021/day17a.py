@@ -7,10 +7,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Target:
-    x_min: int
-    x_max: int
-    y_min: int
-    y_max: int
+    min_x: int
+    max_x: int
+    min_y: int
+    max_y: int
 
     @classmethod
     def from_line(cls, line: str) -> Target:
