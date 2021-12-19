@@ -77,7 +77,13 @@ class BITS:
 
     def read_packets_until(self) -> list[Packet]:
         sub_packets_len = self.read_sub_packets_len()
-        ...
+        limit = self.pointer + sub_packets_len
+        sub_packets = []
+
+        while self.pointer < limit:
+            sub_packets.append(self.read_packet())
+
+        return sub_packets
 
     def read_next_n_packets(self) -> list[Packet]:
         sub_packets_num = self.read_sub_packets_num()
