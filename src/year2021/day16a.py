@@ -1,6 +1,7 @@
 """2021 - Day 16 Part 1: Packet Decoder."""
-
 from __future__ import annotations
+
+from dataclasses import dataclass
 from typing import NamedTuple
 
 
@@ -17,16 +18,20 @@ def hex_to_bin(hex_num: str) -> str:
     return binary[2:].rjust(4, "0")
 
 
+@dataclass
 class Packet:
-    def __init__(self, version: int, type_id: int) -> None:
-        self.version = version
-        self.type_id = type_id
+    version: int
+    type_id: int
 
 
+@dataclass
 class LiteralPacket(Packet):
-    def __init__(self, version: int, type_id: int, value: int) -> None:
-        super().__init__(version, type_id)
-        self.value = value
+    value: int
+
+
+@dataclass
+class OperatorPacket(Packet):
+    sub_packets: list[Packet]
 
 
 class BITS:
@@ -39,7 +44,7 @@ class BITS:
         return cls("".join(hex_to_bin(x) for x in hex_line))
 
     def read_version(self) -> int:
-        version = int(self.data[self.pointer:self.pointer + 3], base=2)
+        version = int(self.data[self.pointer : self.pointer + 3], base=2)
         self.pointer += 3
         return version
 
@@ -64,6 +69,9 @@ class BITS:
         self.pointer += 5
         return Chunk(prefix, body)
 
+    def read_length_type_id(self) -> str:
+        return self.data[self.pointer]
+
     def read_packet(self) -> LiteralPacket:
         version = self.read_version()
         type_id = self.read_type_id()
@@ -72,7 +80,11 @@ class BITS:
             value = self.read_value()
             return LiteralPacket(version, type_id, value)
         else:
-            ...
+            length_type_id = self.read_length_type_id()
+            if length_type_id == "0":
+                ...
+            else:
+                ...
 
 
 def sum_versions(packet: Packet) -> int:
