@@ -81,7 +81,7 @@ class BITS:
 
     def read_next_n_packets(self) -> list[Packet]:
         sub_packets_num = self.read_sub_packets_num()
-        ...
+        return [self.read_packet() for _ in range(sub_packets_num)]
 
     def read_packet(self) -> Packet:
         version = self.read_version()
