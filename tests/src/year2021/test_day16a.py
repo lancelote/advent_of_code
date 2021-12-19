@@ -1,8 +1,10 @@
 """2021 - Day 16 Part 1: Packet Decoder."""
+import pytest
 
 from src.year2021.day16a import BITS
 from src.year2021.day16a import LiteralPacket
 from src.year2021.day16a import OperatorPacket
+from src.year2021.day16a import solve
 
 
 def test_literal_packet():
@@ -62,3 +64,18 @@ def test_operator_packet_2():
     assert sub_packet_3.type_id == 4
     assert isinstance(sub_packet_3, LiteralPacket)
     assert sub_packet_3.value == 3
+
+
+@pytest.mark.parametrize(
+    "task,version_sum",
+    [
+        ("D2FE28", 6),
+        ("38006F45291200", 9),
+        ("8A004A801A8002F478", 16),
+        ("620080001611562C8802118E34", 12),
+        ("C0015000016115A2E0802F182340", 23),
+        ("A0016C880162017C3686B18A3D4780", 31),
+    ],
+)
+def test_solve(task, version_sum):
+    assert solve(task) == version_sum

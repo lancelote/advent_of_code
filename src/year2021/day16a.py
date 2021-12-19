@@ -116,7 +116,11 @@ class BITS:
 
 
 def sum_versions(packet: Packet) -> int:
-    ...
+    if isinstance(packet, LiteralPacket):
+        return packet.version
+
+    assert isinstance(packet, OperatorPacket)
+    return packet.version + sum(sum_versions(x) for x in packet.sub_packets)
 
 
 def solve(task: str) -> int:
