@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import reduce
+from operator import mul
 from typing import NamedTuple
 
 
@@ -23,15 +25,42 @@ class Packet:
     version: int
     type_id: int
 
+    def evaluate(self) -> int:
+        return 0
+
 
 @dataclass
 class LiteralPacket(Packet):
     value: int
 
+    def evaluate(self) -> int:
+        return self.value
+
 
 @dataclass
 class OperatorPacket(Packet):
     sub_packets: list[Packet]
+
+    def evaluate(self) -> int:
+        if self.type_id == 0:
+            return sum(x.evaluate() for x in self.sub_packets)
+        elif self.type_id == 1:
+            return reduce(mul, [x.evaluate() for x in self.sub_packets])
+        elif self.type_id == 2:
+            return min(x.evaluate() for x in self.sub_packets)
+        elif self.type_id == 3:
+            return max(x.evaluate() for x in self.sub_packets)
+        elif self.type_id == 5:
+            first, second = self.sub_packets
+            return 1 if first.evaluate() > second.evaluate() else 0
+        elif self.type_id == 6:
+            first, second = self.sub_packets
+            return 1 if first.evaluate() < second.evaluate() else 0
+        elif self.type_id == 7:
+            first, second = self.sub_packets
+            return 1 if first.evaluate() == second.evaluate() else 0
+        else:
+            raise ValueError(f"unknown type id: {self.type_id}")
 
 
 class BITS:
