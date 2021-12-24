@@ -4,6 +4,11 @@ import pytest
 from src.year2019.day03a import Grid
 
 
+def plot(wires: list[str], grid: Grid) -> None:
+    for wire in wires:
+        grid.plot(wire)
+
+
 @pytest.fixture
 def grid():
     return Grid()
@@ -48,6 +53,5 @@ def test_basic_example(grid):
     ],
 )
 def test_bigger_examples(wires, distance, grid):
-    for wire in wires:
-        grid.plot(wire)
+    plot(wires, grid)
     assert grid.closest == distance
