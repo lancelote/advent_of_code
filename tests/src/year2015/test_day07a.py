@@ -14,8 +14,3 @@ class TestProcessData(unittest.TestCase):
             process_data("p LSHIFT 2 -> q"), [("p", "LSHIFT", "2", "q")]
         )
         self.assertEqual(process_data("NOT e -> f"), [(None, "NOT", "e", "f")])
-
-
-class TestSolve(unittest.TestCase):
-    def test_returns_correct_result(self):
-        pass
