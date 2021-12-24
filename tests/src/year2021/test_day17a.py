@@ -1,6 +1,6 @@
 """2021 - Day 17 Part 1: Trick Shot."""
-from src.year2021.day17a import Target
 from src.year2021.day17a import solve
+from src.year2021.day17a import Target
 
 
 def test_target_from_line():
