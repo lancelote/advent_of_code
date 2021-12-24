@@ -35,20 +35,23 @@ class Trajectory:
 
         self.hit = False
         self.too_close = False
-        self.overshot = False
+        self.too_high = False
+        self.too_far = False
 
         self.target = target
 
     def calculate(self) -> None:
-        while not (self.hit or self.too_close or self.overshot):
+        while not (
+            self.hit or self.too_close or self.too_high or self.too_far
+        ):
             self.step()
 
     def step(self) -> None:
         self.x += self.dx
-        self.check_position()
-
         self.y += self.dy
+
         self.max_y = max(self.max_y, self.y)
+
         self.check_position()
 
         self.inc_dx()
@@ -60,13 +63,16 @@ class Trajectory:
 
         not_enough_x = self.x < self.target.left_x
         too_big_y = self.y < self.target.bottom_y
+        too_big_x = self.x > self.target.right_x
 
         if hit_x and hit_y:
             self.hit = True
         elif self.dx == 0 and not_enough_x and too_big_y:
             self.too_close = True
         elif too_big_y:
-            self.overshot = True
+            self.too_high = True
+        elif too_big_x:
+            self.too_far = True
 
     def inc_dx(self) -> None:
         self.dx = max(0, self.dx - 1)
@@ -75,7 +81,7 @@ class Trajectory:
         self.dy -= 1
 
     def __str__(self) -> str:
-        return f"Trajectory(dx={self.dx}, dy={self.dy}, hit={self.hit})"
+        return f"Trajectory(dx={self.dx}, dy={self.dy})"
 
 
 def find_max_y(target: Target) -> int:
