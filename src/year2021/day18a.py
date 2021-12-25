@@ -1,6 +1,7 @@
 """2021 - Day 18 Part 1: Snailfish."""
 from __future__ import annotations
 
+import math
 import re
 from typing import Iterator
 
@@ -28,6 +29,15 @@ class Node:
     def magnitude(self) -> int:
         raise NotImplementedError
 
+    def reduce(self) -> bool:
+        return self.explode() or self.split()
+
+    def explode(self) -> bool:
+        raise NotImplementedError
+
+    def split(self) -> bool:
+        raise NotImplementedError
+
     def __add__(self, other: Node) -> Node:
         raise NotImplementedError
 
@@ -42,6 +52,12 @@ class Leaf(Node):
     @property
     def magnitude(self) -> int:
         return self.value
+
+    def explode(self) -> bool:
+        raise ValueError("cannot explode leaf")
+
+    def split(self) -> bool:
+        return False  # Cannot self split
 
     def __add__(self, other: Node) -> Leaf:
         raise ValueError("cannot sum leafs")
@@ -61,9 +77,28 @@ class Branch(Node):
         right = Node.from_tokens(tokens)
         return cls(left, right)
 
+    @classmethod
+    def from_int(cls, value: int) -> Branch:
+        left = Leaf(math.floor(value / 2))
+        right = Leaf(math.ceil(value / 2))
+        return cls(left, right)
+
     @property
     def magnitude(self) -> int:
         return 3 * self.left.magnitude + 2 * self.right.magnitude
+
+    def explode(self) -> bool:
+        return False
+
+    def split(self) -> bool:
+        if isinstance(self.left, Leaf) and self.left.value >= 10:
+            self.left = Branch.from_int(self.left.value)
+            return True
+        elif isinstance(self.right, Leaf) and self.right.value >= 10:
+            self.right = Branch.from_int(self.right.value)
+            return True
+        else:
+            return self.left.split() or self.right.split()
 
     def __add__(self, other: Node) -> Branch:
         return Branch(left=self, right=other)

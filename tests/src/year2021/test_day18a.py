@@ -76,3 +76,38 @@ def test_add():
     b = Node.from_line("[[3,4],5]")
     c = a + b
     assert str(c) == "[[1,2],[[3,4],5]]"
+
+
+@pytest.mark.parametrize(
+    "num,expected_str",
+    [
+        (10, "[5,5]"),
+        (11, "[5,6]"),
+        (12, "[6,6]"),
+    ],
+)
+def test_from_int(num, expected_str):
+    assert str(Branch.from_int(num)) == expected_str
+
+
+@pytest.mark.parametrize(
+    "from_line,to_line",
+    [
+        (
+            "[10,1]",
+            "[[5,5],1]",
+        ),
+        (
+            "[[[[0,7],4],[15,[0,13]]],[1,1]]",
+            "[[[[0,7],4],[[7,8],[0,13]]],[1,1]]",
+        ),
+        (
+            "[[[[0,7],4],[[7,8],[0,13]]],[1,1]]",
+            "[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]",
+        ),
+    ],
+)
+def test_split(from_line, to_line):
+    root = Node.from_line(from_line)
+    root.split()
+    assert str(root) == to_line
