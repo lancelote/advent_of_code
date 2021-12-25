@@ -8,14 +8,14 @@ def fuel(distance: int) -> int:
 def solve(task: str) -> int:
     positions = [int(x) for x in task.strip().split(",")]
 
-    result: int | None = None
+    min_fuel_cost: int | None = None
 
     for align_pos in range(min(positions), max(positions)):
         fuel_cost = sum(fuel(abs(align_pos - x)) for x in positions)
-        if result is None or result > fuel_cost:
-            result = fuel_cost
-        elif result < fuel_cost:
+        if min_fuel_cost is None or fuel_cost < min_fuel_cost:
+            min_fuel_cost = fuel_cost
+        elif min_fuel_cost < fuel_cost:
             break
 
-    assert result is not None
-    return result
+    assert min_fuel_cost is not None
+    return min_fuel_cost
