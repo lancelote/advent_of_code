@@ -57,3 +57,22 @@ def test_from_line_2():
 )
 def test_magnitude(line, expected_magnitude):
     assert Node.from_line(line).magnitude == expected_magnitude
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "[9,1]",
+        "[[9,1],[1,9]]",
+        "[[1,2],[[3,4],5]]",
+    ],
+)
+def test_str(line):
+    assert str(Node.from_line(line)) == line
+
+
+def test_add():
+    a = Node.from_line("[1,2]")
+    b = Node.from_line("[[3,4],5]")
+    c = a + b
+    assert str(c) == "[[1,2],[[3,4],5]]"

@@ -28,6 +28,12 @@ class Node:
     def magnitude(self) -> int:
         raise NotImplementedError
 
+    def __add__(self, other: Node) -> Node:
+        raise NotImplementedError
+
+    def __str__(self) -> str:
+        raise NotImplementedError
+
 
 class Leaf(Node):
     def __init__(self, value: int) -> None:
@@ -36,6 +42,12 @@ class Leaf(Node):
     @property
     def magnitude(self) -> int:
         return self.value
+
+    def __add__(self, other: Node) -> Leaf:
+        raise ValueError("cannot sum leafs")
+
+    def __str__(self) -> str:
+        return str(self.value)
 
 
 class Branch(Node):
@@ -52,6 +64,12 @@ class Branch(Node):
     @property
     def magnitude(self) -> int:
         return 3 * self.left.magnitude + 2 * self.right.magnitude
+
+    def __add__(self, other: Node) -> Branch:
+        return Branch(left=self, right=other)
+
+    def __str__(self) -> str:
+        return f"[{self.left},{self.right}]"
 
 
 def solve(task: str) -> int:
