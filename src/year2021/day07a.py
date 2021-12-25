@@ -4,14 +4,8 @@
 def solve(task: str) -> int:
     positions = [int(x) for x in task.strip().split(",")]
 
-    result: int | None = None
+    def fuel_cost(align: int) -> int:
+        return sum(abs(align - x) for x in positions)
 
-    for i in range(min(positions), max(positions)):
-        fuel_cost = sum(abs(i - x) for x in positions)
-        if result is None or result > fuel_cost:
-            result = fuel_cost
-        elif result < fuel_cost:
-            break
-
-    assert result is not None
-    return result
+    possible_aligns = range(min(positions), max(positions))
+    return min(fuel_cost(align) for align in possible_aligns)
