@@ -2,9 +2,9 @@
 import pytest
 
 from src.year2021.day18a import Branch
-from src.year2021.day18a import Leaf
-from src.year2021.day18a import Node
+from src.year2021.day18a import TreeNode
 from src.year2021.day18a import tokenize
+from src.year2021.day18a import LinkedList
 
 
 @pytest.mark.parametrize(
@@ -13,32 +13,6 @@ from src.year2021.day18a import tokenize
 )
 def test_tokenize(line, expected_tokens):
     assert list(tokenize(line)) == expected_tokens
-
-
-def test_from_line_1():
-    root = Node.from_line("[1,2]")
-
-    assert isinstance(root, Branch)
-    assert isinstance(root.left, Leaf)
-    assert root.left.value == 1
-
-    assert isinstance(root.right, Leaf)
-    assert root.right.value == 2
-
-
-def test_from_line_2():
-    root = Node.from_line("[9,[8,7]]")
-
-    assert isinstance(root, Branch)
-    assert isinstance(root.left, Leaf)
-    assert root.left.value == 9
-
-    assert isinstance(root.right, Branch)
-    assert isinstance(root.right.left, Leaf)
-    assert root.right.left.value == 8
-
-    assert isinstance(root.right.right, Leaf)
-    assert root.right.right.value == 7
 
 
 @pytest.mark.parametrize(
@@ -56,7 +30,7 @@ def test_from_line_2():
     ],
 )
 def test_magnitude(line, expected_magnitude):
-    assert Node.from_line(line).magnitude == expected_magnitude
+    assert LinkedList.from_line(line).magnitude == expected_magnitude
 
 
 @pytest.mark.parametrize(
@@ -68,26 +42,14 @@ def test_magnitude(line, expected_magnitude):
     ],
 )
 def test_str(line):
-    assert str(Node.from_line(line)) == line
+    assert str(LinkedList.from_line(line)) == line
 
 
 def test_add():
-    a = Node.from_line("[1,2]")
-    b = Node.from_line("[[3,4],5]")
+    a = LinkedList.from_line("[1,2]")
+    b = LinkedList.from_line("[[3,4],5]")
     c = a + b
     assert str(c) == "[[1,2],[[3,4],5]]"
-
-
-@pytest.mark.parametrize(
-    "num,expected_str",
-    [
-        (10, "[5,5]"),
-        (11, "[5,6]"),
-        (12, "[6,6]"),
-    ],
-)
-def test_from_int(num, expected_str):
-    assert str(Branch.from_int(num)) == expected_str
 
 
 @pytest.mark.parametrize(
@@ -108,6 +70,6 @@ def test_from_int(num, expected_str):
     ],
 )
 def test_split(from_line, to_line):
-    root = Node.from_line(from_line)
+    root = TreeNode.from_line(from_line)
     root.split()
     assert str(root) == to_line

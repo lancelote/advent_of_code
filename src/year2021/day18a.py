@@ -1,23 +1,71 @@
 """2021 - Day 18 Part 1: Snailfish."""
 from __future__ import annotations
 
-import math
 import re
+from itertools import chain
 from typing import Iterator
 
 
 def tokenize(line: str) -> Iterator[str]:
+    # only care about numbers and the open brackets
     for token in re.findall(r"(\[|\d+)", line):
         yield token
 
 
-class Node:
-    @classmethod
-    def from_line(cls, line: str) -> Node:
-        return cls.from_tokens(tokenize(line))
+class ListNode:
+    def __init__(self, data: str) -> None:
+        self.data = data
+        self.next: ListNode | None = None
+        self.prev: ListNode | None = None
+
+
+class LinkedList:
+    def __init__(self) -> None:
+        self.head: ListNode | None = None
+        self.tail: ListNode | None = None
+
+    def append(self, node: ListNode) -> None:
+        if self.head is None:
+            self.head = self.tail = node
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
+
+    def iter_data(self) -> Iterator[str]:
+        node = self.head
+        while node is not None:
+            yield node.data
+            node = node.next
+
+    def __add__(self, other: LinkedList) -> LinkedList:
+        tokens = chain("[", self.iter_data(), other.iter_data())
+        return LinkedList.from_tokens(tokens)
+
+    @property
+    def magnitude(self):
+        tree = TreeNode.from_tokens(self.iter_data())
+        return tree.magnitude
 
     @classmethod
-    def from_tokens(cls, tokens: Iterator[str]) -> Node:
+    def from_tokens(cls, tokens: Iterator[str]) -> LinkedList:
+        linked_list = LinkedList()
+        for token in tokens:
+            linked_list.append(ListNode(data=token))
+        return linked_list
+
+    @classmethod
+    def from_line(cls, line: str) -> LinkedList:
+        return cls.from_tokens(tokenize(line))
+
+    def __str__(self):
+        tree = TreeNode.from_tokens(self.iter_data())
+        return str(tree)
+
+
+class TreeNode:
+    @classmethod
+    def from_tokens(cls, tokens: Iterator[str]) -> TreeNode:
         for token in tokens:
             if token == "[":
                 return Branch.from_tokens(tokens)
@@ -29,23 +77,11 @@ class Node:
     def magnitude(self) -> int:
         raise NotImplementedError
 
-    def reduce(self) -> bool:
-        return self.explode() or self.split()
-
-    def explode(self) -> bool:
-        raise NotImplementedError
-
-    def split(self) -> bool:
-        raise NotImplementedError
-
-    def __add__(self, other: Node) -> Node:
-        raise NotImplementedError
-
     def __str__(self) -> str:
         raise NotImplementedError
 
 
-class Leaf(Node):
+class Leaf(TreeNode):
     def __init__(self, value: int) -> None:
         self.value = value
 
@@ -53,63 +89,30 @@ class Leaf(Node):
     def magnitude(self) -> int:
         return self.value
 
-    def explode(self) -> bool:
-        raise ValueError("cannot explode leaf")
-
-    def split(self) -> bool:
-        return False  # Cannot self split
-
-    def __add__(self, other: Node) -> Leaf:
-        raise ValueError("cannot sum leafs")
-
     def __str__(self) -> str:
         return str(self.value)
 
 
-class Branch(Node):
-    def __init__(self, left: Node, right: Node) -> None:
+class Branch(TreeNode):
+    def __init__(self, left: TreeNode, right: TreeNode) -> None:
         self.left = left
         self.right = right
 
     @classmethod
     def from_tokens(cls, tokens: Iterator[str]) -> Branch:
-        left = Node.from_tokens(tokens)
-        right = Node.from_tokens(tokens)
-        return cls(left, right)
-
-    @classmethod
-    def from_int(cls, value: int) -> Branch:
-        left = Leaf(math.floor(value / 2))
-        right = Leaf(math.ceil(value / 2))
+        left = TreeNode.from_tokens(tokens)
+        right = TreeNode.from_tokens(tokens)
         return cls(left, right)
 
     @property
     def magnitude(self) -> int:
         return 3 * self.left.magnitude + 2 * self.right.magnitude
 
-    def explode(self) -> bool:
-        return False
-
-    def split(self) -> bool:
-        if isinstance(self.left, Leaf) and self.left.value >= 10:
-            self.left = Branch.from_int(self.left.value)
-            return True
-        elif isinstance(self.right, Leaf) and self.right.value >= 10:
-            self.right = Branch.from_int(self.right.value)
-            return True
-        else:
-            return self.left.split() or self.right.split()
-
-    def __add__(self, other: Node) -> Branch:
-        return Branch(left=self, right=other)
-
     def __str__(self) -> str:
         return f"[{self.left},{self.right}]"
 
 
 def solve(task: str) -> int:
-    # ToDo: convert to generator
-    # nums = [Branch.from_line(line) for line in task.splitlines()]
-    # result = sum(nums)
-    # return result.magnitude
-    raise NotImplementedError
+    nums = [LinkedList.from_tokens(line) for line in task.splitlines()]
+    total = sum(nums)
+    return total.magnitude
