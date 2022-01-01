@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+import math
 from itertools import chain
 from typing import Iterator
 
@@ -18,6 +19,23 @@ class ListNode:
         self.next: ListNode | None = None
         self.prev: ListNode | None = None
 
+    def replace_with(self, node: ListNode) -> None:
+        if self.prev:
+            self.prev.next = node
+            node.prev = self.prev
+        if self.next:
+            self.next.prev = node
+            node.next = self.next
+
+    def insert_after(self, node: ListNode) -> None:
+        self.next = node.next
+        node.next.prev = self
+        node.next = self
+        self.prev = node
+
+    def __str__(self) -> str:
+        return self.data
+
 
 class LinkedList:
     def __init__(self) -> None:
@@ -33,10 +51,26 @@ class LinkedList:
             self.tail = node
 
     def iter_data(self) -> Iterator[str]:
+        for node in self.iter_nodes():
+            yield node.data
+
+    def iter_nodes(self) -> Iterator[ListNode]:
         node = self.head
         while node is not None:
-            yield node.data
+            yield node
             node = node.next
+
+    def split(self) -> None:
+        for node in self.iter_nodes():
+            if node.data.isalnum() and (num := int(node.data)) >= 10:
+                new_node0 = ListNode("[")
+                new_node1 = ListNode(str(math.floor(num / 2)))
+                new_node2 = ListNode(str(math.ceil(num / 2)))
+
+                node.replace_with(new_node0)
+                new_node1.insert_after(new_node0)
+                new_node2.insert_after(new_node1)
+                break
 
     def __add__(self, other: LinkedList) -> LinkedList:
         tokens = chain("[", self.iter_data(), other.iter_data())
