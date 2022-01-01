@@ -39,10 +39,10 @@ def lowest(heightmap: Heightmap) -> Iterator[Point]:
     for i, row in enumerate(heightmap):
         for j, height in enumerate(row):
             current = Point(i, j, height)
-            for neighbor in adjacent(current, heightmap):
-                if neighbor.height <= current.height:
-                    break
-            else:
+            if all(
+                neighbor.height > current.height
+                for neighbor in adjacent(current, heightmap)
+            ):
                 yield current
 
 
