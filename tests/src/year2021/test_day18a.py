@@ -1,8 +1,6 @@
 """2021 - Day 18 Part 1: Snailfish."""
 import pytest
 
-from src.year2021.day18a import Branch
-from src.year2021.day18a import TreeNode
 from src.year2021.day18a import tokenize
 from src.year2021.day18a import LinkedList
 
@@ -70,6 +68,6 @@ def test_add():
     ],
 )
 def test_split(from_line, to_line):
-    root = TreeNode.from_line(from_line)
-    root.split()
-    assert str(root) == to_line
+    num = LinkedList.from_line(from_line)
+    num.split()
+    assert str(num) == to_line
