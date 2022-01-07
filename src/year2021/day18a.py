@@ -1,6 +1,7 @@
 """2021 - Day 18 Part 1: Snailfish."""
 from __future__ import annotations
 
+import functools
 import math
 import re
 from typing import Iterator
@@ -202,6 +203,6 @@ def split(num: Node) -> Node:
 
 
 def solve(task: str) -> int:
-    nums = [Branch.from_line(line) for line in task.splitlines()]
-    result = sum(nums)
+    nums = [Node.from_line(line) for line in task.splitlines()]
+    result = functools.reduce(lambda x, y: x + y, nums)
     return result.magnitude
