@@ -1,14 +1,14 @@
 """2021 - Day 18 Part 1: Snailfish."""
+import functools
 from textwrap import dedent
 
 import pytest
-import functools
 
-from src.year2021.day18a import Node
 from src.year2021.day18a import explode
-from src.year2021.day18a import split
+from src.year2021.day18a import Node
 from src.year2021.day18a import reduce
 from src.year2021.day18a import solve
+from src.year2021.day18a import split
 
 
 @pytest.mark.parametrize(
@@ -92,8 +92,8 @@ def test_split(from_line, to_line):
         (
             "[[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]]",
             "[[3,[2,[8,0]]],[9,[5,[7,0]]]]",
-        )
-    ]
+        ),
+    ],
 )
 def test_explode(from_line, to_line):
     num = Node.from_line(from_line)
@@ -119,10 +119,7 @@ def test_sum():
         [[[5,[7,4]],7],1]
         [[[[4,2],2],6],[8,7]]
     """
-    nums = [
-        Node.from_line(line)
-        for line in dedent(task).strip().splitlines()
-    ]
+    nums = [Node.from_line(line) for line in dedent(task).strip().splitlines()]
     expected = "[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]"
     assert str(functools.reduce(lambda x, y: x + y, nums)) == expected
 
