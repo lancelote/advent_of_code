@@ -1,16 +1,9 @@
 """2021 - Day 18 Part 1: Snailfish."""
 import pytest
 
-from src.year2021.day18a import tokenize
-from src.year2021.day18a import LinkedList
-
-
-@pytest.mark.parametrize(
-    "line,expected_tokens",
-    [("[1,2]", ["[", "1", "2"]), ("[[1,22],3]", ["[", "[", "1", "22", "3"])],
-)
-def test_tokenize(line, expected_tokens):
-    assert list(tokenize(line)) == expected_tokens
+from src.year2021.day18a import Node
+from src.year2021.day18a import explode
+from src.year2021.day18a import split
 
 
 @pytest.mark.parametrize(
@@ -28,7 +21,7 @@ def test_tokenize(line, expected_tokens):
     ],
 )
 def test_magnitude(line, expected_magnitude):
-    assert LinkedList.from_line(line).magnitude == expected_magnitude
+    assert Node.from_line(line).magnitude == expected_magnitude
 
 
 @pytest.mark.parametrize(
@@ -40,12 +33,12 @@ def test_magnitude(line, expected_magnitude):
     ],
 )
 def test_str(line):
-    assert str(LinkedList.from_line(line)) == line
+    assert str(Node.from_line(line)) == line
 
 
 def test_add():
-    a = LinkedList.from_line("[1,2]")
-    b = LinkedList.from_line("[[3,4],5]")
+    a = Node.from_line("[1,2]")
+    b = Node.from_line("[[3,4],5]")
     c = a + b
     assert str(c) == "[[1,2],[[3,4],5]]"
 
@@ -68,6 +61,35 @@ def test_add():
     ],
 )
 def test_split(from_line, to_line):
-    num = LinkedList.from_line(from_line)
-    num.split()
-    assert str(num) == to_line
+    num = Node.from_line(from_line)
+    assert str(split(num)) == to_line
+
+
+@pytest.mark.parametrize(
+    "from_line,to_line",
+    [
+        (
+            "[[[[[9,8],1],2],3],4]",
+            "[[[[0,9],2],3],4]",
+        ),
+        (
+            "[7,[6,[5,[4,[3,2]]]]]",
+            "[7,[6,[5,[7,0]]]]",
+        ),
+        (
+            "[[6,[5,[4,[3,2]]]],1]",
+            "[[6,[5,[7,0]]],3]",
+        ),
+        (
+            "[[3,[2,[1,[7,3]]]],[6,[5,[4,[3,2]]]]]",
+            "[[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]]",
+        ),
+        (
+            "[[3,[2,[8,0]]],[9,[5,[4,[3,2]]]]]",
+            "[[3,[2,[8,0]]],[9,[5,[7,0]]]]",
+        )
+    ]
+)
+def test_explode(from_line, to_line):
+    num = Node.from_line(from_line)
+    assert str(explode(num)) == to_line
