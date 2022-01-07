@@ -99,6 +99,7 @@ def duplicate(node: Node) -> Node:
         return Leaf(node.value)
     elif isinstance(node, Branch):
         return Branch(duplicate(node.left), duplicate(node.right))
+    raise ValueError(f"unknown node type: {node}")
 
 
 def explode(num: Node) -> Node:
@@ -132,10 +133,13 @@ def explode(num: Node) -> Node:
 
                 return exploded_node
             else:
-                branch = Branch(None, None)
+                dummy_node = Node()
+                branch = Branch(dummy_node, dummy_node)
                 branch.left = traverse(node.left, depth + 1, path + [branch])
                 branch.right = traverse(node.right, depth + 1, path + [branch])
             return branch
+
+        raise ValueError(f"unknown node type: {node}")
 
     num = traverse(num, depth=0, path=[])
 
@@ -198,6 +202,8 @@ def split(num: Node) -> Node:
                 return Leaf(node.value)
         elif isinstance(node, Branch):
             return Branch(traverse(node.left), traverse(node.right))
+
+        raise ValueError(f"unknown node type: {node}")
 
     return traverse(num)
 
