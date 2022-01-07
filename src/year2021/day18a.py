@@ -72,11 +72,25 @@ class Branch(Node):
     def magnitude(self) -> int:
         return 3 * self.left.magnitude + 2 * self.right.magnitude
 
-    def __add__(self, other: Node) -> Branch:
-        return Branch(left=self, right=other)
+    def __add__(self, other: Node) -> Node:
+        return reduce(Branch(left=self, right=other))
 
     def __str__(self) -> str:
         return f"[{self.left},{self.right}]"
+
+
+def reduce(num: Node) -> Node:
+    while True:
+        num_after_explode = explode(num)
+        if str(num_after_explode) == str(num):
+            num_after_split = split(num)
+            if str(num_after_split) == str(num):
+                break
+            else:
+                num = num_after_split
+        else:
+            num = num_after_explode
+    return num
 
 
 def duplicate(node: Node) -> Node:
@@ -188,8 +202,6 @@ def split(num: Node) -> Node:
 
 
 def solve(task: str) -> int:
-    # ToDo: convert to generator
-    # nums = [Branch.from_line(line) for line in task.splitlines()]
-    # result = sum(nums)
-    # return result.magnitude
-    raise NotImplementedError
+    nums = [Branch.from_line(line) for line in task.splitlines()]
+    result = sum(nums)
+    return result.magnitude

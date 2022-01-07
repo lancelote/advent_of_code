@@ -4,6 +4,9 @@ import pytest
 from src.year2021.day18a import Node
 from src.year2021.day18a import explode
 from src.year2021.day18a import split
+from src.year2021.day18a import reduce
+from src.year2021.day18a import solve
+from src.year2021.day18a import Branch
 
 
 @pytest.mark.parametrize(
@@ -93,3 +96,9 @@ def test_split(from_line, to_line):
 def test_explode(from_line, to_line):
     num = Node.from_line(from_line)
     assert str(explode(num)) == to_line
+
+
+def test_reduce():
+    line = "[[[[[4,3],4],4],[7,[[8,4],9]]],[1,1]]"
+    expected = "[[[[0,7],4],[[7,8],[6,0]]],[8,1]]"
+    assert str(reduce(Node.from_line(line))) == expected
