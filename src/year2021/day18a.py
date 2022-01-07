@@ -84,7 +84,21 @@ def explode(num: Node) -> Node:
 
 
 def split(num: Node) -> Node:
-    ...
+    was_split = False
+
+    def traverse(node: Node) -> Node:
+        nonlocal was_split
+
+        if isinstance(node, Leaf):
+            if node.value >= 10 and not was_split:
+                was_split = True
+                return Branch.from_int(node.value)
+            else:
+                return Leaf(node.value)
+        elif isinstance(node, Branch):
+            return Branch(traverse(node.left), traverse(node.right))
+
+    return traverse(num)
 
 
 def solve(task: str) -> int:
