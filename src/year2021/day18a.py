@@ -92,7 +92,7 @@ def explode(num: Node) -> Node:
     left_added = False
     right_added = False
     exploded_node: Node | None = None
-    path_to_exploded = []
+    path_to_exploded_node = []
 
     num = duplicate(num)
 
@@ -101,7 +101,7 @@ def explode(num: Node) -> Node:
         nonlocal add_to_left
         nonlocal add_to_right
         nonlocal exploded_node
-        nonlocal path_to_exploded
+        nonlocal path_to_exploded_node
 
         if isinstance(node, Leaf):
             return Leaf(node.value)
@@ -112,7 +112,7 @@ def explode(num: Node) -> Node:
 
                 add_to_left = node.left.value
                 add_to_right = node.right.value
-                path_to_exploded = path
+                path_to_exploded_node = path
                 exploded_node = Leaf(0)
 
                 return exploded_node
@@ -129,7 +129,10 @@ def explode(num: Node) -> Node:
         nonlocal left_added
         nonlocal right_added
 
-        current = path_to_exploded.pop()
+        if not path_to_exploded_node:
+            return
+
+        current = path_to_exploded_node.pop()
         assert isinstance(current, Branch)
 
         if current.left != last and not left_added:
@@ -138,7 +141,8 @@ def explode(num: Node) -> Node:
         elif current.right != last and not right_added:
             add_to_most_left(current.right, add_to_right)
             right_added = True
-        elif not left_added or not right_added:
+
+        if not (left_added and right_added):
             add_exploded_parts(last=current)
 
     def add_to_most_right(node: Node, value: int) -> None:
