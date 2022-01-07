@@ -79,8 +79,90 @@ class Branch(Node):
         return f"[{self.left},{self.right}]"
 
 
+def duplicate(node: Node) -> Node:
+    if isinstance(node, Leaf):
+        return Leaf(node.value)
+    elif isinstance(node, Branch):
+        return Branch(duplicate(node.left), duplicate(node.right))
+
+
 def explode(num: Node) -> Node:
-    ...
+    add_to_left = 0
+    add_to_right = 0
+    left_added = False
+    right_added = False
+    exploded_node: Node | None = None
+    path_to_exploded = []
+
+    num = duplicate(num)
+
+    def traverse(node: Node, depth: int, path: list[Node]) -> Node:
+        """Find the exploding node and replace it with a zero leaf."""
+        nonlocal add_to_left
+        nonlocal add_to_right
+        nonlocal exploded_node
+        nonlocal path_to_exploded
+
+        if isinstance(node, Leaf):
+            return Leaf(node.value)
+        elif isinstance(node, Branch):
+            if depth == 4 and exploded_node is None:
+                assert isinstance(node.left, Leaf)
+                assert isinstance(node.right, Leaf)
+
+                add_to_left = node.left.value
+                add_to_right = node.right.value
+                path_to_exploded = path
+                exploded_node = Leaf(0)
+
+                return exploded_node
+            else:
+                branch = Branch(None, None)
+                branch.left = traverse(node.left, depth + 1, path + [branch])
+                branch.right = traverse(node.right, depth + 1, path + [branch])
+            return branch
+
+    num = traverse(num, depth=0, path=[])
+
+    def add_exploded_parts(last: Node) -> None:
+        """Go the tree up searching for nodes to add exploded parts to."""
+        nonlocal left_added
+        nonlocal right_added
+
+        current = path_to_exploded.pop()
+        assert isinstance(current, Branch)
+
+        if current.left != last and not left_added:
+            add_to_most_right(current.left, add_to_left)
+            left_added = True
+        elif current.right != last and not right_added:
+            add_to_most_left(current.right, add_to_right)
+            right_added = True
+        elif not left_added or not right_added:
+            add_exploded_parts(last=current)
+
+    def add_to_most_right(node: Node, value: int) -> None:
+        """Add the value to the rightest leaf."""
+        if isinstance(node, Leaf):
+            node.value += value
+        elif isinstance(node, Branch):
+            add_to_most_right(node.right, value)
+        else:
+            ValueError(f"the hell is {node}?")
+
+    def add_to_most_left(node: Node, value: int) -> None:
+        """Add the value to the leftest leaf."""
+        if isinstance(node, Leaf):
+            node.value += value
+        elif isinstance(node, Branch):
+            add_to_most_left(node.left, value)
+        else:
+            ValueError(f"the hell is {node}?")
+
+    if exploded_node is not None:
+        add_exploded_parts(last=exploded_node)
+
+    return num
 
 
 def split(num: Node) -> Node:
