@@ -27,7 +27,7 @@ def test_scanner_from_text():
     actual_scanner = Scanner.from_text(text)
     expected_scanner = Scanner(
         pk=0,
-        beacons=[
+        signatures=[
             Position(645, -448, -766),
             Position(529, 751, -867),
         ]

@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from typing import NamedTuple
+from typing import Iterator
 
 DETECTION_RANGE = 1_000
 BEACONS_TO_MATCH = 12
@@ -23,7 +24,8 @@ class Position(NamedTuple):
 @dataclass
 class Scanner:
     pk: int
-    beacons: list[Position]
+    signatures: list[Position]
+    absolute_position: Position | None = None
 
     @classmethod
     def from_text(cls, text: str) -> Scanner:
@@ -33,6 +35,39 @@ class Scanner:
         beacons = [Position.from_line(line) for line in body]
         return Scanner(pk, beacons)
 
+    def beacons(self) -> Iterator[Position]:
+        assert self.absolute_position, "non-triangulated scanner"
+
+
+def triangulate_rest(first: Scanner, rest: list[Scanner]) -> None:
+    to_compare_with = [first]
+
+    while rest:
+        known_scanner = to_compare_with.pop()
+        no_overlaps = []
+
+        for unknown_scanner in rest:
+            if known_scanner.overlap(unknown_scanner):
+                unknown_scanner.triangulate_by(known_scanner)
+                to_compare_with.append(unknown_scanner)
+            else:
+                no_overlaps.append(unknown_scanner)
+
+        rest = no_overlaps
+
+
+def unique_beacons(scanners: list[Scanner]) -> set[Position]:
+    return {
+        beacon
+        for scanner in scanners
+        for beacon in scanner.beacons()
+    }
+
 
 def solve(task: str) -> int:
     scanners = [Scanner.from_text(text) for text in task.split("\n\n")]
+    [first, *rest] = scanners
+    first.absolute_position = Position(0, 0, 0)
+    triangulate_rest(first, rest)
+    beacons = unique_beacons(scanners)
+    return len(beacons)
