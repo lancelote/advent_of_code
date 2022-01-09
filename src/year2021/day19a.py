@@ -36,7 +36,11 @@ class Scanner:
         return Scanner(pk, beacons)
 
     def beacons(self) -> Iterator[Position]:
-        assert self.absolute_position, "non-triangulated scanner"
+        assert isinstance(self.absolute_position, Position)
+        x, y, z = self.absolute_position
+
+        for dx, dy, dz in self.signatures:
+            yield Position(x + dx, y + dy, z + dz)
 
 
 def triangulate_rest(first: Scanner, rest: list[Scanner]) -> None:
