@@ -4,6 +4,7 @@
 # Python
 __pycache__/
 .cache/
+.venv/
 
 # Mypy
 .mypy_cache
