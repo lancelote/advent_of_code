@@ -5,15 +5,8 @@
 __pycache__/
 .cache/
 
-# mypy cache
+# Mypy
 .mypy_cache
 
-# Vagrant
-Vagrantfile
-.vagrant/
-
-# pytest
-# Server for remote tests run
-socketserver.py
-# Remote test run cache
-pyexecnetcache/
+# Envfile
+.env
