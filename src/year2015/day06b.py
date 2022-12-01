@@ -27,7 +27,7 @@ For example:
 from src.year2015.day06a import compute_result
 
 
-def update_light(command, light):
+def update_light(command: str, light: int) -> int:
     """Compute new light value.
 
     Args:
@@ -36,7 +36,6 @@ def update_light(command, light):
 
     Returns:
         int: New light status
-
     """
     logic = {
         "toggle": light + 2,
@@ -46,7 +45,7 @@ def update_light(command, light):
     return logic[command]
 
 
-def solve(task):
+def solve(task: str) -> int:
     r"""Total brightness of all lights combined after all instructions.
 
     Args:

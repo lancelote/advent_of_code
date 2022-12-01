@@ -59,7 +59,7 @@ class Node:
     metadata: List[int]
 
 
-def parse_tree(data: List[int], start=0) -> Tuple[Node, int]:
+def parse_tree(data: List[int], start: int = 0) -> Tuple[Node, int]:
     """Parse a data into a tree of nodes."""
     children_num = data[start]
     metadata_len = data[start + 1]

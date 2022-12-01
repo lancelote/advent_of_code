@@ -38,12 +38,13 @@ What is the first value written that is larger than your puzzle input?
 """
 import itertools
 from collections.abc import Iterable
+from collections.abc import Iterator
 
 
-class Memory(Iterable):
+class Memory(Iterable[int]):
     """Circle memory representation."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize memory with two first cells pre-filled.
 
         x, y - coordinates of the current cell
@@ -76,7 +77,7 @@ class Memory(Iterable):
         self.dx, self.dy = shifts[side]
 
     @property
-    def neighbors(self):
+    def neighbors(self) -> Iterator[tuple[int, int]]:
         """Yield coordinates of the current cell neighbors."""
         for dx in [-1, 0, 1]:
             for dy in [-1, 0, 1]:
@@ -84,11 +85,11 @@ class Memory(Iterable):
                     yield self.x + dx, self.y + dy
 
     @property
-    def sum_neighbors(self):
+    def sum_neighbors(self) -> int:
         """Get sum of the current cell neighbors values."""
         return sum(self.data.get(neighbor, 0) for neighbor in self.neighbors)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[int]:
         """Yield next cell value."""
         yield 1  # First cell
         yield 1  # Second cell

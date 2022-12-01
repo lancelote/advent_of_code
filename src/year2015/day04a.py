@@ -22,7 +22,7 @@ For example:
 from hashlib import md5
 
 
-def solve(task, zeros=5):
+def solve(task: str, zeros: int = 5) -> int:
     """Solve the puzzle.
 
     Args:
@@ -31,7 +31,6 @@ def solve(task, zeros=5):
 
     Returns:
         int: Biggest number
-
     """
     i = 0
     message_hash = ""

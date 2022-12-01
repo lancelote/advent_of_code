@@ -94,7 +94,7 @@ class Grid:
         for x, y in product(range(side), range(side)):
             self.cells[(x, y)] = self.get_power_level(x, y, serial)
 
-    def show(self):
+    def show(self) -> None:
         """Plot a human readable grid image."""
         grid = [["." for _ in range(self.side)] for _ in range(self.side)]
         for cell, value in self.cells.items():
@@ -126,7 +126,7 @@ class Grid:
                 square_power += self.cells[(dx, dy)]
         return square_power
 
-    def get_biggest_square(self, size) -> Tuple[Cell, Power]:
+    def get_biggest_square(self, size: int) -> Tuple[Cell, Power]:
         """Get left cell coordinates of a most powerful grid square."""
         biggest_power = -99
         top_left_corner = (0, 0)

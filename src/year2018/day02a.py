@@ -44,10 +44,10 @@ Multiplying these together produces a checksum of 4 * 3 = 12.
 What is the checksum for your list of box IDs?
 """
 from collections import Counter
-from typing import Generator
+from collections.abc import Iterator
 
 
-def process_data(data: str) -> Generator[Counter, None, None]:
+def process_data(data: str) -> Iterator[Counter[str]]:
     """Create stream of counters for each input line."""
     for box in data.strip().split("\n"):
         yield Counter(box)

@@ -22,7 +22,7 @@ For example:
 
 How many IPs in your puzzle input support TLS?
 """
-from typing import Generator
+from collections.abc import Generator
 from typing import List
 
 

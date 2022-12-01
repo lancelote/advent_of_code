@@ -1,8 +1,8 @@
 """2021 - Day 9 Part 2: Smoke Basin."""
 from collections import deque
+from collections.abc import Iterable
+from collections.abc import Iterator
 from typing import Deque
-from typing import Iterable
-from typing import Iterator
 
 from src.year2021.day09a import adjacent
 from src.year2021.day09a import Heightmap

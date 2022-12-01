@@ -70,7 +70,9 @@ def process_data(data: str) -> List[Instruction]:
     return instructions
 
 
-def perform_instructions(instructions: List[Instruction]):
+def perform_instructions(
+    instructions: List[Instruction],
+) -> tuple[DefaultDict[str, int], int]:
     """Apply all instructions and return registers + the biggest value seen."""
     registers: DefaultDict[str, int] = defaultdict(int)
     biggest = 0

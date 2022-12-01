@@ -46,7 +46,6 @@ from collections import defaultdict
 from dataclasses import dataclass
 from dataclasses import field
 from typing import DefaultDict
-from typing import List
 
 from src.year2019.day03a import Grid as BaseGrid
 from src.year2019.day03a import Node
@@ -57,9 +56,9 @@ from src.year2019.day03a import parse_command
 class Grid(BaseGrid):
     """Grid counting steps each wire takes."""
 
-    _intersections: List[int] = field(default_factory=list)
+    _intersections: list[int] = field(default_factory=list)
 
-    def plot(self, wire: str):
+    def plot(self, wire: str) -> None:
         """Add wire to the grid."""
         step = 0
         nodes: DefaultDict[Node, int] = defaultdict(int)
@@ -72,10 +71,10 @@ class Grid(BaseGrid):
                 if not nodes[self.current]:
                     nodes[self.current] = step
 
-        self.merge(nodes)
+        self.merge_dict(nodes)
         self.reset()
 
-    def merge(self, nodes):
+    def merge_dict(self, nodes: dict[tuple[int, int], int]) -> None:
         """Merge wire nodes into the actual grid."""
         for k, v in nodes.items():
             if self.nodes[k]:
@@ -84,13 +83,13 @@ class Grid(BaseGrid):
                 self.nodes[k] = v
 
     @property
-    def closest(self):
+    def closest(self) -> int:
         """Closest intersection taking into account wires length."""
-        assert self.intersections
-        return min(self.intersections)
+        assert self.list_intersections
+        return min(self.list_intersections)
 
     @property
-    def intersections(self) -> List[int]:
+    def list_intersections(self) -> list[int]:
         """Get the list of intersection distances."""
         return self._intersections
 

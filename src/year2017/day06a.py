@@ -57,7 +57,7 @@ class Memory:
         """Each bank is an integer."""
         self.banks = banks
 
-    def redistribute(self):
+    def redistribute(self) -> None:
         """Take max value and redistribute it equally over all banks."""
         value = max(self.banks)
         index = self.banks.index(value)
@@ -69,7 +69,7 @@ class Memory:
             index = (index + 1) % len(self.banks)
             self.banks[index] += 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Each bank to string separated by space."""
         return " ".join([str(bank) for bank in self.banks])
 

@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Generator
 from dataclasses import dataclass
 from typing import Dict
-from typing import Generator
 from typing import List
 from typing import Tuple
 
@@ -31,7 +31,7 @@ class Chart:
         """Check if a given point is a base."""
         return not (x == self.base_x and y == self.base_y)
 
-    def set_base(self, x: int, y: int):
+    def set_base(self, x: int, y: int) -> None:
         """Update base."""
         self.base_x = x
         self.base_y = y
@@ -61,7 +61,7 @@ class Chart:
         incl_x = -norm_y
         incl_y = norm_x
 
-        return math.sqrt(incl_x ** 2 + incl_y ** 2)
+        return math.sqrt(incl_x**2 + incl_y**2)
 
     def seen_from(self, base_x: int, base_y: int) -> int:
         """Find the number of visible asteroids from this one."""

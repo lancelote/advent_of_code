@@ -57,7 +57,12 @@ from src.year2018.day07a import process_date
 from src.year2018.day07a import Step
 
 
-def solve(task: str, steps=ascii_uppercase, workers=5, duration=60) -> int:
+def solve(
+    task: str,
+    steps: str = ascii_uppercase,
+    n_workers: int = 5,
+    duration: int = 60,
+) -> int:
     """Get time of work for given workers."""
     total_seconds = 0
 
@@ -67,7 +72,7 @@ def solve(task: str, steps=ascii_uppercase, workers=5, duration=60) -> int:
     job_step: DefaultDict[int, Step] = defaultdict(str)
     job_time: DefaultDict[int, int] = defaultdict(int)
 
-    workers = set(range(workers))
+    workers = set(range(n_workers))
     parents: Parents = process_date(task)
 
     while len(done) != len(steps):

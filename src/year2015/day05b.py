@@ -35,7 +35,7 @@ import re
 from src.year2015.day05a import process_data
 
 
-def is_nice(word):
+def is_nice(word: str) -> bool:
     """Check if string is nice.
 
     Args:
@@ -50,7 +50,7 @@ def is_nice(word):
     return pairs >= 1 and guarded_letter >= 1
 
 
-def solve(task):
+def solve(task: str) -> int:
     r"""Calculate number of nice strings.
 
     Args:

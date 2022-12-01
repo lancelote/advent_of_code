@@ -190,12 +190,12 @@ class Point:
         """Parse the given task returning a list of rescue points."""
         return [cls.from_line(line) for line in task.strip().split("\n")]
 
-    def move(self):
+    def move(self) -> None:
         """Move a star by one tick."""
         self.x += self.dx
         self.y += self.dy
 
-    def back(self):
+    def back(self) -> None:
         """Go back in time by one tick."""
         self.x -= self.dx
         self.y -= self.dy
@@ -207,17 +207,17 @@ class Sky:
 
     points: List[Point]
 
-    def move(self):
+    def move(self) -> None:
         """Move sky by one tick forward in time."""
         for point in self.points:
             point.move()
 
-    def back(self):
+    def back(self) -> None:
         """Move sky by one tick backwards in time."""
         for point in self.points:
             point.back()
 
-    def bounds(self):
+    def bounds(self) -> tuple[int, int, int, int]:
         """Get extremum points."""
         min_x = min(point.x for point in self.points)
         max_x = max(point.x for point in self.points)
@@ -240,12 +240,12 @@ class Sky:
         return seconds
 
     @property
-    def area(self):
+    def area(self) -> int:
         """Calculate the rescue point area in the sky."""
         min_x, max_x, min_y, max_y = self.bounds()
         return (max_x - min_x + 1) * (max_y - min_y + 1)
 
-    def __str__(self):
+    def __str__(self) -> str:
         min_x, max_x, min_y, max_y = self.bounds()
 
         sky = []

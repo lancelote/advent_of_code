@@ -34,7 +34,7 @@ def parse_task(task: str) -> dict[str, Cave]:
     return caves
 
 
-def visit(cave: Cave, visited: set) -> int:
+def visit(cave: Cave, visited: set[str]) -> int:
     if cave.name == "end":
         return 1
 

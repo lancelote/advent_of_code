@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cached_property
+from typing import Any
 from typing import List
 
 
@@ -33,10 +34,11 @@ class Seat:
         return binary_search(0, 7, self.code[7:10])
 
     @cached_property
-    def pk(self):
+    def pk(self) -> int:
         return self.row * 8 + self.column
 
-    def __lt__(self, other: Seat) -> bool:
+    def __lt__(self, other: Any) -> bool:
+        assert isinstance(other, Seat)
         return self.pk < other.pk
 
 

@@ -22,7 +22,7 @@ For example:
 from src.year2015.day04a import solve as part_a_solve
 
 
-def solve(task):
+def solve(task: str) -> int:
     """Solve the puzzle.
 
     Args:

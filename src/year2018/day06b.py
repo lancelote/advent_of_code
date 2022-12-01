@@ -51,7 +51,7 @@ from src.year2018.day06a import Grid as LegacyGrid
 class Grid(LegacyGrid):
     """A gird of time dots with pins."""
 
-    def calc_sum_distances(self):
+    def calc_sum_distances(self) -> None:
         """Get sum of pin distances for each dot."""
         for pin in self.pins:
             for dot in self.dots:
@@ -61,7 +61,7 @@ class Grid(LegacyGrid):
                 else:
                     dot.distance += distance
 
-    def closest_region_size(self, limit=10000) -> int:
+    def closest_region_size(self, limit: int = 10000) -> int:
         """Get number of dots with distance less than limit."""
         total = 0
         self.calc_sum_distances()
@@ -72,7 +72,7 @@ class Grid(LegacyGrid):
         return total
 
 
-def solve(task: str, limit=10000) -> int:
+def solve(task: str, limit: int = 10000) -> int:
     """Find the size of the region with locations below the limit distance."""
     grid = Grid.parse_task(task)
     return grid.closest_region_size(limit)

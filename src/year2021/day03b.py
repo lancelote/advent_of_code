@@ -1,6 +1,6 @@
 """2021 - Day 3 Part 2: Binary Diagnostic."""
 from collections.abc import Callable
-from typing import Iterator
+from collections.abc import Iterator
 
 from src.year2021.day03a import least_common
 from src.year2021.day03a import most_common

@@ -17,7 +17,7 @@ class Tile(Enum):
     PADDLE = 3
     BALL = 4
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.value == 0:
             return " "
         elif self.value == 1:
@@ -35,7 +35,7 @@ class Tile(Enum):
 class Arcade:
     """Arcade game."""
 
-    def __init__(self, program: str, cpu: Computer = None):
+    def __init__(self, program: str, cpu: Computer | None = None):
         """Program is a puzzle input and cpu - IntCode computer."""
         self.cpu = cpu or Computer()
         self.cpu.load_program(program)
@@ -44,7 +44,7 @@ class Arcade:
         self.map: Dict[Tuple[int, int], Tile] = dict()
         self.score = 0
 
-    def play(self):
+    def play(self) -> None:
         """Play game until win or lose."""
         self.make_free()
 
@@ -55,7 +55,7 @@ class Arcade:
             self.move_paddle()
             os.system("clear")
 
-    def move_paddle(self):
+    def move_paddle(self) -> None:
         """Move paddle automatically depending on ball position."""
         if self.ball_x > self.paddle_x:
             move = 1
@@ -65,7 +65,7 @@ class Arcade:
             move = 0
         self.cpu.stdin.append(move)
 
-    def update_map(self):
+    def update_map(self) -> None:
         """Update tile - coordinates map after a game step."""
         while self.cpu.stdout:
             x = self.cpu.stdout.popleft()
@@ -81,7 +81,7 @@ class Arcade:
                     self.ball_x = x
                 self.map[(x, y)] = Tile(pk)
 
-    def print(self):
+    def print(self) -> None:
         """Print the game screen."""
         max_x = max(self.map.keys(), key=lambda point: point[0])[0]
         max_y = max(self.map.keys(), key=lambda point: point[1])[1]
@@ -98,7 +98,7 @@ class Arcade:
                 print(item, end="")
             print()
 
-    def make_free(self):
+    def make_free(self) -> None:
         """Allow playing free."""
         self.cpu.load_sram_to_dram()
         self.cpu[0] = 2

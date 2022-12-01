@@ -65,22 +65,21 @@ encounter.
 """
 from functools import reduce
 from operator import xor
-from typing import List
 
 from src.year2017.day10a import Rope
 
 
-def process_data(data: str) -> List[int]:
+def process_data(data: str) -> list[int]:
     """Convert each character into ASCII byte code."""
     return [ord(char) for char in data.strip()]
 
 
-def split(sequence: List, chunk) -> List[List]:
+def split(sequence: list[int], chunk: int) -> list[list[int]]:
     """Split sequence into equal segments of the given length."""
     return [sequence[i * chunk : (i + 1) * chunk] for i in range(chunk)]
 
 
-def compress(sparse_hash: List[int], chunk=16) -> List[int]:
+def compress(sparse_hash: list[int], chunk: int = 16) -> list[int]:
     """Compress sparse hash into dense by XORing each 16 items."""
     return [reduce(xor, segment) for segment in split(sparse_hash, chunk)]
 

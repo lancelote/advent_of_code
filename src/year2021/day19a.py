@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterator
 from dataclasses import dataclass
 from typing import NamedTuple
-from typing import Iterator
 
 DETECTION_RANGE = 1_000
 BEACONS_TO_MATCH = 12
@@ -42,6 +42,12 @@ class Scanner:
         for dx, dy, dz in self.signatures:
             yield Position(x + dx, y + dy, z + dz)
 
+    def overlap(self, other: Scanner) -> bool:
+        raise NotImplementedError
+
+    def triangulate_by(self, other: Scanner) -> bool:
+        raise NotImplementedError
+
 
 def triangulate_rest(first: Scanner, rest: list[Scanner]) -> None:
     to_compare_with = [first]
@@ -61,11 +67,7 @@ def triangulate_rest(first: Scanner, rest: list[Scanner]) -> None:
 
 
 def unique_beacons(scanners: list[Scanner]) -> set[Position]:
-    return {
-        beacon
-        for scanner in scanners
-        for beacon in scanner.beacons()
-    }
+    return {beacon for scanner in scanners for beacon in scanner.beacons()}
 
 
 def solve(task: str) -> int:

@@ -41,7 +41,7 @@ class CachedGrid(Grid):
             power += self.cells[(dx, y + size - 1)]
         return power
 
-    @lru_cache(10 ** 7)
+    @lru_cache(10**7)
     def get_square_power(self, x: int, y: int, size: int) -> Power:
         """Calculate a cell square sum power by caching previous calls."""
         if size == 1:

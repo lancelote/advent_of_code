@@ -77,7 +77,7 @@ def get_deviation(number: int, circle: int) -> int:
     side = circle * 2 + 1
 
     # Normalize number - bottom left circle number is 0, then +1 clock-wise
-    deviation = abs(number - side ** 2)
+    deviation = abs(number - side**2)
 
     # Split by side - number should not exceed side length - 1
     deviation %= side - 1

@@ -35,7 +35,7 @@ SHIFT = {
 }
 
 
-def visit_houses(task):
+def visit_houses(task: str) -> dict[Coordinates, int]:
     """Deliver presents.
 
     Args:
@@ -58,7 +58,7 @@ def visit_houses(task):
     return visited_houses
 
 
-def solve(task):
+def solve(task: str) -> int:
     """Solve the puzzle.
 
     Args:

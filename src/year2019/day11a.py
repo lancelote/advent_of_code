@@ -4,9 +4,14 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum
+from typing import Any
 from typing import NamedTuple
+from typing import TypeVar
 
 from src.year2019.intcode import Computer
+
+K = TypeVar("K")
+V = TypeVar("V")
 
 
 class Direction(Enum):
@@ -39,7 +44,8 @@ class Coordinates(NamedTuple):
     x: int = 0
     y: int = 0
 
-    def __add__(self, other):
+    def __add__(self, other: Any) -> Coordinates:
+        assert isinstance(other, Coordinates)
         return Coordinates(self.x + other.x, self.y + other.y)
 
 
@@ -65,15 +71,15 @@ class Panel:
     visited: bool = False
     color: Color = Color.BLACK
 
-    def paint(self, color: Color):
+    def paint(self, color: Color) -> None:
         """Paint the panel in a given color."""
         self.color = color
 
 
-class Hull(defaultdict):
+class Hull(defaultdict[Coordinates, Panel]):
     """Ship hull."""
 
-    def print(self):
+    def print(self) -> None:
         """Print the whole."""
         min_x = min(self.keys(), key=lambda point: point.x).x
         max_x = max(self.keys(), key=lambda point: point.x).x
@@ -99,24 +105,24 @@ class Hull(defaultdict):
 class Robot:
     """Painting robot."""
 
-    def __init__(self, cpu: Computer = None):
+    def __init__(self, cpu: Computer | None = None) -> None:
         """Robot has a CPU and tracks its hull position and direction."""
         self.coordinates = Coordinates()
         self.cpu = cpu or Computer()
         self.direction = Direction.UP
 
-    def load_program(self, program: str):
+    def load_program(self, program: str) -> None:
         """Load a program into a robot CPU."""
         self.cpu.load_program(program)
 
-    def paint(self, hull: Hull):
+    def paint(self, hull: Hull) -> None:
         """Start painting the hull."""
         assert self.cpu.program_is_loaded
 
         while not self.is_halt:
             self.step(hull)
 
-    def step(self, hull: Hull):
+    def step(self, hull: Hull) -> None:
         """Make one paint step."""
         panel = hull[self.coordinates]
         self.cpu.stdin.append(0 if panel.color is Color.BLACK else 1)
@@ -129,7 +135,7 @@ class Robot:
         self.rotate(angle)
         self.move()
 
-    def rotate(self, angle: int):
+    def rotate(self, angle: int) -> None:
         """Rotate the robot before moving to a next panel."""
         if angle == 0:  # Left
             self.direction = LEFT_TURN[self.direction]
@@ -138,12 +144,12 @@ class Robot:
         else:
             raise ValueError(f"unknown angle {angle}")
 
-    def move(self):
+    def move(self) -> None:
         """Move the robot to a next panel."""
         self.coordinates += SHIFT[self.direction]
 
     @property
-    def is_halt(self):
+    def is_halt(self) -> bool:
         """Check if the robot is done painting."""
         return self.cpu.is_halt
 

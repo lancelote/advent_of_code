@@ -32,7 +32,7 @@ proud of your solution if it uses a cinematic "decrypting" animation.
 import hashlib
 
 
-def print_password(password):
+def print_password(password: list[str]) -> None:
     """Print current password decipher progress."""
     line = " ".join(char if char != "" else "x" for char in password)
     print("Hacking... ", line, end="\r")

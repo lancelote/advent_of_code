@@ -17,7 +17,7 @@ def grid():
 def test_grid_setup(grid):
     assert grid.current == (0, 0)
     assert len(grid.nodes) == 0
-    assert len(grid.intersections) == 0
+    assert len(grid.tuple_intersections) == 0
 
 
 def test_basic_example(grid):
@@ -27,9 +27,9 @@ def test_basic_example(grid):
     grid.plot(wire1)
     grid.plot(wire2)
 
-    assert len(grid.intersections) == 2
-    assert (3, 3) in grid.intersections
-    assert (6, 5) in grid.intersections
+    assert len(grid.tuple_intersections) == 2
+    assert (3, 3) in grid.tuple_intersections
+    assert (6, 5) in grid.tuple_intersections
     assert grid.closest == 6
 
 

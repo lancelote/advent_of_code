@@ -134,7 +134,7 @@ class BITS:
 
             return OperatorPacket(version, type_id, sub_packets)
 
-    def read_bits(self, n: int):
+    def read_bits(self, n: int) -> str:
         bits = self.data[self.pointer : self.pointer + n]
         self.pointer += n
         return bits

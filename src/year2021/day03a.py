@@ -1,5 +1,5 @@
 """2021 - Day 3 Part 1: Binary Diagnostic."""
-from typing import Iterator
+from collections.abc import Iterator
 
 
 def count_zeros_and_ones(bits: Iterator[str]) -> tuple[int, int]:

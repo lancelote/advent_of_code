@@ -19,7 +19,7 @@ class ChemicalRecipe:
     name: ChemicalName
 
     @classmethod
-    def from_str(cls, string: str):
+    def from_str(cls, string: str) -> ChemicalRecipe:
         """Convert raw string (e.g. 8 "NLTCF") to ChemicalRecipe."""
         quantity, name = string.split()
         return cls(int(quantity), name)
@@ -74,14 +74,14 @@ class Factory:
 
         return cls(reactions)
 
-    def add_to_production(self, chemical: ChemicalName, quantity: int):
+    def add_to_production(self, chemical: ChemicalName, quantity: int) -> None:
         """Add new chemical to production list."""
         if chemical == "ORE":
             self.ore += quantity
         else:
             self._to_produce[chemical] += quantity
 
-    def produce(self):
+    def produce(self) -> None:
         """Start producing."""
         while self._to_produce:
             chemical_name, desired_quantity = self._to_produce.popitem()

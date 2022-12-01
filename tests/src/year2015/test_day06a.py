@@ -29,5 +29,5 @@ class TestUpdateLight(unittest.TestCase):
 
 class TestSolve(unittest.TestCase):
     def test_returns_correct_result(self):
-        self.assertEqual(solve("turn on 0,0 through 999,999"), 10 ** 6)
+        self.assertEqual(solve("turn on 0,0 through 999,999"), 10**6)
         self.assertEqual(solve("toggle 0,0 through 999,0"), 1000)

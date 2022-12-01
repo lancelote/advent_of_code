@@ -23,7 +23,7 @@ For example:
 from src.year2015.day03a import visit_houses
 
 
-def solve(task):
+def solve(task: str) -> int:
     """Solve the puzzle.
 
     Args:

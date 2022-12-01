@@ -1,5 +1,5 @@
 """2021 - Day 9 Part 1: Smoke Basin."""
-from typing import Iterator
+from collections.abc import Iterator
 from typing import NamedTuple
 
 Heightmap = list[list[int]]

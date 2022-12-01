@@ -8,11 +8,9 @@ visit twice is 4 blocks away, due East.
 
 How many blocks away is the first location you visit twice?
 """
+from collections.abc import Generator
 from copy import copy
-from typing import Generator
-from typing import List
 
-from src.year2016.day01a import Instruction
 from src.year2016.day01a import Point
 from src.year2016.day01a import processed_data
 from src.year2016.day01a import update_direction
@@ -48,7 +46,7 @@ def solve(task: str) -> int:
     direction = 0  # North
     current = Point()
     visited = [copy(current)]
-    instructions = processed_data(task)  # type: List[Instruction]
+    instructions = processed_data(task)
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)

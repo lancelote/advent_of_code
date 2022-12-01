@@ -77,13 +77,13 @@ from typing import List
 class Rope:
     """Rope representation."""
 
-    def __init__(self, nodes: List[int] = None) -> None:
+    def __init__(self, nodes: List[int] | None = None) -> None:
         """By default rope consists of 256 segments."""
         self.nodes = nodes or list(range(256))
         self.shift = 0
         self.pos = 0
 
-    def reverse(self, length):
+    def reverse(self, length: int) -> None:
         """Reverse selection of the rope."""
         rope_view = cycle(self.nodes[self.pos :] + self.nodes[: self.pos])
         selection = list(islice(rope_view, length))

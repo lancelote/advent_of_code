@@ -26,7 +26,7 @@ def first_invalid(data: List[int], preamble_length: int) -> int:
     raise ValueError("invalid number was not found")
 
 
-def solve(task: str, preamble_length=25) -> int:
+def solve(task: str, preamble_length: int = 25) -> int:
     """What is the first invalid number?"""
     data = [int(num) for num in task.strip().split("\n")]
     return first_invalid(data, preamble_length)

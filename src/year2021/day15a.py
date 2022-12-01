@@ -1,7 +1,7 @@
 """2021 - Day 15 Part 1: Chiton."""
 from __future__ import annotations
 
-from typing import Iterator
+from collections.abc import Iterator
 from typing import NamedTuple
 
 SHIFTS = {

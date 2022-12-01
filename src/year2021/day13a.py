@@ -32,7 +32,7 @@ class Paper:
         return Paper({Point.from_line(line) for line in text.splitlines()})
 
     @property
-    def visible_points(self):
+    def visible_points(self) -> int:
         return len(self.points)
 
     def fold(self, instruction: Instruction) -> None:

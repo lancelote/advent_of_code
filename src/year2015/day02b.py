@@ -28,7 +28,7 @@ from operator import mul
 from src.year2015.day02a import process_data
 
 
-def solve(task):
+def solve(task: str) -> int:
     r"""Solve the puzzle.
 
     Args:

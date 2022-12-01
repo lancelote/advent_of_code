@@ -51,7 +51,9 @@ from typing import List
 class Keypad:
     """Digital representation of the keypad."""
 
-    def __init__(self, layout, row=1, col=1) -> None:
+    def __init__(
+        self, layout: list[list[int | str | None]], row: int = 1, col: int = 1
+    ) -> None:
         """Create the keypad representation.
 
         Args:
@@ -71,7 +73,7 @@ class Keypad:
 
         self.complete_layout()
 
-    def move(self, instruction: str, times=1) -> None:
+    def move(self, instruction: str, times: int = 1) -> None:
         """Move Up(U), Right(R), Down(D) or Left(L)."""
         for _ in range(times):
             if instruction == "U" and self.can_move_up():
@@ -83,7 +85,7 @@ class Keypad:
             elif instruction == "L" and self.can_move_left():
                 self.col -= 1
 
-    def can_move_up(self):
+    def can_move_up(self) -> bool:
         """Check if there is an available button to the top."""
         if self.row == 0:
             return False
@@ -92,7 +94,7 @@ class Keypad:
         else:
             return True
 
-    def can_move_right(self):
+    def can_move_right(self) -> bool:
         """Check if there is an available button to the right."""
         if self.col == len(self.layout[self.row]) - 1:
             return False
@@ -101,7 +103,7 @@ class Keypad:
         else:
             return True
 
-    def can_move_down(self):
+    def can_move_down(self) -> bool:
         """Check if there is an available button to the down."""
         if self.row == len(self.layout) - 1:
             return False
@@ -110,7 +112,7 @@ class Keypad:
         else:
             return True
 
-    def can_move_left(self):
+    def can_move_left(self) -> bool:
         """Check if there is an available button to the left."""
         if self.col == 0:
             return False
@@ -119,7 +121,7 @@ class Keypad:
         else:
             return True
 
-    def complete_layout(self):
+    def complete_layout(self) -> None:
         """Complete keypad layout to the square one with Nones."""
         longest_row = len(max(self.layout, key=len))
         for i, row in enumerate(self.layout):

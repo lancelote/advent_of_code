@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from collections.abc import Iterable
+from collections.abc import Iterator
 from itertools import repeat
-from typing import Iterable
-from typing import Iterator
 from typing import NamedTuple
 
 

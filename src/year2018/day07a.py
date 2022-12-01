@@ -61,9 +61,9 @@ So, in this example, the correct order is CABDFE.
 In what order should the steps in your instructions be completed?
 """
 from collections import defaultdict
+from collections.abc import Generator
 from string import ascii_uppercase
 from typing import DefaultDict
-from typing import Generator
 from typing import Optional
 from typing import Set
 
@@ -107,7 +107,7 @@ def ordered_steps(parents: Parents, steps: str) -> StepGenerator:
             todo.remove(new_step)
 
 
-def solve(task: str, steps=ascii_uppercase) -> str:
+def solve(task: str, steps: str = ascii_uppercase) -> str:
     """Find the sequence of steps."""
     parents = process_date(task)
     return "".join(ordered_steps(parents, steps))

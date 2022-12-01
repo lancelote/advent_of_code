@@ -94,7 +94,7 @@ class Marble:
     parent: Optional["Marble"] = None
     child: Optional["Marble"] = None
 
-    def insert_new(self, marble: "Marble"):
+    def insert_new(self, marble: "Marble") -> None:
         """Insert a new marble between 1 and 2 from self."""
         first = self.child
         if not first:
@@ -135,7 +135,7 @@ class Marble:
         marble.child = marble
         return marble
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Marble({self.value})"
 
 
@@ -150,7 +150,7 @@ class Game:
         self.players = [Player(pk=i) for i in range(players_number)]
         self.current_marble = Marble.get_zero_marble()
 
-    def make_turn(self):
+    def make_turn(self) -> None:
         """Make game turn."""
         self.turn += 1
         new_marble = Marble(self.turn)
@@ -164,7 +164,7 @@ class Game:
             self.current_marble = new_marble
         self.next_player()
 
-    def next_player(self):
+    def next_player(self) -> None:
         """Update current player pk."""
         self.player = (self.player + 1) % len(self.players)
 

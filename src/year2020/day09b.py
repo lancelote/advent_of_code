@@ -21,7 +21,7 @@ def find_contagious_range(target: int, data: List[int]) -> Deque[int]:
     raise ValueError("no contagious range was found")
 
 
-def solve(task: str, preamble_length=25) -> int:
+def solve(task: str, preamble_length: int = 25) -> int:
     data = [int(num) for num in task.strip().split("\n")]
     invalid_number = first_invalid(data, preamble_length)
     contagious_range = find_contagious_range(invalid_number, data)

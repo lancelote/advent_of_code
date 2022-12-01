@@ -16,4 +16,4 @@ def test_solve():
         Step F must be finished before step E can begin.
     """
     )
-    assert solve(test_task, steps="ABCDEF", workers=2, duration=0) == 15
+    assert solve(test_task, steps="ABCDEF", n_workers=2, duration=0) == 15

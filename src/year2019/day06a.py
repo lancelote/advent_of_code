@@ -14,11 +14,11 @@ class Object:
     name: str
     satellites: List[Object] = field(default_factory=list)
 
-    def traverse(self, value=0) -> int:
+    def traverse(self, value: int = 0) -> int:
         """Count direct and indirect orbits for all satellites recursive."""
         return value + sum(obj.traverse(value + 1) for obj in self.satellites)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 

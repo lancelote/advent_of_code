@@ -5,7 +5,7 @@ def process_data(task: str) -> list[int]:
     return [int(x) for x in task.split(",")]
 
 
-def play(starting_nums: list[int], times=2020) -> int:
+def play(starting_nums: list[int], times: int = 2020) -> int:
     num = 0
     last_diff = 0
     turn = 1

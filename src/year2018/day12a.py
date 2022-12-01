@@ -149,7 +149,7 @@ def get_pattern(generation: GEN, i: int) -> PATTERN:
     return "".join(generation.get(index, Pot.EMPTY).value for index in indexes)
 
 
-def print_plants(generation: GEN, generation_id: int = 0):
+def print_plants(generation: GEN, generation_id: int = 0) -> None:
     """Print current plants layout."""
     start = min(generation.keys())
     end = max(generation.keys())

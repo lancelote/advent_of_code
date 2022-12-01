@@ -61,7 +61,7 @@ If the Elves all proceed with their own plans, none of them will have enough
 fabric. How many square inches of fabric are within two or more claims?
 """
 import re
-from typing import Generator
+from collections.abc import Generator
 from typing import List
 from typing import NamedTuple
 
@@ -102,7 +102,7 @@ def apply_claim(fabric: List[List[int]], claim: Claim) -> List[List[int]]:
     return fabric
 
 
-def solve(task: str, side=1000) -> int:
+def solve(task: str, side: int = 1000) -> int:
     """Get the number of inches with 2 or more claims."""
     total_claimed = 0
     fabric = [[0 for _ in range(side)] for _ in range(side)]

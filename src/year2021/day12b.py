@@ -3,7 +3,7 @@ from src.year2021.day12a import Cave
 from src.year2021.day12a import parse_task
 
 
-def visit(cave: Cave, visited1: set, visited2: str | None = None) -> int:
+def visit(cave: Cave, visited1: set[str], visited2: str | None = None) -> int:
     if cave.name == "end":
         return 1
     elif cave.name == "start":

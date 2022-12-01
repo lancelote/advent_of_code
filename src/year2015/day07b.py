@@ -5,12 +5,13 @@ reset the other wires (including wire a). What new signal is ultimately
 provided to wire a?
 
 """
+from src.year2015.day07a import Command
 from src.year2015.day07a import get_value
 from src.year2015.day07a import HDict
 from src.year2015.day07a import process_data
 
 
-def solve(task):
+def solve(task: str) -> int:
     r"""Process task data to compute 'a' value after 'b' overriding.
 
     Function recursively processes task data to compute wire 'a' value
@@ -21,10 +22,9 @@ def solve(task):
 
     Returns:
         int: wire 'a' signal value
-
     """
     commands = process_data(task)
-    wires = HDict()
+    wires: HDict = HDict()
 
     for command in commands:
         wires[command.output] = command

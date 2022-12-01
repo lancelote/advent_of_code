@@ -47,7 +47,7 @@ Here are other example situations:
 Starting with a frequency of zero, what is the resulting frequency after all
 of the changes in frequency have been applied?
 """
-from typing import Generator
+from collections.abc import Generator
 
 
 def process_data(data: str) -> Generator[int, None, None]:
@@ -56,6 +56,6 @@ def process_data(data: str) -> Generator[int, None, None]:
         yield int(change)
 
 
-def solve(task: str):
+def solve(task: str) -> int:
     """Sum all frequency changes."""
     return sum(process_data(task))

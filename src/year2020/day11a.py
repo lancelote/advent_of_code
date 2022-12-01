@@ -1,10 +1,10 @@
 """2020 - Day 11 Part 1: Seating System."""
 from __future__ import annotations
 
+from collections.abc import Callable
+from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
-from typing import Callable
-from typing import Iterator
 from typing import List
 
 SHIFTS = [

@@ -4,7 +4,7 @@ from __future__ import annotations
 import functools
 import math
 import re
-from typing import Iterator
+from collections.abc import Iterator
 
 
 def tokenize(line: str) -> Iterator[str]:

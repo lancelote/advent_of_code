@@ -21,7 +21,7 @@ Other than the range rule, the following are true:
 How many different passwords within the range given in your puzzle input meet
 these criteria?
 """
-from typing import Iterator
+from collections.abc import Iterator
 
 Password = Iterator[str]
 
@@ -36,7 +36,7 @@ def never_decrease(num: str) -> bool:
     return all(int(num[i]) >= int(num[i - 1]) for i in range(1, len(num)))
 
 
-def process_data(data: str):
+def process_data(data: str) -> Iterator[int]:
     """Process initial data."""
     return map(int, data.strip().split("-"))
 

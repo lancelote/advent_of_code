@@ -35,7 +35,7 @@ How many strings are nice?
 import re
 
 
-def process_data(task):
+def process_data(task: str) -> list[str]:
     r"""Process data into list.
 
     Args:
@@ -49,7 +49,7 @@ def process_data(task):
     return data
 
 
-def is_nice(word):
+def is_nice(word: str) -> bool:
     """Check if string is nice.
 
     Args:
@@ -65,7 +65,7 @@ def is_nice(word):
     return vowels > 2 and pairs > 0 and banned == 0
 
 
-def solve(task):
+def solve(task: str) -> int:
     r"""Calculate number of nice strings.
 
     Args:

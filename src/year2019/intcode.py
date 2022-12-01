@@ -29,12 +29,12 @@ class Instruction(ABC):
 
     @classmethod
     @abstractmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute self on a given computer."""
         ...
 
     @classmethod
-    def get_param_addrs(cls, n: int, computer: Computer):
+    def get_param_addrs(cls, n: int, computer: Computer) -> int:
         """Get given parameter for instruction."""
         mode = computer.mode.rjust(cls.parameters, "0")[-n]
         addr1 = computer.current_position + n
@@ -49,7 +49,7 @@ class Instruction(ABC):
             raise UnknownModeException(f"unknown mode {mode}")
 
     @classmethod
-    def next_instruction(cls, computer: Computer):
+    def next_instruction(cls, computer: Computer) -> None:
         """Move the instruction pointer to next instruction."""
         computer.next(cls.parameters + 1)
 
@@ -60,7 +60,7 @@ class Sum(Instruction):
     parameters = 3
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute sum instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -76,7 +76,7 @@ class Multiply(Instruction):
     parameters = 3
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute multiply instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -92,7 +92,7 @@ class Input(Instruction):
     parameters = 1
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute input instruction."""
         addr = cls.get_param_addrs(1, computer)
 
@@ -110,7 +110,7 @@ class Print(Instruction):
     parameters = 1
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute print instruction."""
         addr = cls.get_param_addrs(1, computer)
 
@@ -124,7 +124,7 @@ class JumpIfTrue(Instruction):
     parameters = 2
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute jump instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -141,7 +141,7 @@ class JumpIfFalse(Instruction):
     parameters = 2
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute jump instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -158,7 +158,7 @@ class LessThan(Instruction):
     parameters = 3
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute less than instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -178,7 +178,7 @@ class Equals(Instruction):
     parameters = 3
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute equals instruction."""
         addr1 = cls.get_param_addrs(1, computer)
         addr2 = cls.get_param_addrs(2, computer)
@@ -198,7 +198,7 @@ class RelativeBaseOffset(Instruction):
     parameters = 1
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute relative base offset instruction."""
         addr = cls.get_param_addrs(1, computer)
 
@@ -212,7 +212,7 @@ class Exit(Instruction):
     parameters = 0
 
     @classmethod
-    def execute(cls, computer: Computer):
+    def execute(cls, computer: Computer) -> None:
         """Execute exit instruction."""
         computer.stop()
 
@@ -254,19 +254,19 @@ class Computer:
         assert addr >= 0
         return self._dram[addr]
 
-    def __setitem__(self, addr: int, value: int):
+    def __setitem__(self, addr: int, value: int) -> None:
         self._dram[addr] = value
 
-    def load_program(self, string: str):
+    def load_program(self, string: str) -> None:
         """Load program to memory."""
         for i, opcode in enumerate(map(int, string.split(","))):
             self._sram[i] = opcode
 
-    def next(self, n: int = 1):
+    def next(self, n: int = 1) -> None:
         """Get the next instruction and increment the pointer."""
         self._instruction_pointer += n
 
-    def execute(self):
+    def execute(self) -> None:
         """Iterate over opcodes in memory executing commands unless 99 stop."""
         assert self.program_is_loaded, "no program loaded"
 
@@ -277,44 +277,44 @@ class Computer:
         while not self.is_halt and not self.is_paused:
             self.instruction.execute(self)
 
-    def set_noun_and_verb(self, noun, verb):
+    def set_noun_and_verb(self, noun: int, verb: int) -> None:
         """Set up the given noun and verb values."""
         self._sram[1] = noun
         self._sram[2] = verb
 
-    def reset(self):
+    def reset(self) -> None:
         """Reset the computer."""
         self._instruction_pointer = 0
         self.is_halt = False
         self.is_paused = False
 
-    def load_sram_to_dram(self):
+    def load_sram_to_dram(self) -> None:
         """Load static memory to dynamic."""
         self._dram = copy(self._sram)
 
-    def jump(self, addr: int):
+    def jump(self, addr: int) -> None:
         """Move instruction pointer to a given address."""
         self._instruction_pointer = addr
 
-    def stop(self):
+    def stop(self) -> None:
         """Mark execution to stop."""
         self.is_halt = True
 
-    def pause(self):
+    def pause(self) -> None:
         """Pause execution, e.g. to wait for stdin."""
         self.is_paused = True
 
-    def offset_relative_base(self, value: int):
+    def offset_relative_base(self, value: int) -> None:
         """Add the given value to relative base."""
         self._relative_base += value
 
     @property
-    def program_is_loaded(self):
+    def program_is_loaded(self) -> dict[int, int]:
         """Check if the program is loaded into the static memory."""
         return self._sram
 
     @property
-    def instruction(self):
+    def instruction(self) -> type[Instruction]:
         """Get current instruction class."""
         try:
             return INSTRUCTIONS[self.opcode]

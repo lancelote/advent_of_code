@@ -15,7 +15,7 @@ For example:
 The system's full passphrase list is available as your puzzle input. How many
 passphrases are valid?
 """
-from typing import Callable
+from collections.abc import Callable
 
 
 def duplicates(passphrase: str) -> bool:
@@ -24,7 +24,7 @@ def duplicates(passphrase: str) -> bool:
     return len(words) == len(set(words))
 
 
-def count_valid(passphrases: str, valid: Callable) -> int:
+def count_valid(passphrases: str, valid: Callable[[str], bool]) -> int:
     """Count valid passphrases."""
     result = 0
     for passphrase in passphrases.strip().split("\n"):

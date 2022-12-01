@@ -19,7 +19,7 @@ class Moon:
     dy: int = 0
     dz: int = 0
 
-    def apply_velocity(self):
+    def apply_velocity(self) -> None:
         """Add velocity to coordinates."""
         self.x += self.dx
         self.y += self.dy
@@ -42,17 +42,17 @@ class Moon:
         return self.dx, self.dy, self.dz
 
     @property
-    def potential_energy(self):
+    def potential_energy(self) -> int:
         """Calculate moon potential energy."""
         return abs(self.x) + abs(self.y) + abs(self.z)
 
     @property
-    def kinetic_energy(self):
+    def kinetic_energy(self) -> int:
         """Calculate moon kinetic energy."""
         return abs(self.dx) + abs(self.dy) + abs(self.dz)
 
     @property
-    def energy(self):
+    def energy(self) -> int:
         """Calculate moon total energy."""
         return self.potential_energy * self.kinetic_energy
 
@@ -64,7 +64,7 @@ class System:
     moons: List[Moon]
     steps: int = 0
 
-    def apply_gravity(self):
+    def apply_gravity(self) -> None:
         """Apply gravity to each moon in system."""
         for moon1, moon2 in permutations(self.moons, 2):
             if moon1.x > moon2.x:
@@ -77,12 +77,12 @@ class System:
                 moon1.dz -= 1
                 moon2.dz += 1
 
-    def apply_velocity(self):
+    def apply_velocity(self) -> None:
         """Apply velocity to each moon in system."""
         for moon in self.moons:
             moon.apply_velocity()
 
-    def step(self):
+    def step(self) -> None:
         """Make a step in system simulation."""
         self.steps += 1
         self.apply_gravity()
@@ -103,32 +103,32 @@ class System:
         return cls(moons)
 
     @property
-    def snapshot_x(self):
+    def snapshot_x(self) -> list[tuple[int, int]]:
         """Get the snapshot of x coordinates."""
         return [(moon.x, moon.dx) for moon in self.moons]
 
     @property
-    def snapshot_y(self):
+    def snapshot_y(self) -> list[tuple[int, int]]:
         """Get the snapshot of y coordinates."""
         return [(moon.y, moon.dy) for moon in self.moons]
 
     @property
-    def snapshot_z(self):
+    def snapshot_z(self) -> list[tuple[int, int]]:
         """Get the snapshot of z coordinates."""
         return [(moon.z, moon.dz) for moon in self.moons]
 
     @property
-    def potential_energy(self):
+    def potential_energy(self) -> int:
         """Calculate system potential energy."""
         return sum(moon.potential_energy for moon in self.moons)
 
     @property
-    def kinetic_energy(self):
+    def kinetic_energy(self) -> int:
         """Calculate system kinetic energy."""
         return sum(moon.kinetic_energy for moon in self.moons)
 
     @property
-    def energy(self):
+    def energy(self) -> int:
         """Calculate system total energy."""
         return sum(moon.energy for moon in self.moons)
 

@@ -19,17 +19,19 @@ def test_position_from_line(line, position):
 
 
 def test_scanner_from_text():
-    text = dedent("""
+    text = dedent(
+        """
         --- scanner 0 ---
         645,-448,-766
         529,751,-867
-    """).strip()
+    """
+    ).strip()
     actual_scanner = Scanner.from_text(text)
     expected_scanner = Scanner(
         pk=0,
         signatures=[
             Position(645, -448, -766),
             Position(529, 751, -867),
-        ]
+        ],
     )
     assert actual_scanner == expected_scanner

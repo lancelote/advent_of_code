@@ -9,14 +9,13 @@ made.
 
 What is the ID of the only claim that doesn't overlap?
 """
-from typing import List
-from typing import Set
-
 from src.year2018.day03a import Claim
 from src.year2018.day03a import process_data
 
 
-def apply_claim(fabric: List[List[int]], claim: Claim, not_overlap: Set[int]):
+def apply_claim(
+    fabric: list[list[int]], claim: Claim, not_overlap: set[int]
+) -> None:
     """Claim inches of fabric and update non-overlapping set of claim ids."""
     not_overlap.add(claim.pk)  # Consider claim as non-overlapping by default
 
@@ -32,9 +31,9 @@ def apply_claim(fabric: List[List[int]], claim: Claim, not_overlap: Set[int]):
             fabric[i][j] = claim.pk
 
 
-def solve(task: str, side=1000) -> int:
+def solve(task: str, side: int = 1000) -> int:
     """Find non-overlapping claim."""
-    not_overlap: Set[int] = set()
+    not_overlap: set[int] = set()
     fabric = [[0 for _ in range(side)] for _ in range(side)]
     for claim in process_data(task):
         apply_claim(fabric, claim, not_overlap)
