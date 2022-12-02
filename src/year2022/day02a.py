@@ -6,9 +6,9 @@ from enum import Enum
 
 
 class Pick(Enum):
-    ROCK = 0
-    PAPER = 1
-    SCISSORS = 2
+    ROCK = 1
+    PAPER = 2
+    SCISSORS = 3
 
     @classmethod
     def from_char(cls, char: str) -> Pick:
@@ -49,12 +49,7 @@ def solve(task: str) -> int:
     score = 0
 
     for turn in process_data(task):
-        if turn.your_pick is Pick.ROCK:
-            score += 1
-        elif turn.your_pick is Pick.PAPER:
-            score += 2
-        else:
-            score += 3
+        score += turn.your_pick.value
 
         if turn.other_pick is turn.your_pick:
             score += 3
