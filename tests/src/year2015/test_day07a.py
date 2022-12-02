@@ -1,4 +1,4 @@
-"""Day 7 Puzzle Part 1 tests."""
+"""2015 - Day 7 Part 1: Some Assembly Required."""
 from textwrap import dedent
 
 from src.year2015.day07a import solve

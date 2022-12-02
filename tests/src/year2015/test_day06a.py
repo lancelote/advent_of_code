@@ -1,4 +1,4 @@
-"""Day 6 Puzzle Part 1 tests."""
+"""2015 - Day 6 Part 1: Probably a Fire Hazard."""
 import unittest
 
 from src.year2015.day06a import process_data

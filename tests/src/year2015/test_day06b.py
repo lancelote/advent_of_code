@@ -1,4 +1,4 @@
-"""Day 6 Puzzle Part 2 tests."""
+"""2015 - Day 6 Part 2: Probably a Fire Hazard."""
 import unittest
 
 from src.year2015.day06b import solve

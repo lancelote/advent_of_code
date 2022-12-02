@@ -1,4 +1,4 @@
-"""Day 1 Puzzle Part 2 tests."""
+"""2015 - Day 1 Part 2: Not Quite Lisp."""
 import unittest
 
 from src.year2015.day01b import solve

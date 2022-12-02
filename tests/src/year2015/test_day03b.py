@@ -1,4 +1,4 @@
-"""Day 3 Puzzle Part 2 tests."""
+"""2015 - Day 3 Part 2: Perfectly Spherical Houses in a Vacuum."""
 import unittest
 
 from src.year2015.day03b import solve
