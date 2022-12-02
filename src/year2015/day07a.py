@@ -1,103 +1,109 @@
 """Day 7: Some Assembly Required."""
 import re
-from functools import lru_cache
-from typing import NamedTuple
+from dataclasses import dataclass
+from enum import Enum
 
 
 PATTERN = re.compile(r"^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$")
 
 
-class Command(NamedTuple):
+class Gate(Enum):
+    SIGNAL = 0
+    NOT = 1
+    RSHIFT = 2
+    LSHIFT = 3
+    AND = 4
+    OR = 5
+
+
+@dataclass
+class Connection:
+    gate: Gate
+    out_wire: str
     input_a: str
-    gate: str
+
+
+@dataclass
+class UnaryConnection(Connection):
+    pass
+
+
+@dataclass
+class BinaryConnection(Connection):
     input_b: str
-    output: str
 
 
-def process_data(data: str) -> list[Command]:
-    r"""Convert text data into list.
-
-    Args:
-        data: "NOT dq -> dr\nkg OR kf -> kh..."
-
-    Returns:
-        list: List of command namedtuples
-    """
-    processed_data = []
+def process_data(data: str) -> dict[str, Connection]:
+    connections: dict[str, Connection] = {}
 
     for line in data.strip().split("\n"):
         match = re.match(PATTERN, line)
         assert match
 
-        input_a, gate, input_b, output = match.groups()
-        processed_data.append(Command(input_a, gate, input_b, output))
+        connection: Connection
+        a, gate, b, output = match.groups()
 
-    return processed_data
+        if gate is None:
+            connection = UnaryConnection(Gate.SIGNAL, output, b)
+        elif gate == "NOT":
+            connection = UnaryConnection(Gate.NOT, output, b)
+        elif gate == "RSHIFT":
+            connection = BinaryConnection(Gate.RSHIFT, output, a, b)
+        elif gate == "LSHIFT":
+            connection = BinaryConnection(Gate.LSHIFT, output, a, b)
+        elif gate == "AND":
+            connection = BinaryConnection(Gate.AND, output, a, b)
+        elif gate == "OR":
+            connection = BinaryConnection(Gate.OR, output, a, b)
+        else:
+            raise ValueError(f"unknown gate: {gate}")
+
+        connections[output] = connection
+
+    return connections
 
 
-class HDict(dict[str, Command | int]):
-    """Hashable dictionary for lru_cache compatibility."""
+def solve(task: str, default_wire: str = "a") -> int:
+    connections = process_data(task)
+    cache: dict[str, int] = {}
 
-    def __hash__(self) -> int:
-        """Calculate hash of items."""
-        return hash(frozenset(self.items()))
-
-
-@lru_cache(maxsize=500)
-def get_value(wire: int | Command, wires: HDict) -> int:
-    """Recursive wire signal search.
-
-    Args:
-        wire (int or namedtuple): Wire signal or wire representation
-        wires (dict): Collection of wires stored by wire label
-
-    Returns:
-        int: Wire signal
-    """
-    value = 0
-
-    if isinstance(wire, int):
-        return wire
-
-    if wire.gate is None:
+    def get_value(wire: str) -> int:
         try:
-            value = int(wire.input_b)
+            result = int(wire)
+            cache[wire] = result
+            return result
         except ValueError:
-            value = get_value(wires[wire.input_b], wires)
-    elif wire.gate == "NOT":
-        value = 65535 - get_value(wires[wire.input_b], wires)
-    elif wire.gate == "RSHIFT":
-        value = get_value(wires[wire.input_a], wires) >> int(wire.input_b)
-    elif wire.gate == "LSHIFT":
-        value = get_value(wires[wire.input_a], wires) << int(wire.input_b)
-    elif wire.gate == "AND":
-        try:
-            value_a = int(wire.input_a)
-        except ValueError:
-            value_a = get_value(wires[wire.input_a], wires)
-        value = value_a & get_value(wires[wire.input_b], wires)
-    elif wire.gate == "OR":
-        value = get_value(wires[wire.input_a], wires) | get_value(
-            wires[wire.input_b], wires
-        )
+            pass
 
-    # wires[wire.output] = value
-    return value
+        if wire in cache:
+            return cache[wire]
 
+        result = 0
+        connection = connections[wire]
 
-def solve(task: str) -> int:
-    r"""Recursively process task data to compute wire 'a' value.
+        if isinstance(connection, UnaryConnection):
+            if connection.gate is Gate.NOT:
+                result = 65535 - get_value(connection.input_a)
+            elif connection.gate is Gate.SIGNAL:
+                result = get_value(connection.input_a)
+            else:
+                raise ValueError(f"unknown gate type: {connection.gate}")
+        elif isinstance(connection, BinaryConnection):
+            input_a = connection.input_a
+            input_b = connection.input_b
 
-    Args:
-        task: "NOT dq -> dr\nkg OR kf -> kh..."
+            if connection.gate is Gate.RSHIFT:
+                result = get_value(input_a) >> get_value(input_b)
+            elif connection.gate is Gate.LSHIFT:
+                result = get_value(input_a) << get_value(input_b)
+            elif connection.gate is Gate.AND:
+                result = get_value(input_a) & get_value(input_b)
+            elif connection.gate is Gate.OR:
+                result = get_value(input_a) | get_value(input_b)
+            else:
+                raise ValueError(f"unknown gate type: {connection.gate}")
 
-    Returns:
-        int: wire 'a' signal value
-    """
-    commands = process_data(task)
-    wires: HDict = HDict()
+        cache[wire] = result
+        return result
 
-    for command in commands:
-        wires[command.output] = command
-
-    return get_value(wires["a"], wires)
+    return get_value(default_wire)
