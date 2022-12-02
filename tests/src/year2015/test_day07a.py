@@ -7,7 +7,7 @@ from src.year2015.day07a import solve
 def test_solve():
     task = dedent(
         """
-        h -> z
+        h -> a
         123 -> x
         456 -> y
         x AND y -> d
@@ -18,4 +18,4 @@ def test_solve():
         NOT y -> i
         """
     ).strip()
-    assert solve(task, "z") == 65412
+    assert solve(task) == 65412

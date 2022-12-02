@@ -1,4 +1,4 @@
-"""Day 7: Some Assembly Required."""
+"""2015 - Day 7 Part 1: Some Assembly Required."""
 import re
 from dataclasses import dataclass
 from enum import Enum
@@ -63,29 +63,30 @@ def process_data(data: str) -> dict[str, Connection]:
     return connections
 
 
-def solve(task: str, default_wire: str = "a") -> int:
-    connections = process_data(task)
-    cache: dict[str, int] = {}
+class Solution:
+    def __init__(self, connections: dict[str, Connection]) -> None:
+        self.connections = connections
+        self.cache: dict[str, int] = {}
 
-    def get_value(wire: str) -> int:
+    def get_value(self, wire: str) -> int:
         try:
             result = int(wire)
-            cache[wire] = result
+            self.cache[wire] = result
             return result
         except ValueError:
             pass
 
-        if wire in cache:
-            return cache[wire]
+        if wire in self.cache:
+            return self.cache[wire]
 
         result = 0
-        connection = connections[wire]
+        connection = self.connections[wire]
 
         if isinstance(connection, UnaryConnection):
             if connection.gate is Gate.NOT:
-                result = 65535 - get_value(connection.input_a)
+                result = 65535 - self.get_value(connection.input_a)
             elif connection.gate is Gate.SIGNAL:
-                result = get_value(connection.input_a)
+                result = self.get_value(connection.input_a)
             else:
                 raise ValueError(f"unknown gate type: {connection.gate}")
         elif isinstance(connection, BinaryConnection):
@@ -93,17 +94,20 @@ def solve(task: str, default_wire: str = "a") -> int:
             input_b = connection.input_b
 
             if connection.gate is Gate.RSHIFT:
-                result = get_value(input_a) >> get_value(input_b)
+                result = self.get_value(input_a) >> self.get_value(input_b)
             elif connection.gate is Gate.LSHIFT:
-                result = get_value(input_a) << get_value(input_b)
+                result = self.get_value(input_a) << self.get_value(input_b)
             elif connection.gate is Gate.AND:
-                result = get_value(input_a) & get_value(input_b)
+                result = self.get_value(input_a) & self.get_value(input_b)
             elif connection.gate is Gate.OR:
-                result = get_value(input_a) | get_value(input_b)
+                result = self.get_value(input_a) | self.get_value(input_b)
             else:
                 raise ValueError(f"unknown gate type: {connection.gate}")
 
-        cache[wire] = result
+        self.cache[wire] = result
         return result
 
-    return get_value(default_wire)
+
+def solve(task: str) -> int:
+    connections = process_data(task)
+    return Solution(connections).get_value("a")
