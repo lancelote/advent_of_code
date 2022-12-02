@@ -1,41 +1,33 @@
 """2015 - Day 2 Part 1: I Was Told There Would Be No Math."""
-from collections import namedtuple
+from __future__ import annotations
 
-Box = namedtuple("Box", ["length", "height", "width"])
+from typing import NamedTuple
+
+
+class Box(NamedTuple):
+    length: int
+    height: int
+    width: int
+
+    @classmethod
+    def from_line(cls, line: str) -> Box:
+        a, b, c = line.split("x")
+        return Box(int(a), int(b), int(c))
 
 
 def process_data(data: str) -> list[Box]:
-    r"""Process string data to convenient list of tuples.
-
-    Args:
-        data (str): length x width x height \n ... (without spaces)
-
-    Returns:
-        list: list of tuples [(length, width, height), (...), ...]
-    """
-    dimensions = [
-        Box(*[int(x) for x in size.split("x")])
-        for size in data.strip().split("\n")
-    ]
-    return dimensions
+    return [Box.from_line(line) for line in data.strip().split("\n")]
 
 
 def solve(task: str) -> int:
-    r"""Solve the puzzle.
-
-    Args:
-        task (str): length x width x height \n ... (without spaces)
-
-    Returns:
-        int: Total square feet of wrapping paper
-    """
     result = 0
-    data = process_data(task)
-    for size in data:
+    boxes = process_data(task)
+
+    for box in boxes:
         sides = (
-            size.length * size.height,
-            size.length * size.width,
-            size.height * size.width,
+            box.length * box.height,
+            box.length * box.width,
+            box.height * box.width,
         )
         result += 2 * sum(sides) + min(sides)
     return result
