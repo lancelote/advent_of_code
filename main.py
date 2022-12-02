@@ -4,9 +4,9 @@ import importlib
 import click
 from aocd import get_data
 
-from src.utils.cli import DAY
-from src.utils.cli import PART
-from src.utils.cli import YEAR
+from utils.cli import DAY
+from utils.cli import PART
+from utils.cli import YEAR
 
 
 class Solver:
