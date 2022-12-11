@@ -19,11 +19,6 @@ OPS = {
     "*": mul,
 }
 
-# if left == right == "old":
-#     op = lambda x: OPS[op_str](x, x)
-# else:
-#     op = lambda x: OPS[op_str](x, int(right))
-
 
 @dataclass
 class Game:
