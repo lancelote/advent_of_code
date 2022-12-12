@@ -20,9 +20,14 @@ OPS = {
 }
 
 
-@dataclass
 class Game:
-    monkeys: dict[int, Monkey] = field(default_factory=dict)
+    def __init__(self, monkeys: dict[int, Monkey], reducer: int = 3) -> None:
+        self.monkeys = monkeys
+        self.reducer = reducer
+        self.divisor = 1
+
+        for monkey in self.monkeys.values():
+            self.divisor *= monkey.test_value
 
     def round(self) -> None:
         for monkey in self.monkeys.values():
@@ -95,7 +100,8 @@ class Monkey:
             self.inspect += 1
             value = self.items.pop()
             value = self.worry(value)
-            value //= 3
+            value //= game.reducer
+            value %= game.divisor
             self.toss(value, game)
 
 
