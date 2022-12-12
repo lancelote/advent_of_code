@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import re
 from enum import Enum
-from typing import List
 from typing import NamedTuple
 
 
@@ -36,7 +35,7 @@ class Ship:
         self.x = 0
         self.y = 0
 
-    def apply_instructions(self, instructions: List[Instruction]) -> None:
+    def apply_instructions(self, instructions: list[Instruction]) -> None:
         for instruction in instructions:
             self.apply_instruction(instruction)
 
@@ -70,7 +69,7 @@ class Ship:
         return abs(self.x) + abs(self.y)
 
 
-def process_data(data: str) -> List[Instruction]:
+def process_data(data: str) -> list[Instruction]:
     return [Instruction.from_line(line) for line in data.strip().split("\n")]
 
 

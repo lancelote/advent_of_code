@@ -5,7 +5,6 @@ from collections.abc import Callable
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
-from typing import List
 
 SHIFTS = [
     # i   j
@@ -39,7 +38,7 @@ class Cell(Enum):
 
 @dataclass
 class Matrix:
-    data: List[List[Cell]]
+    data: list[list[Cell]]
 
     @classmethod
     def from_task(cls, task: str) -> Matrix:
@@ -59,13 +58,13 @@ class Matrix:
         j_in_range = 0 <= j < len(self.data[0])
         return i_in_range and j_in_range
 
-    def __getitem__(self, i: int) -> List[Cell]:
+    def __getitem__(self, i: int) -> list[Cell]:
         return self.data[i]
 
     def __len__(self) -> int:
         return len(self.data)
 
-    def __iter__(self) -> Iterator[List[Cell]]:
+    def __iter__(self) -> Iterator[list[Cell]]:
         return iter(self.data)
 
 

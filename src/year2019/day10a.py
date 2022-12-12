@@ -4,16 +4,13 @@ from __future__ import annotations
 import math
 from collections.abc import Generator
 from dataclasses import dataclass
-from typing import Dict
-from typing import List
-from typing import Tuple
 
 
 @dataclass
 class Chart:
     """A map of asteroids."""
 
-    locations: List[List[bool]]
+    locations: list[list[bool]]
     base_x: int = 0
     base_y: int = 0
 
@@ -36,7 +33,7 @@ class Chart:
         self.base_x = x
         self.base_y = y
 
-    def asteroids(self) -> Generator[Tuple[int, int], None, None]:
+    def asteroids(self) -> Generator[tuple[int, int], None, None]:
         """Iterate over all iterate excluding base."""
         for y in range(len(self.locations)):
             for x in range(len(self.locations[0])):
@@ -68,9 +65,9 @@ class Chart:
         self.set_base(base_x, base_y)
         return len({self.atan2(x, y) for x, y in self.asteroids()})
 
-    def remove_till(self, n: int) -> Tuple[int, int]:
+    def remove_till(self, n: int) -> tuple[int, int]:
         """Remove n asteroids and return coordinates of the next one."""
-        azimuths: Dict[float, List[Tuple[float, int, int]]] = dict()
+        azimuths: dict[float, list[tuple[float, int, int]]] = dict()
 
         for x, y in self.asteroids():
             angle = self.atan2(x, y)
@@ -84,7 +81,7 @@ class Chart:
             distances.sort(reverse=True)
 
         sorted_angles = sorted(azimuths.keys(), reverse=True)
-        empty_angles: List[float] = []
+        empty_angles: list[float] = []
 
         while len(empty_angles) != len(sorted_angles):
             for angle in sorted_angles:
@@ -101,7 +98,7 @@ class Chart:
         raise ValueError(f"cannot reach {n} asteroid")
 
     @property
-    def optimal_station_position(self) -> Tuple[int, int, int]:
+    def optimal_station_position(self) -> tuple[int, int, int]:
         """Return optimal coordinates and the number of visible asteroids."""
         return max((self.seen_from(x, y), x, y) for x, y in self.asteroids())
 

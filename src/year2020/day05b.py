@@ -9,7 +9,7 @@ def solve(task: str) -> int:
     last = max(seats).pk
 
     ideal = set(range(first, last))
-    real = set(seat.pk for seat in seats)
+    real = {seat.pk for seat in seats}
     difference = ideal.difference(real)
     assert len(difference), "difference is not a single seat"
 

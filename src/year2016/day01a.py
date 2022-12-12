@@ -69,7 +69,7 @@ class Point:
 
     def __repr__(self) -> str:
         """Point(1, 2) -> (1, 2)."""
-        return "(%s, %s)" % (self.x, self.y)
+        return f"({self.x}, {self.y})"
 
     def __eq__(self, other: Any) -> bool:
         """Check if the two Point equal (have the same coordinates)."""

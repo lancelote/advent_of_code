@@ -90,9 +90,6 @@ from dataclasses import dataclass
 from enum import Enum
 from operator import itemgetter
 from typing import DefaultDict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 RECORD_PATTERN = r"\[(.*)\] (?:(G)uard #(\d+)|(f)|(w))"
 
@@ -111,7 +108,7 @@ class Record:
 
     time: dt.datetime
     event: Event
-    guard: Optional[int] = None  # If new guard is on duty
+    guard: int | None = None  # If new guard is on duty
 
     @classmethod
     def parse(cls, line: str) -> Record:
@@ -135,17 +132,17 @@ class Record:
         return cls(time, event, int(guard) if guard else None)
 
     @classmethod
-    def parse_all(cls, data: str) -> List[Record]:
+    def parse_all(cls, data: str) -> list[Record]:
         """Convert a bunch of lines into Record instances."""
         records = [cls.parse(line) for line in data.strip().split("\n")]
         return sorted(records, key=lambda x: x.time)
 
     @classmethod
-    def parse_task(cls, task: str) -> DefaultDict[int, List[int]]:
+    def parse_task(cls, task: str) -> DefaultDict[int, list[int]]:
         """Parse the task into a dict of guard_id: list of minutes."""
         guard, start, end = 0, 0, 0
 
-        minutes: DefaultDict[int, List[int]] = defaultdict(lambda: [0] * 60)
+        minutes: DefaultDict[int, list[int]] = defaultdict(lambda: [0] * 60)
         records = cls.parse_all(task)
 
         for record in records:
@@ -161,7 +158,7 @@ class Record:
         return minutes
 
 
-def total_minutes(guard_minutes: Tuple[int, List[int]]) -> int:
+def total_minutes(guard_minutes: tuple[int, list[int]]) -> int:
     """Sum all sleepy minutes of the given guard."""
     _, minutes = guard_minutes
     return sum(minutes)

@@ -5,10 +5,9 @@ from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict
 from typing import Dict
-from typing import List
-from typing import Optional
+from typing import TypeAlias
 
-ChemicalName = str
+ChemicalName: TypeAlias = str
 
 
 @dataclass
@@ -30,10 +29,10 @@ class Reaction:
     """Contains of quantity of output and the desired inputs."""
 
     quantity: int
-    ins: List[ChemicalRecipe]
+    ins: list[ChemicalRecipe]
 
 
-REACTIONS = Dict[ChemicalName, Reaction]
+Reactions: TypeAlias = Dict[ChemicalName, Reaction]
 
 
 def get_multiplier(target: int, reaction: int) -> int:
@@ -49,7 +48,7 @@ def get_multiplier(target: int, reaction: int) -> int:
 class Factory:
     """FUEL factory."""
 
-    def __init__(self, reactions: Optional[REACTIONS] = None):
+    def __init__(self, reactions: Reactions | None = None):
         """Create factory from reactions dictionary."""
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
         self._reactions = reactions if reactions else dict()

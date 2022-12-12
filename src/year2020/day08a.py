@@ -3,8 +3,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import List
-from typing import Tuple
 
 
 class Operation(Enum):
@@ -47,11 +45,11 @@ class Instruction:
         return self.op is Operation.NOP or self.op is Operation.JMP
 
 
-def process_data(task: str) -> List[Instruction]:
+def process_data(task: str) -> list[Instruction]:
     return [Instruction.from_line(line) for line in task.strip().split("\n")]
 
 
-def run(instructions: List[Instruction]) -> Tuple[bool, int]:
+def run(instructions: list[Instruction]) -> tuple[bool, int]:
     i = 0
     acc = 0
     seen = set()

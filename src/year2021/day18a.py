@@ -8,8 +8,7 @@ from collections.abc import Iterator
 
 
 def tokenize(line: str) -> Iterator[str]:
-    for token in re.findall(r"(\[|\d+)", line):
-        yield token
+    yield from re.findall(r"(\[|\d+)", line)
 
 
 class Node:

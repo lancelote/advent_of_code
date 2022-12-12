@@ -22,4 +22,4 @@ def solve(task: str) -> int:
     """Count number of connected components in graph."""
     connections = process_data(task)
     nodes = process_nodes(connections)
-    return len(set(id(component) for component in nodes.values()))
+    return len({id(component) for component in nodes.values()})

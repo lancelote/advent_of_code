@@ -1,9 +1,7 @@
 """2020 - Day 2 Part 1: Password Philosophy."""
 from __future__ import annotations
 
-from typing import List
 from typing import NamedTuple
-from typing import Tuple
 
 Password = str
 
@@ -21,7 +19,7 @@ class Policy(NamedTuple):
         return Policy(character, int(first), int(second))
 
 
-def process_data(task: str) -> List[Tuple[Policy, Password]]:
+def process_data(task: str) -> list[tuple[Policy, Password]]:
     """Line like '4-6 f: fmfgfcf'"""
     entries = []
 

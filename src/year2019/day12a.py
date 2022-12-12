@@ -3,8 +3,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import permutations
-from typing import List
-from typing import Tuple
 
 
 @dataclass
@@ -28,16 +26,16 @@ class Moon:
     @classmethod
     def from_string(cls, string: str) -> Moon:
         """Create Moon instance from raw data: e.g. "<x=1, y=3, z=-11>"."""
-        x, y, z = [int(part[2:]) for part in string[1:-1].split(", ")]
+        x, y, z = (int(part[2:]) for part in string[1:-1].split(", "))
         return cls(x, y, z)
 
     @property
-    def coordinates(self) -> Tuple[int, int, int]:
+    def coordinates(self) -> tuple[int, int, int]:
         """Return moon coordinates in tuple for assessment."""
         return self.x, self.y, self.z
 
     @property
-    def velocity(self) -> Tuple[int, int, int]:
+    def velocity(self) -> tuple[int, int, int]:
         """Return moon velocities in tuple for assessment."""
         return self.dx, self.dy, self.dz
 
@@ -61,7 +59,7 @@ class Moon:
 class System:
     """System of a number of moons."""
 
-    moons: List[Moon]
+    moons: list[Moon]
     steps: int = 0
 
     def apply_gravity(self) -> None:

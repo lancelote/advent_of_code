@@ -3,8 +3,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from dataclasses import field
-from typing import Dict
-from typing import List
 
 
 @dataclass
@@ -12,7 +10,7 @@ class Object:
     """Celestial object."""
 
     name: str
-    satellites: List[Object] = field(default_factory=list)
+    satellites: list[Object] = field(default_factory=list)
 
     def traverse(self, value: int = 0) -> int:
         """Count direct and indirect orbits for all satellites recursive."""
@@ -22,9 +20,9 @@ class Object:
         return self.name
 
 
-def process_data(task: str) -> Dict[str, Object]:
+def process_data(task: str) -> dict[str, Object]:
     """Construct map from object name to object instance."""
-    objects: Dict[str, Object] = {}
+    objects: dict[str, Object] = {}
 
     for line in task.strip().split("\n"):
         obj1_name, obj2_name = line.split(")")

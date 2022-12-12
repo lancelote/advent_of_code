@@ -4,7 +4,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from functools import cached_property
 from typing import Any
-from typing import List
 
 
 LEFT = "FL"
@@ -42,7 +41,7 @@ class Seat:
         return self.pk < other.pk
 
 
-def process_data(task: str) -> List[Seat]:
+def process_data(task: str) -> list[Seat]:
     return [Seat(code) for code in task.strip().split("\n")]
 
 

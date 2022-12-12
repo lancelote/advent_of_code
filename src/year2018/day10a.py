@@ -168,7 +168,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass
@@ -186,7 +185,7 @@ class Point:
         return cls(*map(int, re.findall(r"[\d-]+", line)))
 
     @classmethod
-    def parse_task(cls, task: str) -> List[Point]:
+    def parse_task(cls, task: str) -> list[Point]:
         """Parse the given task returning a list of rescue points."""
         return [cls.from_line(line) for line in task.strip().split("\n")]
 
@@ -205,7 +204,7 @@ class Point:
 class Sky:
     """Sky with given rescue points."""
 
-    points: List[Point]
+    points: list[Point]
 
     def move(self) -> None:
         """Move sky by one tick forward in time."""

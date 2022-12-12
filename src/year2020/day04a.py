@@ -3,9 +3,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Dict
-from typing import List
-from typing import Type
 
 MANDATORY_FIELDS = {
     "byr",  # Birth Year
@@ -20,7 +17,7 @@ MANDATORY_FIELDS = {
 
 @dataclass
 class Passport:
-    fields: Dict[str, str]
+    fields: dict[str, str]
 
     @classmethod
     def from_str(cls, data: str) -> Passport:
@@ -38,7 +35,7 @@ class Passport:
         )
 
 
-def process_data(task: str, document: Type[Passport]) -> List[Passport]:
+def process_data(task: str, document: type[Passport]) -> list[Passport]:
     return [document.from_str(block) for block in task.strip().split("\n\n")]
 
 
