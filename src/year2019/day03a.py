@@ -3,7 +3,6 @@ from collections import defaultdict
 from dataclasses import dataclass
 from dataclasses import field
 from typing import DefaultDict
-from typing import Tuple
 
 SHIFT = {
     "R": (1, 0),
@@ -12,11 +11,11 @@ SHIFT = {
     "D": (0, -1),
 }
 
-Node = Tuple[int, int]
+Node = tuple[int, int]
 Nodes = DefaultDict[Node, int]
 
 
-def parse_command(command: str) -> Tuple[str, int]:
+def parse_command(command: str) -> tuple[str, int]:
     """Parse command into direction char and number of steps."""
     direction = command[0]
     steps = int(command[1:])

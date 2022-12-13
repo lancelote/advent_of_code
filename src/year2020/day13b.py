@@ -1,5 +1,4 @@
 """2020 - Day 13 Part 2: Shuttle Search."""
-from typing import List
 from typing import NamedTuple
 
 
@@ -8,14 +7,14 @@ class Shuttle(NamedTuple):
     pk: int
 
 
-def process_data(data: str) -> List[Shuttle]:
+def process_data(data: str) -> list[Shuttle]:
     _, pks = data.strip().split("\n")
     return [
         Shuttle(i, int(pk)) for i, pk in enumerate(pks.split(",")) if pk != "x"
     ]
 
 
-def find_earliest(shuttles: List[Shuttle]) -> int:
+def find_earliest(shuttles: list[Shuttle]) -> int:
     timestamp = 0
     step = shuttles[0].pk
 

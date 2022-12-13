@@ -1,10 +1,10 @@
 """2021 - Day 14 Part 1: Extended Polymerization."""
 from collections import Counter
 from itertools import pairwise
-from typing import Tuple
+from typing import TypeAlias
 
-Polymer = list[str]
-Insertions = dict[Tuple[str, ...], str]
+Polymer: TypeAlias = list[str]
+Insertions: TypeAlias = dict[tuple[str, ...], str]
 
 
 def parse_task(task: str) -> tuple[Polymer, Insertions]:

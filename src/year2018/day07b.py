@@ -49,7 +49,6 @@ it take to complete all of the steps?
 from collections import defaultdict
 from string import ascii_uppercase
 from typing import DefaultDict
-from typing import Set
 
 from src.year2018.day07a import next_step
 from src.year2018.day07a import Parents
@@ -66,7 +65,7 @@ def solve(
     """Get time of work for given workers."""
     total_seconds = 0
 
-    done: Set[Step] = set()
+    done: set[Step] = set()
     todo = set(steps)
 
     job_step: DefaultDict[int, Step] = defaultdict(str)

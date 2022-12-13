@@ -103,8 +103,7 @@ After 20 generations, what is the sum of the numbers of all pots which contain
 a plant?
 """
 from enum import Enum
-from typing import Dict
-from typing import Tuple
+from typing import TypeAlias
 
 
 class Pot(Enum):
@@ -115,12 +114,12 @@ class Pot(Enum):
 
 
 POT_ID = int
-GEN = Dict[POT_ID, Pot]
-PATTERN = str
-PATTERNS = Dict[PATTERN, Pot]
+GEN: TypeAlias = dict[POT_ID, Pot]
+PATTERN: TypeAlias = str
+PATTERNS: TypeAlias = dict[PATTERN, Pot]
 
 
-def process_data(task: str) -> Tuple[GEN, PATTERNS]:
+def process_data(task: str) -> tuple[GEN, PATTERNS]:
     """Convert raw data into initial generation and the list of patterns."""
     data_lines = task.strip().split("\n")
     raw_initial_state = data_lines[0].split()[2]

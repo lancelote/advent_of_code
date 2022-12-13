@@ -66,15 +66,11 @@ Before you're ready to help them, you need to make sure your information is
 correct. What is the name of the bottom program?
 """
 import re
-from typing import Dict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 PATTERN = r"(?P<parent>\w+) \((?P<weight>\d+)\)( -> (?P<children>[\w, ]+))?"
 
 
-def process_line(line: str) -> Tuple[str, int, List[str]]:
+def process_line(line: str) -> tuple[str, int, list[str]]:
     """Convert raw line to a manageable view.
 
     Returns a tuple of:
@@ -91,7 +87,7 @@ def process_line(line: str) -> Tuple[str, int, List[str]]:
     return parent, weight, children.split(", ") if children else []
 
 
-def process_data(data: str) -> List[Tuple[str, int, List[str]]]:
+def process_data(data: str) -> list[tuple[str, int, list[str]]]:
     """Convert raw string data into a manageable view.
 
     Returns a list where each item is a parsed answer from each command. See
@@ -101,7 +97,7 @@ def process_data(data: str) -> List[Tuple[str, int, List[str]]]:
     return [process_line(line.strip()) for line in lines]
 
 
-def find_root(tree: Dict[str, Optional[str]]) -> Optional[str]:
+def find_root(tree: dict[str, str | None]) -> str | None:
     """Find tree root."""
     root = None
     for child, parent in tree.items():
@@ -113,7 +109,7 @@ def find_root(tree: Dict[str, Optional[str]]) -> Optional[str]:
 
 def solve(task: str) -> str:
     """Find base command."""
-    tree: Dict[str, Optional[str]] = {}
+    tree: dict[str, str | None] = {}
     data = process_data(task)
     for parent, _, children in data:
         if parent not in tree:

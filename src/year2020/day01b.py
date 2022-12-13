@@ -1,11 +1,8 @@
 """2020 - Day 1 Part 1: Report Repair."""
-from typing import List
-from typing import Tuple
-
 from src.year2020.day01a import process_data
 
 
-def find_three_2020_summands(numbers: List[int]) -> Tuple[int, int, int]:
+def find_three_2020_summands(numbers: list[int]) -> tuple[int, int, int]:
     for i in range(len(numbers)):
         for j in range(i, len(numbers)):
             for k in range(j, len(numbers)):

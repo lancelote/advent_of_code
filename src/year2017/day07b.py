@@ -29,15 +29,11 @@ towers balanced. If this change were made, its weight would be 60.
 Given that exactly one program is the wrong weight, what would its weight
 need to be to balance the entire tower?
 """
-from typing import Dict
-from typing import List
-from typing import Tuple
-
 from src.year2017.day07a import process_data
 from src.year2017.day07a import solve as find_root
 
 
-def find_unique(children: List[int]) -> Tuple[int, int]:
+def find_unique(children: list[int]) -> tuple[int, int]:
     """Find unique item and return difference from other items and index."""
     first, second = set(children)
     if children.count(first) == 1:
@@ -48,8 +44,8 @@ def find_unique(children: List[int]) -> Tuple[int, int]:
 
 
 def unbalanced(
-    command: str, tree: Dict[str, List[str]], weights: Dict[str, int]
-) -> Tuple[bool, int]:
+    command: str, tree: dict[str, list[str]], weights: dict[str, int]
+) -> tuple[bool, int]:
     """Recursively search for unbalanced node."""
     children_weights = []
     children = tree[command]
@@ -72,8 +68,8 @@ def unbalanced(
 def solve(task: str) -> int:
     """Find correct weight of the wrong-weighted command."""
     data = process_data(task)
-    tree: Dict[str, List[str]] = {}
-    weights: Dict[str, int] = {}
+    tree: dict[str, list[str]] = {}
+    weights: dict[str, int] = {}
     root = find_root(task)
 
     for parent, weight, children in data:

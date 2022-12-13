@@ -1,9 +1,6 @@
 """2019 - Day 13 Part 2: Care Package."""
 import os
 from enum import Enum
-from typing import Dict
-from typing import List
-from typing import Tuple
 
 from src.year2019.intcode import Computer
 
@@ -41,7 +38,7 @@ class Arcade:
         self.cpu.load_program(program)
         self.ball_x = 0
         self.paddle_x = 0
-        self.map: Dict[Tuple[int, int], Tile] = dict()
+        self.map: dict[tuple[int, int], Tile] = dict()
         self.score = 0
 
     def play(self) -> None:
@@ -86,7 +83,7 @@ class Arcade:
         max_x = max(self.map.keys(), key=lambda point: point[0])[0]
         max_y = max(self.map.keys(), key=lambda point: point[1])[1]
 
-        canvas: List[List[Tile]] = [
+        canvas: list[list[Tile]] = [
             [Tile.EMPTY for _ in range(max_x + 1)] for _ in range(max_y + 1)
         ]
 

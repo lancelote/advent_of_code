@@ -62,7 +62,6 @@ fabric. How many square inches of fabric are within two or more claims?
 """
 import re
 from collections.abc import Generator
-from typing import List
 from typing import NamedTuple
 
 PATTERN = r"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$"
@@ -94,7 +93,7 @@ def process_data(data: str) -> Generator[Claim, None, None]:
         yield parse_claim(raw_claim)
 
 
-def apply_claim(fabric: List[List[int]], claim: Claim) -> List[List[int]]:
+def apply_claim(fabric: list[list[int]], claim: Claim) -> list[list[int]]:
     """Add +1 on each inch of the given claim."""
     for i in range(claim.from_top, claim.from_top + claim.height):
         for j in range(claim.from_left, claim.from_left + claim.width):

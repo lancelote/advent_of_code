@@ -4,7 +4,6 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict
-from typing import Dict
 from typing import TypeAlias
 
 ChemicalName: TypeAlias = str
@@ -32,7 +31,7 @@ class Reaction:
     ins: list[ChemicalRecipe]
 
 
-Reactions: TypeAlias = Dict[ChemicalName, Reaction]
+Reactions: TypeAlias = dict[ChemicalName, Reaction]
 
 
 def get_multiplier(target: int, reaction: int) -> int:

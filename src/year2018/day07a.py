@@ -64,11 +64,9 @@ from collections import defaultdict
 from collections.abc import Generator
 from string import ascii_uppercase
 from typing import DefaultDict
-from typing import Optional
-from typing import Set
 
 Step = str
-Parents = DefaultDict[Step, Set[Step]]
+Parents = DefaultDict[Step, set[Step]]
 StepGenerator = Generator[Step, None, None]
 
 
@@ -84,8 +82,8 @@ def process_date(data: str) -> Parents:
 
 
 def next_step(
-    parents: Parents, done: Set[Step], todo: Set[Step]
-) -> Optional[Step]:
+    parents: Parents, done: set[Step], todo: set[Step]
+) -> Step | None:
     """Get next available step to take."""
     ready = set()
     for step in todo:
@@ -96,8 +94,8 @@ def next_step(
 
 def ordered_steps(parents: Parents, steps: str) -> StepGenerator:
     """Yield next available step in the correct order."""
-    done: Set[Step] = set()
-    todo: Set[Step] = set(steps)
+    done: set[Step] = set()
+    todo: set[Step] = set(steps)
 
     while todo:
         new_step = next_step(parents, done, todo)

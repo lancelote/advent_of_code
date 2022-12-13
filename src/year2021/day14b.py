@@ -1,12 +1,12 @@
 """2021 - Day 14 Part 2: Extended Polymerization."""
 from collections import defaultdict
 from itertools import pairwise
-from typing import Tuple
+from typing import TypeAlias
 
-Pair = Tuple[str, ...]
-Pairs = dict[Pair, int]
-Insertions = dict[Pair, str]
-Counts = dict[str, int]
+Pair: TypeAlias = tuple[str, ...]
+Pairs: TypeAlias = dict[Pair, int]
+Insertions: TypeAlias = dict[Pair, str]
+Counts: TypeAlias = dict[str, int]
 
 
 def parse_task(task: str) -> tuple[Pairs, Insertions, Counts]:

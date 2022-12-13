@@ -27,7 +27,6 @@ import re
 from collections import Counter
 from typing import Any
 from typing import NamedTuple
-from typing import Tuple
 
 ROOM_PATTERN = re.compile(
     r"^(?P<name>[a-z-]+)-(?P<sector_id>\d+)\[(?P<checksum>[a-z]+)]$"
@@ -58,7 +57,7 @@ def process_data(data: str) -> list[Room]:
 
 def is_real(room: Room) -> bool:
     """Check if the room is real."""
-    common_5: list[Tuple[Any, int]] = Counter(
+    common_5: list[tuple[Any, int]] = Counter(
         room.name.replace("-", "")
     ).most_common()
     common_5.sort(key=operator.itemgetter(0))  # Sort alphabetically

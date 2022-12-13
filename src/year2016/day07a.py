@@ -23,14 +23,13 @@ For example:
 How many IPs in your puzzle input support TLS?
 """
 from collections.abc import Generator
-from typing import List
 
 
 class IP:
     """IPv7 representation."""
 
     def __init__(
-        self, supernet_parts: List[str], hypernet_parts: List[str]
+        self, supernet_parts: list[str], hypernet_parts: list[str]
     ) -> None:
         """Create an IPv7 instance.
 
@@ -114,7 +113,7 @@ def process_line(line: str) -> IP:
     return IP(supernet_parts, hypernet_parts)
 
 
-def process_date(data: str) -> List[IP]:
+def process_date(data: str) -> list[IP]:
     """Convert raw data in the list of ips with supernet and hypernet parts."""
     ips = []
     for line in data.strip().split("\n"):

@@ -47,19 +47,17 @@ metadata entries. In this example, that sum is 1+1+2+10+11+12+2+99=138.
 What is the sum of all metadata entries?
 """
 from dataclasses import dataclass
-from typing import List
-from typing import Tuple
 
 
 @dataclass
 class Node:
     """Has a list of child-nodes and a metadata as a list of ints."""
 
-    children: List["Node"]
-    metadata: List[int]
+    children: list["Node"]
+    metadata: list[int]
 
 
-def parse_tree(data: List[int], start: int = 0) -> Tuple[Node, int]:
+def parse_tree(data: list[int], start: int = 0) -> tuple[Node, int]:
     """Parse a data into a tree of nodes."""
     children_num = data[start]
     metadata_len = data[start + 1]

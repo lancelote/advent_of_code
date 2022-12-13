@@ -1,8 +1,7 @@
 """2019 - Day 8 Part 1: Space Image Format."""
-from typing import List
 
 
-def parse_layers(data: str, n: int) -> List[List[int]]:
+def parse_layers(data: str, n: int) -> list[list[int]]:
     """Get all layers from raw data."""
     return [[int(x) for x in data[i : i + n]] for i in range(0, len(data), n)]
 

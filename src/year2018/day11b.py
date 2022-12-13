@@ -20,13 +20,13 @@ For example:
 What is the X,Y,size identifier of the square with the largest total power?
 """
 from functools import lru_cache
-from typing import Tuple
+from typing import TypeAlias
 
 from src.year2018.day11a import Cell
 from src.year2018.day11a import Grid
 from src.year2018.day11a import Power
 
-Size = int
+Size: TypeAlias = int
 
 
 class CachedGrid(Grid):
@@ -51,7 +51,7 @@ class CachedGrid(Grid):
             return self.get_square_power(x, y, size - 1) + border
 
 
-def solve(task: str) -> Tuple[Cell, Size]:
+def solve(task: str) -> tuple[Cell, Size]:
     """Find the biggest area top left corner and size."""
     grid = CachedGrid(serial=int(task), side=300)
     biggest_size = 0

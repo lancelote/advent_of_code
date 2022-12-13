@@ -17,11 +17,9 @@ not larger than 25.
 
 In your puzzle input, how many of the listed triangles are possible?
 """
-from typing import List
-from typing import Tuple
 
 
-def process_data(data: str) -> List[Tuple[int, int, int]]:
+def process_data(data: str) -> list[tuple[int, int, int]]:
     """Parse the raw data.
 
     Convert raw triangle data:
@@ -38,13 +36,13 @@ def process_data(data: str) -> List[Tuple[int, int, int]]:
     return triangles
 
 
-def is_bad(triangle: Tuple[int, int, int]) -> bool:
+def is_bad(triangle: tuple[int, int, int]) -> bool:
     """Check if there can exist such triangle."""
     longest = max(triangle)
     return sum(triangle) - longest <= longest
 
 
-def count_possible(triangles: List[Tuple[int, int, int]]) -> int:
+def count_possible(triangles: list[tuple[int, int, int]]) -> int:
     """Calculate the number of possible triangles."""
     possible = 0
     for triangle in triangles:

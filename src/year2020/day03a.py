@@ -1,7 +1,7 @@
 """2020 - Day 3 Part 1: Toboggan Trajectory."""
-from typing import List
+from typing import TypeAlias
 
-Plan = List[List[str]]
+Plan: TypeAlias = list[list[str]]
 
 
 def process_data(task: str) -> Plan:

@@ -37,7 +37,6 @@ After all possible reactions, the resulting polymer contains 10 units.
 
 How many units remain after fully reacting the polymer you scanned?
 """
-from typing import List
 
 
 def react(char1: str, char2: str) -> bool:
@@ -47,7 +46,7 @@ def react(char1: str, char2: str) -> bool:
 
 def solve(task: str) -> int:
     """Reduce polymer and count left unites."""
-    left: List[str] = []
+    left: list[str] = []
     for char in task.strip():
         if not left:
             left.append(char)

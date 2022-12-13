@@ -11,13 +11,11 @@ What is the ID of the guard you chose multiplied by the minute you chose? (In
 the above example, the answer would be 99 * 45 = 4455.)
 """
 from operator import itemgetter
-from typing import List
-from typing import Tuple
 
 from src.year2018.day04a import Record
 
 
-def most_sleepy(guard_minutes: Tuple[int, List[int]]) -> int:
+def most_sleepy(guard_minutes: tuple[int, list[int]]) -> int:
     """Find most sleepy minute value."""
     _, minutes = guard_minutes
     return max(minutes)

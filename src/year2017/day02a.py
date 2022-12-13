@@ -27,10 +27,9 @@ In this example, the spreadsheet's checksum would be 8 + 4 + 6 = 18.
 
 What is the checksum for the spreadsheet in your puzzle input?
 """
-from typing import List
 
 
-def process_data(data: str) -> List[List[int]]:
+def process_data(data: str) -> list[list[int]]:
     """Parse the raw data.
 
     Return list of rows, each row item is integer.

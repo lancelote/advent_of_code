@@ -3,9 +3,8 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
-from typing import Dict
-from typing import List
 from typing import NamedTuple
+from typing import TypeAlias
 
 
 class InnerBag(NamedTuple):
@@ -23,7 +22,7 @@ class InnerBag(NamedTuple):
         return cls(int(count), name)
 
 
-Bags = Dict[str, List[InnerBag]]
+Bags: TypeAlias = dict[str, list[InnerBag]]
 
 
 def process_data(task: str) -> Bags:

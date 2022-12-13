@@ -1,11 +1,10 @@
 """2019 - Day 7 Part 2: Amplification Circuit."""
 from itertools import permutations
-from typing import Tuple
 
 from src.year2019.intcode import Computer
 
 
-def compute_output(program: str, phases: Tuple[int, ...]) -> int:
+def compute_output(program: str, phases: tuple[int, ...]) -> int:
     """Compute feedback loop biggest output."""
     amplifiers = (Computer(), Computer(), Computer(), Computer(), Computer())
     stdin = 0

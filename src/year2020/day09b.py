@@ -1,12 +1,11 @@
 """2020 - Day 9 Part 2: Encoding Error."""
 from collections import deque
 from typing import Deque
-from typing import List
 
 from src.year2020.day09a import first_invalid
 
 
-def find_contagious_range(target: int, data: List[int]) -> Deque[int]:
+def find_contagious_range(target: int, data: list[int]) -> Deque[int]:
     contagious_range: Deque[int] = deque()
 
     for number in data:

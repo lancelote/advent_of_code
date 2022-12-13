@@ -18,13 +18,11 @@ In your puzzle input, and instead reading by columns, how many of the listed
 triangles are possible?
 """
 from itertools import chain
-from typing import List
-from typing import Tuple
 
 from src.year2016.day03a import count_possible
 
 
-def process_data(data: str) -> List[Tuple[int, int, int]]:
+def process_data(data: str) -> list[tuple[int, int, int]]:
     """Parse the raw data.
 
     Convert raw triangle data:

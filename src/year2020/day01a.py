@@ -1,13 +1,11 @@
 """2020 - Day 1 Part 1: Report Repair."""
-from typing import List
-from typing import Tuple
 
 
-def process_data(data: str) -> List[int]:
+def process_data(data: str) -> list[int]:
     return [int(number) for number in data.strip().split("\n")]
 
 
-def find_2020_summands(numbers: List[int]) -> Tuple[int, int]:
+def find_2020_summands(numbers: list[int]) -> tuple[int, int]:
     for i in range(len(numbers)):
         for j in range(i, len(numbers)):
             if numbers[i] + numbers[j] == 2020:

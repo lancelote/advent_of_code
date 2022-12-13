@@ -34,7 +34,6 @@ individually calculate the fuel needed for the mass of each module
 What is the sum of the fuel requirements for all of the modules on your
 spacecraft?
 """
-from typing import List
 
 
 def count_fuel(mass: int) -> int:
@@ -42,7 +41,7 @@ def count_fuel(mass: int) -> int:
     return mass // 3 - 2
 
 
-def process_data(data: str) -> List[int]:
+def process_data(data: str) -> list[int]:
     """Convert raw data to a list of modules masses."""
     return [int(line) for line in data.strip().split("\n")]
 

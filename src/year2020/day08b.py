@@ -1,12 +1,10 @@
 """2020 - Day 8 Part 1: Handheld Halting."""
-from typing import List
-
 from src.year2020.day08a import Instruction
 from src.year2020.day08a import process_data
 from src.year2020.day08a import run
 
 
-def attempt(instructions: List[Instruction]) -> int:
+def attempt(instructions: list[Instruction]) -> int:
     for instruction in instructions:
         if instruction.is_swapable:
             instruction.swap()

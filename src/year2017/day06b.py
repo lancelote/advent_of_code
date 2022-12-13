@@ -10,8 +10,6 @@ answer in that example would be 4.
 How many cycles are in the infinite loop that arises from the configuration
 in your puzzle input?
 """
-from typing import Dict
-
 from src.year2017.day06a import Memory
 
 
@@ -19,7 +17,7 @@ def solve(task: str) -> int:
     """Find the distance between first duplicate bank distributions."""
     banks = [int(bank) for bank in task.strip().split()]
     memory = Memory(banks)
-    seen: Dict[str, int] = {}
+    seen: dict[str, int] = {}
     index = 0
 
     while str(memory) not in seen:

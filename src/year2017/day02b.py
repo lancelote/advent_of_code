@@ -29,12 +29,10 @@ In this example, the sum of the results would be 4 + 3 + 2 = 9.
 
 What is the sum of each row's result in your puzzle input?
 """
-from typing import List
-
 from src.year2017.day02a import process_data
 
 
-def find_division(row: List[int]) -> int:
+def find_division(row: list[int]) -> int:
     """Find two evenly divisible items and return the division result."""
     for i, item1 in enumerate(row):
         for item2 in row[i + 1 :]:

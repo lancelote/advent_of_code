@@ -1,9 +1,7 @@
 """2020 - Day 6 Part 1: Custom Customs."""
-from typing import List
-from typing import Set
 
 
-def process_data(task: str) -> List[Set[str]]:
+def process_data(task: str) -> list[set[str]]:
     return [
         set(group.replace("\n", "")) for group in task.strip().split("\n\n")
     ]

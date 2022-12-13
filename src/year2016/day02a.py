@@ -45,7 +45,6 @@ So, in this example, the bathroom code is 1985.
 Your puzzle input is the instructions from the document you found at the front
 desk. What is the bathroom code?
 """
-from typing import List
 
 
 class Keypad:
@@ -134,7 +133,7 @@ class Keypad:
         return str(self.layout[self.row][self.col])
 
 
-def processed_data(data: str) -> List[List[str]]:
+def processed_data(data: str) -> list[list[str]]:
     r"""Convert raw data in the list.
 
     From: 'UR\nDL'

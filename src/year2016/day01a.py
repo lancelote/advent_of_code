@@ -33,7 +33,6 @@ For example:
 """
 from collections import namedtuple
 from typing import Any
-from typing import List
 
 Instruction = namedtuple("Instruction", "direction distance")
 
@@ -77,7 +76,7 @@ class Point:
         return self.x == other.x and self.y == other.y
 
 
-def processed_data(data: str) -> List[Instruction]:
+def processed_data(data: str) -> list[Instruction]:
     """Convert raw sequence of instructions into the list of named tuples."""
     return [Instruction(x[0], int(x[1:])) for x in data.split(", ")]
 
@@ -96,7 +95,7 @@ def solve(task: str) -> int:
     """Compute how many blocks away is Easter Bunny HQ."""
     direction = 0  # North
     current = Point()
-    instructions = processed_data(task)  # type: List[Instruction]
+    instructions = processed_data(task)
 
     for instruction in instructions:
         direction = update_direction(direction, instruction.direction)

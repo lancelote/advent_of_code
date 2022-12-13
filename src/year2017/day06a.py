@@ -46,14 +46,12 @@ Given the initial block counts in your puzzle input, how many redistribution
 cycles must be completed before a configuration is produced that has been
 seen before?
 """
-from typing import List
-from typing import Set
 
 
 class Memory:
     """Memory banks representation."""
 
-    def __init__(self, banks: List[int]) -> None:
+    def __init__(self, banks: list[int]) -> None:
         """Each bank is an integer."""
         self.banks = banks
 
@@ -78,7 +76,7 @@ def solve(task: str) -> int:
     """Find the number of unique redistributions."""
     banks = [int(bank) for bank in task.strip().split()]
     memory = Memory(banks)
-    seen: Set[str] = set()
+    seen: set[str] = set()
     steps = 0
 
     while str(memory) not in seen:

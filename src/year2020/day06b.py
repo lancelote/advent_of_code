@@ -1,10 +1,8 @@
 """2020 - Day 6 Part 2: Custom Customs."""
 from functools import reduce
-from typing import List
-from typing import Set
 
 
-def process_data(task: str) -> List[List[Set[str]]]:
+def process_data(task: str) -> list[list[set[str]]]:
     return [
         [set(user) for user in group.split("\n")]
         for group in task.strip().split("\n\n")

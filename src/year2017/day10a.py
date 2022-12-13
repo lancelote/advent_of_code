@@ -71,13 +71,12 @@ in the list?
 """
 from itertools import cycle
 from itertools import islice
-from typing import List
 
 
 class Rope:
     """Rope representation."""
 
-    def __init__(self, nodes: List[int] | None = None) -> None:
+    def __init__(self, nodes: list[int] | None = None) -> None:
         """By default rope consists of 256 segments."""
         self.nodes = nodes or list(range(256))
         self.shift = 0
@@ -102,7 +101,7 @@ class Rope:
         return self.nodes[0] * self.nodes[1]
 
 
-def process_data(data: str) -> List[int]:
+def process_data(data: str) -> list[int]:
     """Convert raw data into list of int lengths."""
     return [int(length) for length in data.split(",")]
 

@@ -78,16 +78,16 @@ from collections import defaultdict
 from functools import lru_cache
 from itertools import product
 from typing import DefaultDict
-from typing import Tuple
+from typing import TypeAlias
 
-Power = int
-Cell = Tuple[int, int]
+Power: TypeAlias = int
+Cell: TypeAlias = tuple[int, int]
 
 
 class Grid:
     """Power grid."""
 
-    def __init__(self, serial: int, side: int):
+    def __init__(self, serial: int, side: int) -> None:
         """Where serial is grid serial number and side is a side length."""
         self.side = side
         self.cells: DefaultDict[Cell, Power] = defaultdict(int)
@@ -126,7 +126,7 @@ class Grid:
                 square_power += self.cells[(dx, dy)]
         return square_power
 
-    def get_biggest_square(self, size: int) -> Tuple[Cell, Power]:
+    def get_biggest_square(self, size: int) -> tuple[Cell, Power]:
         """Get left cell coordinates of a most powerful grid square."""
         biggest_power = -99
         top_left_corner = (0, 0)

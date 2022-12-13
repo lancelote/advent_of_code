@@ -37,7 +37,6 @@ import operator
 from collections import defaultdict
 from collections import namedtuple
 from typing import DefaultDict
-from typing import List
 
 Instruction = namedtuple(
     "Instruction", ["register", "op", "value", "base", "check", "limit"]
@@ -61,7 +60,7 @@ def process_line(line: str) -> Instruction:
     return Instruction(register, op, int(value), base, check, int(limit))
 
 
-def process_data(data: str) -> List[Instruction]:
+def process_data(data: str) -> list[Instruction]:
     """Convert raw data in the easy-to-use list of Instruction instances."""
     instructions = []
     for line in data.strip().split("\n"):
@@ -71,7 +70,7 @@ def process_data(data: str) -> List[Instruction]:
 
 
 def perform_instructions(
-    instructions: List[Instruction],
+    instructions: list[Instruction],
 ) -> tuple[DefaultDict[str, int], int]:
     """Apply all instructions and return registers + the biggest value seen."""
     registers: DefaultDict[str, int] = defaultdict(int)

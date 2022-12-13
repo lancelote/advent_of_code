@@ -1,10 +1,8 @@
 """2019 - Day 8 Part 2: Space Image Format."""
-from typing import List
-
 from src.year2019.day08a import parse_layers
 
 
-def find_top(layers: List[List[int]], pixel: int) -> str:
+def find_top(layers: list[list[int]], pixel: int) -> str:
     """Find the given visible pixel number color."""
     for layer in layers:
         if layer[pixel] == 0:  # black
@@ -17,12 +15,12 @@ def find_top(layers: List[List[int]], pixel: int) -> str:
     raise ValueError(f"no visible pixel at position {pixel}")
 
 
-def decode_image(layers: List[List[int]]) -> List[str]:
+def decode_image(layers: list[list[int]]) -> list[str]:
     """Get visible pixels from every layer."""
     return [find_top(layers, i) for i in range(len(layers[0]))]
 
 
-def print_image(image: List[str], cols: int) -> None:
+def print_image(image: list[str], cols: int) -> None:
     """Print the image splitting by rows."""
     for i, pixel in enumerate(image):
         if i % cols == 0:

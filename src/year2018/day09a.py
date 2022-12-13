@@ -73,9 +73,9 @@ Here are a few more examples:
 
 What is the winning Elf's score?
 """
+from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Optional
-from typing import Tuple
 
 
 @dataclass
@@ -91,10 +91,10 @@ class Marble:
     """Marble representation, stores the references to parent and child."""
 
     value: int = 0
-    parent: Optional["Marble"] = None
-    child: Optional["Marble"] = None
+    parent: Marble | None = None
+    child: Marble | None = None
 
-    def insert_new(self, marble: "Marble") -> None:
+    def insert_new(self, marble: Marble) -> None:
         """Insert a new marble between 1 and 2 from self."""
         first = self.child
         if not first:
@@ -107,7 +107,7 @@ class Marble:
         marble.child = second
         second.parent = marble
 
-    def remove_counter_clockwise(self, times: int) -> Tuple["Marble", int]:
+    def remove_counter_clockwise(self, times: int) -> tuple[Marble, int]:
         """Remove item counter-clockwise after times rotations."""
         before = self
         for _ in range(times - 1):
@@ -128,7 +128,7 @@ class Marble:
         return before, remove.value
 
     @classmethod
-    def get_zero_marble(cls) -> "Marble":
+    def get_zero_marble(cls) -> Marble:
         """Instantiate first marble."""
         marble = cls()
         marble.parent = marble
@@ -142,7 +142,7 @@ class Marble:
 class Game:
     """Marble game."""
 
-    def __init__(self, players_number: int, marbles: int):
+    def __init__(self, players_number: int, marbles: int) -> None:
         """Place a zero marble and instantiate a list of players."""
         self.turn = 0
         self.player = 0
@@ -184,7 +184,7 @@ class Game:
         return max(self.players, key=lambda player: player.score)
 
 
-def parse_task(task: str) -> Tuple[int, int]:
+def parse_task(task: str) -> tuple[int, int]:
     """Return number of players and marbles."""
     parts = task.strip().split()
     return int(parts[0]), int(parts[6])

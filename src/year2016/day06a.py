@@ -36,11 +36,9 @@ Given the recording in your puzzle input, what is the error-corrected version
 of the message being sent?
 """
 from collections import Counter
-from typing import List
-from typing import Tuple
 
 
-def process_data(data: str) -> List[Tuple[str, ...]]:
+def process_data(data: str) -> list[tuple[str, ...]]:
     """Convert raw data into the list of tuples.
 
     Each tuple corresponds to one character.

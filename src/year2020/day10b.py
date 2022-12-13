@@ -1,6 +1,5 @@
 """2020 - Day 10 Part 2: Adapter Array."""
 from functools import lru_cache
-from typing import List
 
 from src.year2020.day10a import process_data
 
@@ -27,7 +26,7 @@ def solve(task: str) -> int:
 
         return result
 
-    adapters: List[int] = process_data(task)
+    adapters: list[int] = process_data(task)
     adapters.append(0)
     adapters = sorted(adapters)
     return count_arrangements()

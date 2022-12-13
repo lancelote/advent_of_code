@@ -1,11 +1,9 @@
 """2020 - Day 7 Part 1: Handy Haversacks."""
 import re
 from collections import defaultdict
-from typing import Dict
-from typing import List
 
 
-def process_data(task: str) -> Dict[str, List[str]]:
+def process_data(task: str) -> dict[str, list[str]]:
     parents = defaultdict(list)
 
     for line in task.strip().split("\n"):

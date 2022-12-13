@@ -2,7 +2,6 @@
 from collections import deque
 from itertools import combinations
 from typing import Deque
-from typing import List
 
 
 def is_valid(num: int, preamble: Deque[int]) -> bool:
@@ -12,7 +11,7 @@ def is_valid(num: int, preamble: Deque[int]) -> bool:
     return False
 
 
-def first_invalid(data: List[int], preamble_length: int) -> int:
+def first_invalid(data: list[int], preamble_length: int) -> int:
     preamble = deque(data[:preamble_length])
     numbers = data[preamble_length:]
 
