@@ -11,7 +11,7 @@ RIGHT = "BR"
 
 
 def binary_search(start: int, stop: int, steps: str, step_id: int = 0) -> int:
-    if not step_id < len(steps):
+    if step_id >= len(steps):
         return stop
     else:
         step = steps[step_id]
