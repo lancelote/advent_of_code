@@ -4,6 +4,8 @@ import re
 from src.year2020.day04a import Passport as LegacyPassport
 from src.year2020.day04a import process_data
 
+YEAR_PATTERN = r"^\d{4}$"
+
 
 class Passport(LegacyPassport):
     @property
@@ -11,7 +13,7 @@ class Passport(LegacyPassport):
         """
         byr (Birth Year) - four digits; at least 1920 and at most 2002
         """
-        match = re.match(r"^\d{4}$", self.fields["byr"])
+        match = re.match(YEAR_PATTERN, self.fields["byr"])
         if match:
             byr = int(match.group())
             return 1920 <= byr <= 2002
@@ -23,7 +25,7 @@ class Passport(LegacyPassport):
         """
         iyr (Issue Year) - four digits; at least 2010 and at most 2020
         """
-        match = re.match(r"^\d{4}$", self.fields["iyr"])
+        match = re.match(YEAR_PATTERN, self.fields["iyr"])
         if match:
             iyr = int(match.group())
             return 2010 <= iyr <= 2020
@@ -35,7 +37,7 @@ class Passport(LegacyPassport):
         """
         eyr (Expiration Year) - four digits; at least 2020 and at most 2030
         """
-        match = re.match(r"^\d{4}$", self.fields["eyr"])
+        match = re.match(YEAR_PATTERN, self.fields["eyr"])
         if match:
             eyr = int(match.group())
             return 2020 <= eyr <= 2030
