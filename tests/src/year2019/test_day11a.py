@@ -19,7 +19,7 @@ class MockComputer(Computer):
     stdout: Deque[int] = field(default_factory=deque)
 
     def execute(self):
-        pass
+        pass  # mock to do nothing
 
 
 def test_robot_example_walk_through():
