@@ -49,7 +49,7 @@ def test_correct_solution_file_names():
     for year_dir in src.glob("year*"):
         for file in year_dir.glob("*.py"):
             allowed = {"__init__.py", "intcode.py"}
-            solution = re.match(r"day[0-3][0-9][ab].py", file.name)
+            solution = re.match(r"day[0-3]\d[ab].py", file.name)
             valid = solution or file.name in allowed
             assert valid, f"unexpected file {file}"
 
@@ -59,6 +59,6 @@ def test_correct_test_file_names():
     for year_dir in tests.glob("year*"):
         for file in year_dir.glob("*.py"):
             allowed = {"__init__.py", "test_intcode.py"}
-            solution_test = re.match(r"test_day[0-3][0-9][ab].py", file.name)
+            solution_test = re.match(r"test_day[0-3]\d[ab].py", file.name)
             valid = solution_test or file.name in allowed
             assert valid, f"unexpected file {file}"
