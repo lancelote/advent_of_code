@@ -1,10 +1,4 @@
-"""2018 - Day 9 Part 2: Marble Mania.
-
-Amused by the speed of your answer, the Elves are curious:
-
-What would the new winning Elf's score be if the number of the last marble were
-100 times larger?
-"""
+"""2018 - Day 9 Part 2: Marble Mania."""
 from src.year2018.day09a import Game
 from src.year2018.day09a import parse_task
 

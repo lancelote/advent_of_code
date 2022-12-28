@@ -1,13 +1,4 @@
-"""2016 - Day 1 Part 2: No Time for a Taxicab.
-
-Then, you notice the instructions continue on the back of the Recruiting
-Document. Easter Bunny HQ is actually at the first location you visit twice.
-
-For example, if your instructions are R8, R4, R4, R8, the first location you
-visit twice is 4 blocks away, due East.
-
-How many blocks away is the first location you visit twice?
-"""
+"""2016 - Day 1 Part 2: No Time for a Taxicab."""
 from collections.abc import Generator
 from copy import copy
 

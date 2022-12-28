@@ -1,7 +1,4 @@
-"""2017 - Day 11 Part 2: Hex Edh.
-
-How many steps away is the furthest he ever got from his starting position?
-"""
+"""2017 - Day 11 Part 2: Hex Edh."""
 from src.year2017.day11a import SHIFTS
 
 

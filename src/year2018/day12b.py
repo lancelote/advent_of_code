@@ -1,12 +1,4 @@
-"""Day 12 Part 2: Subterranean Sustainability.
-
-You realize that 20 generations aren't enough. After all, these plants will
-need to last another 1500 years to even reach your timeline, not to mention
-your future.
-
-After fifty billion (50000000000) generations, what is the sum of the numbers
-of all pots which contain a plant?
-"""
+"""Day 12 Part 2: Subterranean Sustainability."""
 from collections import deque
 
 from src.year2018.day12a import get_new_generation
