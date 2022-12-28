@@ -28,7 +28,7 @@ class Sensor:
 
     @classmethod
     def from_line(cls, line: str) -> Sensor:
-        x1, y1, x2, y2 = (int(x) for x in re.findall(r"\d+", line))
+        x1, y1, x2, y2 = (int(x) for x in re.findall(r"[\-\d]+", line))
         beacon = Beacon(x2, y2)
         sensor = Sensor(x1, y1, beacon)
         return sensor
