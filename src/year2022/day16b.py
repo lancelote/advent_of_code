@@ -1,155 +1,86 @@
 """2022 - Day 16 Part 2: Proboscidea Volcanium."""
-import re
+import itertools
 from collections import deque
 
-
-def parse_tunnels(task: str) -> dict[str, list[str]]:
-    tunnels: dict[str, list[str]] = {}
-
-    for line in task.splitlines():
-        valve, *neighbors = re.findall(r"[A-Z]{2}", line)
-        tunnels[valve] = neighbors
-
-    return tunnels
-
-
-def parse_flow_rates(task: str) -> dict[str, int]:
-    flow_rates: dict[str, int] = {}
-
-    for line in task.splitlines():
-        _, valve, *_ = line.split(" ")
-        [rate_str] = re.findall(r"\d+", line)
-        flow_rates[valve] = int(rate_str)
-
-    return flow_rates
-
-
-def left_score(
-    flow_rate: dict[str, int], released_valves: frozenset[str], minute: int = 0
-) -> int:
-    total_score = 0
-
-    for valve, score in flow_rate.items():
-        if valve not in released_valves:
-            total_score += score * minute
-
-    return total_score
+from src.year2022.day16a import parse_flow_rates
+from src.year2022.day16a import parse_tunnels
 
 
 def solve(task: str) -> int:
     flow_rate = parse_flow_rates(task)
     tunnels = parse_tunnels(task)
-    to_visit: deque[
-        tuple[
-            int, str, str, int, frozenset[str], frozenset[str], frozenset[str]
-        ]
-    ] = deque()
-    to_visit.append(
-        (
-            25,
-            "AA",
-            "AA",
-            0,
-            frozenset(("AA",)),
-            frozenset(("AA",)),
-            frozenset(("AA",)),
-        )
-    )
+    worth_caves = [cave for cave, pressure in flow_rate.items() if pressure]
+    worth_caves.append("AA")  # starting position with 0-pressured valve
+
+    def get_path_length(a: str, b: str) -> int:
+        todo: deque[tuple[str, int]] = deque()
+        seen = set()
+
+        todo.append((a, 0))
+        seen.add(a)
+
+        while todo:
+            valve, path = todo.popleft()
+            if valve == b:
+                return path
+            else:
+                for x in tunnels[valve]:
+                    if x in seen:
+                        continue
+                    seen.add(x)
+                    todo.append((x, path + 1))
+
+        raise ValueError("path not found")
+
+    def compute_paths() -> dict[tuple[str, str], int]:
+        lengths: dict[tuple[str, str], int] = {}
+
+        for a, b in itertools.combinations(worth_caves, 2):
+            path_length = get_path_length(a, b)
+            lengths[(a, b)] = path_length
+            lengths[(b, a)] = path_length
+            lengths[(a, a)] = 0
+            lengths[(b, b)] = 0
+
+        return lengths
+
+    path_lengths = compute_paths()
+
+    to_visit: deque[tuple[str, int, str, int, int, frozenset[str]]] = deque()
+    to_visit.append(("AA", 26, "AA", 26, 0, frozenset(("AA",))))
     max_score = 0
 
     while to_visit:
-        (
-            minute,
-            valve1,
-            valve2,
-            score,
-            released,
-            visited1,
-            visited2,
-        ) = to_visit.popleft()
-
-        if minute < 0:
-            continue
-
-        # optimization if no chance to beat the best score
-        if left_score(flow_rate, released, minute) + score < max_score:
-            continue
+        valve1, minute1, valve2, minute2, score, released = to_visit.popleft()
 
         max_score = max(max_score, score)
 
-        # both move
-        for neighbor1 in tunnels[valve1]:
-            for neighbor2 in tunnels[valve2]:
-                if neighbor1 not in visited1 and neighbor2 not in visited2:
-                    to_visit.append(
-                        (
-                            minute - 1,
-                            neighbor1,
-                            neighbor2,
-                            score,
-                            released,
-                            visited1 | {neighbor1},
-                            visited2 | {neighbor2},
-                        ),
-                    )
+        for a, b in itertools.permutations(worth_caves, 2):
+            if a in released or b in released:
+                continue
 
-        # valve 1 open
-        if flow_rate[valve1] and valve1 not in released:
-            visited1 = frozenset((valve1,))
-            released |= {valve1}
-            score += minute * flow_rate[valve1]
+            new_minute1 = minute1 - path_lengths[(valve1, a)] - 1
+            new_minute2 = minute2 - path_lengths[(valve2, b)] - 1
 
-            # valve 2 move
-            for neighbor2 in tunnels[valve2]:
-                if neighbor2 not in visited2:
-                    to_visit.append(
-                        (
-                            minute - 1,
-                            valve1,
-                            neighbor2,
-                            score,
-                            released,
-                            visited1,
-                            visited2 | {neighbor2},
-                        )
-                    )
+            new_score = score
 
-            # valve 2 open
-            if flow_rate[valve2] and valve2 not in released:
-                visited2 = frozenset((valve2,))
-                released |= {valve2}
-                score += minute * flow_rate[valve2]
-                to_visit.append(
-                    (
-                        minute - 1,
-                        valve1,
-                        valve2,
-                        score,
-                        released,
-                        visited1,
-                        visited2,
-                    )
-                )
+            if new_minute1 > 0:
+                new_score += new_minute1 * flow_rate[a]
 
-        # valve 2 open
-        elif flow_rate[valve2] and valve2 not in released:
-            visited2 = frozenset((valve2,))
-            released |= {valve2}
-            score += minute * flow_rate[valve2]
+            if new_minute2 > 0:
+                new_score += new_minute2 * flow_rate[b]
 
-            # valve 1 move
-            for neighbor1 in tunnels[valve1]:
-                if neighbor1 not in visited1:
-                    to_visit.append(
-                        (
-                            minute - 1,
-                            neighbor1,
-                            valve2,
-                            score,
-                            released,
-                            visited1 | {neighbor1},
-                            visited2,
-                        )
-                    )
+            if new_minute1 > 0 and new_minute2 > 0:
+                new_released = released | {a, b}
+            elif new_minute1 > 0:
+                new_released = released | {a}
+            elif new_minute2 > 0:
+                new_released = released | {b}
+            else:
+                continue
+
+            to_visit.append(
+                (a, new_minute1, b, new_minute2, new_score, new_released)
+            )
 
     return max_score
