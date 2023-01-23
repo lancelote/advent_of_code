@@ -24,11 +24,11 @@ def parse_flow_rates(task: str) -> dict[str, int]:
 
 
 def left_score(
-    flow_rate: dict[str, int], released_valves: frozenset[str], minute: int = 0
+    flow_rates: dict[str, int], released_valves: set[str], minute: int = 0
 ) -> int:
     total_score = 0
 
-    for valve, score in flow_rate.items():
+    for valve, score in flow_rates.items():
         if valve not in released_valves:
             total_score += score * minute
 
@@ -36,7 +36,7 @@ def left_score(
 
 
 def solve(task: str) -> int:
-    flow_rate = parse_flow_rates(task)
+    flow_rates = parse_flow_rates(task)
     tunnels = parse_tunnels(task)
     to_visit = {("AA", 0, frozenset(("AA",)), frozenset(("AA",)))}
     max_score = 0
@@ -45,7 +45,7 @@ def solve(task: str) -> int:
         new_to_visit = set()
 
         for valve, score, released, visited in to_visit:
-            if left_score(flow_rate, released, minute) + score < max_score:
+            if left_score(flow_rates, released, minute) + score < max_score:
                 continue
 
             max_score = max(max_score, score)
@@ -56,10 +56,10 @@ def solve(task: str) -> int:
                         (neighbor, score, released, visited | {neighbor})
                     )
 
-            if flow_rate[valve] and valve not in released:
+            if flow_rates[valve] and valve not in released:
                 visited = frozenset((valve,))
                 released |= {valve}
-                score += minute * flow_rate[valve]
+                score += minute * flow_rates[valve]
 
                 new_to_visit.add((valve, score, released, visited))
 
