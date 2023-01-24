@@ -2,9 +2,9 @@
 import itertools
 from collections import deque
 
+from src.year2022.day16a import left_score
 from src.year2022.day16a import parse_flow_rates
 from src.year2022.day16a import parse_tunnels
-from src.year2022.day16a import left_score
 
 
 def get_path_length(a: str, b: str, tunnels: dict[str, list[str]]) -> int:
@@ -28,7 +28,9 @@ def get_path_length(a: str, b: str, tunnels: dict[str, list[str]]) -> int:
     raise ValueError("path not found")
 
 
-def compute_paths(worth_caves: list[str], tunnels: dict[str, list[str]]) -> dict[tuple[str, str], int]:
+def compute_paths(
+    worth_caves: list[str], tunnels: dict[str, list[str]]
+) -> dict[tuple[str, str], int]:
     lengths: dict[tuple[str, str], int] = {}
 
     for a, b in itertools.combinations(worth_caves, 2):
@@ -41,26 +43,24 @@ def compute_paths(worth_caves: list[str], tunnels: dict[str, list[str]]) -> dict
     return lengths
 
 
-# ToDo: don't use recursion?
-# ToDo: mirror moves?
-
-# JJ BB CC
-# DD HH EE
-
-
 def solve(task: str) -> int:
     flow_rates = parse_flow_rates(task)
     tunnels = parse_tunnels(task)
 
-    # ToDo: sort worth caves
-    worth_caves = [cave for cave, pressure in flow_rates.items() if pressure]
+    worth_caves = [
+        cave
+        for cave, pressure in sorted(flow_rates.items(), key=lambda x: -x[1])
+        if pressure
+    ]
     worth_caves.append("AA")  # starting position with 0-pressured valve
     path_lengths = compute_paths(worth_caves, tunnels)
 
     max_score = 0
     released = {"AA"}
 
-    def dfs(score: int, minute1: int, minute2: int, valve1: str, valve2: str) -> None:
+    def dfs(
+        score: int, minute1: int, minute2: int, valve1: str, valve2: str
+    ) -> None:
         nonlocal max_score
 
         if minute1 <= 0 and minute2 <= 0:
@@ -68,9 +68,11 @@ def solve(task: str) -> int:
 
         max_score = max(score, max_score)
 
-        # ToDo: enable
-        # if score + left_score(flow_rates, released, max(minute1, minute2)) < max_score:
-        #     return
+        if (
+            score + left_score(flow_rates, released, max(minute1, minute2))
+            < max_score
+        ):
+            return
 
         for a, b in itertools.permutations(worth_caves, 2):
             if a not in released and b not in released:

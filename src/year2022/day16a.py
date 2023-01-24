@@ -1,5 +1,6 @@
 """2022 - Day 16 Part 1: Proboscidea Volcanium."""
 import re
+from typing import AbstractSet
 
 
 def parse_tunnels(task: str) -> dict[str, list[str]]:
@@ -24,7 +25,9 @@ def parse_flow_rates(task: str) -> dict[str, int]:
 
 
 def left_score(
-    flow_rates: dict[str, int], released_valves: set[str], minute: int = 0
+    flow_rates: dict[str, int],
+    released_valves: AbstractSet[str],
+    minute: int = 0,
 ) -> int:
     total_score = 0
 
