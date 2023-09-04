@@ -87,7 +87,7 @@ class Arcade:
             [Tile.EMPTY for _ in range(max_x + 1)] for _ in range(max_y + 1)
         ]
 
-        for ((x, y), tile) in self.map.items():
+        for (x, y), tile in self.map.items():
             canvas[y][x] = tile
 
         for row in canvas:

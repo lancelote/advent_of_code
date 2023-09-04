@@ -35,7 +35,7 @@ def parse_sections(task: str) -> list[Section]:
 def find_limits(sections: list[Section]) -> tuple[int, int, int, int]:
     min_x, max_x, min_y, max_y = sys.maxsize, 0, sys.maxsize, 0
 
-    for ((x1, y1), (x2, y2)) in sections:
+    for (x1, y1), (x2, y2) in sections:
         min_x = min(min_x, x1, x2)
         max_x = max(max_x, x1, x2)
 
@@ -68,7 +68,7 @@ class Cave:
 
         data = [[False] * cols for _ in range(rows)]
 
-        for ((x1, y1), (x2, y2)) in sections:
+        for (x1, y1), (x2, y2) in sections:
             if x1 == x2:
                 for y in range(min(y1, y2), max(y1, y2) + 1):
                     data[y - min_y][x1 - min_x] = True

@@ -9,7 +9,7 @@ def compute_output(program: str, phases: tuple[int, ...]) -> int:
     amplifiers = (Computer(), Computer(), Computer(), Computer(), Computer())
     stdin = 0
 
-    for (amplifier, phase) in zip(amplifiers, phases):
+    for amplifier, phase in zip(amplifiers, phases):
         amplifier.load_program(program)
         amplifier.stdin.append(phase)
         amplifier.stdin.append(stdin)

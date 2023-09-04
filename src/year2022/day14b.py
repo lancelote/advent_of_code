@@ -17,7 +17,7 @@ class Material(Enum):
 def find_floor(sections: list[Section]) -> int:
     max_y = 0
 
-    for ((_, y1), (_, y2)) in sections:
+    for (_, y1), (_, y2) in sections:
         max_y = max(max_y, y1, y2)
 
     return 2 + max_y
@@ -34,7 +34,7 @@ class Cave:
         floor = find_floor(sections)
         data: dict[Point, Material] = {}
 
-        for ((x1, y1), (x2, y2)) in sections:
+        for (x1, y1), (x2, y2) in sections:
             if x1 == x2:
                 for y in range(min(y1, y2), max(y1, y2) + 1):
                     data[(x1, y)] = Material.ROCK

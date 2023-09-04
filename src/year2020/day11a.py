@@ -75,7 +75,7 @@ def count_adjacent(i: int, j: int, matrix: Matrix) -> int:
     """Count occupied adjacent neighbors."""
     adjacent = 0
 
-    for (shift_i, shift_j) in SHIFTS:
+    for shift_i, shift_j in SHIFTS:
         new_i = i + shift_i
         new_j = j + shift_j
 

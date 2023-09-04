@@ -9,7 +9,7 @@ def count_visible(i: int, j: int, matrix: Matrix) -> int:
     """Count visible occupied seats from the given one."""
     visible = 0
 
-    for (shift_i, shift_j) in SHIFTS:
+    for shift_i, shift_j in SHIFTS:
         new_i = i + shift_i
         new_j = j + shift_j
 

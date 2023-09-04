@@ -11,7 +11,6 @@ def apply_claim(
 
     for i in range(claim.from_top, claim.from_top + claim.height):
         for j in range(claim.from_left, claim.from_left + claim.width):
-
             if fabric[i][j] != 0:  # Overlap detected
                 if fabric[i][j] in not_overlap:
                     not_overlap.remove(fabric[i][j])
