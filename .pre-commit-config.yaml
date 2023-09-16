@@ -9,18 +9,6 @@ repos:
       - id: check-added-large-files
       - id: requirements-txt-fixer
 
-  - repo: https://github.com/psf/black
-    rev: 23.7.0
-    hooks:
-      - id: black
-        args: [-l79]
-        language_version: python3.11
-
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
-    hooks:
-      - id: flake8
-
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.5.1
     hooks:
@@ -28,13 +16,20 @@ repos:
         files: ^src/
 
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.10.0
+    rev: v3.11.0
     hooks:
       - id: reorder-python-imports
         args: [--py311-plus]
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+    rev: v3.11.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.290
+    hooks:
+        - id: ruff
+        - id: ruff-format
+          args: ["--line-length", "79"]
