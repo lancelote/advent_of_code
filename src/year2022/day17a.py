@@ -85,7 +85,14 @@ class Piece(ABC):
 
 
 class MinusPiece(Piece):
-    pass
+    def __init__(self, left: int, bottom: int) -> None:
+        super().__init__(left, bottom)
+        self.rocks = {
+            (left, bottom),
+            (left + 1, bottom),
+            (left + 2, bottom),
+            (left + 3, bottom),
+        }
 
 
 class PlusPiece(Piece):
