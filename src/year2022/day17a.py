@@ -39,6 +39,7 @@ def iterate_forms() -> Iterator[Form]:
 class Piece(ABC):
     left: int
     bottom: int
+    rocks: Rocks
     landed: bool = False
 
     def __init__(self, left: int, bottom: int) -> None:
@@ -61,18 +62,26 @@ class Piece(ABC):
             case _:
                 raise NotImplementedError
 
+    def commit(self, fallen_rocks: Rocks) -> None:
+        fallen_rocks.update(self.rocks)
+
+    def can_be_pushed(self, fallen_rocks: Rocks) -> bool:
+        raise NotImplementedError
+
     @abstractmethod
     def push(self, jet: Jet, rocks: Rocks) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def fall(self, rocks: Rocks) -> None:
+    def can_fall(self, fallen_rocks: Rocks) -> bool:
         raise NotImplementedError
 
-    @property
     @abstractmethod
-    def top(self) -> int:
-        raise NotImplementedError
+    def fall(self, fallen_rocks: Rocks) -> None:
+        if not self.can_fall(fallen_rocks):
+            self.landed = True
+        else:
+            self.rocks = {(x, y - 1) for (x, y) in self.rocks}
 
 
 class MinusPiece(Piece):
@@ -97,7 +106,7 @@ class SquarePiece(Piece):
 
 def solve(task: str) -> int:
     top = 0
-    rocks: Rocks = set()
+    fallen_rocks: Rocks = set()
 
     forms = iterate_forms()
     jets = iterate_jets(task)
@@ -108,9 +117,10 @@ def solve(task: str) -> int:
         while not piece.landed:
             jet = next(jets)
 
-            piece.push(jet, rocks)
-            piece.fall(rocks)
+            piece.push(jet, fallen_rocks)
+            piece.fall(fallen_rocks)
 
-        top = piece.top
+        top = piece.bottom
+        piece.commit(fallen_rocks)
 
     return top
