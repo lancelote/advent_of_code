@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import TypeAlias
 
+WIDTH = 7
+
 Rocks: TypeAlias = set[tuple[int, int]]
 
 
