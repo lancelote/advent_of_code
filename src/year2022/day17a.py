@@ -67,9 +67,21 @@ class Piece(ABC):
     def commit(self, fallen_rocks: Rocks) -> None:
         fallen_rocks.update(self.rocks)
 
-    @abstractmethod
     def can_be_pushed(self, jet: Jet, fallen_rocks: Rocks) -> bool:
-        raise NotImplementedError
+        match jet:
+            case Jet.LEFT:
+                shift = -1
+            case Jet.RIGHT:
+                shift = +1
+            case _:
+                raise NotImplementedError
+
+        for (x, y) in self.rocks:
+            nx = x + shift
+            if (nx, y) in fallen_rocks or nx < 0 or nx >= WIDTH:
+                return False
+
+        return True
 
     def push(self, jet: Jet, fallen_rocks: Rocks) -> None:
         if self.can_be_pushed(jet, fallen_rocks):
