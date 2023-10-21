@@ -130,7 +130,15 @@ class PlusPiece(Piece):
 
 
 class CornerPiece(Piece):
-    pass
+    def __init__(self, left: int, bottom: int) -> None:
+        super().__init__(left, bottom)
+        self.rocks = {
+            (left, bottom),
+            (left + 1, bottom),
+            (left + 2, bottom),
+            (left + 2, bottom + 1),
+            (left + 2, bottom + 2),
+        }
 
 
 class VerticalPiece(Piece):
