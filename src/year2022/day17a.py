@@ -76,7 +76,7 @@ class Piece(ABC):
             case _:
                 raise NotImplementedError
 
-        for (x, y) in self.rocks:
+        for x, y in self.rocks:
             nx = x + shift
             if (nx, y) in fallen_rocks or nx < 0 or nx >= WIDTH:
                 return False
@@ -96,7 +96,7 @@ class Piece(ABC):
             self.rocks = {(x + shift, y) for x, y in self.rocks}
 
     def can_fall(self, fallen_rocks: Rocks) -> bool:
-        for (x, y) in self.rocks:
+        for x, y in self.rocks:
             ny = y - 1
             if (x, ny) in fallen_rocks or ny < 0:
                 return False
