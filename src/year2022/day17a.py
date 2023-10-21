@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from abc import ABC
-from abc import abstractmethod
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
@@ -108,9 +107,9 @@ class Piece(ABC):
         else:
             self.rocks = {(x, y - 1) for (x, y) in self.rocks}
 
-    @abstractmethod
+    @property
     def top(self) -> int:
-        raise NotImplementedError
+        return max(y for _, y in self.rocks)
 
 
 class MinusPiece(Piece):
@@ -186,7 +185,7 @@ def solve(task: str) -> int:
             piece.push(jet, fallen_rocks)
             piece.fall(fallen_rocks)
 
-        top = piece.bottom
+        top = piece.top
         piece.commit(fallen_rocks)
 
     return top
