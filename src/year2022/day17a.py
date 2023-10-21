@@ -153,7 +153,14 @@ class VerticalPiece(Piece):
 
 
 class SquarePiece(Piece):
-    pass
+    def __init__(self, left: int, bottom: int) -> None:
+        super().__init__(left, bottom)
+        self.rocks = {
+            (left, bottom),
+            (left + 1, bottom),
+            (left, bottom + 1),
+            (left + 1, bottom + 1),
+        }
 
 
 def solve(task: str) -> int:
