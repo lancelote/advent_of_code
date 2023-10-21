@@ -1,6 +1,8 @@
 """2022 - Day 17 Part 1: Pyroclastic Flow."""
 from __future__ import annotations
 
+from abc import ABC
+from abc import abstractmethod
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
@@ -36,7 +38,7 @@ def iterate_forms() -> Iterator[Form]:
 
 
 @dataclass
-class Piece:
+class Piece(ABC):
     left: int
     bottom: int
     rocks: Rocks
@@ -105,6 +107,10 @@ class Piece:
             self.landed = True
         else:
             self.rocks = {(x, y - 1) for (x, y) in self.rocks}
+
+    @abstractmethod
+    def top(self) -> int:
+        raise NotImplementedError
 
 
 class MinusPiece(Piece):
