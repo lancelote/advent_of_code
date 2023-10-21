@@ -5,6 +5,7 @@ from abc import ABC
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
+from pprint import pprint as pp
 from typing import TypeAlias
 
 WIDTH = 7
@@ -167,6 +168,16 @@ class SquarePiece(Piece):
             (left, bottom + 1),
             (left + 1, bottom + 1),
         }
+
+
+def print_rocks(rocks: Rocks) -> None:
+    highest = max(y for _, y in rocks)
+    data = [["."] * WIDTH for _ in range(highest + 1)]
+
+    for x, y in rocks:
+        data[-y - 1][x] = "@"
+
+    pp(data)
 
 
 def solve(task: str) -> int:
