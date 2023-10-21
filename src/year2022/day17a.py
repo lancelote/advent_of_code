@@ -85,7 +85,15 @@ class Piece(ABC):
 
     def push(self, jet: Jet, fallen_rocks: Rocks) -> None:
         if self.can_be_pushed(jet, fallen_rocks):
-            self.rocks = {(x + 1, y) for x, y in self.rocks}
+            match jet:
+                case Jet.LEFT:
+                    shift = -1
+                case Jet.RIGHT:
+                    shift = +1
+                case _:
+                    raise NotImplementedError
+
+            self.rocks = {(x + shift, y) for x, y in self.rocks}
 
     def can_fall(self, fallen_rocks: Rocks) -> bool:
         for (x, y) in self.rocks:
