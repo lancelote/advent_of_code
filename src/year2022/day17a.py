@@ -1,8 +1,6 @@
 """2022 - Day 17 Part 1: Pyroclastic Flow."""
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
@@ -38,7 +36,7 @@ def iterate_forms() -> Iterator[Form]:
 
 
 @dataclass
-class Piece(ABC):
+class Piece:
     left: int
     bottom: int
     rocks: Rocks
