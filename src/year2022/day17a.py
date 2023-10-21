@@ -196,7 +196,7 @@ def solve(task: str) -> int:
             piece.push(jet, fallen_rocks)
             piece.fall(fallen_rocks)
 
-        top = piece.top
+        top = max(top, piece.top + 1)
         piece.commit(fallen_rocks)
 
     return top
