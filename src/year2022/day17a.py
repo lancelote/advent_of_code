@@ -95,7 +95,8 @@ class Piece:
 
     def can_fall(self, fallen_rocks: Rocks) -> bool:
         for (x, y) in self.rocks:
-            if (x, y - 1) in fallen_rocks:
+            ny = y - 1
+            if (x, ny) in fallen_rocks or ny < 0:
                 return False
         return True
 
