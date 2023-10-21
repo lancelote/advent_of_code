@@ -75,9 +75,11 @@ class Piece(ABC):
         if self.can_be_pushed(jet, fallen_rocks):
             self.rocks = {(x + 1, y) for x, y in self.rocks}
 
-    @abstractmethod
     def can_fall(self, fallen_rocks: Rocks) -> bool:
-        raise NotImplementedError
+        for (x, y) in self.rocks:
+            if (x, y - 1) in fallen_rocks:
+                return False
+        return True
 
     def fall(self, fallen_rocks: Rocks) -> None:
         if not self.can_fall(fallen_rocks):
