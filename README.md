@@ -29,8 +29,8 @@ python main.py solve 2017 5 a
 Solver uses [advent-of-code-data][1] to fetch tasks from the server. You
 need to set up a token for it to work. See the [instruction][2].
 
-I use Python 3.11 for development. The code should work fine with older
-versions.
+I use Python 3.12 for development. The code should work fine with older
+versions, but it is not guaranteed.
 
 To install requirements (virtual environment is recommended)
 
@@ -54,8 +54,8 @@ python -m pytest tests
 
 ## Linters
 
-`mypy`, `flake8`, `black`, and `reorder-python-imports` are used in pre-commit
-hook. To run linters
+`mypy`, `ruff`, `pyupgrade`, and `reorder-python-imports` are used in
+pre-commit  hook. To run linters
 
 ```bash
 pre-commit install
