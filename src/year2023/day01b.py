@@ -20,7 +20,7 @@ def get_num(line: str) -> int:
     pattern = r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))"
     match = re.findall(pattern, line)
 
-    first: str = match[0]
+    first = match[0]
     last = match[-1]
 
     first = first if first.isdigit() else TO_DIGIT[first]
