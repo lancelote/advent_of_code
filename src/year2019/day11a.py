@@ -6,12 +6,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any
 from typing import NamedTuple
-from typing import TypeVar
 
 from src.year2019.intcode import Computer
-
-K = TypeVar("K")
-V = TypeVar("V")
 
 
 class Direction(Enum):
