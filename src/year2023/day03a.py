@@ -14,28 +14,34 @@ SHIFTS = (
 )
 
 
-def get_symbol(r: int, c: int, data: list[str]) -> str | None:
-    symbol: str | None = None
+@dataclass
+class Symbol:
+    value: str
+    coords: tuple[int, int]
 
-    while symbol is None and c < len(data[r]) and data[r][c].isdigit():
-        for dr, dc in SHIFTS:
-            nr = r + dr
-            nc = c + dc
+    @classmethod
+    def from_coords(cls, r: int, c: int, data: list[str]) -> Self | None:
+        value: str | None = None
 
-            if 0 <= nr < len(data) and 0 <= nc < len(data[nr]):
-                symbol_candidate = data[nr][nc]
+        while value is None and c < len(data[r]) and data[r][c].isdigit():
+            for dr, dc in SHIFTS:
+                nr = r + dr
+                nc = c + dc
 
-                if not symbol_candidate.isdigit() and symbol_candidate != ".":
-                    symbol = symbol_candidate
+                if 0 <= nr < len(data) and 0 <= nc < len(data[nr]):
+                    value_opt = data[nr][nc]
 
-        c += 1
+                    if not value_opt.isdigit() and value_opt != ".":
+                        return cls(value_opt, (nr, nc))
 
-    return symbol
+            c += 1
+
+        return None
 
 
 @dataclass
 class Part:
-    symbol: str
+    symbol: Symbol
     number: int
 
     @classmethod
@@ -51,7 +57,7 @@ class Part:
             shift += 1
 
         num = int("".join(num_list_str))
-        symbol = get_symbol(r, c, data)
+        symbol = Symbol.from_coords(r, c, data)
 
         return cls(symbol, num) if symbol else None
 
