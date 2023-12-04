@@ -5,16 +5,20 @@ from typing import Self
 
 @dataclass
 class Card:
+    pk: int
     winning: set[int]
     numbers: set[int]
 
     @classmethod
     def from_line(cls, line: str) -> Self:
-        _, scratch_part = line.split(": ")
+        card_part, scratch_part = line.split(": ")
+        _, pk_part = card_part.split()
+        pk = int(pk_part)
+
         winning_part, numbers_part = scratch_part.split(" | ")
         winning = {int(x) for x in winning_part.split()}
         numbers = {int(x) for x in numbers_part.split()}
-        return cls(winning, numbers)
+        return cls(pk, winning, numbers)
 
     @property
     def points(self) -> int:
