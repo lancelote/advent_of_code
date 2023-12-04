@@ -21,14 +21,18 @@ class Card:
         return cls(pk, winning, numbers)
 
     @property
-    def points(self) -> int:
-        matching = 0
+    def matching(self) -> int:
+        count = 0
 
         for x in self.numbers:
             if x in self.winning:
-                matching += 1
+                count += 1
 
-        return int(2 ** (matching - 1)) if matching else 0
+        return count
+
+    @property
+    def points(self) -> int:
+        return int(2 ** (self.matching - 1)) if self.matching else 0
 
 
 def process_data(task: str) -> list[Card]:
