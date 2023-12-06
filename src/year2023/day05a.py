@@ -49,33 +49,29 @@ class Map:
         return key
 
 
-@dataclass
-class Seed:
-    pk: int
+def get_location(seed: int, maps: dict[str, Map]) -> int:
+    # seed > soil > fertilizer > water >
+    #   light > temperature > humidity > location
 
-    def get_location(self, maps: dict[str, Map]) -> int:
-        # seed > soil > fertilizer > water >
-        #   light > temperature > humidity > location
+    soil = maps["soil"].get(seed)
+    fertilizer = maps["fertilizer"].get(soil)
+    water = maps["water"].get(fertilizer)
+    light = maps["light"].get(water)
+    temperature = maps["temperature"].get(light)
+    humidity = maps["humidity"].get(temperature)
+    location = maps["location"].get(humidity)
 
-        soil = maps["soil"].get(self.pk)
-        fertilizer = maps["fertilizer"].get(soil)
-        water = maps["water"].get(fertilizer)
-        light = maps["light"].get(water)
-        temperature = maps["temperature"].get(light)
-        humidity = maps["humidity"].get(temperature)
-        location = maps["location"].get(humidity)
-
-        return location
+    return location
 
 
-def process_data(task: str) -> tuple[list[Seed], dict[str, Map]]:
+def process_data(task: str) -> tuple[list[int], dict[str, Map]]:
     blocks = task.split("\n\n")
     _, seeds_part = blocks[0].split(": ")
-    seeds = [Seed(int(x)) for x in seeds_part.split(" ")]
+    seeds = [int(x) for x in seeds_part.split(" ")]
     maps = [Map.from_text(blocks[i]) for i in range(1, len(blocks))]
     return seeds, {m.dest: m for m in maps}
 
 
 def solve(task: str) -> int:
     seeds, maps = process_data(task)
-    return min(x.get_location(maps) for x in seeds)
+    return min(get_location(x, maps) for x in seeds)
