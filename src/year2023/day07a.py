@@ -1,6 +1,5 @@
 """2023 - Day 7 Part 1: Camel Cards"""
 from collections import Counter
-from dataclasses import dataclass
 from typing import Self
 
 CARDS = {
@@ -20,18 +19,21 @@ CARDS = {
 }
 
 
-@dataclass
 class Hand:
     cards: str
     bid: int
     count: list[int]
 
+    def __init__(self, cards: str, bid: int = 0) -> None:
+        self.cards = cards
+        self.bid = bid
+        self.count = sorted(list(Counter(cards).values()))
+
     @classmethod
     def from_line(cls, line: str) -> Self:
         # e.g., "72772 82"
         cards, bid_part = line.split()
-        count = sorted(list(Counter(cards).values()))
-        return cls(cards, int(bid_part), count)
+        return cls(cards, int(bid_part))
 
     @property
     def five_of_a_kind(self) -> bool:
