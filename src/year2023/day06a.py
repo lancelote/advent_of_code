@@ -1,4 +1,5 @@
 """2023 - Day 6 Part 1: Wait For It"""
+import math
 from dataclasses import dataclass
 
 
@@ -9,13 +10,15 @@ class Race:
 
     @property
     def ways_to_win(self) -> int:
-        count = 0
+        # behold The Math
 
-        for t in range(1, self.time):
-            if (self.time - t) * t > self.dist:
-                count += 1
+        low = (self.time - math.sqrt(self.time**2 - 4 * self.dist)) / 2
+        high = (self.time + math.sqrt(self.time**2 - 4 * self.dist)) / 2
 
-        return count
+        low += 1e-9
+        high -= 1e-9
+
+        return math.floor(high) - math.ceil(low) + 1
 
 
 def process_data(data: str) -> list[Race]:
