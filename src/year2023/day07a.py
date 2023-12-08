@@ -60,10 +60,6 @@ class Hand:
         return self.count == [1, 1, 1, 2]
 
     @property
-    def high_card_value(self) -> int:
-        return max(CARDS[card] for card in self.cards)
-
-    @property
     def value(self) -> int:
         if self.five_of_a_kind:
             return 18
@@ -78,13 +74,14 @@ class Hand:
         elif self.one_pair:
             return 13
         else:
-            return self.high_card_value
+            return -1
 
     def __lt__(self, other: Self) -> bool:
         if self.value == other.value:
             for a, b in zip(self.cards, other.cards):
                 if a != b:
                     return CARDS[a] < CARDS[b]
+
         return self.value < other.value
 
 
