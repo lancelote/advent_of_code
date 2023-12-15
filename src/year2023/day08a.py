@@ -1,6 +1,4 @@
 """2023 - Day 8 Part 1: Haunted Wasteland"""
-from __future__ import annotations
-
 import itertools
 import re
 
@@ -11,7 +9,7 @@ def process_data(data: str) -> tuple[str, dict[str, tuple[str, str]]]:
     nodes: dict[str, tuple[str, str]] = {}
 
     for line in tree_part.splitlines():
-        val, left, right = re.findall(r"[A-Z]+", line)
+        val, left, right = re.findall(r"[A-Z0-9]+", line)
         nodes[val] = (left, right)
 
     return instructions, nodes
