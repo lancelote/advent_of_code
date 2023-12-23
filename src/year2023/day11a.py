@@ -7,8 +7,9 @@ C: TypeAlias = tuple[int, int]
 
 
 class StarMap:
-    def __init__(self, data: list[list[str]]) -> None:
+    def __init__(self, data: list[list[str]], age: int = 1) -> None:
         self.data = data
+        self.age = age
 
         rows = len(self.data)
         cols = len(self.data[0])
@@ -31,11 +32,11 @@ class StarMap:
 
         for r in range(min(g1[0], g2[0]), max(g1[0], g2[0])):
             if r in self.empty_rows:
-                extra_r += 1
+                extra_r += self.age
 
         for c in range(min(g1[1], g2[1]), max(g1[1], g2[1])):
             if c in self.empty_cols:
-                extra_c += 1
+                extra_c += self.age
 
         return abs(g1[0] - g2[0]) + abs(g1[1] - g2[1]) + extra_c + extra_r
 
