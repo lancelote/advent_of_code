@@ -7,7 +7,7 @@ C: TypeAlias = tuple[int, int]
 
 
 class StarMap:
-    def __init__(self, data: list[list[str]], age: int = 1) -> None:
+    def __init__(self, data: list[list[str]], age: int = 2) -> None:
         self.data = data
         self.age = age
 
@@ -32,17 +32,17 @@ class StarMap:
 
         for r in range(min(g1[0], g2[0]), max(g1[0], g2[0])):
             if r in self.empty_rows:
-                extra_r += self.age
+                extra_r += self.age - 1
 
         for c in range(min(g1[1], g2[1]), max(g1[1], g2[1])):
             if c in self.empty_cols:
-                extra_c += self.age
+                extra_c += self.age - 1
 
         return abs(g1[0] - g2[0]) + abs(g1[1] - g2[1]) + extra_c + extra_r
 
     @classmethod
-    def from_text(cls, text: str) -> Self:
-        return cls([list(line) for line in text.splitlines()])
+    def from_text(cls, text: str, age: int = 2) -> Self:
+        return cls([list(line) for line in text.splitlines()], age)
 
     @property
     def total_path(self) -> int:
