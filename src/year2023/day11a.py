@@ -44,13 +44,17 @@ class StarMap:
     def from_text(cls, text: str) -> Self:
         return cls([list(line) for line in text.splitlines()])
 
+    @property
+    def total_path(self) -> int:
+        total = 0
+
+        for g1, g2 in combinations(self.galaxies, 2):
+            path = self.get_path(g1, g2)
+            total += path
+
+        return total
+
 
 def solve(task: str) -> int:
-    total = 0
     sm = StarMap.from_text(task)
-
-    for g1, g2 in combinations(sm.galaxies, 2):
-        path = sm.get_path(g1, g2)
-        total += path
-
-    return total
+    return sm.total_path
