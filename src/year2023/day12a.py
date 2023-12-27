@@ -1,5 +1,6 @@
 """2023 - Day 12 Part 1: Hot Springs"""
 from dataclasses import dataclass
+from functools import cache
 from typing import Self
 
 
@@ -12,6 +13,7 @@ class Row:
     def arrangements(self) -> int:
         n = len(self.segments)
 
+        @cache
         def dfs(i: int, j: int, filled: int) -> int:
             if i == len(self.springs):
                 if (j == n and filled == 0) or (
