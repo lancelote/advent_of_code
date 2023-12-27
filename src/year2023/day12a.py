@@ -40,9 +40,14 @@ class Row:
         return dfs(0, 0, 0)
 
     @classmethod
-    def from_line(cls, line: str) -> Self:
+    def from_line(cls, line: str, fold: bool = False) -> Self:
         springs, segments_part = line.split()
         segments = [int(x) for x in segments_part.split(",")]
+
+        if fold:
+            springs = "?".join(springs for _ in range(5))
+            segments *= 5
+
         return cls(springs, segments)
 
 
@@ -51,8 +56,8 @@ class Field:
     rows: list[Row]
 
     @classmethod
-    def from_task(cls, task: str) -> Self:
-        return cls([Row.from_line(line) for line in task.splitlines()])
+    def from_task(cls, task: str, fold: bool = False) -> Self:
+        return cls([Row.from_line(line, fold) for line in task.splitlines()])
 
 
 def solve(task: str) -> int:
