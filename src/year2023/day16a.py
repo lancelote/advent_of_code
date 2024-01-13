@@ -91,13 +91,11 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
     return [b for b in beams if 0 <= b[1][0] < rows and 0 <= b[1][1] < cols]
 
 
-def solve(task: str) -> int:
-    layout = task.splitlines()
-
+def count_energized(start: Beam, layout: list[str]) -> int:
     energized: set[C] = set()
     visited: set[Beam] = set()
     to_visit: deque[Beam] = deque()
-    to_visit.append((Direction.E, (0, 0)))
+    to_visit.append(start)
 
     while to_visit:
         for _ in range(len(to_visit)):
@@ -110,3 +108,8 @@ def solve(task: str) -> int:
                     to_visit.append(next_beam)
 
     return len(energized)
+
+
+def solve(task: str) -> int:
+    layout = task.splitlines()
+    return count_energized((Direction.E, (0, 0)), layout)
