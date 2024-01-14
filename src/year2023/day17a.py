@@ -1,19 +1,27 @@
 """2023 - Day 17 Part 1: Clumsy Crucible"""
+from __future__ import annotations
+
+import heapq
 import sys
 from enum import Enum
-from functools import cache
 from typing import TypeAlias
 
 Location: TypeAlias = tuple[int, int]
-Path: TypeAlias = int
 HeatLoss: TypeAlias = int
 
 
 class Direction(Enum):
-    N = 0
-    E = 1
-    S = 2
-    W = 3
+    B = 0  # base
+    N = 1
+    E = 2
+    S = 3
+    W = 4
+
+    def __lt__(self, other: Direction) -> bool:
+        return self.value < other.value
+
+
+Point: TypeAlias = tuple[HeatLoss, Location, Direction]
 
 
 SHIFTS = {
@@ -23,12 +31,12 @@ SHIFTS = {
     (0, -1, Direction.W),
 }
 
-
 REVERSE_DIRECTION = {
-    Direction.N: {(+1, 0, Direction.S)},
-    Direction.S: {(-1, 0, Direction.N)},
-    Direction.E: {(0, -1, Direction.W)},
-    Direction.W: {(0, +1, Direction.E)},
+    Direction.B: Direction.B,
+    Direction.N: Direction.S,
+    Direction.S: Direction.N,
+    Direction.E: Direction.W,
+    Direction.W: Direction.E,
 }
 
 
@@ -41,44 +49,42 @@ def solve(task: str) -> int:
     min_heat_loss = sys.maxsize
     goal = (rows - 1, cols - 1)
 
-    visited = {(0, 0)}
+    cache: dict[Location, HeatLoss] = {}
 
-    @cache
-    def dfs(p: tuple[Location, Path, HeatLoss, Direction]) -> None:
-        nonlocal min_heat_loss
+    h: list[Point] = []
+    heapq.heappush(h, (0, (0, 0), Direction.B))
 
-        loc, path, heat, direction = p
-        r, c = loc
+    while h:
+        heat, (r, c), direction = heapq.heappop(h)
 
-        for dr, dc, new_dir in SHIFTS - REVERSE_DIRECTION[direction]:
-            nr = r + dr
-            nc = c + dc
+        if cache.get((r, c), sys.maxsize) < heat:
+            continue
+        else:
+            cache[(r, c)] = heat
 
-            # we are out of bounds
-            if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
-                continue
+        if heat > min_heat_loss:
+            continue
 
-            new_path = (path + 1) if direction == new_dir else 1
-            new_heat = heat + city[nr][nc]
+        if (r, c) == goal:
+            min_heat_loss = min(min_heat_loss, heat)
+            continue
 
-            if new_path > 3:
-                continue
+        reverse_dir = REVERSE_DIRECTION[direction]
+        shifts = [s for s in SHIFTS if s[-1] not in {direction, reverse_dir}]
 
-            # we are on target
-            if (nr, nc) == goal:
-                min_heat_loss = min(min_heat_loss, new_heat)
-                continue
+        for dr, dc, new_dir in shifts:
+            new_heat = heat
 
-            # no point searching further this path
-            if new_heat > min_heat_loss:
-                continue
+            for i in range(1, 4):
+                nr = r + dr * i
+                nc = c + dc * i
 
-            if (nr, nc) not in visited:
-                visited.add((nr, nc))
-                dfs(((nr, nc), new_path, new_heat, new_dir))
-                visited.remove((nr, nc))
+                # out of bounds
+                if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
+                    break
 
-    dfs(((0, 1), 1, city[0][1], Direction.E))
-    dfs(((1, 0), 1, city[1][0], Direction.S))
+                new_heat += city[nr][nc]
+
+                heapq.heappush(h, (new_heat, (nr, nc), new_dir))
 
     return min_heat_loss
