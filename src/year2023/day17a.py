@@ -73,7 +73,7 @@ def get_least_loss_path(
         for dr, dc, new_dir in shifts:
             new_heat = heat
 
-            for i in range(min_path, max_path + 1):
+            for i in range(1, max_path + 1):
                 nr = r + dr * i
                 nc = c + dc * i
 
@@ -82,6 +82,9 @@ def get_least_loss_path(
                     break
 
                 new_heat += city[nr][nc]
+
+                if i < min_path:
+                    continue
 
                 if ((nr, nc), new_dir, i) in seen:
                     continue
