@@ -8,6 +8,7 @@ from typing import TypeAlias
 
 Location: TypeAlias = tuple[int, int]
 HeatLoss: TypeAlias = int
+Path: TypeAlias = int
 
 
 class Direction(Enum):
@@ -49,18 +50,13 @@ def solve(task: str) -> int:
     min_heat_loss = sys.maxsize
     goal = (rows - 1, cols - 1)
 
-    cache: dict[Location, HeatLoss] = {}
+    cache: dict[tuple[Location, Direction, Path], HeatLoss] = {}
 
     h: list[Point] = []
     heapq.heappush(h, (0, (0, 0), Direction.B))
 
     while h:
         heat, (r, c), direction = heapq.heappop(h)
-
-        if cache.get((r, c), sys.maxsize) < heat:
-            continue
-        else:
-            cache[(r, c)] = heat
 
         if heat > min_heat_loss:
             continue
@@ -85,6 +81,10 @@ def solve(task: str) -> int:
 
                 new_heat += city[nr][nc]
 
-                heapq.heappush(h, (new_heat, (nr, nc), new_dir))
+                if cache.get(((nr, nc), new_dir, i), sys.maxsize) < new_heat:
+                    continue
+                else:
+                    heapq.heappush(h, (new_heat, (nr, nc), new_dir))
+                    cache[((nr, nc), new_dir, i)] = new_heat
 
     return min_heat_loss
