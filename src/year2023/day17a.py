@@ -50,7 +50,7 @@ def solve(task: str) -> int:
     min_heat_loss = sys.maxsize
     goal = (rows - 1, cols - 1)
 
-    cache: dict[tuple[Location, Direction, Path], HeatLoss] = {}
+    seen: set[tuple[Location, Direction, Path]] = set()
 
     h: list[Point] = []
     heapq.heappush(h, (0, (0, 0), Direction.B))
@@ -81,10 +81,10 @@ def solve(task: str) -> int:
 
                 new_heat += city[nr][nc]
 
-                if cache.get(((nr, nc), new_dir, i), sys.maxsize) < new_heat:
+                if ((nr, nc), new_dir, i) in seen:
                     continue
                 else:
                     heapq.heappush(h, (new_heat, (nr, nc), new_dir))
-                    cache[((nr, nc), new_dir, i)] = new_heat
+                    seen.add(((nr, nc), new_dir, i))
 
     return min_heat_loss
