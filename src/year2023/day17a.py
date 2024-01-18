@@ -41,9 +41,11 @@ REVERSE_DIRECTION = {
 }
 
 
-def solve(task: str) -> int:
-    city = [[int(x) for x in line] for line in task.splitlines()]
-
+def get_least_loss_path(
+    city: list[list[int]],
+    min_path: int = 1,
+    max_path: int = 3,
+) -> int:
     rows = len(city)
     cols = len(city[0])
 
@@ -71,7 +73,7 @@ def solve(task: str) -> int:
         for dr, dc, new_dir in shifts:
             new_heat = heat
 
-            for i in range(1, 4):
+            for i in range(min_path, max_path + 1):
                 nr = r + dr * i
                 nc = c + dc * i
 
@@ -88,3 +90,8 @@ def solve(task: str) -> int:
                     seen.add(((nr, nc), new_dir, i))
 
     return min_heat_loss
+
+
+def solve(task: str) -> int:
+    city = [[int(x) for x in line] for line in task.splitlines()]
+    return get_least_loss_path(city)
