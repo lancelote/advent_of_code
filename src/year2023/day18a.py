@@ -1,4 +1,5 @@
 """2023 - Day 18 Part 1: Lavaduct Lagoon"""
+import copy
 import sys
 from dataclasses import dataclass
 from enum import Enum
@@ -54,7 +55,7 @@ def dig_trench(plan: list[Entry]) -> set[tuple[int, int]]:
     return points
 
 
-def print_trench(trench: set[tuple[int, int]]) -> None:
+def construct_ground_view(trench: set[tuple[int, int]]) -> list[list[str]]:
     min_r, max_r = sys.maxsize, 0
     min_c, max_c = sys.maxsize, 0
 
@@ -73,10 +74,49 @@ def print_trench(trench: set[tuple[int, int]]) -> None:
     for r, c in trench:
         ground[r - min_r][c - min_c] = "#"
 
+    return ground
+
+
+def fill_trench(ground: list[list[str]]) -> list[list[str]]:
+    new_ground = copy.deepcopy(ground)
+
+    rows = len(ground)
+    cols = len(ground[0])
+
+    to_visit: list[tuple[int, int]] = []
+
+    for r in range(rows):
+        to_visit.append((r, 0))
+        to_visit.append((r, cols - 1))
+
+    for c in range(cols):
+        to_visit.append((0, c))
+        to_visit.append((rows - 1, c))
+
+    while to_visit:
+        r, c = to_visit.pop()
+
+        if r < 0 or r >= rows or c < 0 or c >= cols:
+            continue
+
+        if new_ground[r][c] in {"-", "#"}:
+            continue
+
+        new_ground[r][c] = "-"
+
+        for dr, dc in {(-1, 0), (0, +1), (+1, 0), (0, -1)}:
+            to_visit.append((r + dr, c + dc))
+
+    return new_ground
+
+
+def print_ground_view(ground: list[list[str]]) -> None:
     print("\n".join("".join(line) for line in ground))
 
 
 def solve(task: str) -> int:
     plan = [Entry.from_line(line) for line in task.splitlines()]
     trench = dig_trench(plan)
-    print_trench(trench)
+    ground = construct_ground_view(trench)
+    ground = fill_trench(ground)
+    return sum(x in {".", "#"} for row in ground for x in row)
