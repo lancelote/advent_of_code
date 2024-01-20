@@ -56,7 +56,7 @@ def get_gauss_area(corners: list[Corner]) -> int:
     a = 0
     b = 0
 
-    for i in range(len(corners) - 1):
+    for i in range(len(corners) - 2):
         a += corners[i][0] * corners[i + 1][1]
         b += corners[i][1] * corners[i + 1][0]
 
@@ -66,4 +66,9 @@ def get_gauss_area(corners: list[Corner]) -> int:
 def solve(task: str) -> int:
     plan = [Entry.from_line(line) for line in task.splitlines()]
     corners = get_corners(plan)
-    return get_gauss_area(corners)
+
+    # pick's theorem & gauss area
+    area = get_gauss_area(corners)
+    boundary_points = sum(x.distance for x in plan)
+    inner_points = area - boundary_points // 2 + 1
+    return inner_points + boundary_points
