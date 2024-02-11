@@ -41,7 +41,7 @@ class Rule:
             assert match
 
             field, op, limit, target = match.groups()
-            condition = operator.le if op == "<" else operator.gt
+            condition = operator.lt if op == "<" else operator.gt
             return cls(
                 target,
                 lambda part: condition(part.categories[field], int(limit)),
