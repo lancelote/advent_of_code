@@ -1,4 +1,5 @@
 """2023 - Day 2 Part 1: Cube Conundrum"""
+
 from textwrap import dedent
 
 from src.year2023.day02a import solve

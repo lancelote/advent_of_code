@@ -1,4 +1,5 @@
 """2023 - Day 7 Part 2: Camel Cards"""
+
 from textwrap import dedent
 
 import pytest

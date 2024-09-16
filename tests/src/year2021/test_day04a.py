@@ -1,4 +1,5 @@
 """2021 - Day 4 Part 1: Giant Squid."""
+
 from textwrap import dedent
 
 from src.year2021.day04a import solve

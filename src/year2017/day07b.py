@@ -1,4 +1,5 @@
 """2017 - Day 7 Part 2: Recursive Circus."""
+
 from src.year2017.day07a import process_data
 from src.year2017.day07a import solve as find_root
 

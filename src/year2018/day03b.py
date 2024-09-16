@@ -1,4 +1,5 @@
 """2018 - Day 3 Part 2: No Matter How You Slice It."""
+
 from src.year2018.day03a import Claim
 from src.year2018.day03a import process_data
 

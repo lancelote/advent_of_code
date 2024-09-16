@@ -1,4 +1,5 @@
 """2018 - Day 4 Part 2: Repose Record tests."""
+
 from textwrap import dedent
 
 from src.year2018.day04b import solve

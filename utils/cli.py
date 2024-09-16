@@ -1,4 +1,5 @@
 """CLI arguments validation helpers."""
+
 import click
 
 SUPPORTED_YEARS = [

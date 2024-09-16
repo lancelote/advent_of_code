@@ -1,4 +1,5 @@
 """2017 - Day 6 Part 2: Memory Reallocation."""
+
 from src.year2017.day06a import Memory
 
 

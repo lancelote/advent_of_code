@@ -1,4 +1,5 @@
 """2015 - Day 3 Part 2: Perfectly Spherical Houses in a Vacuum."""
+
 from src.year2015.day03a import visit_houses
 
 

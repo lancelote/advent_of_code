@@ -1,4 +1,5 @@
 """2022 - Day 11 Part 1: Monkey in the Middle."""
+
 from textwrap import dedent
 
 from src.year2022.day11a import solve

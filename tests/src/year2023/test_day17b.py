@@ -1,4 +1,5 @@
 """2023 - Day 17 Part 2: Clumsy Crucible"""
+
 from textwrap import dedent
 
 from src.year2023.day17b import solve

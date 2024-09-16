@@ -1,4 +1,5 @@
 """2022 - Day 16 Part 1: Proboscidea Volcanium."""
+
 from textwrap import dedent
 
 from src.year2022.day16a import solve

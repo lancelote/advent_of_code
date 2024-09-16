@@ -1,4 +1,5 @@
 """2023 - Day 8 Part 2: Haunted Wasteland"""
+
 import functools
 import itertools
 import math

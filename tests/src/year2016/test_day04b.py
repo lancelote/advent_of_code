@@ -1,4 +1,5 @@
 """2016 - Day 4 Puzzle Part 2 tests."""
+
 import unittest
 
 from src.year2016.day04b import decipher

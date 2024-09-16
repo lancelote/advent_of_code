@@ -1,4 +1,5 @@
 """2023 - Day 11 Part 1: Cosmic Expansion"""
+
 from itertools import combinations
 from typing import Self
 from typing import TypeAlias

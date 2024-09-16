@@ -1,4 +1,5 @@
 """2022 - Day 15 Part 2: Beacon Exclusion Zone."""
+
 from src.year2022.day15a import Sensor
 
 

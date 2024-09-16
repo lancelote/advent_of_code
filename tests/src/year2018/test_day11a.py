@@ -1,4 +1,5 @@
 """Day 11 Part 1: Chronal Charge tests."""
+
 import pytest
 
 from src.year2018.day11a import solve

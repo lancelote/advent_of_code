@@ -1,4 +1,5 @@
 """2022 - Day 9 Part 1: Rope Bridge."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

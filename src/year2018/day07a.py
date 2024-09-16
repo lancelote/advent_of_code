@@ -1,4 +1,5 @@
 r"""2018 - Day 7 Part 1: The Sum of Its Parts."""
+
 from collections import defaultdict
 from collections.abc import Generator
 from string import ascii_uppercase

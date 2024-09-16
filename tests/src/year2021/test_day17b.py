@@ -1,4 +1,5 @@
 """2021 - Day 17 Part 2: Trick Shot."""
+
 from src.year2021.day17b import solve
 
 

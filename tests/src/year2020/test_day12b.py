@@ -1,4 +1,5 @@
 """2020 - Day 12 Part 2: Rain Risk."""
+
 from src.year2020.day12b import solve
 
 

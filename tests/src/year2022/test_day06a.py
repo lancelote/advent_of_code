@@ -1,4 +1,5 @@
 """2022 - Day 6 Part 1: Tuning Trouble."""
+
 import pytest
 
 from src.year2022.day06a import solve

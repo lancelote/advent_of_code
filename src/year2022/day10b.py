@@ -1,4 +1,5 @@
 """2022 - Day 10 Part 2: Cathode-Ray Tube."""
+
 from src.year2022.day10a import CPU
 
 

@@ -1,4 +1,5 @@
 """2021 - Day 19 Part 1: Beacon Scanner."""
+
 from __future__ import annotations
 
 import re

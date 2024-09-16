@@ -1,4 +1,5 @@
 """2023 - Day 4 Part 1: Scratchcards"""
+
 from dataclasses import dataclass
 from typing import Self
 

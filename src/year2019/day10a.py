@@ -1,4 +1,5 @@
 """2019 - Day 10 Part 1: Monitoring Station."""
+
 from __future__ import annotations
 
 import math
@@ -33,7 +34,7 @@ class Chart:
         self.base_x = x
         self.base_y = y
 
-    def asteroids(self) -> Generator[tuple[int, int], None, None]:
+    def asteroids(self) -> Generator[tuple[int, int]]:
         """Iterate over all iterate excluding base."""
         for y in range(len(self.locations)):
             for x in range(len(self.locations[0])):

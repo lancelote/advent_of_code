@@ -1,4 +1,5 @@
 """2023 - Day 18 Part 2: Lavaduct Lagoon"""
+
 from dataclasses import dataclass
 from enum import Enum
 from typing import Self

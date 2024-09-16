@@ -1,4 +1,5 @@
 """2021 - Day 7 Part 2: The Treachery of Whales."""
+
 from textwrap import dedent
 
 from src.year2021.day07b import solve

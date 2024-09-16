@@ -1,4 +1,5 @@
 """2022 - Day 3 Part 2: Rucksack Reorganization."""
+
 from src.year2022.day03a import priority
 from src.year2022.day03a import process_data
 

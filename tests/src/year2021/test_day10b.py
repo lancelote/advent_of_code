@@ -1,4 +1,5 @@
 """2021 - Day 10 Part 2: Syntax Scoring."""
+
 from textwrap import dedent
 
 from src.year2021.day10b import solve

@@ -1,4 +1,5 @@
 """2019 - Day 10 Part 2: Monitoring Station."""
+
 from src.year2019.day10a import Chart
 
 

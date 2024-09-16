@@ -1,4 +1,5 @@
 """2017 - Day 12 Part 1: Digital Plumber tests."""
+
 from src.year2017.day12a import process_data
 from src.year2017.day12a import solve
 

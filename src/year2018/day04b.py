@@ -1,4 +1,5 @@
 """2018 - Day 4 Part 1: Repose Record."""
+
 from operator import itemgetter
 
 from src.year2018.day04a import Record

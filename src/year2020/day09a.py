@@ -1,4 +1,5 @@
 """2020 - Day 9 Part 1: Encoding Error."""
+
 from collections import deque
 from itertools import combinations
 from typing import Deque

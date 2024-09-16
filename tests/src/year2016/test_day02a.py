@@ -1,4 +1,5 @@
 """2016 - Day 2 Puzzle Part 1 tests."""
+
 import unittest
 
 from src.year2016.day02a import Keypad

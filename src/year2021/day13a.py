@@ -1,4 +1,5 @@
 """2021 - Day 13 Part 1: Transparent Origami."""
+
 from __future__ import annotations
 
 from enum import Enum

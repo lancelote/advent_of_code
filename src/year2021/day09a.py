@@ -1,4 +1,5 @@
 """2021 - Day 9 Part 1: Smoke Basin."""
+
 from collections.abc import Iterator
 from typing import NamedTuple
 

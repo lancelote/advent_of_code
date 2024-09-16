@@ -1,4 +1,5 @@
 """2018 - Day 6 Part 2: Chronal Coordinates."""
+
 import math
 
 from src.year2018.day06a import Grid as LegacyGrid

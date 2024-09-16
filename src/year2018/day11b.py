@@ -1,4 +1,5 @@
 """Day 11 Part 2: Chronal Charge."""
+
 from functools import lru_cache
 from typing import TypeAlias
 

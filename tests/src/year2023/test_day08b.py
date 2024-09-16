@@ -1,4 +1,5 @@
 """2023 - Day 8 Part 2: Haunted Wasteland"""
+
 from textwrap import dedent
 
 from src.year2023.day08b import solve

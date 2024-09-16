@@ -1,4 +1,5 @@
 """2023 - Day 15 Part 2: Lens Library"""
+
 import re
 from collections import defaultdict
 from typing import TypeAlias

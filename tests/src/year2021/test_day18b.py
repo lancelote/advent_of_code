@@ -1,4 +1,5 @@
 """2021 - Day 18 Part 2: Snailfish."""
+
 from textwrap import dedent
 
 from src.year2021.day18b import Node

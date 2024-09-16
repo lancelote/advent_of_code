@@ -1,4 +1,5 @@
 """2021 - Day 16 Part 1: Packet Decoder."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

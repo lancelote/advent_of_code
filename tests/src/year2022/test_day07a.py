@@ -1,4 +1,5 @@
 """2022 - Day 7 Part 1: No Space Left On Device."""
+
 from textwrap import dedent
 
 from src.year2022.day07a import solve

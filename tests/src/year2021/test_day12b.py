@@ -1,4 +1,5 @@
 """2021 - Day 12 Part 2: Passage Pathing."""
+
 from textwrap import dedent
 
 import pytest

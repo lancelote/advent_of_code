@@ -1,4 +1,5 @@
 """2022 - Day 4 Part 2: Camp Cleanup."""
+
 from src.year2022.day04a import Pair
 from src.year2022.day04a import process_data
 

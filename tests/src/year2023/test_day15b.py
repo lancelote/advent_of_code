@@ -1,4 +1,5 @@
 """2023 - Day 15 Part 2: Lens Library"""
+
 from textwrap import dedent
 
 from src.year2023.day15b import solve

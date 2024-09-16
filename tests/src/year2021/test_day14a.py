@@ -1,4 +1,5 @@
 """2021 - Day 14 Part 1: Extended Polymerization."""
+
 from textwrap import dedent
 
 from src.year2021.day14a import solve

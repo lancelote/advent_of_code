@@ -1,4 +1,5 @@
 """2023 - Day 3 Part 2: Gear Ratios"""
+
 from textwrap import dedent
 
 from src.year2023.day03b import solve

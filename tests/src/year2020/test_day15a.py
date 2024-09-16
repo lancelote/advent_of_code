@@ -1,4 +1,5 @@
 """2020 - Day 15 Part 1: Rambunctious Recitation."""
+
 import pytest
 
 from src.year2020.day15a import solve

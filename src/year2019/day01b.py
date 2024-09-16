@@ -1,4 +1,5 @@
 """2019 - Day 1 Part 2: The Tyranny of the Rocket Equation."""
+
 from src.year2019.day01a import count_fuel
 from src.year2019.day01a import process_data
 

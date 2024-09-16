@@ -1,4 +1,5 @@
 """2023 - Day 12 Part 2: Hot Springs"""
+
 from textwrap import dedent
 
 from src.year2023.day12b import solve

@@ -1,4 +1,5 @@
 """2020 - Day 9 Part 2: Encoding Error."""
+
 from textwrap import dedent
 
 from src.year2020.day09b import solve

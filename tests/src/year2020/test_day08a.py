@@ -1,4 +1,5 @@
 """2020 - Day 8 Part 1: Handheld Halting."""
+
 from textwrap import dedent
 
 from src.year2020.day08a import solve

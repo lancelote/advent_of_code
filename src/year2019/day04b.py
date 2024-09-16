@@ -1,4 +1,5 @@
 """2019 - Day 4 Part 2: Secure Container."""
+
 import re
 
 from src.year2019.day04a import get_passwords

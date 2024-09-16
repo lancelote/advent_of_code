@@ -1,4 +1,5 @@
 """2017 - Day 3 Part 1: Spiral Memory tests."""
+
 import pytest
 
 from src.year2017.day03a import get_circle_number

@@ -1,4 +1,5 @@
 """2021 - Day 4 Part 1: Giant Squid."""
+
 from __future__ import annotations
 
 

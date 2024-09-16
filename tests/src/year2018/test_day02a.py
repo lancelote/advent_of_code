@@ -1,4 +1,5 @@
 """2018 - Day 2 Part 1: Inventory Management System tests."""
+
 from collections import Counter
 from textwrap import dedent
 

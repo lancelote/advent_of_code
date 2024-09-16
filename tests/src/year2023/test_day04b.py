@@ -1,4 +1,5 @@
 """2023 - Day 4 Part 2: Scratchcards"""
+
 from textwrap import dedent
 
 from src.year2023.day04b import solve

@@ -1,4 +1,5 @@
 """2015 - Day 2 Part 2: I Was Told There Would Be No Math."""
+
 from src.year2015.day02a import process_data
 
 

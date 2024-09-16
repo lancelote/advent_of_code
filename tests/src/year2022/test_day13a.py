@@ -1,4 +1,5 @@
 """2022 - Day 13 Part 1: Distress Signal."""
+
 from textwrap import dedent
 
 import pytest

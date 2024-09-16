@@ -1,4 +1,5 @@
 """2022 - Day 1 Part 1: Calorie Counting."""
+
 from textwrap import dedent
 
 from src.year2022.day01a import solve

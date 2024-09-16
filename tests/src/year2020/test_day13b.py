@@ -1,4 +1,5 @@
 """2020 - Day 13 Part 2: Shuttle Search."""
+
 import pytest
 
 from src.year2020.day13b import solve

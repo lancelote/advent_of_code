@@ -1,4 +1,5 @@
 """2021 - Day 13 Part 1: Transparent Origami."""
+
 from textwrap import dedent
 
 from src.year2021.day13a import solve

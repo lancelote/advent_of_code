@@ -1,4 +1,5 @@
 """2020 - Day 2 Part 1: Password Philosophy."""
+
 import pytest
 
 from src.year2020.day02a import solve

@@ -1,4 +1,5 @@
 """2022 - Day 2 Part 1: Rock Paper Scissors."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

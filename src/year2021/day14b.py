@@ -1,4 +1,5 @@
 """2021 - Day 14 Part 2: Extended Polymerization."""
+
 from collections import defaultdict
 from itertools import pairwise
 from typing import TypeAlias

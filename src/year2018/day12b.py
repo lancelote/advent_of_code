@@ -1,4 +1,5 @@
 """Day 12 Part 2: Subterranean Sustainability."""
+
 from collections import deque
 
 from src.year2018.day12a import get_new_generation

@@ -1,10 +1,11 @@
 """2022 - Day 13 Part 2: Distress Signal."""
+
 from __future__ import annotations
 
 from functools import cmp_to_key
 
-from src.year2022.day13a import compare
 from src.year2022.day13a import Packet
+from src.year2022.day13a import compare
 from src.year2022.day13a import parse_packet
 
 

@@ -1,4 +1,5 @@
 """2021 - Day 9 Part 2: Smoke Basin."""
+
 from textwrap import dedent
 
 from src.year2021.day09b import solve

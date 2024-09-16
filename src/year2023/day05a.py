@@ -1,4 +1,5 @@
 """2023 - Day 5 Part 1: If You Give A Seed A Fertilizer"""
+
 from dataclasses import dataclass
 from typing import Self
 

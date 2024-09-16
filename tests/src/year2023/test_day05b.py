@@ -1,4 +1,5 @@
 """2023 - Day 5 Part 2: If You Give A Seed A Fertilizer"""
+
 from textwrap import dedent
 
 from src.year2023.day05b import solve

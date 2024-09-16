@@ -1,4 +1,5 @@
 """2023 - Day 3 Part 2: Gear Ratios"""
+
 from collections import defaultdict
 
 from src.year2023.day03a import process_data

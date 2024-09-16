@@ -1,4 +1,5 @@
 """2020 - Day 16 Part 2: Ticket Translation."""
+
 from functools import reduce
 from operator import mul
 

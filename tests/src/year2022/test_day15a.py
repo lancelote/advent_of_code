@@ -1,4 +1,5 @@
 """2022 - Day 15 Part 1: Beacon Exclusion Zone."""
+
 from textwrap import dedent
 
 from src.year2022.day15a import solve

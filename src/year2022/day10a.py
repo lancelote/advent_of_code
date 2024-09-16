@@ -1,4 +1,5 @@
 """2022 - Day 10 Part 1: Cathode-Ray Tube."""
+
 from __future__ import annotations
 
 

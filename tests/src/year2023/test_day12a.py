@@ -1,4 +1,5 @@
 """2023 - Day 12 Part 1: Hot Springs"""
+
 from textwrap import dedent
 
 import pytest

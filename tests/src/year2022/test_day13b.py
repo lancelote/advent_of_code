@@ -1,4 +1,5 @@
 """2022 - Day 13 Part 2: Distress Signal."""
+
 from textwrap import dedent
 
 from src.year2022.day13b import solve

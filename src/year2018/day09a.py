@@ -1,4 +1,5 @@
 """2018 - Day 9 Part 1: Marble Mania."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

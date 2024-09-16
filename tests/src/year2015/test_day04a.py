@@ -1,4 +1,5 @@
 """2015 - Day 4 Part 1: The Ideal Stocking Stuffer."""
+
 import unittest
 
 from src.year2015.day04a import solve

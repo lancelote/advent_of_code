@@ -1,4 +1,5 @@
 """2017 - Day 2 Part 1: Corruption Checksum tests."""
+
 import pytest
 
 from src.year2017.day02a import process_data

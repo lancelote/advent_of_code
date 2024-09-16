@@ -1,4 +1,5 @@
 """2019 - Day 1 Part 2: The Tyranny of the Rocket Equation."""
+
 import pytest
 
 from src.year2019.day01b import solve

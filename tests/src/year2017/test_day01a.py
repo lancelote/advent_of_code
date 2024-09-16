@@ -1,4 +1,5 @@
 """2017 - Day 1 Part 1: Inverse Captcha tests."""
+
 from src.year2017.day01a import solve
 
 

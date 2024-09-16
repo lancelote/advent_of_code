@@ -1,4 +1,5 @@
 """2023 - Day 19 Part 1: Aplenty"""
+
 import operator
 import re
 from collections.abc import Callable

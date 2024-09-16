@@ -1,4 +1,5 @@
 """2023 - Day 15 Part 1: Lens Library"""
+
 from textwrap import dedent
 
 import pytest

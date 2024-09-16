@@ -1,4 +1,5 @@
 """2020 - Day 3 Part 2: Toboggan Trajectory."""
+
 from textwrap import dedent
 
 import pytest

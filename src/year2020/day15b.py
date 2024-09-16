@@ -1,4 +1,5 @@
 """2020 - Day 15 Part 2: Rambunctious Recitation."""
+
 from src.year2020.day15a import play
 from src.year2020.day15a import process_data
 

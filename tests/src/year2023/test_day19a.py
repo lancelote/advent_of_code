@@ -1,4 +1,5 @@
 """2023 - Day 19 Part 1: Aplenty"""
+
 from textwrap import dedent
 
 from src.year2023.day19a import solve

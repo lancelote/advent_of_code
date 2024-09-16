@@ -1,4 +1,5 @@
 """2015 - Day 2 Part 1: I Was Told There Would Be No Math."""
+
 from __future__ import annotations
 
 from typing import NamedTuple

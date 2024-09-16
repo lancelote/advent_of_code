@@ -1,4 +1,5 @@
 """2018 - Day 10 Part 2: The Stars Align test."""
+
 from textwrap import dedent
 
 from src.year2018.day10b import solve

@@ -1,10 +1,11 @@
 """2020 - Day 12 Part 2: Rain Risk."""
+
 from __future__ import annotations
 
 from src.year2020.day12a import Direction
 from src.year2020.day12a import Instruction
-from src.year2020.day12a import process_data
 from src.year2020.day12a import Ship
+from src.year2020.day12a import process_data
 
 
 class Waypoint:

@@ -1,4 +1,5 @@
 """2018 - Day 2 Part 2: Inventory Management System tests."""
+
 from textwrap import dedent
 
 from src.year2018.day02b import get_similar_id_part

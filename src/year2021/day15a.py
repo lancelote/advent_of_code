@@ -1,4 +1,5 @@
 """2021 - Day 15 Part 1: Chiton."""
+
 from __future__ import annotations
 
 from collections.abc import Iterator

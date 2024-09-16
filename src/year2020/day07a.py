@@ -1,4 +1,5 @@
 """2020 - Day 7 Part 1: Handy Haversacks."""
+
 import re
 from collections import defaultdict
 

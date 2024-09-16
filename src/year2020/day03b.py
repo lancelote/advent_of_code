@@ -1,4 +1,5 @@
 """2020 - Day 3 Part 2: Toboggan Trajectory."""
+
 from src.year2020.day03a import count_trees
 from src.year2020.day03a import process_data
 

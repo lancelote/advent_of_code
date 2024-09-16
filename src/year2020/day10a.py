@@ -1,4 +1,5 @@
 """2020 - Day 10 Part 1: Adapter Array."""
+
 from collections import defaultdict
 from typing import DefaultDict
 

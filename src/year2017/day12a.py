@@ -1,4 +1,5 @@
 """2017 - Day 12 Part 1: Digital Plumber."""
+
 import re
 from collections import defaultdict
 from typing import DefaultDict

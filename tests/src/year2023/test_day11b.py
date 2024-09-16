@@ -1,4 +1,5 @@
 """2023 - Day 11 Part 2: Cosmic Expansion"""
+
 from textwrap import dedent
 
 import pytest

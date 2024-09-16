@@ -1,4 +1,5 @@
 """Puzzle Solver Runner."""
+
 import importlib
 
 import click

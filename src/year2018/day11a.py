@@ -1,4 +1,5 @@
 """Day 11 Part 1: Chronal Charge."""
+
 from collections import defaultdict
 from functools import lru_cache
 from itertools import product

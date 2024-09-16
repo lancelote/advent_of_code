@@ -1,10 +1,10 @@
 """2020 - Day 5 Part 1: Binary Boarding."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cached_property
 from typing import Any
-
 
 LEFT = "FL"
 RIGHT = "BR"

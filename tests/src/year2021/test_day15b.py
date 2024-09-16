@@ -1,4 +1,5 @@
 """2021 - Day 15 Part 1: Chiton."""
+
 from textwrap import dedent
 
 from src.year2021.day15b import solve

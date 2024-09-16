@@ -1,4 +1,5 @@
 """2022 - Day 17 Part 1: Pyroclastic Flow."""
+
 from __future__ import annotations
 
 from abc import ABC

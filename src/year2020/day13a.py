@@ -1,4 +1,5 @@
 """2020 - Day 13 Part 1: Shuttle Search."""
+
 import re
 
 

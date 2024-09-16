@@ -1,4 +1,5 @@
 """2021 - Day 8 Part 1: Seven Segment Search."""
+
 from textwrap import dedent
 
 from src.year2021.day08a import solve

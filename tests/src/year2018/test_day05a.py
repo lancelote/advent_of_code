@@ -1,4 +1,5 @@
 """2018 - Day 5 Part 1: Alchemical Reduction."""
+
 import pytest
 
 from src.year2018.day05a import react

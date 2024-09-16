@@ -1,4 +1,5 @@
 """2020 - Day 8 Part 1: Handheld Halting."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

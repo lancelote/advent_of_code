@@ -1,9 +1,10 @@
 """2023 - Day 10 Part 2: Pipe Maze"""
+
 from src.year2023.day10a import C
-from src.year2023.day10a import construct_map
-from src.year2023.day10a import find_start
 from src.year2023.day10a import Land
 from src.year2023.day10a import Map
+from src.year2023.day10a import construct_map
+from src.year2023.day10a import find_start
 from src.year2023.day10a import process_data
 
 

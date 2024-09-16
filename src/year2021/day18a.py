@@ -1,4 +1,5 @@
 """2021 - Day 18 Part 1: Snailfish."""
+
 from __future__ import annotations
 
 import functools

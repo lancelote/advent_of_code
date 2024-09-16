@@ -1,9 +1,9 @@
 """2022 - Day 5 Part 1: Supply Stacks."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TypeAlias
-
 
 Stack: TypeAlias = list[str]
 

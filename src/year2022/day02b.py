@@ -1,4 +1,5 @@
 """2022 - Day 2 Part 2: Rock Paper Scissors."""
+
 from src.year2022.day02a import Pick
 from src.year2022.day02a import process_data
 

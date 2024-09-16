@@ -1,4 +1,5 @@
 """2023 - Day 6 Part 2: Wait For It"""
+
 from textwrap import dedent
 
 from src.year2023.day06b import solve

@@ -1,8 +1,9 @@
 """2020 - Day 11 Part 2: Seating System."""
-from src.year2020.day11a import Cell
-from src.year2020.day11a import count_occupied
-from src.year2020.day11a import Matrix
+
 from src.year2020.day11a import SHIFTS
+from src.year2020.day11a import Cell
+from src.year2020.day11a import Matrix
+from src.year2020.day11a import count_occupied
 
 
 def count_visible(i: int, j: int, matrix: Matrix) -> int:

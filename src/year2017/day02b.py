@@ -1,4 +1,5 @@
 """2017 - Day 2 Part 2: Corruption Checksum."""
+
 from src.year2017.day02a import process_data
 
 

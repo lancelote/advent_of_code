@@ -1,4 +1,5 @@
 """2020 - Day 10 Part 2: Adapter Array."""
+
 from textwrap import dedent
 
 import pytest

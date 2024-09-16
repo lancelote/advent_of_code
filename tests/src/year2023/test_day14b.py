@@ -1,8 +1,9 @@
 """2023 - Day 14 Part 2: Parabolic Reflector Dish"""
+
 from textwrap import dedent
 
-from src.year2023.day14b import cycle
 from src.year2023.day14b import Platform
+from src.year2023.day14b import cycle
 from src.year2023.day14b import solve
 
 

@@ -1,4 +1,5 @@
 """2020 - Day 3 Part 1: Toboggan Trajectory."""
+
 from typing import TypeAlias
 
 Plan: TypeAlias = list[list[str]]

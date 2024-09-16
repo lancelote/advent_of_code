@@ -1,4 +1,5 @@
 """2023 - Day 7 Part 1: Camel Cards"""
+
 from collections import Counter
 from typing import Self
 

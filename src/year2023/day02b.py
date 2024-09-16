@@ -1,4 +1,5 @@
 """2023 - Day 2 Part 2: Cube Conundrum"""
+
 from src.year2023.day02a import process_data
 
 

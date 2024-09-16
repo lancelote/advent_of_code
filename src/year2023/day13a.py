@@ -1,4 +1,5 @@
 """2023 - Day 13 Part 1: Point of Incidence"""
+
 from dataclasses import dataclass
 from functools import reduce
 from typing import Self

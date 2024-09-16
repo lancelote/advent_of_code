@@ -1,4 +1,5 @@
 """2021 - Day 3 Part 1: Binary Diagnostic."""
+
 from collections.abc import Iterator
 
 

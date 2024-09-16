@@ -1,4 +1,5 @@
 """2019 - Day 1 Part 1: The Tyranny of the Rocket Equation."""
+
 import pytest
 
 from src.year2019.day01a import count_fuel

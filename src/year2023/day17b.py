@@ -1,4 +1,5 @@
 """2023 - Day 17 Part 2: Clumsy Crucible"""
+
 from src.year2023.day17a import get_least_loss_path
 
 

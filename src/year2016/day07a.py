@@ -1,4 +1,5 @@
 """2016 - Day 7 Part 1: Internet Protocol Version 7."""
+
 from collections.abc import Generator
 
 

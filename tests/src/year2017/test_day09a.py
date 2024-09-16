@@ -1,4 +1,5 @@
 """2017 - Day 9 Part 1: Stream Processing tests."""
+
 import pytest
 
 from src.year2017.day09a import solve

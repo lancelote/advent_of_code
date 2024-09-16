@@ -1,4 +1,5 @@
 """2021 - Day 15 Part 2: Chiton."""
+
 from src.year2021.day15a import Point
 from src.year2021.day15a import RiskMap
 from src.year2021.day15a import walk

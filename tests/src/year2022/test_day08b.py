@@ -1,4 +1,5 @@
 """2022 - Day 8 Part 2: Treetop Tree House."""
+
 from textwrap import dedent
 
 from src.year2022.day08b import solve

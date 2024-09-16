@@ -1,4 +1,5 @@
 """2018 - Day 8 Part 1: Memory Maneuver."""
+
 from dataclasses import dataclass
 
 

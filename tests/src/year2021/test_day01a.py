@@ -1,4 +1,5 @@
 """2021 - Day 1 Part 1: Sonar Sweep."""
+
 from textwrap import dedent
 
 from src.year2021.day01a import solve

@@ -1,4 +1,5 @@
 """2020 - Day 7 Part 2: Handy Haversacks."""
+
 from __future__ import annotations
 
 import re

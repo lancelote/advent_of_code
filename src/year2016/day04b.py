@@ -1,4 +1,5 @@
 """2016 - Day 4 Part 2: Security Through Obscurity."""
+
 from src.year2016.day04a import process_data
 
 

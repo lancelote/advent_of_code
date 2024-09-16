@@ -1,4 +1,5 @@
 """2022 - Day 7 Part 1: No Space Left On Device."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

@@ -1,4 +1,5 @@
 """2023 - Day 4 Part 2: Scratchcards"""
+
 from collections import defaultdict
 
 from src.year2023.day04a import process_data

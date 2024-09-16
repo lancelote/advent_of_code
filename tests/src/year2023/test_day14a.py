@@ -1,4 +1,5 @@
 """2023 - Day 14 Part 1: Parabolic Reflector Dish"""
+
 from textwrap import dedent
 
 from src.year2023.day14a import solve

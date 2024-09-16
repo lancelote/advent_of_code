@@ -1,4 +1,5 @@
 """2019 - Day 12 Part 1: The N-Body Problem tests."""
+
 from textwrap import dedent
 
 import pytest

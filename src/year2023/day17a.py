@@ -1,4 +1,5 @@
 """2023 - Day 17 Part 1: Clumsy Crucible"""
+
 from __future__ import annotations
 
 import heapq

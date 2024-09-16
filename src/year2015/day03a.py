@@ -1,6 +1,6 @@
 """2015 - Day 3 Part 1: Perfectly Spherical Houses in a Vacuum."""
-from collections import defaultdict
 
+from collections import defaultdict
 
 SHIFT = {
     "<": (-1, 0),

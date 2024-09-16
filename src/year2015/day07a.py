@@ -4,7 +4,6 @@ import re
 from dataclasses import dataclass
 from enum import Enum
 
-
 PATTERN = re.compile(r"^(?:(?:(\w*) |)([A-Z]*) |)(\w*) -> (\w*)$")
 
 

@@ -1,4 +1,5 @@
 """2020 - Day 1 Part 1: Report Repair."""
+
 from src.year2020.day01a import process_data
 
 

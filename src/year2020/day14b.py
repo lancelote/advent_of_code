@@ -1,8 +1,9 @@
 """2020 - Day 14 Part 2: Docking Data."""
+
 from src.year2020.day14a import Mask
 from src.year2020.day14a import Memory
-from src.year2020.day14a import process_data
 from src.year2020.day14a import Program
+from src.year2020.day14a import process_data
 
 
 class MaskV2(Mask):

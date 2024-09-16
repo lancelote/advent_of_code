@@ -1,6 +1,7 @@
 """2023 - Day 14 Part 2: Parabolic Reflector Dish"""
-from src.year2023.day14a import count_load
+
 from src.year2023.day14a import Platform
+from src.year2023.day14a import count_load
 from src.year2023.day14a import tilt_north
 
 

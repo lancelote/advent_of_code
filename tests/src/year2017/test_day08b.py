@@ -1,4 +1,5 @@
 """2017 - Day 8 Part 2: I Heard You Like Registers tests."""
+
 from src.year2017.day08b import solve
 
 

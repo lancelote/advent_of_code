@@ -1,4 +1,5 @@
 """2016 - Day 4 Part 1: Security Through Obscurity."""
+
 import operator
 import re
 from collections import Counter

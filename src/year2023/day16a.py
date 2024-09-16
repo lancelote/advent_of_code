@@ -1,4 +1,5 @@
 """2023 - Day 16 Part 1: The Floor Will Be Lava"""
+
 import enum
 from collections import deque
 from typing import TypeAlias

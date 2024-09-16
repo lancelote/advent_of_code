@@ -1,4 +1,5 @@
 """2022 - Day 12 Part 1: Hill Climbing Algorithm."""
+
 from collections.abc import Iterator
 from typing import TypeAlias
 

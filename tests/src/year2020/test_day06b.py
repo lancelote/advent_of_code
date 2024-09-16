@@ -1,4 +1,5 @@
 """2020 - Day 6 Part 2: Custom Customs."""
+
 from textwrap import dedent
 
 from src.year2020.day06b import solve

@@ -1,4 +1,5 @@
 """2015 - Day 5 Part 2: Doesn't He Have Intern-Elves For This."""
+
 import re
 
 from src.year2015.day05a import process_data

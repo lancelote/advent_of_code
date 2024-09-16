@@ -1,4 +1,5 @@
 """2023 - Day 11 Part 2: Cosmic Expansion"""
+
 from src.year2023.day11a import StarMap
 
 

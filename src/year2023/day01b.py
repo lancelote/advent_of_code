@@ -1,4 +1,5 @@
 """2023 - Day 1 Part 2: Trebuchet?!"""
+
 import re
 
 from src.year2023.day01a import process_data

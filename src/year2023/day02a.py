@@ -1,4 +1,5 @@
 """2023 - Day 2 Part 1: Cube Conundrum"""
+
 from dataclasses import dataclass
 from typing import Self
 

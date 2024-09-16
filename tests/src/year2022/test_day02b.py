@@ -1,4 +1,5 @@
 """2022 - Day 2 Part 2: Rock Paper Scissors."""
+
 from textwrap import dedent
 
 from src.year2022.day02b import solve

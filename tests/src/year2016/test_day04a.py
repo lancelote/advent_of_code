@@ -1,9 +1,10 @@
 """2016 - Day 4 Puzzle Part 1 tests."""
+
 import unittest
 
+from src.year2016.day04a import Room
 from src.year2016.day04a import is_real
 from src.year2016.day04a import process_data
-from src.year2016.day04a import Room
 from src.year2016.day04a import solve
 
 

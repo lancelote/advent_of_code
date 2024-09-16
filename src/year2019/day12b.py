@@ -1,4 +1,5 @@
 """2019 - Day 12 Part 2: The N-Body Problem."""
+
 from __future__ import annotations
 
 from math import gcd

@@ -1,4 +1,5 @@
 """2022 - Day 16 Part 1: Proboscidea Volcanium."""
+
 import re
 from typing import AbstractSet
 

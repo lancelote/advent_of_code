@@ -1,4 +1,5 @@
 """2021 - Day 6 Part 1: Lanternfish."""
+
 from textwrap import dedent
 
 from src.year2021.day06a import solve

@@ -1,4 +1,5 @@
 """2022 - Day 1 Part 2: Calorie Counting."""
+
 import heapq
 
 from src.year2022.day01a import process_data

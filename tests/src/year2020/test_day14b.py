@@ -1,4 +1,5 @@
 """2020 - Day 14 Part 2: Docking Data."""
+
 from textwrap import dedent
 
 from src.year2020.day14b import solve

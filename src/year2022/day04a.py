@@ -1,4 +1,5 @@
 """2022 - Day 4 Part 1: Camp Cleanup."""
+
 from typing import TypeAlias
 
 Section: TypeAlias = tuple[int, int]

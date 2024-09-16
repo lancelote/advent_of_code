@@ -1,4 +1,5 @@
 """2019 - Day 7 Part 2: Amplification Circuit."""
+
 from itertools import permutations
 
 from src.year2019.intcode import Computer

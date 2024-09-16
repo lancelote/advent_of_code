@@ -1,4 +1,5 @@
 """2018 - Day 9 Part 1: Marble Mania tests."""
+
 import pytest
 
 from src.year2018.day09a import Marble

@@ -1,4 +1,5 @@
 """2018 - Day 6 Part 1: Chronal Coordinates."""
+
 from __future__ import annotations
 
 import math

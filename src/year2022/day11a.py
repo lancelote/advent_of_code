@@ -1,4 +1,5 @@
 """2022 - Day 11 Part 1: Monkey in the Middle."""
+
 from __future__ import annotations
 
 from collections.abc import Callable

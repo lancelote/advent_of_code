@@ -1,4 +1,5 @@
 """2018 - Day 2 Part 1: Inventory Management System."""
+
 from collections import Counter
 from collections.abc import Iterator
 

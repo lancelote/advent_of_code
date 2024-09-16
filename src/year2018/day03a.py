@@ -1,4 +1,5 @@
 """2018 - Day 3 Part 1: No Matter How You Slice It."""
+
 import re
 from collections.abc import Generator
 from typing import NamedTuple

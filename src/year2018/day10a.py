@@ -1,4 +1,5 @@
 """2018 - Day 10 Part 1: The Stars Align."""
+
 from __future__ import annotations
 
 import re

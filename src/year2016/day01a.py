@@ -1,4 +1,5 @@
 """2016 - Day 1 Part 1: No Time for a Taxicab."""
+
 from collections import namedtuple
 from typing import Any
 

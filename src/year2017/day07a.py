@@ -1,4 +1,5 @@
 r"""2017 - Day 7 Part 1: Recursive Circus."""
+
 import re
 
 PATTERN = r"(?P<parent>\w+) \((?P<weight>\d+)\)( -> (?P<children>[\w, ]+))?"

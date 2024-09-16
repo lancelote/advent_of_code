@@ -1,4 +1,5 @@
 """2016 - Day 7 Part 2: Internet Protocol Version 7."""
+
 from src.year2016.day07a import process_date
 
 

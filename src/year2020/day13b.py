@@ -1,4 +1,5 @@
 """2020 - Day 13 Part 2: Shuttle Search."""
+
 from typing import NamedTuple
 
 

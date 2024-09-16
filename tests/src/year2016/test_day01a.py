@@ -1,4 +1,5 @@
 """2016 - Day 1 Puzzle Part 1 tests."""
+
 import unittest
 
 from src.year2016.day01a import Point

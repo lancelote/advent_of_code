@@ -1,4 +1,5 @@
 """2020 - Day 9 Part 2: Encoding Error."""
+
 from collections import deque
 from typing import Deque
 

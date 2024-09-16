@@ -1,4 +1,5 @@
 """2018 - Day 1 Part 2: Chronal Calibration tests."""
+
 import pytest
 
 from src.year2018.day01b import solve

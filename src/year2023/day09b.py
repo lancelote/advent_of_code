@@ -1,4 +1,5 @@
 """2023 - Day 9 Part 2: Mirage Maintenance"""
+
 from src.year2023.day09a import all_zeros
 from src.year2023.day09a import process_data
 

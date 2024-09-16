@@ -1,4 +1,5 @@
 """2019 - Day 4 Part 1: Secure Container."""
+
 from collections.abc import Iterator
 
 Password = Iterator[str]

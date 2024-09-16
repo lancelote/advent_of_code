@@ -1,4 +1,5 @@
 """2021 - Day 11 Part 1: Dumbo Octopus."""
+
 from __future__ import annotations
 
 from collections import deque

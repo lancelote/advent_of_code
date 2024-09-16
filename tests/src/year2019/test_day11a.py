@@ -1,4 +1,5 @@
 """2019 - Day 11 Part 1: Space Police tests."""
+
 from collections import deque
 from dataclasses import dataclass
 from dataclasses import field

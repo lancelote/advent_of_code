@@ -1,4 +1,5 @@
 """2018 - Day 5 Part 2: Alchemical Reduction."""
+
 import re
 import string
 

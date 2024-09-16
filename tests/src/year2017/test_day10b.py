@@ -1,4 +1,5 @@
 """2017 - Day 10 Part 2: Knot Hash tests."""
+
 import pytest
 
 from src.year2017.day10b import compress

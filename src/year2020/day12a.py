@@ -1,4 +1,5 @@
 """2020 - Day 12 Part 1: Rain Risk."""
+
 from __future__ import annotations
 
 import re

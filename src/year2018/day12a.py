@@ -1,4 +1,5 @@
 """Day 12 Part 1: Subterranean Sustainability."""
+
 from enum import Enum
 from typing import TypeAlias
 

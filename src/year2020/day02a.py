@@ -1,4 +1,5 @@
 """2020 - Day 2 Part 1: Password Philosophy."""
+
 from __future__ import annotations
 
 from typing import NamedTuple

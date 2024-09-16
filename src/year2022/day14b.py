@@ -1,12 +1,13 @@
 """2022 - Day 14 Part 2: Regolith Reservoir."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
 
-from src.year2022.day14a import parse_sections
 from src.year2022.day14a import Point
 from src.year2022.day14a import Section
+from src.year2022.day14a import parse_sections
 
 
 class Material(Enum):

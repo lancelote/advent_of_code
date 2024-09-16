@@ -1,4 +1,5 @@
 """2017 - Day 4 Part 1: High-Entropy Passphrases tests."""
+
 import pytest
 
 from src.year2017.day04a import count_valid

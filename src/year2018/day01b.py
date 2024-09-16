@@ -1,4 +1,5 @@
 """2018 - Day 1 Part 2: Chronal Calibration."""
+
 from itertools import cycle
 
 from src.year2018.day01a import process_data

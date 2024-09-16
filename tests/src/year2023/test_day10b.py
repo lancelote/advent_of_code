@@ -1,4 +1,5 @@
 """2023 - Day 10 Part 2: Pipe Maze"""
+
 from textwrap import dedent
 
 from src.year2023.day10b import solve

@@ -1,4 +1,5 @@
 """2019 - Day 11 Part 2: Space Police."""
+
 from src.year2019.day11a import Color
 from src.year2019.day11a import Coordinates
 from src.year2019.day11a import Hull

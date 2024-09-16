@@ -1,4 +1,5 @@
 """2018 - Day 1 Part 1: Chronal Calibration."""
+
 from collections.abc import Generator
 
 

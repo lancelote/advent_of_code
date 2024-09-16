@@ -1,4 +1,5 @@
 """2021 - Day 5 Part 1: Hydrothermal Venture."""
+
 from __future__ import annotations
 
 from collections import defaultdict

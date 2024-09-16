@@ -1,4 +1,5 @@
 """2015 - Day 6 Part 1: Probably a Fire Hazard."""
+
 import re
 from collections import namedtuple
 from collections.abc import Callable

@@ -1,4 +1,5 @@
 """2023 - Day 7 Part 2: Camel Cards"""
+
 from collections import Counter
 from functools import cached_property
 from typing import Self

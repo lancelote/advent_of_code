@@ -1,4 +1,5 @@
 """2018 - Day 10 Part 2: The Stars Align."""
+
 from src.year2018.day10a import Point
 from src.year2018.day10a import Sky
 

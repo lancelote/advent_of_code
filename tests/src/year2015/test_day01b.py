@@ -1,4 +1,5 @@
 """2015 - Day 1 Part 2: Not Quite Lisp."""
+
 import unittest
 
 from src.year2015.day01b import solve

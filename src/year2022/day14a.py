@@ -1,4 +1,5 @@
 """2022 - Day 14 Part 1: Regolith Reservoir."""
+
 from __future__ import annotations
 
 import sys

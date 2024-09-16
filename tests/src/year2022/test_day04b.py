@@ -1,4 +1,5 @@
 """2022 - Day 4 Part 2: Camp Cleanup."""
+
 from textwrap import dedent
 
 from src.year2022.day04b import solve

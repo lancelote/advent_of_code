@@ -1,4 +1,5 @@
 """2017 - Day 7 Part 1: Recursive Circus tests."""
+
 import pytest
 
 from src.year2017.day07a import find_root

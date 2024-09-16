@@ -1,4 +1,5 @@
 """2020 - Day 14 Part 1: Docking Data."""
+
 from __future__ import annotations
 
 import re
@@ -16,8 +17,7 @@ class Mask(ABC):
         self.mask = mask
 
     @abstractmethod
-    def apply_to(self, value: int) -> list[int]:
-        ...
+    def apply_to(self, value: int) -> list[int]: ...
 
 
 class Memory(ABC):
@@ -32,8 +32,7 @@ class Memory(ABC):
         return sum(self.memory.values())
 
     @abstractmethod
-    def add(self, address: int, value: int) -> None:
-        ...
+    def add(self, address: int, value: int) -> None: ...
 
 
 class Command(ABC):
@@ -47,8 +46,7 @@ class Command(ABC):
             raise ValueError(f"unexpected command line: {line}")
 
     @abstractmethod
-    def execute(self, memory: Memory) -> None:
-        ...
+    def execute(self, memory: Memory) -> None: ...
 
 
 class MaskV1(Mask):

@@ -1,4 +1,5 @@
 """2019 - Day 5 Part 2: Sunny with a Chance of Asteroids."""
+
 from src.year2019.intcode import Computer
 
 

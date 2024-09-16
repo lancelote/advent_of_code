@@ -1,4 +1,5 @@
 """2023 - Day 3 Part 1: Gear Ratios"""
+
 from dataclasses import dataclass
 from typing import Self
 

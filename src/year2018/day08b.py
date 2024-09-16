@@ -1,4 +1,5 @@
 """2018 - Day 8 Part 2: Memory Maneuver."""
+
 from src.year2018.day08a import Node
 from src.year2018.day08a import parse_tree
 

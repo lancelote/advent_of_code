@@ -1,4 +1,5 @@
 """2021 - Day 13 Part 2: Transparent Origami."""
+
 from src.year2021.day13a import parse_task
 
 

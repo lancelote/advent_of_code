@@ -1,7 +1,8 @@
 """2023 - Day 16 Part 2: The Floor Will Be Lava"""
+
 from src.year2023.day16a import Beam
-from src.year2023.day16a import count_energized
 from src.year2023.day16a import Direction
+from src.year2023.day16a import count_energized
 
 
 def solve(task: str) -> int:

@@ -1,4 +1,5 @@
 """2022 - Day 15 Part 1: Beacon Exclusion Zone."""
+
 from __future__ import annotations
 
 import re

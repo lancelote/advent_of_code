@@ -1,4 +1,5 @@
 """2016 - Day 5 Part 1: How About a Nice Game of Chess."""
+
 import hashlib
 
 

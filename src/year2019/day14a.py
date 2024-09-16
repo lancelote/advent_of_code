@@ -1,4 +1,5 @@
 """2019 - Day 14 Part 1: Space Stoichiometry."""
+
 from __future__ import annotations
 
 from collections import defaultdict

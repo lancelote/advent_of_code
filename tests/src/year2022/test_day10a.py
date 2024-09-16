@@ -1,4 +1,5 @@
 """2022 - Day 10 Part 1: Cathode-Ray Tube."""
+
 from textwrap import dedent
 
 from src.year2022.day10a import solve

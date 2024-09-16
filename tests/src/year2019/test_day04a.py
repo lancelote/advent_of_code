@@ -1,4 +1,5 @@
 """2019 - Day 4 Part 1: Secure Container tests."""
+
 import pytest
 
 from src.year2019.day04a import never_decrease

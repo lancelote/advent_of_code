@@ -1,4 +1,5 @@
 """2017 - Day 3 Part 1: Spiral Memory."""
+
 import math
 
 

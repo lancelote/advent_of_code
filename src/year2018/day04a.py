@@ -1,4 +1,5 @@
 """2018 - Day 4 Part 1: Repose Record."""
+
 from __future__ import annotations
 
 import datetime as dt

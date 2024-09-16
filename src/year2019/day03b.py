@@ -1,4 +1,5 @@
 """2019 - Day 3 Part 2: Crossed Wires."""
+
 from collections import defaultdict
 from dataclasses import dataclass
 from dataclasses import field

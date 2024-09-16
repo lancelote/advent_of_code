@@ -1,4 +1,5 @@
 """2020 - Day 11 Part 1: Seating System."""
+
 from __future__ import annotations
 
 from collections.abc import Callable

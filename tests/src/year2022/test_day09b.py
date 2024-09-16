@@ -1,4 +1,5 @@
 """2022 - Day 9 Part 2: Rope Bridge."""
+
 from textwrap import dedent
 
 from src.year2022.day09b import solve

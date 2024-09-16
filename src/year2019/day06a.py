@@ -1,4 +1,5 @@
 """2019 - Day 6 Part 1: Universal Orbit Map."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

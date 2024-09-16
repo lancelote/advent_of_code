@@ -1,4 +1,5 @@
 """2020 - Day 4 Part 2: Passport Processing."""
+
 import re
 
 from src.year2020.day04a import Passport as LegacyPassport

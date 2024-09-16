@@ -1,4 +1,5 @@
 """2019 - Day 8 Part 2: Space Image Format."""
+
 from src.year2019.day08a import parse_layers
 
 

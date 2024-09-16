@@ -1,4 +1,5 @@
 """2017 - Day 3 Part 2: Spiral Memory."""
+
 import itertools
 from collections.abc import Iterable
 from collections.abc import Iterator

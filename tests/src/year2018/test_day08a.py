@@ -1,4 +1,5 @@
 """2018 - Day 8 Part 1: Memory Maneuver tests."""
+
 from src.year2018.day08a import solve
 
 

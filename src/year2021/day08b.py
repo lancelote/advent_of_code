@@ -1,4 +1,5 @@
 """2021 - Day 8 Part 2: Seven Segment Search."""
+
 from __future__ import annotations
 
 from collections import defaultdict

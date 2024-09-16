@@ -1,10 +1,11 @@
 """2018 - Day 3 Part 1: No Matter How You Slice It tests."""
+
 from textwrap import dedent
 
 import pytest
 
-from src.year2018.day03a import apply_claim
 from src.year2018.day03a import Claim
+from src.year2018.day03a import apply_claim
 from src.year2018.day03a import parse_claim
 from src.year2018.day03a import process_data
 from src.year2018.day03a import solve

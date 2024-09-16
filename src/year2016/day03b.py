@@ -1,4 +1,5 @@
 """2016 - Day 3 Part 2: Squares With Three Sides."""
+
 from itertools import chain
 
 from src.year2016.day03a import count_possible

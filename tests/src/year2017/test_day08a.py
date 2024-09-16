@@ -1,4 +1,5 @@
 """2017 - Day 8 Part 1: I Heard You Like Registers tests."""
+
 import pytest
 
 from src.year2017.day08a import Instruction

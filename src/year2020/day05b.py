@@ -1,4 +1,5 @@
 """2020 - Day 5 Part 2: Binary Boarding."""
+
 from src.year2020.day05a import process_data
 
 

@@ -1,4 +1,5 @@
 """2023 - Day 10 Part 1: Pipe Maze"""
+
 from collections import defaultdict
 from typing import TypeAlias
 

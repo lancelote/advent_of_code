@@ -1,4 +1,5 @@
 """2021 - Day 17 Part 1: Trick Shot."""
+
 from __future__ import annotations
 
 import re

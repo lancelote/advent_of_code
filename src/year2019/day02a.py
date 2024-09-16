@@ -1,4 +1,5 @@
 """2019 - Day 2 Part 1: 1202 Program Alarm."""
+
 from src.year2019.intcode import Computer
 
 

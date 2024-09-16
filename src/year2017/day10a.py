@@ -1,4 +1,5 @@
 r"""2017 - Day 10 Part 1: Knot Hash."""
+
 from itertools import cycle
 from itertools import islice
 

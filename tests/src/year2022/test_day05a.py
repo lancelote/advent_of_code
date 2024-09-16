@@ -1,4 +1,5 @@
 """2022 - Day 5 Part 1: Supply Stacks."""
+
 from textwrap import dedent
 
 from src.year2022.day05a import solve

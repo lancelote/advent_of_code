@@ -1,4 +1,5 @@
 """2023 - Day 18 Part 1: Lavaduct Lagoon"""
+
 from textwrap import dedent
 
 from src.year2023.day18a import solve

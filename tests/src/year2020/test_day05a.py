@@ -1,4 +1,5 @@
 """2020 - Day 5 Part 1: Binary Boarding."""
+
 from textwrap import dedent
 
 import pytest

@@ -1,4 +1,5 @@
 """2021 - Day 5 Part 1: Hydrothermal Venture."""
+
 from textwrap import dedent
 
 from src.year2021.day05a import solve

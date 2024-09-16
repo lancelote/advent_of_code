@@ -1,4 +1,5 @@
 """2021 - Day 2 Part 1: Dive!"""
+
 from textwrap import dedent
 
 from src.year2021.day02a import solve

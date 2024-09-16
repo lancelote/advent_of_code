@@ -1,4 +1,5 @@
 """2023 - Day 12 Part 1: Hot Springs"""
+
 from dataclasses import dataclass
 from functools import cache
 from typing import Self

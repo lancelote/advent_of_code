@@ -1,4 +1,5 @@
 """2023 - Day 1 Part 2: Trebuchet?!"""
+
 from textwrap import dedent
 
 import pytest

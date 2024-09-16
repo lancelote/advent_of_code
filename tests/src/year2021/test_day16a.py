@@ -1,4 +1,5 @@
 """2021 - Day 16 Part 1: Packet Decoder."""
+
 import pytest
 
 from src.year2021.day16a import BITS

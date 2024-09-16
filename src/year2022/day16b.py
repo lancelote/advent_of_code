@@ -1,4 +1,5 @@
 """2022 - Day 16 Part 2: Proboscidea Volcanium."""
+
 import itertools
 from collections import deque
 

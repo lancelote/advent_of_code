@@ -1,4 +1,5 @@
 """2020 - Day 16 Part 1: Ticket Translation."""
+
 from textwrap import dedent
 
 from src.year2020.day16a import solve

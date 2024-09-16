@@ -1,4 +1,5 @@
 """2018 - Day 4 Part 1: Repose Record tests."""
+
 import datetime as dt
 from textwrap import dedent
 

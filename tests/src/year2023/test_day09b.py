@@ -1,4 +1,5 @@
 """2023 - Day 9 Part 2: Mirage Maintenance"""
+
 from textwrap import dedent
 
 import pytest

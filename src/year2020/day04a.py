@@ -1,4 +1,5 @@
 """2020 - Day 4 Part 1: Passport Processing."""
+
 from __future__ import annotations
 
 import re

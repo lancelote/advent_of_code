@@ -1,4 +1,5 @@
 """2021 - Day 11 Part 2: Dumbo Octopus."""
+
 from textwrap import dedent
 
 from src.year2021.day11b import solve

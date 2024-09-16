@@ -1,4 +1,5 @@
 """2016 - Day 1 Part 2: No Time for a Taxicab."""
+
 from collections.abc import Generator
 from copy import copy
 

@@ -1,4 +1,5 @@
 """2023 - Day 18 Part 1: Lavaduct Lagoon"""
+
 import copy
 import sys
 from dataclasses import dataclass

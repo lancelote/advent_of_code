@@ -1,4 +1,5 @@
 """2022 - Day 3 Part 1: Rucksack Reorganization."""
+
 from dataclasses import dataclass
 
 

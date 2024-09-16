@@ -1,4 +1,5 @@
 """2023 - Day 12 Part 2: Hot Springs"""
+
 from src.year2023.day12a import Field
 
 

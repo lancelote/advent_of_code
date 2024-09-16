@@ -1,4 +1,5 @@
 """2022 - Day 12 Part 1: Hill Climbing Algorithm."""
+
 from textwrap import dedent
 
 from src.year2022.day12a import solve
