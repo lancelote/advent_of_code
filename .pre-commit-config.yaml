@@ -15,11 +15,10 @@ repos:
       - id: mypy
         files: ^src/
 
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.13.0
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
     hooks:
-      - id: reorder-python-imports
-        args: [--py312-plus]
+      - id: isort
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.17.0
