@@ -1,4 +1,5 @@
 """2015 - Day 7 Part 1: Some Assembly Required."""
+
 import re
 from dataclasses import dataclass
 from enum import Enum
@@ -82,27 +83,30 @@ class Solution:
         result = 0
         connection = self.connections[wire]
 
-        if isinstance(connection, UnaryConnection):
-            if connection.gate is Gate.NOT:
-                result = 65535 - self.get_value(connection.input_a)
-            elif connection.gate is Gate.SIGNAL:
-                result = self.get_value(connection.input_a)
-            else:
-                raise ValueError(f"unknown gate type: {connection.gate}")
-        elif isinstance(connection, BinaryConnection):
-            input_a = connection.input_a
-            input_b = connection.input_b
+        match connection:
+            case UnaryConnection():
+                match connection.gate:
+                    case Gate.NOT:
+                        result = 65535 - self.get_value(connection.input_a)
+                    case Gate.SIGNAL:
+                        result = self.get_value(connection.input_a)
+                    case unknown_gate:
+                        raise ValueError(f"unknown gate type: {unknown_gate}")
+            case BinaryConnection():
+                in_a = connection.input_a
+                in_b = connection.input_b
 
-            if connection.gate is Gate.RSHIFT:
-                result = self.get_value(input_a) >> self.get_value(input_b)
-            elif connection.gate is Gate.LSHIFT:
-                result = self.get_value(input_a) << self.get_value(input_b)
-            elif connection.gate is Gate.AND:
-                result = self.get_value(input_a) & self.get_value(input_b)
-            elif connection.gate is Gate.OR:
-                result = self.get_value(input_a) | self.get_value(input_b)
-            else:
-                raise ValueError(f"unknown gate type: {connection.gate}")
+                match connection.gate:
+                    case Gate.RSHIFT:
+                        result = self.get_value(in_a) >> self.get_value(in_b)
+                    case Gate.LSHIFT:
+                        result = self.get_value(in_a) << self.get_value(in_b)
+                    case Gate.AND:
+                        result = self.get_value(in_a) & self.get_value(in_b)
+                    case Gate.OR:
+                        result = self.get_value(in_a) | self.get_value(in_b)
+                    case unknown_gate:
+                        raise ValueError(f"unknown gate type: {unknown_gate}")
 
         self.cache[wire] = result
         return result
