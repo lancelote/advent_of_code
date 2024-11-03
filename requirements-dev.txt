@@ -1,10 +1,10 @@
-advent-of-code-data==2.0.1
+advent-of-code-data==2.0.2
 click==8.1.7
-mypy==1.11.2
-pre-commit==3.8.0
+mypy==1.13.0
+pre-commit==4.0.1
 pur==7.3.2
 pytest==8.3.3
 pytest-mock==3.14.0
-reorder_python_imports==3.13.0
-ruff==0.6.5
+reorder_python_imports==3.14.0
+ruff==0.7.2
 wheel==0.44.0
