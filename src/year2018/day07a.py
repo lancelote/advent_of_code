@@ -7,7 +7,7 @@ from typing import DefaultDict
 
 Step = str
 Parents = DefaultDict[Step, set[Step]]
-StepGenerator = Generator[Step, None, None]
+StepGenerator = Generator[Step]
 
 
 def process_date(data: str) -> Parents:

@@ -43,7 +43,7 @@ class IP:
         return False
 
     @property
-    def abas(self) -> Generator[str, None, None]:
+    def abas(self) -> Generator[str]:
         """Generate abas from supernet parts."""
         for super_part in self.supernet_parts:
             for i in range(max(len(super_part) - 2, 0)):

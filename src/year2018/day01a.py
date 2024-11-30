@@ -3,7 +3,7 @@
 from collections.abc import Generator
 
 
-def process_data(data: str) -> Generator[int, None, None]:
+def process_data(data: str) -> Generator[int]:
     """Process frequency data yielding each change as integer."""
     for change in data.strip().split("\n"):
         yield int(change)

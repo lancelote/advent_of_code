@@ -27,7 +27,7 @@ def parse_claim(raw_claim: str) -> Claim:
     return Claim(*map(int, groups))
 
 
-def process_data(data: str) -> Generator[Claim, None, None]:
+def process_data(data: str) -> Generator[Claim]:
     """Yield parsed claims from raw data."""
     for raw_claim in data.strip().split("\n"):
         yield parse_claim(raw_claim)

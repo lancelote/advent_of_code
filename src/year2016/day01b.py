@@ -8,7 +8,7 @@ from src.year2016.day01a import processed_data
 from src.year2016.day01a import update_direction
 
 
-def in_between(start: Point, end: Point) -> Generator[Point, None, None]:
+def in_between(start: Point, end: Point) -> Generator[Point]:
     """Generate points between start and end including end."""
     if start.x != end.x and start.y != end.y:
         raise ValueError("Points not belong to same horizontal or vertical")
