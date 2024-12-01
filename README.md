@@ -42,7 +42,7 @@ python -m pip install -r requirements-dev.txt
 To update `requirements.txt` with the newest package versions
 
 ```bash
-pur -r requirements.txt
+pur -r requirements-dev.txt
 ```
 
 ## Tests
