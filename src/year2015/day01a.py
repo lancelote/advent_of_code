@@ -2,4 +2,4 @@
 
 
 def solve(task: str) -> int:
-    return task.count("(") - task.count(")")
+    return sum(1 if x == "(" else -1 for x in task)

@@ -1,18 +1,23 @@
 """2015 - Day 1 Part 1: Not Quite Lisp."""
 
-import unittest
+import pytest
 
 from src.year2015.day01a import solve
 
 
-class TestSolve(unittest.TestCase):
-    def test_returns_correct_result(self):
-        self.assertEqual(solve("(())"), 0)
-        self.assertEqual(solve("()()"), 0)
-        self.assertEqual(solve("((("), 3)
-        self.assertEqual(solve("(()(()("), 3)
-        self.assertEqual(solve("))((((("), 3)
-        self.assertEqual(solve("())"), -1)
-        self.assertEqual(solve("))("), -1)
-        self.assertEqual(solve(")))"), -3)
-        self.assertEqual(solve(")())())"), -3)
+@pytest.mark.parametrize(
+    "task,expected",
+    (
+        ("(())", 0),
+        ("()()", 0),
+        ("(((", 3),
+        ("(()(()(", 3),
+        ("))(((((", 3),
+        ("())", -1),
+        ("))(", -1),
+        (")))", -3),
+        (")())())", -3),
+    ),
+)
+def test_solve(task, expected):
+    assert solve(task) == expected
