@@ -1,4 +1,4 @@
-"""2024 - Day 2 Part 1:"""
+"""2024 - Day 2 Part 1: Red-Nosed Reports"""
 
 from textwrap import dedent
 

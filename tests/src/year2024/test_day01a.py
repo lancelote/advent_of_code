@@ -1,4 +1,4 @@
-"""2024 - Day 1 Part 1:"""
+"""2024 - Day 1 Part 1: Historian Hysteria"""
 
 from textwrap import dedent
 
