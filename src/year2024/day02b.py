@@ -1,70 +1,30 @@
-"""2024 - Day 2 Part 2:"""
+"""2024 - Day 2 Part 2: Red-Nosed Reports"""
+
+
+def is_increasing(level: list[int], skip: bool = True) -> bool:
+    for i in range(len(level) - 1):
+        if not (1 <= level[i + 1] - level[i] <= 3):
+            if not skip:
+                return False
+            left = is_increasing(level[:i] + level[i + 1 :], False)
+            right = is_increasing(level[: i + 1] + level[i + 2 :], False)
+            return left or right
+    return True
+
+
+def is_decreasing(level: list[int], skip: bool = True) -> bool:
+    for i in range(len(level) - 1):
+        if not (1 <= level[i] - level[i + 1] <= 3):
+            if not skip:
+                return False
+            left = is_decreasing(level[:i] + level[i + 1 :], False)
+            right = is_decreasing(level[: i + 1] + level[i + 2 :], False)
+            return left or right
+    return True
 
 
 def is_safe(level: list[int]) -> bool:
-    n = len(level)
-    tolerate = -1
-
-    def is_increasing(level: list[int]) -> bool:
-        nonlocal tolerate
-
-        i = 0
-        while i < n - 1:
-            if level[i] > level[i + 1]:
-                if tolerate == -1 or tolerate == i:
-                    tolerate = 1
-                else:
-                    return False
-            i += 1
-        return True
-
-    def is_decreasing(level: list[int]) -> bool:
-        nonlocal tolerate
-
-        i = 0
-        while i < n - 1:
-            if level[i] < level[i + 1]:
-                if tolerate == -1 or tolerate == i:
-                    tolerate = i
-                else:
-                    return False
-            i += 1
-        return True
-
-    def ok_diff(level: list[int]) -> bool:
-        nonlocal tolerate
-
-        i = 0
-        while i < n - 1:
-            diff = abs(level[i] - level[i + 1])
-
-            if diff < 1 or diff > 3:
-                if tolerate == -1 or tolerate == i + 1:
-                    if i < (n - 2):
-                        diff = abs(level[i] - level[i + 2])
-                        if diff < 1 or diff > 3:
-                            return False
-                        else:
-                            tolerate = i
-                            i += 1
-                    else:
-                        return True
-                elif tolerate == i:
-                    pass
-                else:
-                    return False
-            i += 1
-        return True
-
-    if is_increasing(level) and ok_diff(level):
-        return True
-
-    tolerate = -1
-
-    if is_decreasing(level) and ok_diff(level):
-        return True
-
-    return False
+    return is_increasing(level) or is_decreasing(level)
 
 
 def solve(task: str) -> int:
