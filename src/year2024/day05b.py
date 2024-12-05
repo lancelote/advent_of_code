@@ -26,10 +26,7 @@ def solve(task: str) -> int:
     updates: list[list[int]] = []
 
     def compare(x: int, y: int) -> int:
-        if y in rules[x]:
-            return -1
-        else:
-            return +1
+        return -1 if y in rules[x] else 1
 
     for line in second.split("\n"):
         updates.append([int(x) for x in line.split(",")])
