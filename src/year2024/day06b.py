@@ -10,33 +10,27 @@ def is_paradox(gr: int, gc: int, data: list[list[str]]) -> bool:
     cols = len(data[0])
 
     visited: set[tuple[str, int, int]] = set()
+    dr, dc = (-1, 0)
+    guard = "^"
 
     while True:
-        guard = data[gr][gc]
-
         if (guard, gr, gc) in visited:
-            return True
+            return True  # is a loop
 
         visited.add((guard, gr, gc))
-
-        dr, dc = SHIFTS[guard]
 
         nr = gr + dr
         nc = gc + dc
 
         if not (0 <= nr < rows and 0 <= nc < cols):
-            data[gr][gc] = "."
             return False  # out of border
 
         if data[nr][nc] not in {"#", "O"}:
-            data[gr][gc] = "."
-            data[nr][nc] = guard
-
             gr = nr
             gc = nc
         else:
-            new_guard = TURN[guard]
-            data[gr][gc] = new_guard
+            guard = TURN[guard]
+            dr, dc = SHIFTS[guard]
 
 
 def solve(task: str) -> int:
@@ -55,7 +49,6 @@ def solve(task: str) -> int:
                 continue
 
             data[r][c] = "O"
-            data[gr][gc] = "^"
 
             if is_paradox(gr, gc, data):
                 count += 1
