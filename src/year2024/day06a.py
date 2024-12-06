@@ -37,12 +37,10 @@ def solve(task: str) -> int:
     cols = len(data[0])
 
     visited = {(gr, gc)}
+    dr, dc = (-1, 0)
+    guard = "^"
 
     while True:
-        guard = data[gr][gc]
-
-        dr, dc = SHIFTS[guard]
-
         nr = gr + dr
         nc = gc + dc
 
@@ -50,13 +48,11 @@ def solve(task: str) -> int:
             break  # out of border
 
         if data[nr][nc] != "#":
-            data[nr][nc] = guard
-
             gr = nr
             gc = nc
         else:
-            new_guard = TURN[guard]
-            data[gr][gc] = new_guard
+            guard = TURN[guard]
+            dr, dc = SHIFTS[guard]
 
         visited.add((gr, gc))
 
