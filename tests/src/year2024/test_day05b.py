@@ -1,4 +1,4 @@
-"""2024 - Day 5 Part 2: ..."""
+"""2024 - Day 5 Part 2: Print Queue"""
 
 from textwrap import dedent
 

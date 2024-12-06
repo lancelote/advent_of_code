@@ -1,0 +1,23 @@
+"""2024 - Day 6 Part 2: Guard Gallivant"""
+
+from textwrap import dedent
+
+from src.year2024.day06b import solve
+
+
+def test_solve():
+    task = dedent(
+        """
+        ....#.....
+        .........#
+        ..........
+        ..#.......
+        .......#..
+        ..........
+        .#..^.....
+        ........#.
+        #.........
+        ......#...
+        """
+    ).strip()
+    assert solve(task) == 6
