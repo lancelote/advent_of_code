@@ -36,7 +36,6 @@ class Region:
 
                 if not (0 <= nr < rows and 0 <= nc < cols):
                     region.perimeter += 1
-                    # todo: flaky false positive below
                 elif data[nr][nc] != region.key:
                     region.perimeter += 1
                 elif (nr, nc) not in seen:
