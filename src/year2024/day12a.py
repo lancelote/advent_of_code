@@ -12,10 +12,10 @@ SHIFTS = (
 
 
 class Region:
-    def __init__(self, key: str, area: int = 1, perimeter: int = 0) -> None:
+    def __init__(self, key: str, perimeter: int = 0) -> None:
         self.key = key
-        self.area = area
         self.perimeter = perimeter
+        self.points: set[tuple[int, int]] = set()
 
     @classmethod
     def from_point(
@@ -26,6 +26,7 @@ class Region:
 
         region = Region(key=data[sr][sc])
         to_process = [(sr, sc)]
+        region.points.add((sr, sc))
 
         while to_process:
             r, c = to_process.pop()
@@ -39,7 +40,7 @@ class Region:
                 elif data[nr][nc] != region.key:
                     region.perimeter += 1
                 elif (nr, nc) not in seen:
-                    region.area += 1
+                    region.points.add((nr, nc))
                     to_process.append((nr, nc))
                     seen.add((nr, nc))
 
@@ -48,6 +49,46 @@ class Region:
     @property
     def price(self) -> int:
         return self.area * self.perimeter
+
+    @property
+    def price_with_discount(self) -> int:
+        return self.area * self.sides
+
+    @property
+    def area(self) -> int:
+        return len(self.points)
+
+    @property
+    def sides(self) -> int:
+        # we count region points which are corners
+        count = 0
+
+        for r, c in self.points:
+            for x, y, z in (
+                ((r, c - 1), (r - 1, c - 1), (r - 1, c)),
+                ((r - 1, c), (r - 1, c + 1), (r, c + 1)),
+                ((r, c + 1), (r + 1, c + 1), (r + 1, c)),
+                ((r, c - 1), (r + 1, c - 1), (r + 1, c)),
+            ):
+                if (
+                    x in self.points
+                    and y not in self.points
+                    and z in self.points
+                ):
+                    count += 1
+                if (
+                    x not in self.points
+                    and y not in self.points
+                    and z not in self.points
+                ):
+                    count += 1
+                if (
+                    x not in self.points
+                    and y in self.points
+                    and z not in self.points
+                ):
+                    count += 1
+        return count
 
     def __str__(self) -> str:
         return f"Region(key='{self.key}')"
