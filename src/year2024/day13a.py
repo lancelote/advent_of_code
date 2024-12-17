@@ -1,7 +1,6 @@
 """2024 - Day 13 Part 1: Claw Contraption"""
 
 import re
-import sys
 from dataclasses import dataclass
 from typing import Self
 
@@ -31,22 +30,20 @@ class Machine:
 
     @property
     def min_tokens_win(self) -> int:
-        min_cost = {(0, 0): 0}
+        x, y = self.prize
+        ax, ay = self.a
+        bx, by = self.b
 
-        ar, ac = self.a
-        br, bc = self.b
+        b = (y - x * ay / ax) / (-bx * ay / ax + by)
+        a = (x - b * bx) / ax
 
-        for ai in range(100):
-            for bi in range(1, 100):
-                nr = ar * ai + br * bi
-                nc = ac * ai + bc * bi
+        an = round(a)
+        bn = round(b)
 
-                min_cost[(nr, nc)] = min(
-                    min_cost.get((nr - br, nc - bc), sys.maxsize) + 1,
-                    min_cost.get((nr - ar, nc - ac), sys.maxsize) + 3,
-                )
-
-        return min_cost.get(self.prize, 0)
+        if an * ax + bn * bx == x and an * ay + bn * by == y:
+            return an * 3 + bn
+        else:
+            return 0
 
 
 def solve(task: str) -> int:
