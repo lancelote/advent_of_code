@@ -4,8 +4,6 @@ import sys
 from collections import deque
 from enum import StrEnum
 
-sys.setrecursionlimit(10_000)
-
 
 class Direction(StrEnum):
     NORTH = "N"
