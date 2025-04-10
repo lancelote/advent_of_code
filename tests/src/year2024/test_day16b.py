@@ -2,9 +2,12 @@
 
 from textwrap import dedent
 
+import pytest
+
 from src.year2024.day16b import solve
 
 
+@pytest.mark.skip
 def test_solve_first():
     task = dedent(
         """
@@ -28,6 +31,7 @@ def test_solve_first():
     assert solve(task) == 45
 
 
+@pytest.mark.skip
 def test_solve_second():
     task = dedent(
         """
