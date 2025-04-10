@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import math
-from abc import ABC
 from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
@@ -14,7 +13,7 @@ from typing import TypeVar
 T = TypeVar("T", bound="Grid")
 
 
-class Coordinate(ABC):
+class Coordinate:
     """Abstract cartesian coordinate."""
 
     def __init__(self, x: int, y: int):

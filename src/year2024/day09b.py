@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from abc import abstractmethod
+from abc import ABC
 from dataclasses import dataclass
 
 
 @dataclass
-class Object:
+class Object(ABC):
     pk: int
     ptr: int
     length: int
