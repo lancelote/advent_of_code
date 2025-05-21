@@ -3,20 +3,13 @@
 from hashlib import md5
 
 
+def get_md5_cache(num: int, key: str) -> str:
+    message = key + str(num)
+    return md5(message.encode()).hexdigest()
+
+
 def solve(task: str, zeros: int = 5) -> int:
-    """Solve the puzzle.
-
-    Args:
-        zeros (int): number of zeros to find
-        task (str): key to encode
-
-    Returns:
-        int: Biggest number
-    """
-    i = 0
-    message_hash = ""
-    while not message_hash.startswith("0" * zeros):
-        message = task + str(i)
-        message_hash = md5(message.encode()).hexdigest()
-        i += 1
-    return i - 1
+    num = 0
+    while not get_md5_cache(num, task).startswith("0" * zeros):
+        num += 1
+    return num
