@@ -1,14 +1,19 @@
 """2015 - Day 5 Part 1: Doesn't He Have Intern-Elves For This."""
 
-import unittest
+import pytest
 
 from src.year2015.day05b import is_nice
 
 
-class TestIsNice(unittest.TestCase):
-    def test_returns_correct_result(self):
-        self.assertTrue(is_nice("qjhvhtzxzqqjkmpb"))
-        self.assertTrue(is_nice("xxyxx"))
-        self.assertFalse(is_nice("uurcxstgmygtbstg"))
-        self.assertFalse(is_nice("ieodomkazucvgmuy"))
-        self.assertFalse(is_nice("aaa"))
+@pytest.mark.parametrize(
+    "word,expected",
+    (
+        ("qjhvhtzxzqqjkmpb", True),
+        ("xxyxx", True),
+        ("uurcxstgmygtbstg", False),
+        ("ieodomkazucvgmuy", False),
+        ("aaa", False),
+    ),
+)
+def test_returns_correct_result(word, expected):
+    assert is_nice(word) is expected

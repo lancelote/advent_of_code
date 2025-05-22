@@ -1,21 +1,31 @@
 """2015 - Day 5 Part 1: Doesn't He Have Intern-Elves For This."""
 
-import unittest
+import pytest
 
 from src.year2015.day05a import is_nice
 from src.year2015.day05a import process_data
 
 
-class TestIsNice(unittest.TestCase):
-    def test_returns_correct_result(self):
-        self.assertTrue(is_nice("ugknbfddgicrmopn"))
-        self.assertTrue(is_nice("aaa"))
-        self.assertFalse(is_nice("jchzalrnumimnmhp"))
-        self.assertFalse(is_nice("haegwjzuvuyypxyu"))
-        self.assertFalse(is_nice("dvszwmarrgswjxmb"))
+@pytest.mark.parametrize(
+    "word,expected",
+    (
+        ("ugknbfddgicrmopn", True),
+        ("aaa", True),
+        ("jchzalrnumimnmhp", False),
+        ("haegwjzuvuyypxyu", False),
+        ("dvszwmarrgswjxmb", False),
+    ),
+)
+def test_returns_correct_result(word, expected):
+    assert is_nice(word) is expected
 
 
-class TestProcessData(unittest.TestCase):
-    def test_returns_correct_result(self):
-        self.assertEqual(process_data("ab\ncd\n"), ["ab", "cd"])
-        self.assertEqual(process_data("ab"), ["ab"])
+@pytest.mark.parametrize(
+    "task,expected",
+    (
+        ("ab\ncd\n", ["ab", "cd"]),
+        ("ab", ["ab"]),
+    ),
+)
+def test_process_data(task, expected):
+    assert process_data(task) == expected
