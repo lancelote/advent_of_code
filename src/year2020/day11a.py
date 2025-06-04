@@ -6,6 +6,7 @@ from collections.abc import Callable
 from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
+from typing import assert_never
 
 SHIFTS = [
     # i   j
@@ -34,7 +35,7 @@ class Cell(Enum):
         elif self is Cell.OCCUPIED:
             return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
         else:
-            raise ValueError(f"unexpected cell type: {self}")
+            assert_never(f"unexpected cell type: {self}")
 
 
 @dataclass

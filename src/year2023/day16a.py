@@ -3,6 +3,7 @@
 import enum
 from collections import deque
 from typing import TypeAlias
+from typing import assert_never
 
 
 class Direction(enum.Enum):
@@ -37,7 +38,7 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
                 case Direction.W:
                     nr, nc = r, c - 1
                 case _:
-                    raise ValueError
+                    assert_never(direction)
             beams.append((direction, (nr, nc)))
         case "|":
             match direction:
@@ -49,7 +50,7 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
                 case Direction.S:
                     beams.append((Direction.S, (r + 1, c)))
                 case _:
-                    raise ValueError
+                    assert_never(direction)
         case "-":
             match direction:
                 case Direction.N | Direction.S:
@@ -60,7 +61,7 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
                 case Direction.E:
                     beams.append((Direction.E, (r, c + 1)))
                 case _:
-                    raise ValueError
+                    assert_never(direction)
 
         case "/":
             match direction:
@@ -73,7 +74,7 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
                 case Direction.W:
                     beams.append((Direction.S, (r + 1, c)))
                 case _:
-                    raise ValueError
+                    assert_never(direction)
         case "\\":
             match direction:
                 case Direction.N:
@@ -85,7 +86,7 @@ def get_next_beams(beam: Beam, layout: list[str]) -> list[Beam]:
                 case Direction.W:
                     beams.append((Direction.N, (r - 1, c)))
                 case _:
-                    raise ValueError
+                    assert_never(direction)
         case _:
             raise ValueError
 

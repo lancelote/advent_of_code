@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import assert_never
+
 from src.year2020.day12a import Direction
 from src.year2020.day12a import Instruction
 from src.year2020.day12a import Ship
@@ -50,7 +52,7 @@ class ShipWithWaypoint(Ship):
         elif instruction.direction is Direction.FORWARD:
             self.move(instruction.value)
         else:
-            raise ValueError(f"unknown direction: {instruction.direction}")
+            assert_never(f"unknown direction: {instruction.direction}")
 
 
 def solve(task: str) -> int:

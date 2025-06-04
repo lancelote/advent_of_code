@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from typing import assert_never
 
 
 class Operation(Enum):
@@ -73,7 +74,7 @@ def run(instructions: list[Instruction]) -> tuple[bool, int]:
         elif current.op is Operation.NOP:
             i += 1
         else:
-            raise ValueError(f"unknown operation {current.op}")
+            assert_never(f"unknown operation {current.op}")
 
     return graceful, acc
 

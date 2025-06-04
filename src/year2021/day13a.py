@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import NamedTuple
+from typing import assert_never
 
 
 class Point(NamedTuple):
@@ -42,7 +43,7 @@ class Paper:
         elif instruction.fold is Fold.LEFT:
             self.fold_left(instruction.position)
         else:
-            raise ValueError(f"unknown fold: {instruction.fold}")
+            assert_never(f"unknown fold: {instruction.fold}")
 
     def fold_up(self, position: int) -> None:
         left_points = set()

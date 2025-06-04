@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from enum import Enum
 from pprint import pprint as pp
 from typing import TypeAlias
+from typing import assert_never
 
 WIDTH = 7
 
@@ -63,7 +64,7 @@ class Piece(ABC):
             case Form.SQUARE:
                 return SquarePiece(left, bottom)
             case _:
-                raise NotImplementedError
+                assert_never(form)
 
     def commit(self, fallen_rocks: Rocks) -> None:
         fallen_rocks.update(self.rocks)
@@ -75,7 +76,7 @@ class Piece(ABC):
             case Jet.RIGHT:
                 shift = +1
             case _:
-                raise NotImplementedError
+                assert_never(jet)
 
         for x, y in self.rocks:
             nx = x + shift
@@ -92,7 +93,7 @@ class Piece(ABC):
                 case Jet.RIGHT:
                     shift = +1
                 case _:
-                    raise NotImplementedError
+                    assert_never(jet)
 
             self.rocks = {(x + shift, y) for x, y in self.rocks}
 

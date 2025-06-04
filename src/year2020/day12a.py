@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from enum import Enum
 from typing import NamedTuple
+from typing import assert_never
 
 
 class Direction(Enum):
@@ -63,7 +64,7 @@ class Ship:
                 Instruction(self.direction, instruction.value)
             )
         else:
-            raise ValueError(f"unknown direction: {instruction.direction}")
+            assert_never(f"unknown direction: {instruction.direction}")
 
     @property
     def manhattan_distance(self) -> int:
