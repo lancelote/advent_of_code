@@ -2,6 +2,7 @@
 
 import unittest
 
+from src.year2015.day06a import Command
 from src.year2015.day06b import solve
 from src.year2015.day06b import update_light
 
@@ -17,9 +18,9 @@ class TestSolve(unittest.TestCase):
 
 class TestUpdateLight(unittest.TestCase):
     def test_returns_correct_result(self):
-        self.assertEqual(update_light("toggle", 0), 2)
-        self.assertEqual(update_light("turn on", 0), 1)
-        self.assertEqual(update_light("turn off", 1), 0)
+        self.assertEqual(update_light(Command.TOGGLE, 0), 2)
+        self.assertEqual(update_light(Command.TURN_ON, 0), 1)
+        self.assertEqual(update_light(Command.TURN_OFF, 1), 0)
 
     def test_brightness_can_not_be_negative(self):
-        self.assertEqual(update_light("turn off", 0), 0)
+        self.assertEqual(update_light(Command.TURN_OFF, 0), 0)
