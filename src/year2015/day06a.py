@@ -1,26 +1,31 @@
 """2015 - Day 6 Part 1: Probably a Fire Hazard."""
 
+import enum
 import re
-from collections import namedtuple
 from collections.abc import Callable
+from typing import NamedTuple
 
 PATTERN = re.compile(r"([a-z ]*) ([\d,]*) through ([\d,]*)")
 
-Coordinates = namedtuple("Coordinates", ["x", "y"])
-Instruction = namedtuple("Instruction", ["command", "start", "end"])
+
+class Command(enum.StrEnum):
+    TURN_ON = "turn on"
+    TURN_OFF = "turn off"
+    TOGGLE = "toggle"
+
+
+class Coordinates(NamedTuple):
+    x: int
+    y: int
+
+
+class Instruction(NamedTuple):
+    command: Command
+    start: Coordinates
+    end: Coordinates
 
 
 def process_data(data: str) -> list[Instruction]:
-    r"""Process row data into list of namedtuples.
-
-    Args:
-        data (str): turn on 489,959 through 759,964\n...
-
-    Returns:
-        lst: [namedtuple(command, start, end), ...] where start and end are
-            coordinates namedtuple(x, y)
-
-    """
     processed_data = []
 
     for string in data.strip().split("\n"):
@@ -30,38 +35,21 @@ def process_data(data: str) -> list[Instruction]:
         command, start, end = match.groups()
         start = Coordinates(*map(int, start.split(",")))
         end = Coordinates(*map(int, end.split(",")))
-        processed_data.append(Instruction(command, start, end))
+        processed_data.append(Instruction(Command(command), start, end))
 
     return processed_data
 
 
-def update_light(command: str, light: int) -> int:
-    """Compute new light status.
-
-    Args:
-        command (str): 'toggle', 'turn on' or 'turn off'
-        light (int): Light status before command execution
-
-    Returns:
-        bool: New light status
-
-    """
-    logic = {"toggle": not light, "turn on": 1, "turn off": 0}
+def update_light(command: Command, light: int) -> int:
+    logic = {
+        Command.TOGGLE: int(not light),
+        Command.TURN_ON: 1,
+        Command.TURN_OFF: 0,
+    }
     return logic[command]
 
 
-def compute_result(task: str, execute: Callable[[str, int], int]) -> int:
-    r"""Calculate number of powered lights after all instructions.
-
-    Args:
-        execute: Function which returns new light status after given command
-            and previous light status
-        task (str): turn on 489,959 through 759,964\n...
-
-    Returns:
-        int: Number of powered lights
-
-    """
+def compute_result(task: str, execute: Callable[[Command, int], int]) -> int:
     instructions = process_data(task)
     lights = [[0] * 1000 for _ in range(1000)]
 
@@ -74,13 +62,4 @@ def compute_result(task: str, execute: Callable[[str, int], int]) -> int:
 
 
 def solve(task: str) -> int:
-    r"""Calculate number of powered lights after all instructions.
-
-    Args:
-        task (str): turn on 489,959 through 759,964\n...
-
-    Returns:
-        int: Number of powered lights
-
-    """
     return compute_result(task, update_light)
