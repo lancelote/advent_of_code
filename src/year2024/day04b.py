@@ -1,10 +1,10 @@
 """2024 - Day 4 Part 2: Ceres Search"""
 
 OPTIONS = {
-    "MM" "A" "SS",
-    "MS" "A" "MS",
-    "SS" "A" "MM",
-    "SM" "A" "SM",
+    "MMASS",
+    "MSAMS",
+    "SSAMM",
+    "SMASM",
 }
 
 SHIFTS = (

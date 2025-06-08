@@ -9,8 +9,7 @@ from src.year2019.day06b import process_data
 @pytest.fixture
 def raw_orbit_data():
     return (
-        "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\n"
-        "G)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN"
+        "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN"
     )
 
 
