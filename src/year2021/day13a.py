@@ -43,7 +43,7 @@ class Paper:
         elif instruction.fold is Fold.LEFT:
             self.fold_left(instruction.position)
         else:
-            assert_never(f"unknown fold: {instruction.fold}")
+            assert_never(instruction.fold)
 
     def fold_up(self, position: int) -> None:
         left_points = set()

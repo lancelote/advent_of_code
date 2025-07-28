@@ -74,7 +74,7 @@ def run(instructions: list[Instruction]) -> tuple[bool, int]:
         elif current.op is Operation.NOP:
             i += 1
         else:
-            assert_never(f"unknown operation {current.op}")
+            assert_never(current.op)
 
     return graceful, acc
 

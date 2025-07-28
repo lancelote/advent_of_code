@@ -35,7 +35,7 @@ class Cell(Enum):
         elif self is Cell.OCCUPIED:
             return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
         else:
-            assert_never(f"unexpected cell type: {self}")
+            assert_never(self)
 
 
 @dataclass

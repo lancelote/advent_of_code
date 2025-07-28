@@ -52,7 +52,7 @@ class ShipWithWaypoint(Ship):
         elif instruction.direction is Direction.FORWARD:
             self.move(instruction.value)
         else:
-            assert_never(f"unknown direction: {instruction.direction}")
+            assert_never(instruction.direction)
 
 
 def solve(task: str) -> int:

@@ -64,7 +64,7 @@ class Ship:
                 Instruction(self.direction, instruction.value)
             )
         else:
-            assert_never(f"unknown direction: {instruction.direction}")
+            assert_never(instruction.direction)
 
     @property
     def manhattan_distance(self) -> int:
