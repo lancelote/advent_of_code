@@ -1,106 +1,105 @@
 """2015 - Day 12 Part 2: JSAbacusFramework.io."""
 
-from dataclasses import dataclass
-from enum import Enum
-from collections.abc import Iterator
+from typing import Any
 
 
-class Symbol(Enum):
-    OPEN = "("
-    CLOSE = ")"
-    RED = "red"
+class Parser:
+    def __init__(self, task: str) -> None:
+        self.task = task
+        self.i = 0
 
+    def parse_expression(self) -> Any:
+        match self.cur_token:
+            case "[":
+                return self.parse_list()
+            case "{":
+                return self.parse_dict()
+            case '"':
+                return self.parse_str()
+            case _ if self.cur_token.isdigit():
+                return self.parse_int()
+            case "-":
+                self.consume("-")
+                return -self.parse_int()
+            case _:
+                raise ValueError(f"unknown first token {self.cur_token}")
 
-@dataclass(frozen=True, slots=True)
-class Number:
-    value: int
+    def consume(self, token: str) -> None:
+        assert self.cur_token == token
+        self.i += 1
 
+    def parse_str(self) -> str:
+        self.consume('"')
+        result: list[str] = []
 
-type Token = Number | Symbol
+        while self.cur_token != '"':
+            result.append(self.cur_token)
+            self.i += 1
 
+        self.consume('"')
+        return "".join(result)
 
-@dataclass
-class Lexer:
-    task: str
-    i: int = 0
-
-    @property
-    def current(self) -> str:
-        return self.task[self.i]
-
-    def read_int(self) -> int:
+    def parse_int(self) -> int:
         result = 0
 
-        while self.current.isdigit():
-            result = result * 10 + int(self.current)
+        while self.cur_token.isdigit():
+            result = result * 10 + int(self.cur_token)
             self.i += 1
 
         return result
 
-    def consume_char(self, char: str) -> bool:
-        if self.current == char:
-            self.i += 1
-            return True
-        return False
+    def parse_opt(self) -> tuple[str, Any]:
+        key = self.parse_str()
+        self.consume(":")
+        value = self.parse_expression()
+        return key, value
 
-    def consume_quote(self) -> bool:
-        return self.consume_char('"')
+    def parse_list(self) -> list:
+        self.consume("[")
+        result = []
 
-    def consume_red(self) -> bool:
-        if not self.consume_quote():
-            return False
+        while self.cur_token != "]":
+            result.append(self.parse_expression())
+            if self.cur_token == ",":
+                self.i += 1
 
-        for char in "red":
-            if not self.consume_char(char):
-                return False
+        self.consume("]")
+        return result
 
-        return self.consume_quote()
+    def parse_dict(self) -> dict:
+        self.consume("{")
+        result = {}
 
-    def __iter__(self) -> Iterator[Token]:
-        while self.i < len(self.task):
-            match self.current:
-                case "[" | "{":
-                    self.i += 1
-                    yield Symbol.OPEN
-                case "]" | "}":
-                    self.i += 1
-                    yield Symbol.CLOSE
-                case "-":
-                    self.i += 1  # skip `-`
-                    yield Number(-self.read_int())
-                case _ if self.current.isdigit():
-                    yield Number(self.read_int())
-                case ":":
-                    self.i += 1  # skip `:`
-                    if self.consume_red():
-                        yield Symbol.RED
-                case _:
-                    self.i += 1
+        while self.cur_token != "}":
+            key, value = self.parse_opt()
+            result[key] = value
+            if self.cur_token == ",":
+                self.i += 1
+
+        self.consume("}")
+        return result
+
+    @property
+    def cur_token(self):
+        return self.task[self.i]
+
+
+def sum_dfs(exp) -> int:
+    match exp:
+        case dict():
+            if "red" in exp.values():
+                return 0
+            return sum(sum_dfs(v) for v in exp.values())
+        case list():
+            return sum(sum_dfs(x) for x in exp)
+        case int():
+            return exp
+        case str():
+            return 0
+        case _:
+            raise ValueError(f"unexpected type {type(exp)}")
 
 
 def solve(task: str) -> int:
-    stack = [0]
-    skip_to_close = 0
-
-    for token in Lexer(task):
-        if skip_to_close != 0:
-            if token is Symbol.OPEN:
-                skip_to_close += 1
-            elif token is Symbol.CLOSE:
-                skip_to_close -= 1
-            continue
-
-        match token:
-            case Symbol.OPEN:
-                stack.append(0)
-            case Symbol.CLOSE:
-                last = stack.pop()
-                stack[-1] += last
-                skip_to_close = 1
-            case Symbol.RED:
-                stack.pop()
-                skip_to_close = 1
-            case Number(value=x):
-                stack[-1] += x
-
-    return stack[0]
+    exp = Parser(task).parse_expression()
+    return sum_dfs(exp)
