@@ -1,6 +1,6 @@
 """2015 - Day 12 Part 2: JSAbacusFramework.io."""
 
-from typing import Any
+type JSONType = str | int | dict[str, JSONType] | list[JSONType]
 
 
 class Parser:
@@ -8,7 +8,7 @@ class Parser:
         self.task = task
         self.i = 0
 
-    def parse_expression(self) -> Any:
+    def parse_expression(self) -> JSONType:
         match self.cur_token:
             case "[":
                 return self.parse_list()
@@ -48,13 +48,13 @@ class Parser:
 
         return result
 
-    def parse_opt(self) -> tuple[str, Any]:
+    def parse_opt(self) -> tuple[str, JSONType]:
         key = self.parse_str()
         self.consume(":")
         value = self.parse_expression()
         return key, value
 
-    def parse_list(self) -> list:
+    def parse_list(self) -> list[JSONType]:
         self.consume("[")
         result = []
 
@@ -66,7 +66,7 @@ class Parser:
         self.consume("]")
         return result
 
-    def parse_dict(self) -> dict:
+    def parse_dict(self) -> dict[str, JSONType]:
         self.consume("{")
         result = {}
 
@@ -80,11 +80,11 @@ class Parser:
         return result
 
     @property
-    def cur_token(self):
+    def cur_token(self) -> str:
         return self.task[self.i]
 
 
-def sum_dfs(exp) -> int:
+def sum_dfs(exp: JSONType) -> int:
     match exp:
         case dict():
             if "red" in exp.values():
