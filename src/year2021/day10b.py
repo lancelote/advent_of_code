@@ -1,8 +1,6 @@
 """2021 - Day 10 Part 2: Syntax Scoring."""
 
-from src.year2021.day10a import CLOSE
-from src.year2021.day10a import MATCHING_CLOSE
-from src.year2021.day10a import OPEN
+from src.year2021.day10a import CLOSE, MATCHING_CLOSE, OPEN
 
 POINTS = {
     ")": 1,

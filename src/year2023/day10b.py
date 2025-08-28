@@ -1,11 +1,6 @@
 """2023 - Day 10 Part 2: Pipe Maze"""
 
-from src.year2023.day10a import C
-from src.year2023.day10a import Land
-from src.year2023.day10a import Map
-from src.year2023.day10a import construct_map
-from src.year2023.day10a import find_start
-from src.year2023.day10a import process_data
+from src.year2023.day10a import C, Land, Map, construct_map, find_start, process_data
 
 
 def get_path(m: Map, land: Land) -> list[C]:
@@ -62,12 +57,7 @@ def get_gauss_area(corners: list[C]) -> int:
     n = len(corners)
 
     return (
-        abs(
-            sum(
-                corners[i][0] * (corners[i - 1][1] - corners[(i + 1) % n][1])
-                for i in range(n)
-            )
-        )
+        abs(sum(corners[i][0] * (corners[i - 1][1] - corners[(i + 1) % n][1]) for i in range(n)))
         // 2
     )
 

@@ -2,10 +2,7 @@
 
 import unittest
 
-from src.year2016.day01a import Point
-from src.year2016.day01a import processed_data
-from src.year2016.day01a import solve
-from src.year2016.day01a import update_direction
+from src.year2016.day01a import Point, processed_data, solve, update_direction
 
 
 class UpdateDirectionTest(unittest.TestCase):
@@ -30,9 +27,7 @@ class UpdateDirectionTest(unittest.TestCase):
 
 class ProcessedDataTest(unittest.TestCase):
     def test_simple_commands(self):
-        self.assertEqual(
-            processed_data("R3, R1, R4"), [("R", 3), ("R", 1), ("R", 4)]
-        )
+        self.assertEqual(processed_data("R3, R1, R4"), [("R", 3), ("R", 1), ("R", 4)])
 
     def test_long_distance(self):
         self.assertEqual(processed_data("R12, L345"), [("R", 12), ("L", 345)])

@@ -1,7 +1,6 @@
 """2015 - Day 9 Part 2: All in a Single Night."""
 
-from src.year2015.day09a import Data
-from src.year2015.day09a import process_data
+from src.year2015.day09a import Data, process_data
 
 
 def find_longest(data: Data) -> int:

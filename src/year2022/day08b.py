@@ -42,6 +42,4 @@ def solve(task: str) -> int:
     rows = len(trees)
     cols = len(trees[0])
 
-    return max(
-        scenic_score(r, c, trees) for c in range(cols) for r in range(rows)
-    )
+    return max(scenic_score(r, c, trees) for c in range(cols) for r in range(rows))

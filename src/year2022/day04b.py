@@ -1,7 +1,6 @@
 """2022 - Day 4 Part 2: Camp Cleanup."""
 
-from src.year2022.day04a import Pair
-from src.year2022.day04a import process_data
+from src.year2022.day04a import Pair, process_data
 
 
 def overlap(pair: Pair) -> bool:

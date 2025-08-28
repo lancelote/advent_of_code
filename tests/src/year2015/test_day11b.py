@@ -2,8 +2,7 @@
 
 import pytest
 
-from src.year2015.day11b import Number
-from src.year2015.day11b import solve
+from src.year2015.day11b import Number, solve
 
 
 @pytest.mark.parametrize(

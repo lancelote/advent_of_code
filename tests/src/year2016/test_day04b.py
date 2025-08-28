@@ -2,9 +2,7 @@
 
 import unittest
 
-from src.year2016.day04b import decipher
-from src.year2016.day04b import shift
-from src.year2016.day04b import solve
+from src.year2016.day04b import decipher, shift, solve
 
 
 class ShiftTest(unittest.TestCase):

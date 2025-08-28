@@ -7,8 +7,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import Enum
 from pprint import pprint as pp
-from typing import TypeAlias
-from typing import assert_never
+from typing import TypeAlias, assert_never
 
 WIDTH = 7
 

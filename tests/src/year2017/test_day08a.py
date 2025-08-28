@@ -2,10 +2,7 @@
 
 import pytest
 
-from src.year2017.day08a import Instruction
-from src.year2017.day08a import process_data
-from src.year2017.day08a import process_line
-from src.year2017.day08a import solve
+from src.year2017.day08a import Instruction, process_data, process_line, solve
 
 
 @pytest.mark.parametrize(
@@ -31,10 +28,5 @@ def test_process_data():
 
 
 def test_solve():
-    data = (
-        "b inc 5 if a > 1\n"
-        "a inc 1 if b < 5\n"
-        "c dec -10 if a >= 1\n"
-        "c inc -20 if c == 10\n"
-    )
+    data = "b inc 5 if a > 1\na inc 1 if b < 5\nc dec -10 if a >= 1\nc inc -20 if c == 10\n"
     assert solve(data) == 1

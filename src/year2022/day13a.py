@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import ast
-from typing import TypeAlias
-from typing import Union
+from typing import TypeAlias, Union
 
 Packet: TypeAlias = list[Union[int, "Packet"]]
 Pair: TypeAlias = tuple[Packet, Packet]

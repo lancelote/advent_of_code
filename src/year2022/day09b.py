@@ -1,9 +1,6 @@
 """2022 - Day 9 Part 2: Rope Bridge."""
 
-from src.year2022.day09a import SHIFT
-from src.year2022.day09a import Step
-from src.year2022.day09a import process_data
-from src.year2022.day09a import update_tail
+from src.year2022.day09a import SHIFT, Step, process_data, update_tail
 
 
 def count_tail_positions(steps: list[Step]) -> int:

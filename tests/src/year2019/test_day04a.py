@@ -2,9 +2,7 @@
 
 import pytest
 
-from src.year2019.day04a import never_decrease
-from src.year2019.day04a import process_data
-from src.year2019.day04a import two_adjacent
+from src.year2019.day04a import never_decrease, process_data, two_adjacent
 
 
 def test_process_data():

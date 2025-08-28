@@ -5,11 +5,7 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2021.day18a import Node
-from src.year2021.day18a import explode
-from src.year2021.day18a import reduce
-from src.year2021.day18a import solve
-from src.year2021.day18a import split
+from src.year2021.day18a import Node, explode, reduce, solve, split
 
 
 @pytest.mark.parametrize(

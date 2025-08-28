@@ -2,8 +2,7 @@
 
 import unittest
 
-from src.year2016.day06a import process_data
-from src.year2016.day06a import solve
+from src.year2016.day06a import process_data, solve
 
 EXAMPLE_TASK = (
     "eedadn\n"

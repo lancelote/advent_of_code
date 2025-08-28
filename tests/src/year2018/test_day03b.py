@@ -1,7 +1,6 @@
 """2018 - Day 3 Part 2: No Matter How You Slice It tests."""
 
-from src.year2018.day03b import Claim
-from src.year2018.day03b import apply_claim
+from src.year2018.day03b import Claim, apply_claim
 
 
 def test_apply_claim():

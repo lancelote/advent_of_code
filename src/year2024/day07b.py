@@ -21,9 +21,7 @@ class Equation(BaseEquation):
             elif i < len(self.numbers):
                 x = self.numbers[i]
                 return (
-                    dfs(i + 1, so_far + x)
-                    or dfs(i + 1, so_far * x)
-                    or dfs(i + 1, join(so_far, x))
+                    dfs(i + 1, so_far + x) or dfs(i + 1, so_far * x) or dfs(i + 1, join(so_far, x))
                 )
             else:
                 return False

@@ -1,8 +1,6 @@
 """2020 - Day 12 Part 1: Rain Risk."""
 
-from src.year2020.day12a import Direction
-from src.year2020.day12a import Instruction
-from src.year2020.day12a import Ship
+from src.year2020.day12a import Direction, Instruction, Ship
 
 
 def test_basic_example():

@@ -3,9 +3,7 @@
 import itertools
 from collections import deque
 
-from src.year2022.day16a import left_score
-from src.year2022.day16a import parse_flow_rates
-from src.year2022.day16a import parse_tunnels
+from src.year2022.day16a import left_score, parse_flow_rates, parse_tunnels
 
 
 def get_path_length(a: str, b: str, tunnels: dict[str, list[str]]) -> int:
@@ -49,9 +47,7 @@ def solve(task: str) -> int:
     tunnels = parse_tunnels(task)
 
     worth_caves = [
-        cave
-        for cave, pressure in sorted(flow_rates.items(), key=lambda x: -x[1])
-        if pressure
+        cave for cave, pressure in sorted(flow_rates.items(), key=lambda x: -x[1]) if pressure
     ]
     worth_caves.append("AA")  # starting position with 0-pressured valve
     path_lengths = compute_paths(worth_caves, tunnels)
@@ -59,9 +55,7 @@ def solve(task: str) -> int:
     max_score = 0
     released = {"AA"}
 
-    def dfs(
-        score: int, minute1: int, minute2: int, valve1: str, valve2: str
-    ) -> None:
+    def dfs(score: int, minute1: int, minute2: int, valve1: str, valve2: str) -> None:
         nonlocal max_score
 
         if minute1 <= 0 and minute2 <= 0:
@@ -69,10 +63,7 @@ def solve(task: str) -> int:
 
         max_score = max(score, max_score)
 
-        if (
-            score + left_score(flow_rates, released, max(minute1, minute2))
-            < max_score
-        ):
+        if score + left_score(flow_rates, released, max(minute1, minute2)) < max_score:
             return
 
         for a, b in itertools.permutations(worth_caves, 2):

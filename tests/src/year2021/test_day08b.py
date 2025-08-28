@@ -2,8 +2,7 @@
 
 from textwrap import dedent
 
-from src.year2021.day08b import Screen
-from src.year2021.day08b import solve
+from src.year2021.day08b import Screen, solve
 
 
 def test_screen():

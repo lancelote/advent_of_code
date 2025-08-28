@@ -2,9 +2,7 @@
 
 
 def process_data(task: str) -> list[set[str]]:
-    return [
-        set(group.replace("\n", "")) for group in task.strip().split("\n\n")
-    ]
+    return [set(group.replace("\n", "")) for group in task.strip().split("\n\n")]
 
 
 def solve(task: str) -> int:

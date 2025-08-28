@@ -5,8 +5,7 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from src.year2019.intcode import Computer
 
@@ -83,10 +82,7 @@ class Hull(defaultdict[Coordinates, Panel]):
         min_y = min(self.keys(), key=lambda point: point.y).y
         max_y = max(self.keys(), key=lambda point: point.y).y
 
-        canvas = [
-            ["?" for _ in range(max_x - min_x + 1)]
-            for _ in range(max_y - min_y + 1)
-        ]
+        canvas = [["?" for _ in range(max_x - min_x + 1)] for _ in range(max_y - min_y + 1)]
 
         for coordinates, panel in self.items():
             x = coordinates.x - min_x

@@ -56,9 +56,7 @@ def solve(task: str) -> int:
 
             for neighbor in tunnels[valve]:
                 if neighbor not in visited:
-                    new_to_visit.add(
-                        (neighbor, score, released, visited | {neighbor})
-                    )
+                    new_to_visit.add((neighbor, score, released, visited | {neighbor}))
 
             if flow_rates[valve] and valve not in released:
                 visited = frozenset((valve,))

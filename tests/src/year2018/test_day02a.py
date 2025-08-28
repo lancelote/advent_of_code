@@ -3,8 +3,7 @@
 from collections import Counter
 from textwrap import dedent
 
-from src.year2018.day02a import process_data
-from src.year2018.day02a import solve
+from src.year2018.day02a import process_data, solve
 
 
 def test_process_data():

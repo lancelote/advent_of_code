@@ -4,8 +4,7 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2019.day12a import Moon
-from src.year2019.day12a import System
+from src.year2019.day12a import Moon, System
 
 
 @pytest.fixture

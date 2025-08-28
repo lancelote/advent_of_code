@@ -42,9 +42,7 @@ class Trajectory:
         self.target = target
 
     def calculate(self) -> None:
-        while not (
-            self.hit or self.too_close or self.too_high or self.too_far
-        ):
+        while not (self.hit or self.too_close or self.too_high or self.too_far):
             self.step()
 
     def step(self) -> None:

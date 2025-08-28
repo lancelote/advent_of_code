@@ -2,8 +2,7 @@
 
 import pytest
 
-from src.year2019.day01a import count_fuel
-from src.year2019.day01a import process_data
+from src.year2019.day01a import count_fuel, process_data
 
 
 def test_process_data():

@@ -3,9 +3,7 @@
 from functools import lru_cache
 from typing import TypeAlias
 
-from src.year2018.day11a import Cell
-from src.year2018.day11a import Grid
-from src.year2018.day11a import Power
+from src.year2018.day11a import Cell, Grid, Power
 
 Size: TypeAlias = int
 

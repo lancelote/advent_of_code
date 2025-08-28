@@ -1,8 +1,7 @@
 """2019 - Day 3 Part 1: Crossed Wires."""
 
 from collections import defaultdict
-from dataclasses import dataclass
-from dataclasses import field
+from dataclasses import dataclass, field
 from typing import DefaultDict
 
 SHIFT = {
@@ -66,9 +65,7 @@ class Grid:
     @property
     def closest(self) -> int:
         """Return the distance to the closest to (0, 0) intersection."""
-        node = min(
-            self.tuple_intersections, key=lambda x: abs(x[0]) + abs(x[1])
-        )
+        node = min(self.tuple_intersections, key=lambda x: abs(x[0]) + abs(x[1]))
         return abs(node[0]) + abs(node[1])
 
 

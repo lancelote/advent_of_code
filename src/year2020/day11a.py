@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from enum import Enum
 from typing import assert_never
@@ -44,10 +43,7 @@ class Matrix:
 
     @classmethod
     def from_task(cls, task: str) -> Matrix:
-        data = [
-            [Cell(char) for char in list(line)]
-            for line in task.strip().split("\n")
-        ]
+        data = [[Cell(char) for char in list(line)] for line in task.strip().split("\n")]
         return cls(data)
 
     @property

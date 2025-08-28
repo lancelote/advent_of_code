@@ -1,8 +1,6 @@
 """2021 - Day 17 Part 2: Trick Shot."""
 
-from src.year2021.day17a import Target
-from src.year2021.day17a import Trajectory
-from src.year2021.day17a import Velocity
+from src.year2021.day17a import Target, Trajectory, Velocity
 
 
 def count_hit_trajectories(target: Target) -> int:

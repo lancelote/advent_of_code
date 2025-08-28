@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 
@@ -53,9 +52,7 @@ class Memory:
             self.files.append(file)
 
             if i + 1 < len(line):
-                space = Space(
-                    pk=i // 2, ptr=len(self.data), length=int(line[i + 1])
-                )
+                space = Space(pk=i // 2, ptr=len(self.data), length=int(line[i + 1]))
                 space.append_to(memory=self)
                 self.spaces.append(space)
 
