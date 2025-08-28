@@ -2,10 +2,7 @@
 
 
 def process_data(task: str) -> list[int]:
-    return [
-        sum(int(food) for food in elf.split("\n"))
-        for elf in task.split("\n\n")
-    ]
+    return [sum(int(food) for food in elf.split("\n")) for elf in task.split("\n\n")]
 
 
 def solve(task: str) -> int:

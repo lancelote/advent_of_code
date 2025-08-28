@@ -1,14 +1,10 @@
 """2021 - Day 9 Part 2: Smoke Basin."""
 
 from collections import deque
-from collections.abc import Iterable
-from collections.abc import Iterator
+from collections.abc import Iterable, Iterator
 from typing import Deque
 
-from src.year2021.day09a import Heightmap
-from src.year2021.day09a import Point
-from src.year2021.day09a import adjacent
-from src.year2021.day09a import lowest
+from src.year2021.day09a import Heightmap, Point, adjacent, lowest
 
 
 def basins(low_points: Iterable[Point], heightmap: Heightmap) -> Iterator[int]:
@@ -32,10 +28,7 @@ def basins(low_points: Iterable[Point], heightmap: Heightmap) -> Iterator[int]:
 
 def solve(task: str) -> int:
     """Get top-3 basin sizes product."""
-    heightmap = [
-        [int(x) for x in list(line.strip())]
-        for line in task.strip().split("\n")
-    ]
+    heightmap = [[int(x) for x in list(line.strip())] for line in task.strip().split("\n")]
     low_points = lowest(heightmap)
     basin_sizes = sorted(basins(low_points, heightmap), reverse=True)
     return basin_sizes[0] * basin_sizes[1] * basin_sizes[2]

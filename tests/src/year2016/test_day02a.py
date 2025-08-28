@@ -2,9 +2,7 @@
 
 import unittest
 
-from src.year2016.day02a import Keypad
-from src.year2016.day02a import processed_data
-from src.year2016.day02a import solve
+from src.year2016.day02a import Keypad, processed_data, solve
 
 
 class ProcessedDataTest(unittest.TestCase):
@@ -109,9 +107,7 @@ class NotStandardKeypad(unittest.TestCase):
         self.assertTrue(self.keypad.can_move_left())
 
     def test_complete_layout(self):
-        self.assertEqual(
-            self.keypad.layout, [[None, 1, None], [2, 3, 4], [None, 5, None]]
-        )
+        self.assertEqual(self.keypad.layout, [[None, 1, None], [2, 3, 4], [None, 5, None]])
 
 
 class SolveTest(unittest.TestCase):

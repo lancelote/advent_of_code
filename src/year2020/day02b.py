@@ -1,8 +1,6 @@
 """2020 - Day 2 Part 2: Password Philosophy."""
 
-from src.year2020.day02a import Password
-from src.year2020.day02a import Policy
-from src.year2020.day02a import process_data
+from src.year2020.day02a import Password, Policy, process_data
 
 
 def xor(a: bool, b: bool) -> bool:

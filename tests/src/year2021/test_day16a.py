@@ -2,10 +2,7 @@
 
 import pytest
 
-from src.year2021.day16a import BITS
-from src.year2021.day16a import LiteralPacket
-from src.year2021.day16a import OperatorPacket
-from src.year2021.day16a import solve
+from src.year2021.day16a import BITS, LiteralPacket, OperatorPacket, solve
 
 
 def test_literal_packet():

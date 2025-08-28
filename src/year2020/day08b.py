@@ -1,8 +1,6 @@
 """2020 - Day 8 Part 1: Handheld Halting."""
 
-from src.year2020.day08a import Instruction
-from src.year2020.day08a import process_data
-from src.year2020.day08a import run
+from src.year2020.day08a import Instruction, process_data, run
 
 
 def attempt(instructions: list[Instruction]) -> int:

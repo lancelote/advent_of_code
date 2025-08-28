@@ -5,10 +5,7 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2018.day04a import Event
-from src.year2018.day04a import Record
-from src.year2018.day04a import solve
-from src.year2018.day04a import total_minutes
+from src.year2018.day04a import Event, Record, solve, total_minutes
 
 
 @pytest.mark.parametrize(

@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import DefaultDict
-from typing import TypeAlias
+from typing import DefaultDict, TypeAlias
 
 ChemicalName: TypeAlias = str
 
@@ -62,9 +61,7 @@ class Factory:
         for line in data.strip().split("\n"):
             ins_str, out_str = line.split(" => ")
             out = ChemicalRecipe.from_str(out_str)
-            ins = [
-                ChemicalRecipe.from_str(item) for item in ins_str.split(", ")
-            ]
+            ins = [ChemicalRecipe.from_str(item) for item in ins_str.split(", ")]
             reaction = Reaction(out.quantity, ins)
 
             assert out.name not in reactions, f"known output {out.name}"
@@ -88,9 +85,7 @@ class Factory:
             multiplier = get_multiplier(desired_quantity, reaction.quantity)
 
             for chemical_recipe in reaction.ins:
-                self.add_to_production(
-                    chemical_recipe.name, chemical_recipe.quantity * multiplier
-                )
+                self.add_to_production(chemical_recipe.name, chemical_recipe.quantity * multiplier)
 
 
 def solve(task: str) -> int:

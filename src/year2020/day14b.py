@@ -1,9 +1,6 @@
 """2020 - Day 14 Part 2: Docking Data."""
 
-from src.year2020.day14a import Mask
-from src.year2020.day14a import Memory
-from src.year2020.day14a import Program
-from src.year2020.day14a import process_data
+from src.year2020.day14a import Mask, Memory, Program, process_data
 
 
 class MaskV2(Mask):
@@ -15,9 +12,7 @@ class MaskV2(Mask):
             rest_value = str_value[pos:]
             rest_mask = self.mask[pos:]
 
-            for i, (bit, mask_bit) in enumerate(
-                zip(rest_value, rest_mask), start=pos
-            ):
+            for i, (bit, mask_bit) in enumerate(zip(rest_value, rest_mask), start=pos):
                 if mask_bit == "X":
                     collect_results(result + "0", i + 1)
                     collect_results(result + "1", i + 1)

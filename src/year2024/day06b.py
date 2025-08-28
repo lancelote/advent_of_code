@@ -1,8 +1,6 @@
 """2024 - Day 6 Part 2: Guard Gallivant"""
 
-from src.year2024.day06a import SHIFTS
-from src.year2024.day06a import TURN
-from src.year2024.day06a import find_guard
+from src.year2024.day06a import SHIFTS, TURN, find_guard
 
 
 def is_paradox(gr: int, gc: int, data: list[list[str]]) -> bool:

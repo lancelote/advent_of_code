@@ -40,10 +40,7 @@ def lowest(heightmap: Heightmap) -> Iterator[Point]:
     for i, row in enumerate(heightmap):
         for j, height in enumerate(row):
             current = Point(i, j, height)
-            if all(
-                neighbor.height > current.height
-                for neighbor in adjacent(current, heightmap)
-            ):
+            if all(neighbor.height > current.height for neighbor in adjacent(current, heightmap)):
                 yield current
 
 
@@ -53,9 +50,6 @@ def risk_level(point: int) -> int:
 
 def solve(task: str) -> int:
     """Sum risk level of the lowest heightmap points."""
-    heightmap = [
-        [int(x) for x in list(line.strip())]
-        for line in task.strip().split("\n")
-    ]
+    heightmap = [[int(x) for x in list(line.strip())] for line in task.strip().split("\n")]
     low_points = lowest(heightmap)
     return sum(risk_level(point.height) for point in low_points)

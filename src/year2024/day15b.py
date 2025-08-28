@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import StrEnum
 
@@ -52,14 +51,10 @@ class Bulky(Object, ABC):
 
         if (nr, nc) in warehouse.objects:
             neighbor1 = warehouse.objects[(nr, nc)]
-            moveable &= neighbor1 is self or neighbor1.can_move(
-                instruction, warehouse
-            )
+            moveable &= neighbor1 is self or neighbor1.can_move(instruction, warehouse)
         if (nr, nc + 1) in warehouse.objects:
             neighbor2 = warehouse.objects[(nr, nc + 1)]
-            moveable &= neighbor2 is self or neighbor2.can_move(
-                instruction, warehouse
-            )
+            moveable &= neighbor2 is self or neighbor2.can_move(instruction, warehouse)
 
         return moveable
 

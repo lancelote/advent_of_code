@@ -4,8 +4,7 @@ import itertools
 
 import pytest
 
-from src.year2017.day03b import Memory
-from src.year2017.day03b import solve
+from src.year2017.day03b import Memory, solve
 
 
 @pytest.fixture(name="memory")

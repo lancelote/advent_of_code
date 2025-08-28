@@ -4,8 +4,7 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2023.day01b import get_num
-from src.year2023.day01b import solve
+from src.year2023.day01b import get_num, solve
 
 
 @pytest.mark.parametrize(

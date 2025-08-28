@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from dataclasses import dataclass
-from dataclasses import field
+from dataclasses import dataclass, field
 
 
 def add(a: int, b: int) -> int:
@@ -77,9 +76,7 @@ class Monkey:
         *_, false_monkey_str = lines[5].strip().split(" ")
         false_monkey = int(false_monkey_str)
 
-        return Monkey(
-            monkey_id, op, test_value, true_money, false_monkey, items
-        )
+        return Monkey(monkey_id, op, test_value, true_money, false_monkey, items)
 
     def test(self, value: int) -> bool:
         return value % self.test_value == 0

@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import NamedTuple
-from typing import assert_never
+from typing import NamedTuple, assert_never
 
 
 class Point(NamedTuple):
@@ -106,9 +105,7 @@ def parse_task(task: str) -> tuple[Paper, list[Instruction]]:
     raw_paper, raw_instructions = task.split("\n\n")
 
     paper = Paper.from_text(raw_paper)
-    instructions = [
-        Instruction.from_line(line) for line in raw_instructions.splitlines()
-    ]
+    instructions = [Instruction.from_line(line) for line in raw_instructions.splitlines()]
 
     return paper, instructions
 

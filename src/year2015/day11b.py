@@ -2,8 +2,7 @@
 
 from dataclasses import dataclass
 from string import ascii_lowercase
-from typing import Any
-from typing import Self
+from typing import Any, Self
 
 TO_INT = {x: i for i, x in enumerate(ascii_lowercase)}
 TO_STR = {i: x for i, x in enumerate(ascii_lowercase)}
@@ -62,10 +61,7 @@ class Number:
 
         i = 0
         while i < len(self.data) - 1:
-            if (
-                self.data[i] == self.data[i + 1]
-                and self.data[i] not in used_pair_digits
-            ):
+            if self.data[i] == self.data[i + 1] and self.data[i] not in used_pair_digits:
                 pairs += 1
                 used_pair_digits.add(self.data[i])
                 i += 1

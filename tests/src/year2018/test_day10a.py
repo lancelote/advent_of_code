@@ -4,8 +4,7 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2018.day10a import Point
-from src.year2018.day10a import Sky
+from src.year2018.day10a import Point, Sky
 
 
 class TestPoint:

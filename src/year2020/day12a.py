@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import re
 from enum import Enum
-from typing import NamedTuple
-from typing import assert_never
+from typing import NamedTuple, assert_never
 
 
 class Direction(Enum):
@@ -60,9 +59,7 @@ class Ship:
         elif instruction.direction is Direction.RIGHT:
             self.turn(instruction.value)
         elif instruction.direction is Direction.FORWARD:
-            self.apply_instruction(
-                Instruction(self.direction, instruction.value)
-            )
+            self.apply_instruction(Instruction(self.direction, instruction.value))
         else:
             assert_never(instruction.direction)
 

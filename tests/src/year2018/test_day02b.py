@@ -2,8 +2,7 @@
 
 from textwrap import dedent
 
-from src.year2018.day02b import get_similar_id_part
-from src.year2018.day02b import solve
+from src.year2018.day02b import get_similar_id_part, solve
 
 
 def test_get_similar_id_part():

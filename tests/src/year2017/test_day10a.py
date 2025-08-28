@@ -2,8 +2,7 @@
 
 import pytest
 
-from src.year2017.day10a import Rope
-from src.year2017.day10a import process_data
+from src.year2017.day10a import Rope, process_data
 
 
 @pytest.fixture(name="rope")

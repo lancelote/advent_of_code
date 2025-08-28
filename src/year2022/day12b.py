@@ -3,10 +3,7 @@
 import sys
 from collections.abc import Iterator
 
-from src.year2022.day12a import Square
-from src.year2022.day12a import bfs
-from src.year2022.day12a import construct_heightmap
-from src.year2022.day12a import find
+from src.year2022.day12a import Square, bfs, construct_heightmap, find
 
 
 def find_all(target: str, task: str) -> Iterator[Square]:

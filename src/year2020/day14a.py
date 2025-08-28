@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import re
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict

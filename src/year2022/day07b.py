@@ -1,7 +1,6 @@
 """2022 - Day 7 Part 2: No Space Left On Device."""
 
-from src.year2022.day07a import count_size
-from src.year2022.day07a import process_data
+from src.year2022.day07a import count_size, process_data
 
 
 def solve(task: str) -> int:

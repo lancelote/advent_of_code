@@ -1,7 +1,6 @@
 """2015 - Day 8 Part 2: Matchsticks."""
 
-from src.year2015.day08a import String
-from src.year2015.day08a import process_data
+from src.year2015.day08a import String, process_data
 
 
 def encode_len(string: String) -> int:

@@ -2,11 +2,7 @@
 
 import pytest
 
-from src.year2017.day10b import compress
-from src.year2017.day10b import process_data
-from src.year2017.day10b import solve
-from src.year2017.day10b import split
-from src.year2017.day10b import to_hex
+from src.year2017.day10b import compress, process_data, solve, split, to_hex
 
 
 def test_process_data():
@@ -28,9 +24,7 @@ def test_compress():
     assert compress([0, 1, 2, 3, 4, 5, 6, 7, 8], chunk=3) == [3, 2, 9]
 
 
-@pytest.mark.parametrize(
-    ("number", "expected"), [(64, "40"), (7, "07"), (255, "ff")]
-)
+@pytest.mark.parametrize(("number", "expected"), [(64, "40"), (7, "07"), (255, "ff")])
 def test_to_hex(number, expected):
     assert to_hex(number) == expected
 

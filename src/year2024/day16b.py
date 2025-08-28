@@ -1,9 +1,6 @@
 """2024 - Day 16 Part 2: Reindeer Maze"""
 
-from src.year2024.day16a import SHIFTS
-from src.year2024.day16a import TO_LEFT
-from src.year2024.day16a import TO_RIGHT
-from src.year2024.day16a import Direction
+from src.year2024.day16a import SHIFTS, TO_LEFT, TO_RIGHT, Direction
 
 
 def solve(task: str) -> int:

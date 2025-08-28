@@ -2,8 +2,7 @@
 
 import pytest
 
-from src.year2017.day02a import process_data
-from src.year2017.day02a import solve
+from src.year2017.day02a import process_data, solve
 
 
 @pytest.fixture(name="data")

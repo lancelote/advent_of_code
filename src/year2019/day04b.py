@@ -2,9 +2,7 @@
 
 import re
 
-from src.year2019.day04a import get_passwords
-from src.year2019.day04a import never_decrease
-from src.year2019.day04a import process_data
+from src.year2019.day04a import get_passwords, never_decrease, process_data
 
 
 def at_least_one_equal_pair(num: str) -> bool:

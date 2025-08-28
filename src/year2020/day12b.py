@@ -4,10 +4,7 @@ from __future__ import annotations
 
 from typing import assert_never
 
-from src.year2020.day12a import Direction
-from src.year2020.day12a import Instruction
-from src.year2020.day12a import Ship
-from src.year2020.day12a import process_data
+from src.year2020.day12a import Direction, Instruction, Ship, process_data
 
 
 class Waypoint:

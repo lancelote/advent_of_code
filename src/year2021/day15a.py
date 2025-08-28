@@ -91,10 +91,7 @@ def walk(start: Point, target: Point, risk_map: RiskMap) -> int:
             self_risk = risk_map[point]
             candidate_path_risk = current_path_risk + self_risk
 
-            if (
-                point not in cumulative_risk
-                or cumulative_risk[point] > candidate_path_risk
-            ):
+            if point not in cumulative_risk or cumulative_risk[point] > candidate_path_risk:
                 cumulative_risk[point] = candidate_path_risk
                 to_visit.add(point)
 

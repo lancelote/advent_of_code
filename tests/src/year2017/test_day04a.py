@@ -2,8 +2,7 @@
 
 import pytest
 
-from src.year2017.day04a import count_valid
-from src.year2017.day04a import duplicates
+from src.year2017.day04a import count_valid, duplicates
 
 
 @pytest.mark.parametrize(

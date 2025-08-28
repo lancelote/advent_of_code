@@ -1,7 +1,6 @@
 """2015 - Day 7 Part 2: Some Assembly Required."""
 
-from src.year2015.day07a import Solution
-from src.year2015.day07a import process_data
+from src.year2015.day07a import Solution, process_data
 
 
 def solve(task: str) -> int:

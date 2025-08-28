@@ -2,10 +2,7 @@
 
 import unittest
 
-from src.year2016.day07a import IP
-from src.year2016.day07a import process_date
-from src.year2016.day07a import process_line
-from src.year2016.day07a import solve
+from src.year2016.day07a import IP, process_date, process_line, solve
 
 
 class ProcessLineTest(unittest.TestCase):
@@ -88,10 +85,5 @@ class HasABBATest(unittest.TestCase):
 
 class SolveTest(unittest.TestCase):
     def test_solve(self):
-        task = (
-            "abba[mnop]qrst\n"
-            "abcd[bddb]xyyx\n"
-            "aaaa[qwer]tyui\n"
-            "ioxxoj[asdfgh]zxcvbn\n"
-        )
+        task = "abba[mnop]qrst\nabcd[bddb]xyyx\naaaa[qwer]tyui\nioxxoj[asdfgh]zxcvbn\n"
         self.assertEqual(solve(task), 2)
