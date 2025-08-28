@@ -10,31 +10,28 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set up Python
+      - name: set up Python
         uses: actions/setup-python@v5
         with:
           python-version-file: .python-version
 
-      - uses: astral-sh/setup-uv@v6
+      - name: install uv
+        uses: astral-sh/setup-uv@v6
         with:
           version: 0.8.13
           enable-cache: true
 
-      - name: Install the project
-        run: uv sync --locked --all-extras --dev
+      - name: install project
+        run: make install
 
       - name: lint
-        run: |
-          uv run ruff check --output-format=github
-          uv run prek --all-files trailing-whitespace check-yaml debug-statements check-added-large-files
+        run: make lint
 
       - name: format
-        run: |
-          uv run dprint check
-          uv run ruff format --check --diff
+        run: make ci-format
 
       - name: typecheck
-        run: uv run basedpyright
+        run: make typecheck
 
       - name: test
-        run: uv run pytest tests
+        run: make test

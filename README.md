@@ -30,8 +30,8 @@ python main.py solve 2017 5 a
 Solver uses [advent-of-code-data][1] to fetch tasks from the server. You
 need to set up a token for it to work. See the [instruction][2].
 
-I use .python-version for development. The code should work fine with older
-versions, but it is not guaranteed.
+For Python version used for development see [.python-version](.python-version).
+The code should work fine with older versions, but it is not guaranteed.
 
 To install requirements, `uv` [needs to be installed first](https://docs.astral.sh/uv/getting-started/installation/)
 
@@ -50,16 +50,15 @@ uv sync --upgrade
 I store all the tests in `tests` folder and use `pytest` as a test runner
 
 ```bash
-uv run pytest tests
+make test
 ```
 
 ## Linters
 
-`basedpyright`, `ruff` and `dprint` are used in
-pre-commit hook. To run linters
+`basedpyright` and `ruff` are used to check the project
 
 ```bash
-uv run prek --all-files
+make check
 ```
 
 # Merry Christmas and Happy New Year!
