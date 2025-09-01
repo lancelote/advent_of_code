@@ -26,15 +26,19 @@ class Cell(Enum):
     OCCUPIED = "#"
 
     def generate_new(self, occupied: int, limit: int) -> Cell:
-        """Generate a new cell knowing the number of occupied neighbors."""
-        if self is Cell.FLOOR:
-            return Cell.FLOOR
-        elif self is Cell.EMPTY:
-            return Cell.OCCUPIED if occupied == 0 else Cell.EMPTY
-        elif self is Cell.OCCUPIED:
-            return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
-        else:
-            assert_never(self)
+        match self:
+
+            case Cell.FLOOR:
+                return Cell.FLOOR
+
+            case Cell.EMPTY:
+                return Cell.OCCUPIED if occupied == 0 else Cell.EMPTY
+
+            case Cell.OCCUPIED:
+                return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
+
+            case _:
+                assert_never(self)
 
 
 @dataclass
