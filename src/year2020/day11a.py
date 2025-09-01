@@ -27,7 +27,6 @@ class Cell(Enum):
 
     def generate_new(self, occupied: int, limit: int) -> Cell:
         match self:
-
             case Cell.FLOOR:
                 return Cell.FLOOR
 
