@@ -5,10 +5,10 @@ requires-python = ">=3.13"
 dependencies = [
   "advent-of-code-data>=2.1.0",
   "basedpyright>=1.31.3",
-  "click>=8.2.1",
   "pytest>=8.4.1",
   "pytest-mock>=3.14.1",
   "ruff>=0.12.11",
+  "typer>=0.17.3",
 ]
 
 [tool.ruff.lint]

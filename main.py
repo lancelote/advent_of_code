@@ -1,11 +1,14 @@
 """Puzzle Solver Runner."""
 
 import importlib
+from typing import Annotated
 
-import click
+import typer
 from aocd import get_data
 
 from utils.cli import DAY, PART, YEAR
+
+app = typer.Typer()
 
 
 class Solver:
@@ -21,22 +24,15 @@ class Solver:
         print("Answer:", solution)
 
 
-@click.group()
-@click.pass_context
-def cli(ctx):
-    """Solve Advent of Code puzzles."""
-    ctx.obj = Solver()
-
-
-@cli.command()
-@click.argument("year", type=YEAR)
-@click.argument("day", type=DAY)
-@click.argument("part", type=PART)
-@click.pass_obj
-def solve(solver, year, day, part):
+@app.command()
+def main(
+    year: Annotated[int, typer.Argument(click_type=YEAR)],
+    day: Annotated[int, typer.Argument(click_type=DAY)],
+    part: Annotated[str, typer.Argument(click_type=PART)],
+):
     """Solve the given puzzle."""
-    solver.main(year, day, part)
+    Solver().main(year, day, part)
 
 
 if __name__ == "__main__":
-    cli()
+    app()

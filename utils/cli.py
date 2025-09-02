@@ -22,6 +22,8 @@ class YearType(click.ParamType):
     SUPPORTED_YEARS variable stores all available years (2018, etc.).
     """
 
+    name = "Year"
+
     def convert(self, value, param, ctx):
         try:
             assert value in SUPPORTED_YEARS
@@ -37,6 +39,8 @@ class DayType(click.ParamType):
     From 1 to 31 range inclusive.
     """
 
+    name = "Day"
+
     def convert(self, value, param, ctx):
         try:
             value = int(value)
@@ -51,6 +55,8 @@ class PartType(click.ParamType):
 
     Either literal “a” or “b”.
     """
+
+    name = "Part"
 
     def convert(self, value, param, ctx):
         formatted_value = value.lower()
