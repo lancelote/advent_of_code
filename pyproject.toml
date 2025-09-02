@@ -11,9 +11,6 @@ dependencies = [
   "typer>=0.17.3",
 ]
 
-[tool.ruff.isort]
-force-single-line = true
-
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
@@ -104,3 +101,6 @@ ignore = [
   "UP035",
   "UP040",
 ]
+
+[tool.ruff.lint.isort]
+force-single-line = true
