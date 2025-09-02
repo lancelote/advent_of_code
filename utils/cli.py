@@ -1,4 +1,5 @@
 """CLI arguments validation helpers."""
+from typing import final
 
 import click
 
@@ -16,6 +17,7 @@ SUPPORTED_YEARS = [
 ]
 
 
+@final
 class YearType(click.ParamType):
     """Year validation.
 
@@ -33,6 +35,7 @@ class YearType(click.ParamType):
             self.fail(f"Expected {supported_year}, got {value}", param, ctx)
 
 
+@final
 class DayType(click.ParamType):
     """Day validation.
 
@@ -50,6 +53,7 @@ class DayType(click.ParamType):
             self.fail(f"Expected in range 1-31, got {value}", param, ctx)
 
 
+@final
 class PartType(click.ParamType):
     """Task part validation.
 
