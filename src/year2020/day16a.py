@@ -71,7 +71,9 @@ class Puzzle:
 
         ticket = Ticket.from_text(raw_ticket.split("\n")[1])
 
-        tickets = [Ticket.from_text(line) for line in raw_tickets.split("\n")[1:]]
+        tickets = [
+            Ticket.from_text(line) for line in raw_tickets.split("\n")[1:]
+        ]
 
         return Puzzle(rules, ticket, tickets)
 

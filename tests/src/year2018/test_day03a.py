@@ -4,7 +4,13 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2018.day03a import Claim, apply_claim, parse_claim, process_data, solve
+from src.year2018.day03a import (
+    Claim,
+    apply_claim,
+    parse_claim,
+    process_data,
+    solve,
+)
 
 
 @pytest.mark.parametrize(

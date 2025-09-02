@@ -76,7 +76,9 @@ class Monkey:
         *_, false_monkey_str = lines[5].strip().split(" ")
         false_monkey = int(false_monkey_str)
 
-        return Monkey(monkey_id, op, test_value, true_money, false_monkey, items)
+        return Monkey(
+            monkey_id, op, test_value, true_money, false_monkey, items
+        )
 
     def test(self, value: int) -> bool:
         return value % self.test_value == 0

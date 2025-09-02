@@ -17,7 +17,9 @@ class Row:
         @cache
         def dfs(i: int, j: int, filled: int) -> int:
             if i == len(self.springs):
-                if (j == n and filled == 0) or (j == n - 1 and filled == self.segments[j]):
+                if (j == n and filled == 0) or (
+                    j == n - 1 and filled == self.segments[j]
+                ):
                     return 1
                 else:
                     return 0

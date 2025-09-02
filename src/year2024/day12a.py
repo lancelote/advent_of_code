@@ -18,7 +18,9 @@ class Region:
         self.points: set[tuple[int, int]] = set()
 
     @classmethod
-    def from_point(cls, sr: int, sc: int, data: list[str], seen: set[tuple[int, int]]) -> Region:
+    def from_point(
+        cls, sr: int, sc: int, data: list[str], seen: set[tuple[int, int]]
+    ) -> Region:
         rows = len(data)
         cols = len(data[0])
 
@@ -68,11 +70,23 @@ class Region:
                 ((r, c + 1), (r + 1, c + 1), (r + 1, c)),
                 ((r, c - 1), (r + 1, c - 1), (r + 1, c)),
             ):
-                if x in self.points and y not in self.points and z in self.points:
+                if (
+                    x in self.points
+                    and y not in self.points
+                    and z in self.points
+                ):
                     count += 1
-                if x not in self.points and y not in self.points and z not in self.points:
+                if (
+                    x not in self.points
+                    and y not in self.points
+                    and z not in self.points
+                ):
                     count += 1
-                if x not in self.points and y in self.points and z not in self.points:
+                if (
+                    x not in self.points
+                    and y in self.points
+                    and z not in self.points
+                ):
                     count += 1
         return count
 

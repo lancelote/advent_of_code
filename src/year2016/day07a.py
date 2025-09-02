@@ -6,7 +6,9 @@ from collections.abc import Generator
 class IP:
     """IPv7 representation."""
 
-    def __init__(self, supernet_parts: list[str], hypernet_parts: list[str]) -> None:
+    def __init__(
+        self, supernet_parts: list[str], hypernet_parts: list[str]
+    ) -> None:
         """Create an IPv7 instance.
 
         Args:
@@ -21,7 +23,11 @@ class IP:
     def _has_abba(part: str) -> bool:
         """Check if the string has ABBA."""
         for i in range(max(len(part) - 3, 0)):
-            if part[i] == part[i + 3] and part[i + 1] == part[i + 2] and part[i] != part[i + 1]:
+            if (
+                part[i] == part[i + 3]
+                and part[i + 1] == part[i + 2]
+                and part[i] != part[i + 1]
+            ):
                 return True
         return False
 

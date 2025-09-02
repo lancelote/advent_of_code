@@ -4,7 +4,9 @@
 class Keypad:
     """Digital representation of the keypad."""
 
-    def __init__(self, layout: list[list[int | str | None]], row: int = 1, col: int = 1) -> None:
+    def __init__(
+        self, layout: list[list[int | str | None]], row: int = 1, col: int = 1
+    ) -> None:
         """Create the keypad representation.
 
         Args:

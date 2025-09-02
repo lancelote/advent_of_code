@@ -27,11 +27,19 @@ def construct_map(land: Land) -> Map:
                 m[(r, c)].add((r - 1, c))
 
             # E
-            if c < cols - 1 and land[r][c] in E_CONN and land[r][c + 1] in W_CONN:
+            if (
+                c < cols - 1
+                and land[r][c] in E_CONN
+                and land[r][c + 1] in W_CONN
+            ):
                 m[(r, c)].add((r, c + 1))
 
             # S
-            if r < rows - 1 and land[r][c] in S_CONN and land[r + 1][c] in N_CONN:
+            if (
+                r < rows - 1
+                and land[r][c] in S_CONN
+                and land[r + 1][c] in N_CONN
+            ):
                 m[(r, c)].add((r + 1, c))
 
             # W

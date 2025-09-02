@@ -5,4 +5,7 @@ from src.year2015.day02a import process_data
 
 def solve(task: str) -> int:
     boxes = process_data(task)
-    return sum(2 * (sum(box) - max(box)) + box.width * box.height * box.length for box in boxes)
+    return sum(
+        2 * (sum(box) - max(box)) + box.width * box.height * box.length
+        for box in boxes
+    )

@@ -82,7 +82,10 @@ class Hull(defaultdict[Coordinates, Panel]):
         min_y = min(self.keys(), key=lambda point: point.y).y
         max_y = max(self.keys(), key=lambda point: point.y).y
 
-        canvas = [["?" for _ in range(max_x - min_x + 1)] for _ in range(max_y - min_y + 1)]
+        canvas = [
+            ["?" for _ in range(max_x - min_x + 1)]
+            for _ in range(max_y - min_y + 1)
+        ]
 
         for coordinates, panel in self.items():
             x = coordinates.x - min_x

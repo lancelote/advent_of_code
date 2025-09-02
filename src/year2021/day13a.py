@@ -105,7 +105,9 @@ def parse_task(task: str) -> tuple[Paper, list[Instruction]]:
     raw_paper, raw_instructions = task.split("\n\n")
 
     paper = Paper.from_text(raw_paper)
-    instructions = [Instruction.from_line(line) for line in raw_instructions.splitlines()]
+    instructions = [
+        Instruction.from_line(line) for line in raw_instructions.splitlines()
+    ]
 
     return paper, instructions
 

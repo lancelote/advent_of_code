@@ -107,7 +107,9 @@ class NotStandardKeypad(unittest.TestCase):
         self.assertTrue(self.keypad.can_move_left())
 
     def test_complete_layout(self):
-        self.assertEqual(self.keypad.layout, [[None, 1, None], [2, 3, 4], [None, 5, None]])
+        self.assertEqual(
+            self.keypad.layout, [[None, 1, None], [2, 3, 4], [None, 5, None]]
+        )
 
 
 class SolveTest(unittest.TestCase):

@@ -12,7 +12,9 @@ intersect = set.intersection
 
 
 class Screen:
-    def __init__(self, a: str, b: str, c: str, d: str, e: str, f: str, g: str) -> None:
+    def __init__(
+        self, a: str, b: str, c: str, d: str, e: str, f: str, g: str
+    ) -> None:
         self.a = a
         self.b = b
         self.c = c
@@ -73,4 +75,7 @@ class Screen:
 
 def solve(task: str) -> int:
     entries = process_data(task)
-    return sum(Screen.from_signal(entry.signal).parse_output(entry.output) for entry in entries)
+    return sum(
+        Screen.from_signal(entry.signal).parse_output(entry.output)
+        for entry in entries
+    )

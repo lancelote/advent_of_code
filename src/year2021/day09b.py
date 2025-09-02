@@ -28,7 +28,10 @@ def basins(low_points: Iterable[Point], heightmap: Heightmap) -> Iterator[int]:
 
 def solve(task: str) -> int:
     """Get top-3 basin sizes product."""
-    heightmap = [[int(x) for x in list(line.strip())] for line in task.strip().split("\n")]
+    heightmap = [
+        [int(x) for x in list(line.strip())]
+        for line in task.strip().split("\n")
+    ]
     low_points = lowest(heightmap)
     basin_sizes = sorted(basins(low_points, heightmap), reverse=True)
     return basin_sizes[0] * basin_sizes[1] * basin_sizes[2]

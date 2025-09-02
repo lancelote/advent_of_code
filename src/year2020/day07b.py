@@ -36,7 +36,10 @@ def process_data(task: str) -> Bags:
 
 
 def count_bags(bags: Bags, parent: str = "shiny gold") -> int:
-    return sum(child.num + child.num * count_bags(bags, child.color) for child in bags[parent])
+    return sum(
+        child.num + child.num * count_bags(bags, child.color)
+        for child in bags[parent]
+    )
 
 
 def solve(task: str) -> int:

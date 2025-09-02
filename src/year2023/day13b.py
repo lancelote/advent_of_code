@@ -27,7 +27,9 @@ def get_cols(pattern: list[str]) -> list[str]:
     n_rows = len(pattern)
     n_cols = len(pattern[0])
 
-    return ["".join(pattern[r][c] for r in range(n_rows)) for c in range(n_cols)]
+    return [
+        "".join(pattern[r][c] for r in range(n_rows)) for c in range(n_cols)
+    ]
 
 
 def process_data(task: str) -> list[list[str]]:

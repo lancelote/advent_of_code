@@ -4,7 +4,9 @@ import operator
 from collections import defaultdict, namedtuple
 from typing import DefaultDict
 
-Instruction = namedtuple("Instruction", ["register", "op", "value", "base", "check", "limit"])
+Instruction = namedtuple(
+    "Instruction", ["register", "op", "value", "base", "check", "limit"]
+)
 
 OPERATORS = {
     ">": operator.gt,

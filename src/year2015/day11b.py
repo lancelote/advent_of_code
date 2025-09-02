@@ -61,7 +61,10 @@ class Number:
 
         i = 0
         while i < len(self.data) - 1:
-            if self.data[i] == self.data[i + 1] and self.data[i] not in used_pair_digits:
+            if (
+                self.data[i] == self.data[i + 1]
+                and self.data[i] not in used_pair_digits
+            ):
                 pairs += 1
                 used_pair_digits.add(self.data[i])
                 i += 1

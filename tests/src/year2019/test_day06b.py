@@ -7,7 +7,9 @@ from src.year2019.day06b import closest_distance, process_data
 
 @pytest.fixture
 def raw_orbit_data():
-    return "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN"
+    return (
+        "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN"
+    )
 
 
 def test_process_data(raw_orbit_data):

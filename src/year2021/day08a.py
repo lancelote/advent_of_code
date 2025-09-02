@@ -26,4 +26,6 @@ def process_data(data: str) -> list[Entry]:
 def solve(task: str) -> int:
     entries = process_data(task)
     simple = {2, 3, 4, 7}
-    return sum(len(pattern) in simple for entry in entries for pattern in entry.output)
+    return sum(
+        len(pattern) in simple for entry in entries for pattern in entry.output
+    )

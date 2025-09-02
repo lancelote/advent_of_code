@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [tool.ruff]
-line-length = 100
+line-length = 80
 
 [tool.ruff.lint]
 select = ["ALL"]

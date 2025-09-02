@@ -21,7 +21,9 @@ def process_date(data: str) -> Parents:
     return parents
 
 
-def next_step(parents: Parents, done: set[Step], todo: set[Step]) -> Step | None:
+def next_step(
+    parents: Parents, done: set[Step], todo: set[Step]
+) -> Step | None:
     """Get next available step to take."""
     ready = set()
     for step in todo:

@@ -18,7 +18,12 @@ class Chart:
     @classmethod
     def from_string(cls, string: str) -> Chart:
         """Covert a raw task into a chart."""
-        return cls([[location == "#" for location in line] for line in string.strip().split("\n")])
+        return cls(
+            [
+                [location == "#" for location in line]
+                for line in string.strip().split("\n")
+            ]
+        )
 
     def not_base(self, x: int, y: int) -> bool:
         """Check if a given point is a base."""

@@ -10,7 +10,9 @@ class Shuttle(NamedTuple):
 
 def process_data(data: str) -> list[Shuttle]:
     _, pks = data.strip().split("\n")
-    return [Shuttle(i, int(pk)) for i, pk in enumerate(pks.split(",")) if pk != "x"]
+    return [
+        Shuttle(i, int(pk)) for i, pk in enumerate(pks.split(",")) if pk != "x"
+    ]
 
 
 def find_earliest(shuttles: list[Shuttle]) -> int:
