@@ -778,14 +778,6 @@
         ],
         "./src/year2018/day06a.py": [
             {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 24,
-                    "endColumn": 35,
-                    "lineCount": 1
-                }
-            },
-            {
                 "code": "reportUnannotatedClassAttribute",
                 "range": {
                     "startColumn": 13,
@@ -894,14 +886,6 @@
                 "range": {
                     "startColumn": 28,
                     "endColumn": 31,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 15,
-                    "endColumn": 26,
                     "lineCount": 1
                 }
             },
@@ -1452,14 +1436,6 @@
             {
                 "code": "reportDeprecated",
                 "range": {
-                    "startColumn": 32,
-                    "endColumn": 37,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportDeprecated",
-                "range": {
                     "startColumn": 9,
                     "endColumn": 20,
                     "lineCount": 1
@@ -1622,22 +1598,6 @@
                 "range": {
                     "startColumn": 8,
                     "endColumn": 15,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 11,
-                    "endColumn": 16,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 12,
-                    "endColumn": 17,
                     "lineCount": 1
                 }
             }
@@ -3755,22 +3715,6 @@
             }
         ],
         "./src/year2022/day13a.py": [
-            {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 30,
-                    "endColumn": 35,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportDeprecated",
-                "range": {
-                    "startColumn": 25,
-                    "endColumn": 30,
-                    "lineCount": 1
-                }
-            },
             {
                 "code": "reportAny",
                 "range": {
@@ -8620,16 +8564,6 @@
                 "range": {
                     "startColumn": 35,
                     "endColumn": 41,
-                    "lineCount": 1
-                }
-            }
-        ],
-        "./tests/src/year2019/test_day08b.py": [
-            {
-                "code": "reportPrivateLocalImportUsage",
-                "range": {
-                    "startColumn": 46,
-                    "endColumn": 58,
                     "lineCount": 1
                 }
             }

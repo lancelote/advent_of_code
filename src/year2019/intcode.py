@@ -10,7 +10,6 @@ from copy import copy
 from dataclasses import dataclass
 from dataclasses import field
 from typing import DefaultDict
-from typing import Deque
 
 Memory = DefaultDict[int, int]
 
@@ -240,8 +239,8 @@ class Computer:
     execution index.
     """
 
-    stdin: Deque[int] = field(default_factory=deque)
-    stdout: Deque[int] = field(default_factory=deque)
+    stdin: deque[int] = field(default_factory=deque)
+    stdout: deque[int] = field(default_factory=deque)
 
     is_paused: bool = False
     is_halt: bool = False

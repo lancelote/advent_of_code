@@ -7,7 +7,6 @@ from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
 from typing import Any
-from typing import DefaultDict
 from typing import TypeVar
 
 T = TypeVar("T", bound="Grid")
@@ -114,7 +113,7 @@ class Grid:
         banned_x = {0, self.width}
         banned_y = {0, self.height}
         infinite: set[Pin] = set()
-        areas: DefaultDict[Pin, int] = defaultdict(int)
+        areas: defaultdict[Pin, int] = defaultdict(int)
 
         self.calc_distances()
 

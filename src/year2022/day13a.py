@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 import ast
-from typing import TypeAlias
-from typing import Union
 
-Packet: TypeAlias = list[Union[int, "Packet"]]
-Pair: TypeAlias = tuple[Packet, Packet]
+type Packet = list[int | Packet]
+type Pair = tuple[Packet, Packet]
 
 
 def parse_packet(line: str) -> Packet:
