@@ -2,7 +2,9 @@
 
 import pytest
 
-from src.year2020.day01a import find_2020_summands, process_data, solve
+from src.year2020.day01a import find_2020_summands
+from src.year2020.day01a import process_data
+from src.year2020.day01a import solve
 
 
 def test_process_data():

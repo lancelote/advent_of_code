@@ -4,7 +4,10 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2018.day06a import Coordinate, Dot, Grid, Pin
+from src.year2018.day06a import Coordinate
+from src.year2018.day06a import Dot
+from src.year2018.day06a import Grid
+from src.year2018.day06a import Pin
 
 
 @pytest.fixture

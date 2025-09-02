@@ -1,6 +1,7 @@
 """2017 - Day 8 Part 2: I Heard You Like Registers."""
 
-from src.year2017.day08a import perform_instructions, process_data
+from src.year2017.day08a import perform_instructions
+from src.year2017.day08a import process_data
 
 
 def solve(task: str) -> int:

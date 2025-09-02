@@ -1,10 +1,14 @@
 """2021 - Day 9 Part 2: Smoke Basin."""
 
 from collections import deque
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterable
+from collections.abc import Iterator
 from typing import Deque
 
-from src.year2021.day09a import Heightmap, Point, adjacent, lowest
+from src.year2021.day09a import Heightmap
+from src.year2021.day09a import Point
+from src.year2021.day09a import adjacent
+from src.year2021.day09a import lowest
 
 
 def basins(low_points: Iterable[Point], heightmap: Heightmap) -> Iterator[int]:

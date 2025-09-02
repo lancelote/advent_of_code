@@ -2,7 +2,10 @@
 
 import pytest
 
-from src.year2017.day07a import find_root, process_data, process_line, solve
+from src.year2017.day07a import find_root
+from src.year2017.day07a import process_data
+from src.year2017.day07a import process_line
+from src.year2017.day07a import solve
 
 
 @pytest.mark.parametrize(

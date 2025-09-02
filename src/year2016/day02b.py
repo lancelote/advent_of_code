@@ -1,6 +1,7 @@
 """2016 - Day 2 Part 2: Bathroom Security."""
 
-from src.year2016.day02a import Keypad, processed_data
+from src.year2016.day02a import Keypad
+from src.year2016.day02a import processed_data
 
 
 def solve(task: str) -> str:

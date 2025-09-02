@@ -3,7 +3,9 @@
 import itertools
 from collections import deque
 
-from src.year2022.day16a import left_score, parse_flow_rates, parse_tunnels
+from src.year2022.day16a import left_score
+from src.year2022.day16a import parse_flow_rates
+from src.year2022.day16a import parse_tunnels
 
 
 def get_path_length(a: str, b: str, tunnels: dict[str, list[str]]) -> int:

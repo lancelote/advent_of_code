@@ -3,7 +3,8 @@
 from collections import defaultdict
 from functools import lru_cache
 from itertools import product
-from typing import DefaultDict, TypeAlias
+from typing import DefaultDict
+from typing import TypeAlias
 
 Power: TypeAlias = int
 Cell: TypeAlias = tuple[int, int]

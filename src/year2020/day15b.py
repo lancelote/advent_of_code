@@ -1,6 +1,7 @@
 """2020 - Day 15 Part 2: Rambunctious Recitation."""
 
-from src.year2020.day15a import play, process_data
+from src.year2020.day15a import play
+from src.year2020.day15a import process_data
 
 
 def solve(task: str) -> int:

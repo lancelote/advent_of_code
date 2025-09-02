@@ -6,7 +6,9 @@ import math
 from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
-from typing import Any, DefaultDict, TypeVar
+from typing import Any
+from typing import DefaultDict
+from typing import TypeVar
 
 T = TypeVar("T", bound="Grid")
 

@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import DefaultDict, TypeAlias
+from typing import DefaultDict
+from typing import TypeAlias
 
 type ChemicalName = str
 

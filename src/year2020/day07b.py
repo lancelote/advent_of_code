@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
-from typing import NamedTuple, TypeAlias
+from typing import NamedTuple
+from typing import TypeAlias
 
 
 class InnerBag(NamedTuple):

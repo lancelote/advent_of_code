@@ -2,7 +2,8 @@
 
 import operator
 from collections import defaultdict
-from typing import DefaultDict, NamedTuple
+from typing import DefaultDict
+from typing import NamedTuple
 
 
 class Instruction(NamedTuple):

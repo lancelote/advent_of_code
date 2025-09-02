@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.year2019.day06b import closest_distance, process_data
+from src.year2019.day06b import closest_distance
+from src.year2019.day06b import process_data
 
 
 @pytest.fixture

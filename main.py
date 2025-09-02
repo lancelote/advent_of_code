@@ -6,7 +6,9 @@ from typing import Annotated
 import typer
 from aocd import get_data
 
-from utils.cli import DAY, PART, YEAR
+from utils.cli import DAY
+from utils.cli import PART
+from utils.cli import YEAR
 
 app = typer.Typer()
 

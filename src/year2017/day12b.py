@@ -1,6 +1,7 @@
 """2017 - Day 12 Part 2: Digital Plumber."""
 
-from src.year2017.day12a import process_data, process_nodes
+from src.year2017.day12a import process_data
+from src.year2017.day12a import process_nodes
 
 
 def solve(task: str) -> int:

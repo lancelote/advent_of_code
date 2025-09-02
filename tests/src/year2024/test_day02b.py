@@ -4,7 +4,9 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2024.day02b import is_decreasing, is_increasing, solve
+from src.year2024.day02b import is_decreasing
+from src.year2024.day02b import is_increasing
+from src.year2024.day02b import solve
 
 
 def test_solve():

@@ -2,7 +2,10 @@
 
 import pytest
 
-from src.year2015.day06a import Command, process_data, solve, update_light
+from src.year2015.day06a import Command
+from src.year2015.day06a import process_data
+from src.year2015.day06a import solve
+from src.year2015.day06a import update_light
 
 
 @pytest.mark.parametrize(

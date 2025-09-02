@@ -1,6 +1,7 @@
 """2024 - Day 10 Part 2: Hoof It"""
 
-from src.year2024.day10a import SHIFTS, find_trailheads
+from src.year2024.day10a import SHIFTS
+from src.year2024.day10a import find_trailheads
 
 
 def get_rating(trailhead: tuple[int, int], data: list[list[int]]) -> int:

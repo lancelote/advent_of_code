@@ -1,6 +1,7 @@
 """2017 - Day 6 Part 1: Memory Reallocation tests."""
 
-from src.year2017.day06a import Memory, solve
+from src.year2017.day06a import Memory
+from src.year2017.day06a import solve
 
 
 class TestMemory:

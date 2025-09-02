@@ -2,7 +2,8 @@
 
 from collections import deque
 
-from src.year2018.day12a import get_new_generation, process_data
+from src.year2018.day12a import get_new_generation
+from src.year2018.day12a import process_data
 
 
 def solve(task: str) -> int:

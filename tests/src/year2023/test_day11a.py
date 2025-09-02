@@ -2,7 +2,8 @@
 
 from textwrap import dedent
 
-from src.year2023.day11a import StarMap, solve
+from src.year2023.day11a import StarMap
+from src.year2023.day11a import solve
 
 
 def test_star_map():

@@ -1,6 +1,8 @@
 """2023 - Day 14 Part 2: Parabolic Reflector Dish"""
 
-from src.year2023.day14a import Platform, count_load, tilt_north
+from src.year2023.day14a import Platform
+from src.year2023.day14a import count_load
+from src.year2023.day14a import tilt_north
 
 
 def tilt_east(platform: Platform) -> None:

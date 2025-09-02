@@ -2,7 +2,9 @@
 
 from textwrap import dedent
 
-from src.year2023.day14b import Platform, cycle, solve
+from src.year2023.day14b import Platform
+from src.year2023.day14b import cycle
+from src.year2023.day14b import solve
 
 
 def to_str(platform: Platform) -> str:

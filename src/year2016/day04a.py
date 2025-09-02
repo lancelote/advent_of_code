@@ -3,7 +3,8 @@
 import operator
 import re
 from collections import Counter
-from typing import Any, NamedTuple
+from typing import Any
+from typing import NamedTuple
 
 ROOM_PATTERN = re.compile(
     r"^(?P<name>[a-z-]+)-(?P<sector_id>\d+)\[(?P<checksum>[a-z]+)]$"

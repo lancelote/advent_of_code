@@ -1,6 +1,7 @@
 """2021 - Day 12 Part 2: Passage Pathing."""
 
-from src.year2021.day12a import Cave, parse_task
+from src.year2021.day12a import Cave
+from src.year2021.day12a import parse_task
 
 
 def visit(cave: Cave, visited1: set[str], visited2: str | None = None) -> int:

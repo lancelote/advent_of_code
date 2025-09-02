@@ -2,7 +2,10 @@
 
 import pytest
 
-from src.year2015.day11a import has_two_pairs, incr, is_valid, to_num
+from src.year2015.day11a import has_two_pairs
+from src.year2015.day11a import incr
+from src.year2015.day11a import is_valid
+from src.year2015.day11a import to_num
 
 
 @pytest.mark.parametrize(

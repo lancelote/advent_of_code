@@ -4,7 +4,10 @@ from collections import defaultdict
 from string import ascii_uppercase
 from typing import DefaultDict
 
-from src.year2018.day07a import Parents, Step, next_step, process_date
+from src.year2018.day07a import Parents
+from src.year2018.day07a import Step
+from src.year2018.day07a import next_step
+from src.year2018.day07a import process_date
 
 
 def solve(

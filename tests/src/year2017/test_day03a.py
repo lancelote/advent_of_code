@@ -2,7 +2,9 @@
 
 import pytest
 
-from src.year2017.day03a import get_circle_number, get_deviation, solve
+from src.year2017.day03a import get_circle_number
+from src.year2017.day03a import get_deviation
+from src.year2017.day03a import solve
 
 
 class TestSolve:

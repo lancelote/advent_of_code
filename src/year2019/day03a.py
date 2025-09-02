@@ -1,7 +1,8 @@
 """2019 - Day 3 Part 1: Crossed Wires."""
 
 from collections import defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from dataclasses import field
 from typing import DefaultDict
 
 SHIFT = {

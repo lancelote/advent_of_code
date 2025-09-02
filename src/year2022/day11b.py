@@ -1,6 +1,7 @@
 """2022 - Day 11 Part 2: Monkey in the Middle."""
 
-from src.year2022.day11a import Game, Monkey
+from src.year2022.day11a import Game
+from src.year2022.day11a import Monkey
 
 
 def solve(task: str) -> int:

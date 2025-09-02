@@ -4,7 +4,8 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2021.day19a import Position, Scanner
+from src.year2021.day19a import Position
+from src.year2021.day19a import Scanner
 
 
 @pytest.mark.parametrize(

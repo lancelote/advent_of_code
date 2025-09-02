@@ -1,6 +1,7 @@
 """2017 - Day 2 Part 2: Corruption Checksum tests."""
 
-from src.year2017.day02b import find_division, solve
+from src.year2017.day02b import find_division
+from src.year2017.day02b import solve
 
 
 class TestFindDivision:

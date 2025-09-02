@@ -1,6 +1,7 @@
 """2018 - Day 8 Part 2: Memory Maneuver."""
 
-from src.year2018.day08a import Node, parse_tree
+from src.year2018.day08a import Node
+from src.year2018.day08a import parse_tree
 
 
 def get_node_value(node: Node) -> int:

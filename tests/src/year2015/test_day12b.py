@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.year2015.day12b import Parser, solve
+from src.year2015.day12b import Parser
+from src.year2015.day12b import solve
 
 
 @pytest.mark.parametrize(

@@ -2,7 +2,10 @@
 
 import unittest
 
-from src.year2016.day04a import Room, is_real, process_data, solve
+from src.year2016.day04a import Room
+from src.year2016.day04a import is_real
+from src.year2016.day04a import process_data
+from src.year2016.day04a import solve
 
 
 class ProcessDataTest(unittest.TestCase):

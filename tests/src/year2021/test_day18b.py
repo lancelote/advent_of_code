@@ -2,7 +2,8 @@
 
 from textwrap import dedent
 
-from src.year2021.day18b import Node, solve
+from src.year2021.day18b import Node
+from src.year2021.day18b import solve
 
 
 def test_magnitude():

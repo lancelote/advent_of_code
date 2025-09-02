@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.year2015.day05a import is_nice, process_data
+from src.year2015.day05a import is_nice
+from src.year2015.day05a import process_data
 
 
 @pytest.mark.parametrize(

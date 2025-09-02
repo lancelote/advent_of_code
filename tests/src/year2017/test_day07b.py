@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.year2017.day07b import find_unique, solve
+from src.year2017.day07b import find_unique
+from src.year2017.day07b import solve
 
 
 @pytest.mark.parametrize(

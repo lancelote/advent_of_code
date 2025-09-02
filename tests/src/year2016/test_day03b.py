@@ -2,7 +2,8 @@
 
 import unittest
 
-from src.year2016.day03b import process_data, solve
+from src.year2016.day03b import process_data
+from src.year2016.day03b import solve
 
 
 class ProcessDataTest(unittest.TestCase):

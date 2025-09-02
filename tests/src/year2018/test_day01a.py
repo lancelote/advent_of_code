@@ -1,6 +1,7 @@
 """2018 - Day 1 Part 1: Chronal Calibration tests."""
 
-from src.year2018.day01a import process_data, solve
+from src.year2018.day01a import process_data
+from src.year2018.day01a import solve
 
 
 def test_process_data():

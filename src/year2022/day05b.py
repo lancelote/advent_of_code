@@ -1,6 +1,8 @@
 """2022 - Day 5 Part 2: Supply Stacks."""
 
-from src.year2022.day05a import Command, Stack, process_data
+from src.year2022.day05a import Command
+from src.year2022.day05a import Stack
+from src.year2022.day05a import process_data
 
 
 def execute_9001(stacks: list[Stack], commands: list[Command]) -> None:

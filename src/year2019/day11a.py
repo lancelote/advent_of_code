@@ -5,7 +5,8 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, NamedTuple
+from typing import Any
+from typing import NamedTuple
 
 from src.year2019.intcode import Computer
 

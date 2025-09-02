@@ -4,8 +4,10 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2020.day11a import Matrix, generate_next
-from src.year2020.day11b import count_visible, solve
+from src.year2020.day11a import Matrix
+from src.year2020.day11a import generate_next
+from src.year2020.day11b import count_visible
+from src.year2020.day11b import solve
 
 
 @pytest.fixture

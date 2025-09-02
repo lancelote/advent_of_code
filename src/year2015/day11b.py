@@ -2,7 +2,8 @@
 
 from dataclasses import dataclass
 from string import ascii_lowercase
-from typing import Any, Self
+from typing import Any
+from typing import Self
 
 TO_INT = {x: i for i, x in enumerate(ascii_lowercase)}
 TO_STR = {i: x for i, x in enumerate(ascii_lowercase)}

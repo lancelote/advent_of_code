@@ -1,6 +1,7 @@
 """2021 - Day 11 Part 2: Dumbo Octopus."""
 
-from src.year2021.day11a import Data, make_step
+from src.year2021.day11a import Data
+from src.year2021.day11a import make_step
 
 
 def solve(task: str) -> int:

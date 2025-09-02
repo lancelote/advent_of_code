@@ -3,7 +3,8 @@
 import unittest
 
 from src.year2015.day06a import Command
-from src.year2015.day06b import solve, update_light
+from src.year2015.day06b import solve
+from src.year2015.day06b import update_light
 
 
 class TestSolve(unittest.TestCase):

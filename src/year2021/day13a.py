@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import NamedTuple, assert_never
+from typing import NamedTuple
+from typing import assert_never
 
 
 class Point(NamedTuple):

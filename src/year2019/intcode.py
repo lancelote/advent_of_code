@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from collections import defaultdict, deque
+from abc import ABC
+from abc import abstractmethod
+from collections import defaultdict
+from collections import deque
 from copy import copy
-from dataclasses import dataclass, field
-from typing import DefaultDict, Deque
+from dataclasses import dataclass
+from dataclasses import field
+from typing import DefaultDict
+from typing import Deque
 
 Memory = DefaultDict[int, int]
 

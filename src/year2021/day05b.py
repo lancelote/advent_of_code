@@ -1,6 +1,7 @@
 """2021 - Day 5 Part 2: Hydrothermal Venture."""
 
-from src.year2021.day05a import Floor, Segment
+from src.year2021.day05a import Floor
+from src.year2021.day05a import Segment
 
 
 def solve(task: str) -> int:

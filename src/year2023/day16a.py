@@ -2,7 +2,8 @@
 
 import enum
 from collections import deque
-from typing import TypeAlias, assert_never
+from typing import TypeAlias
+from typing import assert_never
 
 
 class Direction(enum.Enum):

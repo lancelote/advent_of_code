@@ -2,7 +2,8 @@
 
 import pytest
 
-from src.year2018.day05a import react, solve
+from src.year2018.day05a import react
+from src.year2018.day05a import solve
 
 
 @pytest.mark.parametrize(

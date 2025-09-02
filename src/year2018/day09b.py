@@ -1,6 +1,7 @@
 """2018 - Day 9 Part 2: Marble Mania."""
 
-from src.year2018.day09a import Game, parse_task
+from src.year2018.day09a import Game
+from src.year2018.day09a import parse_task
 
 
 def solve(task: str) -> int:

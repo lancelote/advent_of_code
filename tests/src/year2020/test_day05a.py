@@ -4,7 +4,8 @@ from textwrap import dedent
 
 import pytest
 
-from src.year2020.day05a import binary_search, solve
+from src.year2020.day05a import binary_search
+from src.year2020.day05a import solve
 
 
 @pytest.mark.parametrize(

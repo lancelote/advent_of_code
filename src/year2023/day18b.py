@@ -2,7 +2,8 @@
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Self, TypeAlias
+from typing import Self
+from typing import TypeAlias
 
 Corner: TypeAlias = tuple[int, int]
 
