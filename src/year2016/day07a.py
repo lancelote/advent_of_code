@@ -6,9 +6,7 @@ from collections.abc import Generator
 class IP:
     """IPv7 representation."""
 
-    def __init__(
-        self, supernet_parts: list[str], hypernet_parts: list[str]
-    ) -> None:
+    def __init__(self, supernet_parts: list[str], hypernet_parts: list[str]) -> None:
         """Create an IPv7 instance.
 
         Args:

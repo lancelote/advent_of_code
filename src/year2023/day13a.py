@@ -32,13 +32,9 @@ class Pattern:
 
     @property
     def summary(self) -> int:
-        common_cols = reduce(
-            set.intersection, [mirror_ids(row) for row in self.rows]
-        )
+        common_cols = reduce(set.intersection, [mirror_ids(row) for row in self.rows])
 
-        common_rows = reduce(
-            set.intersection, [mirror_ids(col) for col in self.cols]
-        )
+        common_rows = reduce(set.intersection, [mirror_ids(col) for col in self.cols])
 
         assert len(common_cols) <= 1
         assert len(common_rows) <= 1

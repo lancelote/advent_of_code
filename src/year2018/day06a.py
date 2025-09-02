@@ -62,9 +62,7 @@ class Pin(Coordinate):
 class Grid:
     """A gird of time dots with pins."""
 
-    def __init__(
-        self, pins: list[Pin], dots: list[Dot], width: int, height: int
-    ):
+    def __init__(self, pins: list[Pin], dots: list[Dot], width: int, height: int):
         """With list pof pins and dots on the grid."""
         self.pins = pins
         self.dots = dots

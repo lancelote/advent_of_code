@@ -3,9 +3,7 @@
 from src.year2018.day03a import Claim, process_data
 
 
-def apply_claim(
-    fabric: list[list[int]], claim: Claim, not_overlap: set[int]
-) -> None:
+def apply_claim(fabric: list[list[int]], claim: Claim, not_overlap: set[int]) -> None:
     """Claim inches of fabric and update non-overlapping set of claim ids."""
     not_overlap.add(claim.pk)  # Consider claim as non-overlapping by default
 

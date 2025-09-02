@@ -27,9 +27,7 @@ class UpdateDirectionTest(unittest.TestCase):
 
 class ProcessedDataTest(unittest.TestCase):
     def test_simple_commands(self):
-        self.assertEqual(
-            processed_data("R3, R1, R4"), [("R", 3), ("R", 1), ("R", 4)]
-        )
+        self.assertEqual(processed_data("R3, R1, R4"), [("R", 3), ("R", 1), ("R", 4)])
 
     def test_long_distance(self):
         self.assertEqual(processed_data("R12, L345"), [("R", 12), ("L", 345)])

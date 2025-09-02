@@ -28,5 +28,9 @@ def test_process_data():
 
 
 def test_solve():
-    data = "b inc 5 if a > 1\na inc 1 if b < 5\nc dec -10 if a >= 1\nc inc -20 if c == 10\n"
+    data = """b inc 5 if a > 1
+a inc 1 if b < 5
+c dec -10 if a >= 1
+c inc -20 if c == 10
+"""
     assert solve(data) == 1

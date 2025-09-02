@@ -13,6 +13,4 @@ def process_data(task: str) -> list[list[set[str]]]:
 def solve(task: str) -> int:
     """Count the sum of answers which everyone gave per group."""
     groups = process_data(task)
-    return sum(
-        len(reduce(lambda x, y: x.intersection(y), group)) for group in groups
-    )
+    return sum(len(reduce(lambda x, y: x.intersection(y), group)) for group in groups)

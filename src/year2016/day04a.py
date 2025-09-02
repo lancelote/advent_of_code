@@ -34,9 +34,7 @@ def process_data(data: str) -> list[Room]:
 
 def is_real(room: Room) -> bool:
     """Check if the room is real."""
-    common_5: list[tuple[Any, int]] = Counter(
-        room.name.replace("-", "")
-    ).most_common()
+    common_5: list[tuple[Any, int]] = Counter(room.name.replace("-", "")).most_common()
     common_5.sort(key=operator.itemgetter(0))  # Sort alphabetically
     common_5.sort(key=operator.itemgetter(1), reverse=True)  # Sort by number
     return "".join(char for char, _ in common_5[:5]) == room.checksum

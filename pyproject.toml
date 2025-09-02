@@ -11,9 +11,6 @@ dependencies = [
   "ruff>=0.12.11",
 ]
 
-[tool.ruff]
-line-length = 80
-
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [

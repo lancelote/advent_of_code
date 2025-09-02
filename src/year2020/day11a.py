@@ -47,8 +47,7 @@ class Matrix:
     @classmethod
     def from_task(cls, task: str) -> Matrix:
         data = [
-            [Cell(char) for char in list(line)]
-            for line in task.strip().split("\n")
+            [Cell(char) for char in list(line)] for line in task.strip().split("\n")
         ]
         return cls(data)
 

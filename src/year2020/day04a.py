@@ -31,8 +31,7 @@ class Passport:
     @property
     def is_valid(self) -> bool:
         return all(
-            mandatory_field in self.fields
-            for mandatory_field in MANDATORY_FIELDS
+            mandatory_field in self.fields for mandatory_field in MANDATORY_FIELDS
         )
 
 

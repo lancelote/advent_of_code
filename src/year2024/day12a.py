@@ -70,11 +70,7 @@ class Region:
                 ((r, c + 1), (r + 1, c + 1), (r + 1, c)),
                 ((r, c - 1), (r + 1, c - 1), (r + 1, c)),
             ):
-                if (
-                    x in self.points
-                    and y not in self.points
-                    and z in self.points
-                ):
+                if x in self.points and y not in self.points and z in self.points:
                     count += 1
                 if (
                     x not in self.points
@@ -82,11 +78,7 @@ class Region:
                     and z not in self.points
                 ):
                     count += 1
-                if (
-                    x not in self.points
-                    and y in self.points
-                    and z not in self.points
-                ):
+                if x not in self.points and y in self.points and z not in self.points:
                     count += 1
         return count
 

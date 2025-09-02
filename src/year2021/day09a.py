@@ -54,8 +54,7 @@ def risk_level(point: int) -> int:
 def solve(task: str) -> int:
     """Sum risk level of the lowest heightmap points."""
     heightmap = [
-        [int(x) for x in list(line.strip())]
-        for line in task.strip().split("\n")
+        [int(x) for x in list(line.strip())] for line in task.strip().split("\n")
     ]
     low_points = lowest(heightmap)
     return sum(risk_level(point.height) for point in low_points)
