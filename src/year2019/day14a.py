@@ -6,7 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict, TypeAlias
 
-ChemicalName: TypeAlias = str
+type ChemicalName = str
 
 
 @dataclass
@@ -50,7 +50,7 @@ class Factory:
     def __init__(self, reactions: Reactions | None = None):
         """Create factory from reactions dictionary."""
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
-        self._reactions = reactions if reactions else dict()
+        self._reactions: Reactions = reactions if reactions else dict()
         self.ore: int = 0
 
     @classmethod

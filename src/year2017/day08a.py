@@ -1,12 +1,18 @@
 """2017 - Day 8 Part 1: I Heard You Like Registers."""
 
 import operator
-from collections import defaultdict, namedtuple
-from typing import DefaultDict
+from collections import defaultdict
+from typing import DefaultDict, NamedTuple
 
-Instruction = namedtuple(
-    "Instruction", ["register", "op", "value", "base", "check", "limit"]
-)
+
+class Instruction(NamedTuple):
+    register: str
+    op: str
+    value: int
+    base: str
+    check: str
+    limit: int
+
 
 OPERATORS = {
     ">": operator.gt,

@@ -6,13 +6,13 @@ from typing import Deque
 
 from src.year2019.day11a import (
     Color,
-    Computer,
     Coordinates,
     Direction,
     Hull,
     Panel,
     Robot,
 )
+from src.year2019.intcode import Computer
 
 
 @dataclass

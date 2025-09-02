@@ -1,4 +1,5 @@
 """CLI arguments validation helpers."""
+
 from typing import final
 
 import click
