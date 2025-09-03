@@ -12,7 +12,7 @@ SHIFT = {
 
 def visit_houses(task: str) -> dict[tuple[int, int], int]:
     x, y = 0, 0
-    visited_houses = defaultdict(int)
+    visited_houses: defaultdict[tuple[int, int], int] = defaultdict(int)
     visited_houses[(0, 0)] = 1
 
     for direction in task:

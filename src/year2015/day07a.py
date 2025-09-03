@@ -65,7 +65,7 @@ def process_data(data: str) -> dict[str, Connection]:
 
 class Solution:
     def __init__(self, connections: dict[str, Connection]) -> None:
-        self.connections = connections
+        self.connections: dict[str, Connection] = connections
         self.cache: dict[str, int] = {}
 
     def get_value(self, wire: str) -> int:
@@ -106,6 +106,8 @@ class Solution:
                         result = self.get_value(in_a) | self.get_value(in_b)
                     case unknown_gate:
                         raise ValueError(f"unknown gate type: {unknown_gate}")
+            case _:
+                raise ValueError("unknown connection type")
 
         self.cache[wire] = result
         return result

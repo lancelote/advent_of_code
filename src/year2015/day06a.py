@@ -26,7 +26,7 @@ class Instruction(NamedTuple):
 
 
 def process_data(data: str) -> list[Instruction]:
-    processed_data = []
+    processed_data: list[Instruction] = []
 
     for string in data.strip().split("\n"):
         match = re.match(PATTERN, string)

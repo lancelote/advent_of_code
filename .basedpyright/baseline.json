@@ -26,60 +26,6 @@
                 }
             }
         ],
-        "./src/year2015/day03a.py": [
-            {
-                "code": "reportUnknownVariableType",
-                "range": {
-                    "startColumn": 4,
-                    "endColumn": 18,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportUnknownVariableType",
-                "range": {
-                    "startColumn": 11,
-                    "endColumn": 25,
-                    "lineCount": 1
-                }
-            }
-        ],
-        "./src/year2015/day06a.py": [
-            {
-                "code": "reportUnknownMemberType",
-                "range": {
-                    "startColumn": 8,
-                    "endColumn": 29,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportUnknownVariableType",
-                "range": {
-                    "startColumn": 11,
-                    "endColumn": 25,
-                    "lineCount": 1
-                }
-            }
-        ],
-        "./src/year2015/day07a.py": [
-            {
-                "code": "reportUnannotatedClassAttribute",
-                "range": {
-                    "startColumn": 13,
-                    "endColumn": 24,
-                    "lineCount": 1
-                }
-            },
-            {
-                "code": "reportMatchNotExhaustive",
-                "range": {
-                    "startColumn": 14,
-                    "endColumn": 24,
-                    "lineCount": 1
-                }
-            }
-        ],
         "./src/year2015/day11b.py": [
             {
                 "code": "reportImplicitOverride",
