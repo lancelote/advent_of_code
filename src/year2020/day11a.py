@@ -26,19 +26,20 @@ class Cell(Enum):
     FLOOR = "."
     OCCUPIED = "#"
 
-    def generate_new(self, occupied: int, limit: int) -> Cell:
-        match self:
-            case Cell.FLOOR:
-                return Cell.FLOOR
 
-            case Cell.EMPTY:
-                return Cell.OCCUPIED if occupied == 0 else Cell.EMPTY
+def generate_new(cell: Cell, occupied: int, limit: int) -> Cell:
+    match cell:
+        case Cell.FLOOR:
+            return Cell.FLOOR
 
-            case Cell.OCCUPIED:
-                return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
+        case Cell.EMPTY:
+            return Cell.OCCUPIED if occupied == 0 else Cell.EMPTY
 
-            case _:
-                assert_never(self)
+        case Cell.OCCUPIED:
+            return Cell.EMPTY if occupied >= limit else Cell.OCCUPIED
+
+        case _:
+            assert_never(cell)
 
 
 @dataclass
@@ -72,7 +73,7 @@ class Matrix:
         return iter(self.data)
 
 
-Rule = Callable[[int, int, Matrix], int]
+type Rule = Callable[[int, int, Matrix], int]
 
 
 def count_adjacent(i: int, j: int, matrix: Matrix) -> int:
@@ -95,13 +96,13 @@ def count_adjacent(i: int, j: int, matrix: Matrix) -> int:
 
 def generate_next(matrix: Matrix, limit: int, count_rule: Rule) -> Matrix:
     """Generate new matrix generation from the given one applying the rule."""
-    next_data = []
+    next_data: list[list[Cell]] = []
 
     for i, line in enumerate(matrix):
-        new_line = []
+        new_line: list[Cell] = []
         for j, cell in enumerate(line):
             occupied = count_rule(i, j, matrix)
-            new_line.append(cell.generate_new(occupied, limit))
+            new_line.append(generate_new(cell, occupied, limit))
         next_data.append(new_line)
 
     return Matrix(next_data)
