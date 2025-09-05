@@ -20,9 +20,9 @@ dependencies = [
 requires-dist = [
     { name = "advent-of-code-data", specifier = ">=2.1.0" },
     { name = "basedpyright", specifier = ">=1.31.4" },
-    { name = "pytest", specifier = ">=8.4.1" },
-    { name = "pytest-mock", specifier = ">=3.14.1" },
-    { name = "ruff", specifier = ">=0.12.11" },
+    { name = "pytest", specifier = ">=8.4.2" },
+    { name = "pytest-mock", specifier = ">=3.15.0" },
+    { name = "ruff", specifier = ">=0.12.12" },
     { name = "ty", specifier = ">=0.0.1a20" },
     { name = "typer", specifier = ">=0.17.3" },
 ]
