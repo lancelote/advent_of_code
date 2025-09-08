@@ -33,10 +33,7 @@ def count_happiness(seating: list[str], preference: Preference) -> int:
     return happiness
 
 
-def solve(task: str) -> int:
-    preference = process_data(task)
-    names = {x[0] for x in preference.keys()}
-
+def get_max_happiness(names: set[str], preference: Preference) -> int:
     seating: list[str] = []
     happiness = 0
 
@@ -57,3 +54,10 @@ def solve(task: str) -> int:
 
     dfs(names.pop())
     return happiness
+
+
+def solve(task: str) -> int:
+    preference: Preference = process_data(task)
+    names: set[str] = {x[0] for x in preference.keys()}
+
+    return get_max_happiness(names, preference)
