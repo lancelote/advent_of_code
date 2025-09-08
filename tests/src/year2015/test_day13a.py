@@ -2,9 +2,7 @@
 
 from src.year2015.day13a import solve
 
-
-def test_solve():
-    example = """Alice would gain 54 happiness units by sitting next to Bob.
+EXAMPLE= """Alice would gain 54 happiness units by sitting next to Bob.
 Alice would lose 79 happiness units by sitting next to Carol.
 Alice would lose 2 happiness units by sitting next to David.
 Bob would gain 83 happiness units by sitting next to Alice.
@@ -16,4 +14,7 @@ Carol would gain 55 happiness units by sitting next to David.
 David would gain 46 happiness units by sitting next to Alice.
 David would lose 7 happiness units by sitting next to Bob.
 David would gain 41 happiness units by sitting next to Carol."""
-    assert solve(example) == 330
+
+
+def test_solve():
+    assert solve(EXAMPLE) == 330
