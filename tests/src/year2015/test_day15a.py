@@ -21,4 +21,4 @@ def test_get_score():
 def test_solve():
     task = """Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8
 Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3"""
-    assert solve(task, 1) == 62842880
+    assert solve(task) == 62842880

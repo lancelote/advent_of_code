@@ -49,7 +49,16 @@ def get_score(spoons: list[int], ingredients: list[Ingredient]) -> int:
     return capacity * durability * flavor * texture
 
 
-def solve(task: str, start_depth: int = 3) -> int:
+def get_calories(spoons: list[int], ingredients: list[Ingredient]) -> int:
+    total = 0
+
+    for count, ingredient in zip(spoons, ingredients):
+        total += count * ingredient.calories
+
+    return total
+
+
+def solve(task: str, limit_calories: bool = False) -> int:
     ingredients = process_data(task)
     max_score = 0
     spoons = [0] * len(ingredients)
@@ -61,11 +70,16 @@ def solve(task: str, start_depth: int = 3) -> int:
             spoons[len(ingredients) - depth - 1] = x
 
             if depth == 0:
-                if sum(spoons) == 100:
-                    score = get_score(spoons, ingredients)
-                    max_score = max(max_score, score)
+                if sum(spoons) != 100:
+                    continue
+
+                if limit_calories and get_calories(spoons, ingredients) != 500:
+                    continue
+
+                score = get_score(spoons, ingredients)
+                max_score = max(max_score, score)
             else:
                 recurse(limit - x, depth - 1)
 
-    recurse(101, start_depth)
+    recurse(101, len(ingredients) - 1)
     return max_score
