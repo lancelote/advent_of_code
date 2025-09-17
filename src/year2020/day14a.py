@@ -51,7 +51,7 @@ class Command(ABC):
 
 class MaskV1(Mask):
     def apply_to(self, value: int) -> list[int]:
-        str_value = bin(value)[2:].rjust(36, "0")
+        str_value = f"{value:b}".rjust(36, "0")
         result = []
 
         for bit, mask_bit in zip(str_value, self.mask):

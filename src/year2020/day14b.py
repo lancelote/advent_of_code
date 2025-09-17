@@ -9,7 +9,7 @@ from src.year2020.day14a import process_data
 class MaskV2(Mask):
     def apply_to(self, value: int) -> list[int]:
         results: list[int] = []
-        str_value = bin(value)[2:].rjust(36, "0")
+        str_value = f"{value:b}".rjust(36, "0")
 
         def collect_results(result: str = "", pos: int = 0) -> None:
             rest_value = str_value[pos:]

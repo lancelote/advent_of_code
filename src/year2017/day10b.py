@@ -23,7 +23,7 @@ def compress(sparse_hash: list[int], chunk: int = 16) -> list[int]:
 
 def to_hex(number: int) -> str:
     """Convert number to hex and made a basic formatting."""
-    return hex(number)[2:].zfill(2)
+    return f"{number:x}".zfill(2)
 
 
 def solve(task: str) -> str:
