@@ -36,7 +36,7 @@ class Rule:
     def from_text(cls, text: str) -> Self:
         if ":" not in text:
             target = text
-            return cls(target, lambda part: True)
+            return cls(target, lambda _: True)
         else:
             match = re.match(r"(\w+)(.)(\d+):(\w+)", text)
             assert match
