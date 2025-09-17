@@ -4024,16 +4024,6 @@
                 }
             }
         ],
-        "./src/year2023/day14b.py": [
-            {
-                "code": "reportUnusedVariable",
-                "range": {
-                    "startColumn": 8,
-                    "endColumn": 9,
-                    "lineCount": 1
-                }
-            }
-        ],
         "./src/year2023/day15b.py": [
             {
                 "code": "reportAny",
@@ -4176,26 +4166,6 @@
                 "range": {
                     "startColumn": 8,
                     "endColumn": 15,
-                    "lineCount": 1
-                }
-            }
-        ],
-        "./src/year2024/day08a.py": [
-            {
-                "code": "reportUnusedVariable",
-                "range": {
-                    "startColumn": 11,
-                    "endColumn": 12,
-                    "lineCount": 1
-                }
-            }
-        ],
-        "./src/year2024/day08b.py": [
-            {
-                "code": "reportUnusedVariable",
-                "range": {
-                    "startColumn": 11,
-                    "endColumn": 12,
                     "lineCount": 1
                 }
             }

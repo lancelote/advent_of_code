@@ -79,7 +79,7 @@ def solve(task: str) -> int:
     #   not sure if it will work for every input
     #   in my case the load is repeated after 77 cycles
     #   and (1_000_000_000 - 1_000) % 77 = 0
-    for i in range(1000):
+    for _ in range(1000):
         cycle(platform)
 
     return count_load(platform)

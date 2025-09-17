@@ -19,8 +19,8 @@ def solve(task: str) -> int:
 
     ants: set[tuple[int, int]] = set()
 
-    for k, v in antennas.items():
-        for a1, a2 in combinations(antennas[k], 2):
+    for v in antennas.values():
+        for a1, a2 in combinations(v, 2):
             r1, c1 = a1
             r2, c2 = a2
 
