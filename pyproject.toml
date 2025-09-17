@@ -9,8 +9,10 @@ dependencies = [
   "pytest-mock>=3.15.1",
   "ruff>=0.13.0",
   "ty>=0.0.1a20",
-  "typer>=0.17.3",
 ]
+
+[tool.basedpyright]
+ignore = ["tests"]
 
 [tool.ruff.lint]
 select = ["ALL"]

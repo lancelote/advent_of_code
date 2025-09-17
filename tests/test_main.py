@@ -2,46 +2,33 @@ import re
 from pathlib import Path
 
 import pytest
-from typer.testing import CliRunner
 
-from main import app
-
-
-@pytest.fixture
-def runner():
-    return CliRunner()
+from main import main
 
 
-def test_solve(runner, mock_get_data):
+def test_solve(mock_get_data, capsys):
     data = "411 players; last marble is worth 71058 points"
     mock_get_data.return_value = data
 
-    result = runner.invoke(app, ["2018", "9", "a"])
+    main("2018", "9", "a")
 
-    assert result.exit_code == 0
-    assert result.output == "Answer: 424639\n"
+    assert capsys.readouterr().out == "answer: 424639\n"
 
 
-def test_wrong_year(runner):
-    result = runner.invoke(app, ["1812", "5", "a"])
-
-    assert result.exit_code == 2
-    assert "Invalid value for 'YEAR'" in result.output
+def test_wrong_year():
+    with pytest.raises(ValueError, match="unsupported year: 1812"):
+        main("1812", "5", "a")
 
 
 @pytest.mark.parametrize("day", ["0", "32"])
-def test_wrong_day(runner, day):
-    result = runner.invoke(app, ["2017", day, "a"])
-
-    assert result.exit_code == 2
-    assert "Invalid value for 'DAY'" in result.output
+def test_wrong_day(day):
+    with pytest.raises(ValueError, match=f"want int in range 1-31, got {day}"):
+        main("2017", day, "a")
 
 
-def test_wrong_part(runner):
-    result = runner.invoke(app, ["2017", "5", "c"])
-
-    assert result.exit_code == 2
-    assert "Invalid value for 'PART'" in result.output
+def test_wrong_part():
+    with pytest.raises(ValueError, match="want either `a` or `b`, got `c`"):
+        main("2017", "5", "c")
 
 
 def test_correct_solution_file_names():

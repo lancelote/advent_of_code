@@ -1,78 +1,44 @@
 """CLI arguments validation helpers."""
 
-from typing import final
+from collections.abc import Sequence
 
-import click
-
-SUPPORTED_YEARS = [
-    "2015",
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-    "2024",
-]
+OLDEST_YEAR = 2015
+NEWEST_YEAR = 2024
 
 
-@final
-class YearType(click.ParamType):
-    """Year validation.
-
-    SUPPORTED_YEARS variable stores all available years (2018, etc.).
-    """
-
-    name = "Year"
-
-    def convert(self, value, param, ctx):
-        try:
-            assert value in SUPPORTED_YEARS
-            return int(value)
-        except (TypeError, AssertionError):
-            supported_year = "/".join(SUPPORTED_YEARS)
-            self.fail(f"Expected {supported_year}, got {value}", param, ctx)
+def convert_year(value: str) -> int:
+    try:
+        year = int(value)
+        assert OLDEST_YEAR <= year < NEWEST_YEAR
+        return year
+    except (TypeError, AssertionError) as err:
+        raise ValueError(f"unsupported year: {value}") from err
 
 
-@final
-class DayType(click.ParamType):
-    """Day validation.
-
-    From 1 to 31 range inclusive.
-    """
-
-    name = "Day"
-
-    def convert(self, value, param, ctx):
-        try:
-            value = int(value)
-            assert value in range(1, 32)
-            return value
-        except (TypeError, AssertionError):
-            self.fail(f"Expected in range 1-31, got {value}", param, ctx)
+def convert_day(value: str) -> int:
+    try:
+        day = int(value)
+        assert 1 <= day < 32
+        return day
+    except (TypeError, AssertionError) as err:
+        raise ValueError(f"want int in range 1-31, got {value}") from err
 
 
-@final
-class PartType(click.ParamType):
-    """Task part validation.
-
-    Either literal “a” or “b”.
-    """
-
-    name = "Part"
-
-    def convert(self, value, param, ctx):
-        formatted_value = value.lower()
-        if formatted_value in ["a", "b"]:
-            return formatted_value
-        else:
-            self.fail(f"Expected either A or B, got {value}", param, ctx)
+def convert_part(value: str) -> str:
+    formatted_value = value.lower()
+    if formatted_value in {"a", "b"}:
+        return formatted_value
+    else:
+        raise ValueError(f"want either `a` or `b`, got `{value}`")
 
 
-YEAR = YearType()
-DAY = DayType()
-PART = PartType()
+def convert_argv(argv: Sequence[str]) -> tuple[int, int, str]:
+    assert len(argv) == 3, "arguments: year day part"
 
-__all__ = ["YEAR", "DAY", "PART"]
+    a, b, c = argv
+
+    year = convert_year(a)
+    day = convert_day(b)
+    part = convert_part(c)
+
+    return year, day, part
