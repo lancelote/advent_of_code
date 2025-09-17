@@ -28,7 +28,6 @@ ignore = [
   "S", # security is not a concern for this project
 
   # gradual adoption
-  "ARG002",
   "ARG005",
   "B007",
   "B019",

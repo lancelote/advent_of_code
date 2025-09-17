@@ -6,6 +6,7 @@ from abc import ABC
 from abc import abstractmethod
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import override
 
 
 class Instruction(StrEnum):
@@ -36,6 +37,7 @@ class Object(ABC):
 
 
 class Moveable(Object, ABC):
+    @override
     def move(self, instruction: Instruction, warehouse: Warehouse) -> bool:
         dr, dc = SHIFTS[instruction]
         nr, nc = self.r + dr, self.c + dc
@@ -58,6 +60,7 @@ class Moveable(Object, ABC):
 
 
 class Wall(Object):
+    @override
     def move(self, instruction: Instruction, warehouse: Warehouse) -> bool:
         return False
 

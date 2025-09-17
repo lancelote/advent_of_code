@@ -6,6 +6,7 @@ from abc import ABC
 from abc import abstractmethod
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import override
 
 
 class Instruction(StrEnum):
@@ -44,6 +45,7 @@ class Object(ABC):
 
 
 class Bulky(Object, ABC):
+    @override
     def can_move(self, instruction: Instruction, warehouse: Warehouse) -> bool:
         moveable = True
 
@@ -59,6 +61,7 @@ class Bulky(Object, ABC):
 
         return moveable
 
+    @override
     def move(self, instruction: Instruction, warehouse: Warehouse) -> None:
         if self.can_move(instruction, warehouse):
             dr, dc = SHIFTS[instruction]
@@ -76,6 +79,7 @@ class Bulky(Object, ABC):
 
             self.update_position(nr, nc, warehouse)
 
+    @override
     def update_position(self, nr: int, nc: int, warehouse: Warehouse) -> None:
         del warehouse.objects[(self.r, self.c)]
         del warehouse.objects[(self.r, self.c + 1)]
@@ -87,6 +91,7 @@ class Bulky(Object, ABC):
 
 
 class Wall(Bulky):
+    @override
     def can_move(self, instruction: Instruction, warehouse: Warehouse) -> bool:
         return False
 
@@ -100,6 +105,7 @@ class Box(Bulky):
 
 
 class Robot(Object):
+    @override
     def can_move(self, instruction: Instruction, warehouse: Warehouse) -> bool:
         dr, dc = SHIFTS[instruction]
         nr, nc = self.r + dr, self.c + dc
@@ -110,6 +116,7 @@ class Robot(Object):
         else:
             return True
 
+    @override
     def move(self, instruction: Instruction, warehouse: Warehouse) -> None:
         if self.can_move(instruction, warehouse):
             dr, dc = SHIFTS[instruction]
@@ -119,6 +126,7 @@ class Robot(Object):
                 neighbor.move(instruction, warehouse)
             self.update_position(nr, nc, warehouse)
 
+    @override
     def update_position(self, nr: int, nc: int, warehouse: Warehouse) -> None:
         del warehouse.objects[(self.r, self.c)]
         self.r, self.c = nr, nc
