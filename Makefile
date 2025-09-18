@@ -10,7 +10,7 @@ ci-format:
 typecheck:
 	uv run basedpyright
 
-check: lint format typecheck
+check: format lint typecheck
 
 test:
 	uv run pytest tests
