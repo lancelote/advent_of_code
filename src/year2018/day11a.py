@@ -1,7 +1,6 @@
 """Day 11 Part 1: Chronal Charge."""
 
 from collections import defaultdict
-from functools import lru_cache
 from itertools import product
 from typing import DefaultDict
 from typing import TypeAlias
@@ -43,7 +42,6 @@ class Grid:
         power_level -= 5
         return power_level
 
-    @lru_cache(0)  # Compatibility with a derived class
     def get_square_power(self, x: int, y: int, size: int) -> Power:
         """Calculate a cell square sum power."""
         square_power = 0

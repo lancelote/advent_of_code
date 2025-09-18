@@ -1,7 +1,7 @@
 """Day 11 Part 2: Chronal Charge."""
 
-from functools import lru_cache
 from typing import TypeAlias
+from typing import override
 
 from src.year2018.day11a import Cell
 from src.year2018.day11a import Grid
@@ -13,6 +13,10 @@ Size: TypeAlias = int
 class CachedGrid(Grid):
     """Grid with a cached square power calculation."""
 
+    def __init__(self, serial: int, side: int) -> None:
+        super().__init__(serial, side)
+        self.cache: dict[tuple[int, int, int], Power] = {}
+
     def get_border_power(self, x: int, y: int, size: int) -> Power:
         """Calculate left and bottom area brims power."""
         power = 0
@@ -22,14 +26,20 @@ class CachedGrid(Grid):
             power += self.cells[(dx, y + size - 1)]
         return power
 
-    @lru_cache(10**7)
+    @override
     def get_square_power(self, x: int, y: int, size: int) -> Power:
         """Calculate a cell square sum power by caching previous calls."""
+        if (x, y, size) in self.cache:
+            return self.cache[(x, y, size)]
+
         if size == 1:
-            return self.cells[(x, y)]
+            result = self.cells[(x, y)]
         else:
             border = self.get_border_power(x, y, size)
-            return self.get_square_power(x, y, size - 1) + border
+            result = self.get_square_power(x, y, size - 1) + border
+
+        self.cache[(x, y, size)] = result
+        return result
 
 
 def solve(task: str) -> tuple[Cell, Size]:
