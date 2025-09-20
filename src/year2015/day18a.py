@@ -1,5 +1,7 @@
 """2015 - Day 18 Part 1: Like a GIF For Your Yard."""
 
+from typing import Callable
+
 type Grid = list[list[str]]
 
 SHIFTS = (
@@ -47,7 +49,7 @@ def toggle(r: int, c: int, grid: Grid) -> str:
         return "#" if on_neighbors == 3 else "."
 
 
-def step(grid: Grid) -> Grid:
+def step(grid: Grid, fn: Callable[[int, int, Grid], str]) -> Grid:
     rows = len(grid)
     cols = len(grid[0])
 
@@ -57,7 +59,7 @@ def step(grid: Grid) -> Grid:
         new_row: list[str] = []
 
         for c in range(cols):
-            new_row.append(toggle(r, c, grid))
+            new_row.append(fn(r, c, grid))
 
         new_grid.append(new_row)
 
@@ -79,6 +81,6 @@ def solve(task: str) -> int:
     grid = process_data(task)
 
     for _ in range(100):
-        grid = step(grid)
+        grid = step(grid, toggle)
 
     return count_on(grid)
