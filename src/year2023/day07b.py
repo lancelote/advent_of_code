@@ -42,7 +42,7 @@ class Hand:
 
     def __lt__(self, other: Self) -> bool:
         if self.value == other.value:
-            for a, b in zip(self.cards, other.cards):
+            for a, b in zip(self.cards, other.cards, strict=True):
                 if a != b:
                     return CARDS[a] < CARDS[b]
 

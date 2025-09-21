@@ -4,8 +4,8 @@
 def diff(a: list[str], b: list[str]) -> int:
     result = 0
 
-    for r1, r2 in zip(a, b):
-        for x1, x2 in zip(r1, r2):
+    for r1, r2 in zip(a, b, strict=False):
+        for x1, x2 in zip(r1, r2, strict=True):
             if x1 != x2:
                 result += 1
 

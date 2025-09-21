@@ -35,7 +35,7 @@ def get_score(spoons: list[int], ingredients: list[Ingredient]) -> int:
     flavor = 0
     texture = 0
 
-    for spoon, ingredient in zip(spoons, ingredients):
+    for spoon, ingredient in zip(spoons, ingredients, strict=True):
         capacity += spoon * ingredient.capacity
         durability += spoon * ingredient.durability
         flavor += spoon * ingredient.flavor
@@ -52,7 +52,7 @@ def get_score(spoons: list[int], ingredients: list[Ingredient]) -> int:
 def get_calories(spoons: list[int], ingredients: list[Ingredient]) -> int:
     total = 0
 
-    for count, ingredient in zip(spoons, ingredients):
+    for count, ingredient in zip(spoons, ingredients, strict=True):
         total += count * ingredient.calories
 
     return total

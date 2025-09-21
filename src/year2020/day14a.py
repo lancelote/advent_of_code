@@ -54,7 +54,7 @@ class MaskV1(Mask):
         str_value = f"{value:b}".rjust(36, "0")
         result = []
 
-        for bit, mask_bit in zip(str_value, self.mask):
+        for bit, mask_bit in zip(str_value, self.mask, strict=True):
             if mask_bit == "X":
                 result.append(bit)
             elif mask_bit == "0" or mask_bit == "1":

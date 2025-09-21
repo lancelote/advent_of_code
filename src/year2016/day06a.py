@@ -9,7 +9,7 @@ def process_data(data: str) -> list[tuple[str, ...]]:
     Each tuple corresponds to one character.
     """
     lines = data.strip().split("\n")
-    return list(zip(*lines))
+    return list(zip(*lines, strict=True))
 
 
 def solve(task: str) -> str:

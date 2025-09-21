@@ -31,7 +31,7 @@ def test_reverse(rope):
         [4, 3, 0, 1, 2],
         [3, 4, 2, 1, 0],
     ]
-    for length, shape in zip(lengths, shapes):
+    for length, shape in zip(lengths, shapes, strict=True):
         rope.reverse(length)
         rope.move(length)
         assert rope.nodes == shape
@@ -41,7 +41,7 @@ def test_move(rope):
     lengths = [3, 4, 1, 5]
     positions = [3, 3, 1, 4]
     assert rope.pos == 0
-    for length, position in zip(lengths, positions):
+    for length, position in zip(lengths, positions, strict=True):
         rope.move(length)
         assert rope.pos == position
 

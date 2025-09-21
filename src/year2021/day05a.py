@@ -76,7 +76,7 @@ class Segment:
         elif self.is_vertical:
             iter_x = repeat(self.start.x)
 
-        for x, y in zip(iter_x, iter_y):
+        for x, y in zip(iter_x, iter_y, strict=False):
             yield Point(x, y)
 
     def __str__(self) -> str:

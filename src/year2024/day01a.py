@@ -13,4 +13,4 @@ def solve(task: str) -> int:
     left.sort()
     right.sort()
 
-    return sum(abs(x - y) for x, y in zip(left, right))
+    return sum(abs(x - y) for x, y in zip(left, right, strict=True))

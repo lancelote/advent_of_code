@@ -30,7 +30,7 @@ def process_data(data: str) -> list[Race]:
     times = [int(time_parts[i]) for i in range(1, len(time_parts))]
     dists = [int(dist_parts[i]) for i in range(1, len(dist_parts))]
 
-    return [Race(t, d) for t, d in zip(times, dists)]
+    return [Race(t, d) for t, d in zip(times, dists, strict=True)]
 
 
 def solve(task: str) -> int:

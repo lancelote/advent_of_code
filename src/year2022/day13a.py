@@ -30,7 +30,7 @@ def compare(packet1: Packet | int, packet2: Packet | int) -> int:
     else:
         lst2 = packet2
 
-    for x1, x2 in zip(lst1, lst2):
+    for x1, x2 in zip(lst1, lst2, strict=False):
         item_result = compare(x1, x2)
         if item_result != 0:
             return item_result

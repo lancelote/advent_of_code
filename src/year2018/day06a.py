@@ -131,7 +131,7 @@ class Grid:
     def display(self) -> None:
         """Print grid in a human-readable view."""
         names = {}
-        for pin, name in zip(self.pins, ascii_lowercase):
+        for pin, name in zip(self.pins, ascii_lowercase, strict=True):
             names[pin] = name
 
         data = [["." for _ in range(self.width)] for _ in range(self.height)]
