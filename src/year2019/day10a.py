@@ -68,7 +68,7 @@ class Chart:
 
     def remove_till(self, n: int) -> tuple[int, int]:
         """Remove n asteroids and return coordinates of the next one."""
-        azimuths: dict[float, list[tuple[float, int, int]]] = dict()
+        azimuths: dict[float, list[tuple[float, int, int]]] = {}
 
         for x, y in self.asteroids():
             angle = self.atan2(x, y)

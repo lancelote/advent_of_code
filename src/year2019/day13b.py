@@ -39,7 +39,7 @@ class Arcade:
         self.cpu.load_program(program)
         self.ball_x = 0
         self.paddle_x = 0
-        self.map: dict[tuple[int, int], Tile] = dict()
+        self.map: dict[tuple[int, int], Tile] = {}
         self.score = 0
 
     def play(self) -> None:

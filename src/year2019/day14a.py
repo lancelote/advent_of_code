@@ -51,13 +51,13 @@ class Factory:
     def __init__(self, reactions: Reactions | None = None):
         """Create factory from reactions dictionary."""
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
-        self._reactions: Reactions = reactions if reactions else dict()
+        self._reactions: Reactions = reactions if reactions else {}
         self.ore: int = 0
 
     @classmethod
     def from_raw_data(cls, data: str) -> Factory:
         """Create chemical factory from the raw data."""
-        reactions = dict()
+        reactions: Reactions = {}
 
         for line in data.strip().split("\n"):
             ins_str, out_str = line.split(" => ")

@@ -22,12 +22,12 @@ def process_data(task: str) -> tuple[GEN, PATTERNS]:
     data_lines = task.strip().split("\n")
     raw_initial_state = data_lines[0].split()[2]
 
-    start_generation: GEN = dict()
+    start_generation: GEN = {}
     for i, pot in enumerate(raw_initial_state):
         if pot == "#":
             start_generation[i] = Pot.PLANT
 
-    patterns: PATTERNS = dict()
+    patterns: PATTERNS = {}
     for line in data_lines[2:]:
         pattern, _, pot = line.split()
         if pot == "#":
@@ -60,7 +60,7 @@ def print_plants(generation: GEN, generation_id: int = 0) -> None:
 
 def get_new_generation(generation: GEN, patterns: PATTERNS) -> GEN:
     """Mutate current generation and get the next one."""
-    new_generation: GEN = dict()
+    new_generation: GEN = {}
     plant_ids = generation.keys()
     min_plant_id = min(plant_ids)
     max_plant_id = max(plant_ids)
