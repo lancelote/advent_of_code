@@ -8,7 +8,7 @@ ci-format:
 	uv run ruff format --check --diff
 
 typecheck:
-	uv run basedpyright
+	uv run ty check
 
 check: format lint typecheck
 

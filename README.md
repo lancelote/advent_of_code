@@ -55,7 +55,7 @@ make test
 
 ## Linters
 
-`basedpyright` and `ruff` are used to check the project
+`ty` and `ruff` are used to check the project
 
 ```bash
 make check

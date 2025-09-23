@@ -7,7 +7,18 @@ from src.year2021.day08b import solve
 
 
 def test_screen():
-    signal = ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"]
+    signal = [
+        "acedgfb",
+        "cdfbe",
+        "gcdfa",
+        "fbcad",
+        "dab",
+        "cefabd",
+        "cdfgeb",
+        "eafb",
+        "cagedb",
+        "ab",
+    ]
     output = ["cdfeb", "fcadb", "cdfeb", "cdbaf"]
     screen = Screen.from_signal(signal)
     assert screen.parse_output(output) == 5353
