@@ -28,7 +28,7 @@ class Hand:
     def __init__(self, cards: str, bid: int = 0) -> None:
         self.cards = cards
         self.bid = bid
-        self.count = sorted(list(Counter(cards).values()))
+        self.count = sorted(Counter(cards).values())
 
     @classmethod
     def from_line(cls, line: str) -> Self:

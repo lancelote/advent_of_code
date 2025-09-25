@@ -79,7 +79,7 @@ def get_value_with_joker(cards: str) -> int:
     for card_option in CARDS.keys():
         hand_option = cards.replace("J", card_option)
 
-        count = sorted(list(Counter(hand_option).values()))
+        count = sorted(Counter(hand_option).values())
 
         if is_five_of_a_kind(count):
             value = 18
