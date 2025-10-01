@@ -3,7 +3,7 @@
 from string import ascii_lowercase
 
 TO_INT = {x: i for i, x in enumerate(ascii_lowercase)}
-TO_STR = {i: x for i, x in enumerate(ascii_lowercase)}
+TO_STR = dict(enumerate(ascii_lowercase))
 BANNED = {8, 11, 14}
 
 

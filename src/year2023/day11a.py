@@ -15,8 +15,8 @@ class StarMap:
         rows = len(self.data)
         cols = len(self.data[0])
 
-        self.empty_rows = {r for r in range(rows)}
-        self.empty_cols = {c for c in range(cols)}
+        self.empty_rows = set(range(rows))
+        self.empty_cols = set(range(cols))
 
         self.galaxies: set[C] = set()
 
