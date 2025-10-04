@@ -4,18 +4,10 @@ from collections import deque
 from collections.abc import Generator
 
 
-def solve(task: str) -> int:
-    files: deque[int] = deque()
-    spaces: deque[int] = deque()
-
-    for i in range(0, len(task), 2):
-        files.append(int(task[i]))
-        if i + 1 < len(task):
-            spaces.append(int(task[i + 1]))
-
+def make_generator(files: deque[int]) -> Generator[int]:
     pop_id = len(files) - 1
 
-    def generate() -> Generator[int]:
+    def generator() -> Generator[int]:
         nonlocal pop_id
 
         while True:
@@ -29,7 +21,19 @@ def solve(task: str) -> int:
 
             pop_id -= 1
 
-    generator = generate()
+    return generator()
+
+
+def solve(task: str) -> int:
+    files: deque[int] = deque()
+    spaces: deque[int] = deque()
+
+    for i in range(0, len(task), 2):
+        files.append(int(task[i]))
+        if i + 1 < len(task):
+            spaces.append(int(task[i + 1]))
+
+    generator = make_generator(files)
     result: list[int] = []
 
     i = 0
