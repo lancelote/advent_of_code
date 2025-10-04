@@ -79,8 +79,13 @@ class Solution:
         if wire in self.cache:
             return self.cache[wire]
 
-        result = 0
         connection = self.connections[wire]
+        result = self.eval_connection(connection)
+        self.cache[wire] = result
+        return result
+
+    def eval_connection(self, connection: Connection) -> int:
+        result = 0
 
         match connection:
             case UnaryConnection():
@@ -109,7 +114,6 @@ class Solution:
             case _:
                 raise ValueError("unknown connection type")
 
-        self.cache[wire] = result
         return result
 
 
