@@ -7,7 +7,7 @@ from dataclasses import dataclass
 class Node:
     """Has a list of child-nodes and a metadata as a list of ints."""
 
-    children: list["Node"]
+    children: list[Node]
     metadata: list[int]
 
 

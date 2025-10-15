@@ -1,7 +1,7 @@
 [project]
 name = "advent-of-code"
 version = "0.0.0"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
   "advent-of-code-data>=2.1.0",
   "pytest>=8.4.2",
