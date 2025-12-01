@@ -16,6 +16,7 @@
 - 2022 - ★★★★★ ★★★★★ ★★★★★ ★☆
 - 2023 - ★★★★★ ★★★★★ ★★★★★ ★★★☆
 - 2024 - ★★★★★ ★★★★★ ★★★★★ ☆
+- 2025 -
 
 ## How to use
 
@@ -64,4 +65,5 @@ make check
 # Merry Christmas and Happy New Year!
 
 [1]: https://github.com/wimglenn/advent-of-code-data
+
 [2]: https://github.com/wimglenn/advent-of-code-wim/issues/1

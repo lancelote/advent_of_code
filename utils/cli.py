@@ -3,7 +3,7 @@
 from collections.abc import Sequence
 
 OLDEST_YEAR = 2015
-NEWEST_YEAR = 2024
+NEWEST_YEAR = 2025
 
 
 def convert_year(value: str) -> int:
