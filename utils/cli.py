@@ -9,7 +9,7 @@ NEWEST_YEAR = 2025
 def convert_year(value: str) -> int:
     try:
         year = int(value)
-        assert OLDEST_YEAR <= year < NEWEST_YEAR
+        assert OLDEST_YEAR <= year <= NEWEST_YEAR
         return year
     except (TypeError, AssertionError) as err:
         raise ValueError(f"unsupported year: {value}") from err
