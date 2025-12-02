@@ -16,7 +16,7 @@
 - 2022 - ★★★★★ ★★★★★ ★★★★★ ★☆
 - 2023 - ★★★★★ ★★★★★ ★★★★★ ★★★☆
 - 2024 - ★★★★★ ★★★★★ ★★★★★ ☆
-- 2025 - ★
+- 2025 - ★★
 
 ## How to use
 
@@ -34,7 +34,8 @@ need to set up a token for it to work. See the [instruction][2].
 For Python version used for development see [.python-version](.python-version).
 The code should work fine with older versions, but it is not guaranteed.
 
-To install requirements, `uv` [needs to be installed first](https://docs.astral.sh/uv/getting-started/installation/)
+To install requirements,
+`uv` [needs to be installed first](https://docs.astral.sh/uv/getting-started/installation/)
 
 ```bash
 uv sync
