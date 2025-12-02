@@ -11,3 +11,6 @@ __pycache__/
 
 # Envfile
 .env
+
+# local notes
+todo.txt
