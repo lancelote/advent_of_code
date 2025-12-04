@@ -8,7 +8,7 @@ def remove_accessible(diagram: list[list[str]]) -> int:
     count = 0
 
     n_rows = len(diagram)
-    n_cols = len(diagram)
+    n_cols = len(diagram[0])
 
     for r in range(n_rows):
         for c in range(n_cols):
