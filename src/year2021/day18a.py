@@ -171,7 +171,7 @@ def explode(num: Node) -> Node:
         elif isinstance(node, Branch):
             add_to_most_right(node.right, value)
         else:
-            ValueError(f"the hell is {node}?")
+            raise TypeError(f"the hell is {node}?")
 
     def add_to_most_left(node: Node, value: int) -> None:
         """Add the value to the leftest leaf."""
@@ -180,7 +180,7 @@ def explode(num: Node) -> Node:
         elif isinstance(node, Branch):
             add_to_most_left(node.left, value)
         else:
-            ValueError(f"the hell is {node}?")
+            raise TypeError(f"the hell is {node}?")
 
     if exploded_node is not None:
         add_exploded_parts(last=exploded_node)
