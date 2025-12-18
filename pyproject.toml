@@ -3,7 +3,7 @@ name = "advent-of-code"
 version = "0.0.0"
 requires-python = ">=3.14"
 dependencies = [
-    "advent-of-code-data>=2.1.0",
+    "advent-of-code-data>=2.1.1",
     "pytest>=9.0.1",
     "pytest-mock>=3.15.1",
     "ruff>=0.14.7",

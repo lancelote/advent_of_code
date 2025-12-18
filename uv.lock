@@ -16,7 +16,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "advent-of-code-data", specifier = ">=2.1.0" },
+    { name = "advent-of-code-data", specifier = ">=2.1.1" },
     { name = "pytest", specifier = ">=9.0.1" },
     { name = "pytest-mock", specifier = ">=3.15.1" },
     { name = "ruff", specifier = ">=0.14.7" },
@@ -25,7 +25,7 @@ requires-dist = [
 
 [[package]]
 name = "advent-of-code-data"
-version = "2.1.0"
+version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aocd-example-parser" },
@@ -34,18 +34,18 @@ dependencies = [
     { name = "tzdata", marker = "sys_platform == 'win32'" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c2/ba/90939f2d091ef220a09d2a24e56b6296ac442428be1051bcdc9125a79054/advent_of_code_data-2.1.0.tar.gz", hash = "sha256:947e6583f581ed184873aac835b333fc39a5712cce606c67532f9d43253a98e2", size = 47624, upload-time = "2025-01-04T04:53:57.747Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b1/eb/86b60842b4de007be7f409e5e985fc34f4e3635d175a2940aa0010e90dc2/advent_of_code_data-2.1.1.tar.gz", hash = "sha256:28a85126b06e6225baa475ad0cd7880b75812b89fc890b26d81480997f6bdc6f", size = 48699, upload-time = "2025-12-16T07:13:02.837Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8f/fe/47de97c2473539c14a1041297ae9807539372be08ccaf3b645fa21af1930/advent_of_code_data-2.1.0-py3-none-any.whl", hash = "sha256:1e0457338a9572e610f72da8aad8b06f778311a69b0ec676bf2e5db8328f4d45", size = 39468, upload-time = "2025-01-04T04:53:55.321Z" },
+    { url = "https://files.pythonhosted.org/packages/87/13/ef6c589dfb35620c7e2ecc8f1129905382213eda2836538263f308e12d1b/advent_of_code_data-2.1.1-py3-none-any.whl", hash = "sha256:6d92045db4f51820cb0337a3d240873ec586cef16525c686f60250ca97711d6f", size = 39871, upload-time = "2025-12-16T07:13:01.498Z" },
 ]
 
 [[package]]
 name = "aocd-example-parser"
-version = "2024.12.25"
+version = "2025.12.11"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/85/73/4dc4b85442fac53784887d4952e61123798999dd68b41c28db2517e12592/aocd_example_parser-2024.12.25.tar.gz", hash = "sha256:51aa57aee98026164c063ffd943cb9a488787fd2d19779362bea04f9cd386984", size = 14682, upload-time = "2025-01-09T05:03:45.631Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f9/ea/f67f4360b9e911e2fc3360aa2e8fb1bd430ab024ef5851b0542b8c6bb2bf/aocd_example_parser-2025.12.11.tar.gz", hash = "sha256:473c68d31a43a171e68d7d51a4de3a55936d6e45529d46fb58574e15beb385ac", size = 14776, upload-time = "2025-12-11T07:27:30.829Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/3c/e14435d3dd6a93ef81b8160ad0957c9eef2cc2eb9bf2019c47d853826120/aocd_example_parser-2024.12.25-py3-none-any.whl", hash = "sha256:6447dfb0b7d89bd901ed1c99d6c1c8d74a3b519b81f3db0e4116ca0ba9f5cb08", size = 13162, upload-time = "2025-01-09T05:03:43.388Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/9b/d65785ce96052b941e221245dcfe4760fc698b246708c97c6163f898a2c3/aocd_example_parser-2025.12.11-py3-none-any.whl", hash = "sha256:c7c7eb4f85052ea2da60626768c69ac3569aebf68c093ddc96801b8e977307ed", size = 13210, upload-time = "2025-12-11T07:27:29.674Z" },
 ]
 
 [[package]]
