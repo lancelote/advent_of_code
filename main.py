@@ -2,7 +2,6 @@
 
 import importlib
 import sys
-from collections.abc import Sequence
 from typing import Protocol
 from typing import cast
 
@@ -15,7 +14,7 @@ class SolverModule(Protocol):
     def solve(self, task: str) -> int: ...
 
 
-def solve(args: Sequence[str]) -> str:
+def solve(args: list[str]) -> str:
     year, day, part = convert_argv(args)
     task = get_data(day=day, year=year)
     module = importlib.import_module(f"src.year{year}.day{day:02}{part}")
@@ -24,9 +23,9 @@ def solve(args: Sequence[str]) -> str:
     return solution
 
 
-def main(*args: str) -> None:
-    if not args:
-        args = tuple(sys.argv[1:])
+def main(args: list[str] | None = None) -> None:
+    if args is None:
+        args = sys.argv[1:]
 
     solution = solve(args)
     print(f"answer: {solution}")
