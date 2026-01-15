@@ -1,6 +1,5 @@
 """2019 - Day 13 Part 2: Care Package."""
 
-import os
 from enum import Enum
 
 from src.year2019.intcode import Computer
@@ -51,7 +50,9 @@ class Arcade:
             self.update_map()
             self.print()
             self.move_paddle()
-            os.system("clear")
+
+            # clear whole screen
+            print("\033[2J\033[H", end="")
 
     def move_paddle(self) -> None:
         """Move paddle automatically depending on ball position."""
