@@ -18,7 +18,7 @@ class Rotation:
     distance: Distance
 
     @classmethod
-    def from_line(cls, line) -> Rotation:
+    def from_line(cls, line: str) -> Rotation:
         return Rotation(Direction(line[0]), int(line[1:]))
 
 
