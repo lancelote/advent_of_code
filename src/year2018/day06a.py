@@ -7,9 +7,6 @@ from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
 from typing import Any
-from typing import TypeVar
-
-T = TypeVar("T", bound="Grid")
 
 
 class Coordinate:
@@ -60,7 +57,7 @@ class Pin(Coordinate):
         return [Pin.from_string(line) for line in task.strip().split("\n")]
 
 
-class Grid:
+class Grid[T]:
     """A gird of time dots with pins."""
 
     def __init__(self, pins: list[Pin], dots: list[Dot], width: int, height: int):
