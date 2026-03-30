@@ -51,7 +51,7 @@ class Factory:
     def __init__(self, reactions: Reactions | None = None):
         """Create factory from reactions dictionary."""
         self._to_produce: DefaultDict[ChemicalName, int] = defaultdict(int)
-        self._reactions: Reactions = reactions if reactions else {}
+        self._reactions: Reactions = reactions or {}
         self.ore: int = 0
 
     @classmethod
