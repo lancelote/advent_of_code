@@ -53,9 +53,9 @@ class Screen:
 
         # magic
         a = seven - four
-        e = (eight - intersect(*zero_six_nine)) - four  # type: ignore
-        d = (eight - intersect(*zero_six_nine)) - e - one  # type: ignore
-        c = (eight - intersect(*zero_six_nine)) - e - d  # type: ignore
+        e = (eight - intersect(*zero_six_nine)) - four
+        d = (eight - intersect(*zero_six_nine)) - e - one
+        c = (eight - intersect(*zero_six_nine)) - e - d
         b = four - one - d
         f = four - b - c - d
         g = eight - a - b - c - d - e - f
