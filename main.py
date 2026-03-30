@@ -7,7 +7,7 @@ from typing import cast
 
 from aocd import get_data
 
-from utils.cli import convert_argv
+from src.utils.cli import convert_argv
 
 
 class SolverModule(Protocol):
