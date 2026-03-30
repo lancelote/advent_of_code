@@ -95,3 +95,6 @@ ignore = [
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[tool.pyrefly]
+search_path = ["."]
