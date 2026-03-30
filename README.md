@@ -47,20 +47,10 @@ To update `uv.lock` with the newest package versions
 uv sync --upgrade
 ```
 
-## Tests
-
-I store all the tests in `tests` folder and use `pytest` as a test runner
+## Verify
 
 ```bash
-make test
-```
-
-## Linters
-
-`ty` and `ruff` are used to check the project
-
-```bash
-make check
+./verify.sh
 ```
 
 # Merry Christmas and Happy New Year!
