@@ -27,7 +27,7 @@ def solve(task: str) -> str:
             if hex_hash.startswith("00000") and password[position] == "":
                 password[position] = new_char
                 print_password(password)
-        except (ValueError, IndexError):
+        except ValueError, IndexError:
             pass
         i += 1
     print()
