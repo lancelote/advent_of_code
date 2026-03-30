@@ -9,29 +9,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-
-      - name: set up Python
-        uses: actions/setup-python@v6
         with:
-          python-version-file: .python-version
+          fetch-depth: 0
 
       - name: install uv
         uses: astral-sh/setup-uv@v7
         with:
           version: 0.9.18
           enable-cache: true
+          cache-dependency-glob: "uv.lock"
 
       - name: install project
-        run: make install
+        run: uv sync --locked --all-extras --dev
 
       - name: lint
-        run: make lint
+        run: uv run ruff check
 
       - name: format
-        run: make ci-format
+        run: uv run ruff format --check --diff
 
       - name: typecheck
-        run: make typecheck
+        run: uv run ty check
 
       - name: test
-        run: make test
+        run: uv run pytest tests
