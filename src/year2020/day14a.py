@@ -11,7 +11,7 @@ from typing import DefaultDict
 
 
 class Mask(ABC):
-    mask = "X" * 36
+    mask: str = "X" * 36
 
     def set(self, mask: str) -> None:
         self.mask = mask
