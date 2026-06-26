@@ -7,6 +7,7 @@ from collections import defaultdict
 from operator import itemgetter
 from string import ascii_lowercase
 from typing import Any
+from typing import Self
 
 
 class Coordinate:
@@ -57,7 +58,7 @@ class Pin(Coordinate):
         return [Pin.from_string(line) for line in task.strip().split("\n")]
 
 
-class Grid[T]:
+class Grid:
     """A gird of time dots with pins."""
 
     def __init__(self, pins: list[Pin], dots: list[Dot], width: int, height: int):
@@ -79,7 +80,7 @@ class Grid[T]:
         )
 
     @classmethod
-    def parse_task(cls: type[T], task: str) -> T:
+    def parse_task(cls, task: str) -> Self:
         """Parse one coordinate per line from task input."""
         dots: list[Dot] = []
         pins: list[Pin] = Pin.parse_task(task)
