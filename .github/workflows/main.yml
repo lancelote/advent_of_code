@@ -29,7 +29,7 @@ jobs:
         run: uv run ruff format --check --diff
 
       - name: typecheck
-        run: uv run ty check
+        run: uv run pyrefly check
 
       - name: test
         run: uv run pytest tests
