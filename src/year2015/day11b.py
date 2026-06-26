@@ -5,7 +5,7 @@ from string import ascii_lowercase
 from typing import Any
 from typing import Self
 
-TO_INT = {x: i for i, x in enumerate(ascii_lowercase)}
+TO_INT: dict[str, int] = {x: i for i, x in enumerate(ascii_lowercase)}
 TO_STR = dict(enumerate(ascii_lowercase))
 BANNED = {8, 11, 14}
 
