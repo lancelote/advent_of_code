@@ -1,7 +1,6 @@
 """2016 - Day 3 Puzzle Part 1 tests."""
 
 import unittest
-from itertools import permutations
 
 from src.year2016.day03a import is_bad
 from src.year2016.day03a import process_data
@@ -22,8 +21,14 @@ class ProcessDataTest(unittest.TestCase):
 
 class IsBadTest(unittest.TestCase):
     def test_bad(self):
-        for bad_triangle in permutations((5, 10, 25)):
-            # noinspection PyTypeChecker
+        for bad_triangle in (
+            (5, 10, 25),
+            (5, 25, 10),
+            (10, 5, 25),
+            (10, 25, 5),
+            (25, 5, 10),
+            (25, 10, 5),
+        ):
             self.assertTrue(is_bad(bad_triangle))
 
     def test_two_side_equal(self):
