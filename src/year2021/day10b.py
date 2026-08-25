@@ -23,7 +23,7 @@ def get_score(stack: list[str]) -> int:
 
 def solve(task: str) -> int:
     subsystem: list[str] = task.split("\n")
-    scores = []
+    scores: list[int] = []
 
     for line in subsystem:
         stack = []
